@@ -1,0 +1,18 @@
+package com.keremkulac.okeyscore.data.repository
+
+import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
+import com.keremkulac.okeyscore.model.Continuing
+import com.keremkulac.okeyscore.model.Finished
+import javax.inject.Inject
+
+class OkeyScoreRepository @Inject constructor(private val okeyScoreDao: OkeyScoreDao) {
+
+    suspend fun insertContinuingGame(continuing: Continuing) = okeyScoreDao.insertContinuingGame(continuing)
+
+    suspend fun getContinuingGame(id : Int) = okeyScoreDao.getContinuingGameById(id)
+
+    suspend fun insertFinishedGame(finished: Finished) = okeyScoreDao.insertFinishedGame(finished)
+
+    suspend fun getFinishedGame(id : Int) = okeyScoreDao.getFinishedGameById(id)
+
+}
