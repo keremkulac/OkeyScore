@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey
 data class Finished(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val finishedTeam1: List<Int?>,
-    val finishedTeam2: List<Int?>
+    val redTeamName : String,
+    val blueTeamName : String,
+    val finishedRedTeam: List<String?>?,
+    val finishedBlueTeam: List<String?>?,
+    val redTeamTotalScore : Int,
+    val blueTeamTotalScore : Int
 )

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,29 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <style name="EditTextInputStyle" parent="Widget.AppCompat.EditText" >
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:inputType">numberSigned</item>
+        <item name="android:layout_margin">7dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:background">@drawable/custom_input</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:hint">0</item>
+        <item name="android:autofillHints" tools:ignore="Autofill" />
+        <item name="android:textColorHint">#757575</item>
+    </style>
+
+
+    <style name="TextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+
+    </style>
 </resources>

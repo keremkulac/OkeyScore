@@ -1,14 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".ui.SaveGameFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+            <EditText
+                android:inputType="text"
+                android:id="@+id/redTeamName"
+                style="@style/EditTextInputStyle"
+                android:hint="@string/team_name" />
 
-</FrameLayout>
+            <EditText
+                android:inputType="text"
+                android:id="@+id/blueTeamName"
+                style="@style/EditTextInputStyle"
+                android:hint="@string/team_name"  />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_1" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore1" />
+
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore1" />
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_2" />
+
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore2" />
+
+            <EditText
+                android:id="@+id/blueTeamScore2"
+                style="@style/EditTextInputStyle" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_3" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore3" />
+
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore3" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_4" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore4" />
+
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore4" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_5" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore5" />
+
+            <EditText
+                android:id="@+id/blueTeamScore5"
+                style="@style/EditTextInputStyle"
+                android:textColorHint="#757575" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_6" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore6" />
+
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore6" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_7" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore7" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore7" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_8" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore8" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore8" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_9" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore9" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore9" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_10" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore10" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore10" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/_11" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamScore11" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamScore11" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="" />
+            <EditText
+
+                style="@style/EditTextInputStyle"
+                android:id="@+id/redTeamTotalScore" />
+            <EditText
+                style="@style/EditTextInputStyle"
+                android:id="@+id/blueTeamTotalScore" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="OYUNU KAYDET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
