@@ -37,8 +37,7 @@ class SaveGameFragment : Fragment(){
     }
 
    private  fun setTotalScores(){
-        viewModel.setTotal(redTeamEditTexts(),binding.redTeamTotalScore)
-        viewModel.setTotal(blueTeamEditTexts(),binding.blueTeamTotalScore)
+        viewModel.setTotal(redTeamEditTexts(),blueTeamEditTexts(),binding.redTeamTotalScore,binding.blueTeamTotalScore,binding.blueTeam,binding.redTeam,requireContext())
     }
 
     private fun getFromRoomDb(){
@@ -83,6 +82,7 @@ class SaveGameFragment : Fragment(){
             binding.blueTeamScore11,
         )
     }
+
 
     private fun saveToRoomDb(){
         binding.save.setOnClickListener {
