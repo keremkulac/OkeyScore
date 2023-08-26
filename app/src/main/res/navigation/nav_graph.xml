@@ -3,11 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/saveGameFragment">
+    app:startDestination="@id/finishedGameFragment">
 
     <fragment
         android:id="@+id/saveGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.SaveGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.saveGame.SaveGameFragment"
         android:label="fragment_save_game"
-        tools:layout="@layout/fragment_save_game" />
+        tools:layout="@layout/fragment_save_game" >
+
+        <action
+            android:id="@+id/action_saveGameFragment_to_finishedGameFragment"
+            app:destination="@id/finishedGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishedGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedGame.FinishedGameFragment"
+        android:label="fragment_finished_game"
+        tools:layout="@layout/fragment_finished_game" >
+        <action
+            android:id="@+id/action_finishedGameFragment_to_saveGameFragment"
+            app:destination="@id/saveGameFragment" />
+    </fragment>
 </navigation>

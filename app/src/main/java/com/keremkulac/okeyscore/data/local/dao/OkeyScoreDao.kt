@@ -16,5 +16,5 @@ interface OkeyScoreDao {
     suspend fun getFinishedGameById(id: Int): Finished?
 
     @Query("SELECT * FROM finished")
-    suspend fun get(): List<Finished?>
+    suspend fun getAllFinishedGames(): List<Finished?>
 }

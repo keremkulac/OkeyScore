@@ -4,225 +4,260 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".ui.SaveGameFragment">
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
 
-    <TableLayout
-        android:layout_margin="10dp"
-        android:padding="5dp"
-        android:id="@+id/tableLayout"
+    <LinearLayout
+        android:id="@+id/sequence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/team1ScoresLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout android:orientation="horizontal"
-            tools:ignore="UselessParent">
+        <TextView
+            android:id="@+id/sequenceLayout"
+            android:layout_marginTop="70dp"
+            android:text="@string/_1"
+            style="@style/TextViewStyle" />
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_2"
+          />
 
-                <LinearLayout android:orientation="vertical">
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_3" />
 
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        style="@style/TextViewStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_4" />
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_1" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_5" />
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_2" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_6" />
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_3" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_7" />
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_4" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_8" />
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_5" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_9"/>
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_6" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_10" />
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_7" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@string/_11" />
+    </LinearLayout>
 
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_8" />
-
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_9" />
-
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_10" />
-
-                    <TextView
-                        style="@style/TextViewStyle"
-                        android:text="@string/_11" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/redTeam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/redTeamName"
-                        style="@style/EditTextInputStyle"
-                        android:hint="@string/team_name"
-                        android:inputType="text" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore1"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore2"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore3"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore4"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore5"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore6"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore7"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore8"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore9"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore10"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamScore11"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/redTeamTotalScore"
-                        style="@style/EditTextInputStyle" />
-
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/blueTeam"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/blueTeamName"
-                        style="@style/EditTextInputStyle"
-                        android:hint="@string/team_name"
-                        android:inputType="text" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore1"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore2"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore3"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore4"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore5"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore6"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore7"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore8"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore9"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore10"
-                        style="@style/EditTextInputStyle" />
-
-                    <EditText
-                        android:id="@+id/blueTeamScore11"
-                        style="@style/EditTextInputStyle" />
-                    <EditText
-                        android:id="@+id/blueTeamTotalScore"
-                        style="@style/EditTextInputStyle" />
-
-                </LinearLayout>
-            </TableRow>
-
-        </LinearLayout>
-
-    </TableLayout>
-
-
-    <Button
-        android:id="@+id/save"
+    <LinearLayout
+        android:id="@+id/team1ScoresLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/team2ScoresLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/team1Name"
+            style="@style/EditTextInputStyle"
+            android:layout_marginTop="8dp"
+            android:hint="@string/team1"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:autofillHints=""/>
+
+        <View
+            android:id="@+id/team1View"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <EditText
+            android:layout_marginTop="8dp"
+            android:id="@+id/team2Score1"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score2"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score3"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score4"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score5"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score6"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score7"
+            style="@style/EditTextInputStyle"
+            android:autofillHints=""/>
+
+        <EditText
+            android:id="@+id/team2Score8"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score9"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score10"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2Score11"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1TotalScore"
+            style="@style/EditTextInputStyle"
+            android:background="@android:color/transparent"
+            android:text="@string/total"
+            android:autofillHints="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/team2ScoresLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/team1ScoresLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/team2Name"
+            style="@style/EditTextInputStyle"
+            android:layout_marginTop="8dp"
+            android:hint="@string/team2"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:autofillHints=""/>
+
+        <View
+            android:id="@+id/team2View"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <EditText
+            android:layout_marginTop="8dp"
+            android:id="@+id/team1Score1"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score2"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score3"
+            style="@style/EditTextInputStyle"
+            android:autofillHints=""  />
+
+        <EditText
+            android:id="@+id/team1Score4"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score5"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score6"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score7"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score8"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score9"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score10"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team1Score11"
+            style="@style/EditTextInputStyle"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/team2TotalScore"
+            style="@style/EditTextInputStyle"
+            android:background="@android:color/transparent"
+            android:autofillHints=""
+            android:text="@string/total" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="128dp"
         android:text="@string/save_game"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/team2ScoresLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
