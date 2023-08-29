@@ -1,5 +1,6 @@
 package com.keremkulac.okeyscore.ui.saveGame
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.text.Editable
@@ -8,6 +9,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.R
@@ -23,30 +26,48 @@ import javax.inject.Inject
 @HiltViewModel
 class SaveGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel(){
-
+    private val _isTrue = MutableLiveData<Boolean>()
+    val isTrue: LiveData<Boolean>
+        get() = _isTrue
     fun insertFinishedGame(  team1Name : String, team2Name : String,
                              finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
-                             redTeamTotalScore : Int, blueTeamTotalScore : Int,context: Context,sharedPreferences: SharedPreferences){
+                             redTeamTotalScore : String, blueTeamTotalScore : String,context: Context,sharedPreferences: SharedPreferences){
         viewModelScope.launch{
             if(team1Name.isBlank() || team2Name.isBlank()){
                 Toast.makeText(context,"Lütfen takım isimlerini giriniz",Toast.LENGTH_SHORT).show()
+                _isTrue.postValue(false)
             }else{
-                val finished = Finished( 0,team1Name,team2Name,finishedTeam1,finishedTeam2,redTeamTotalScore.toString(),blueTeamTotalScore.toString(),getCurrentDate())
-                okeyScoreRepository.insertFinishedGame(finished)
-                val editor = sharedPreferences.edit()
-                editor.clear()
-                editor.apply()
+                if(redTeamTotalScore.isNotBlank() && blueTeamTotalScore.isNotBlank()){
+                    _isTrue.postValue(true)
+
+                    val finished = Finished( 0,team1Name,team2Name,finishedTeam1,finishedTeam2,
+                        splitTotal(redTeamTotalScore),splitTotal(blueTeamTotalScore),getCurrentDate())
+                    okeyScoreRepository.insertFinishedGame(finished)
+                    val editor = sharedPreferences.edit()
+                    editor.clear()
+                    editor.apply()
+                }else{
+                    _isTrue.postValue(false)
+
+                }
             }
         }
     }
 
+    private fun splitTotal(totalScore: String): String {
+        return totalScore.split("Toplam: ")[1]
+    }
+
     private fun setBackgroundColor(team1View: View ,team2View: View,context: Context,team1TotalScore: Int,team2TotalScore: Int){
-        if(team1TotalScore < team2TotalScore){
+        if(team1TotalScore > team2TotalScore){
             team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
             team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.green))
-        }else{
+        }else if(team1TotalScore < team2TotalScore){
             team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
             team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.green))
+        }else{
+            team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+            team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
         }
     }
 
@@ -58,9 +79,10 @@ class SaveGameViewModel
              if (i !=0 && i != 12){
                  scoreListItem.addTextChangedListener(object : TextWatcher {
                      override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                     @SuppressLint("SetTextI18n")
                      override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                         team1TotalScoreEditText.setText(calculateTotalScore(team1ScoreList).toString())
-                         team2TotalScoreEditText.setText(calculateTotalScore(team2ScoreList).toString())
+                         team1TotalScoreEditText.setText("Toplam: ${calculateTotalScore(team1ScoreList)}")
+                         team2TotalScoreEditText.setText("Toplam: ${calculateTotalScore(team2ScoreList)}")
                          setBackgroundColor(team1View,team2View,context,
                              calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList))
                      }

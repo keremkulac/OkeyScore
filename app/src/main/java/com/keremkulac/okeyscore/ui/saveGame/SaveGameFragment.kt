@@ -35,11 +35,12 @@ class SaveGameFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTotalScores()
+        goToSaveFragment()
     }
 
    private  fun setTotalScores(){
        viewModel.setTotal(team1EditTexts(),team2EditTexts(),
-           binding.team2TotalScore,binding.team1TotalScore,
+           binding.team1TotalScore,binding.team2TotalScore,
            binding.team1View,binding.team2View,requireContext())
     }
 
@@ -85,9 +86,20 @@ class SaveGameFragment : Fragment(){
                 binding.team2Name.text.toString(),
                 viewModel.getTeam1Scores(team1EditTexts()),
                 viewModel.getTeam2Score(team2EditTexts()),
-                binding.team1TotalScore.text.toString().toInt(),
-                binding.team2TotalScore.text.toString().toInt(),requireContext(),sharedPreferences)
+                binding.team1TotalScore.text.toString(),
+                binding.team2TotalScore.text.toString(),requireContext(),sharedPreferences)
+            viewModel.isTrue.observe(viewLifecycleOwner){
+                if (it){
+                   findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
+                }
+            }
+        }
+    }
+
+    private fun goToSaveFragment(){
+        binding.goToSaveFragment.setOnClickListener{
             findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
+
         }
     }
 

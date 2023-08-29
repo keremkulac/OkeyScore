@@ -24,4 +24,7 @@
     <string name="team2Name">Takım 2 Adı</string>
     <string name="team2TotalScore">Toplam Skor: 0</string>
     <string name="date">Tarih</string>
+    <string name="score">Skor</string>
+    <string name="my_game_history">Geçmiş oyunlarım</string>
+    <string name="total_0">Toplam: 0</string>
 </resources>
