@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        android:background="@drawable/custom_button"
-        android:id="@+id/saveGame"
-        android:layout_gravity="center"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/save_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    android:layout_height="match_parent"
+    android:background="@color/black">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/purple_700"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/purple_700">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:text="@string/save_game"
+                android:text="@string/toolbar_save_game"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -50,257 +34,326 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <GridLayout
-        android:layout_marginTop="60dp"
-        android:id="@+id/gridLayout"
+    <LinearLayout
+        android:layout_below="@+id/toolBar"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/teamNamesLayout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:columnCount="3"
-        android:rowCount="14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar">
-
-
-        <TextView
-            style="@style/TextViewStyle"
-            android:layout_gravity="bottom"
-            android:text="" />
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/team1Name"
-            style="@style/EditTextInputStyle"
-            android:autofillHints=""
-            android:hint="@string/team_name"
+            android:background="@null"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@id/team1Name"
+            android:layout_weight="2"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_marginStart="60dp"
             android:inputType="text"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
+            android:hint="@string/team_name"
+            android:autofillHints="" />
         <EditText
-            android:id="@+id/team2Name"
-            style="@style/EditTextInputStyle"
-            android:autofillHints=""
-            android:hint="@string/team_name"
+            android:background="@null"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@id/team2Name"
+            android:layout_weight="2"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_marginStart="20dp"
             android:inputType="text"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:hint="@string/team_name"
+            android:autofillHints="" />
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:layout_gravity="center"
-            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_below="@+id/teamNamesLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/team1View"
-            android:layout_width="120dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="5dp"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp" />
-
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp" />
         <View
             android:id="@+id/team2View"
-            android:layout_width="120dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="5dp"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+           />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/scoreContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/teamNamesLayout"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp">
 
         <TextView
-            style="@style/TextViewStyle"
-            android:layout_gravity="center"
-            android:text="@string/_1" />
+            android:textColor="@color/white"
+            android:id="@+id/roundLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/round_scores"
+            android:textSize="18sp"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="8dp"/>
 
-        <EditText
-            android:id="@+id/team1Score1"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_1"/>
 
-        <EditText
-            android:id="@+id/team2Score1"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team1Score1"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_2" />
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/team2Score1"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/team1Score2"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_2"/>
 
-        <EditText
-            android:id="@+id/team2Score2"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team1Score2"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
+            <EditText
+                android:id="@+id/team2Score2"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_3" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
-        <EditText
-            android:id="@+id/team1Score3"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_3"/>
 
+            <EditText
+                android:id="@+id/team1Score3"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <EditText
-            android:id="@+id/team2Score3"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team2Score3"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_4" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_4"/>
 
-        <EditText
-            android:id="@+id/team1Score4"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team1Score4"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
+            <EditText
+                android:id="@+id/team2Score4"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/team2Score4"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_5" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_5"/>
 
-        <EditText
-            android:id="@+id/team1Score5"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team1Score5"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
+            <EditText
+                android:id="@+id/team2Score5"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/team2Score5"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_6"/>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_6" />
+            <EditText
+                android:id="@+id/team1Score6"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <EditText
-            android:id="@+id/team1Score6"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team2Score6"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_7"/>
 
-        <EditText
-            android:id="@+id/team2Score6"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team1Score7"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_7" />
+            <EditText
+                android:id="@+id/team2Score7"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/team1Score7"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_8"/>
 
-        <EditText
-            android:id="@+id/team2Score7"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team1Score8"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
+            <EditText
+                android:id="@+id/team2Score8"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_8" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
-        <EditText
-            android:id="@+id/team1Score8"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_9"/>
 
+            <EditText
+                android:id="@+id/team1Score9"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <EditText
-            android:id="@+id/team2Score8"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team2Score9"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_9" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
-        <EditText
-            android:id="@+id/team1Score9"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_10"/>
 
+            <EditText
+                android:id="@+id/team1Score10"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <EditText
-            android:id="@+id/team2Score9"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team2Score10"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_10" />
+        <LinearLayout
+            style="@style/LinearLayoutStyle">
 
-        <EditText
-            android:id="@+id/team1Score10"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <TextView
+                style="@style/TextViewStyle"
+                android:text="@string/round_11"/>
 
+            <EditText
+                android:id="@+id/team1Score11"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
 
-        <EditText
-            android:id="@+id/team2Score10"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team2Score11"
+                style="@style/EditTextStyle"
+                android:autofillHints=""/>
+        </LinearLayout>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="@string/_11" />
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            style="@style/LinearLayoutStyle">
 
-        <EditText
-            android:id="@+id/team1Score11"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <TextView
+                android:layout_weight="2"
+                android:textSize="12sp"
+                style="@style/TextViewStyle"
+                android:text="@string/total_scores"/>
 
+            <EditText
+                android:id="@+id/team1TotalScore"
+                style="@style/EditTextStyle"
+                android:hint="@string/total_0"
+                android:textSize="12sp"
+                android:layout_weight="3"
+                android:autofillHints=""/>
 
-        <EditText
-            android:id="@+id/team2Score11"
-            style="@style/EditTextInputStyle"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/team2TotalScore"
+                style="@style/EditTextStyle"
+                android:hint="@string/total_0"
+                android:textSize="12sp"
+                android:layout_weight="3"
+                android:autofillHints=""/>
+        </LinearLayout>
+    </LinearLayout>
 
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="" />
-
-        <EditText
-            android:background="@color/black"
-            android:id="@+id/team1TotalScore"
-            style="@style/EditTextInputStyle"
-            android:autofillHints=""
-            android:hint="@string/total_0" />
-
-
-        <EditText
-            android:background="@color/black"
-            android:id="@+id/team2TotalScore"
-            style="@style/EditTextInputStyle"
-            android:autofillHints=""
-            android:hint="@string/total_0"  />
-
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="" />
-
-        <TextView
-            style="@style/TextViewStyle"
-            android:text="" />
-    </GridLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:background="@drawable/custom_button"
+        android:id="@+id/saveGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/scoreContainer"
+        android:layout_alignParentEnd="true"
+        android:text="@string/save_game" />
+</RelativeLayout>

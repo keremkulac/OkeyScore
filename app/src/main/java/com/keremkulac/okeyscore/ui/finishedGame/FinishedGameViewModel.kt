@@ -16,8 +16,6 @@ class FinishedGameViewModel
     private val _allFinishedGames = MutableLiveData<List<Finished?>>()
     val finishedGame: LiveData<List<Finished?>>
         get() = _allFinishedGames
-
-
     init {
         getFinishedGames()
     }

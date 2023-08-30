@@ -32,7 +32,12 @@ class FinishedGameFragment : Fragment() {
     }
     private fun observeAllFinishedGame(){
         viewModel.finishedGame.observe(viewLifecycleOwner){
-            setRecyclerView(it)
+            if(it.isNotEmpty()){
+                binding.recordNotFound.visibility = View.INVISIBLE
+                setRecyclerView(it)
+            }else{
+                binding.recordNotFound.visibility = View.VISIBLE
+            }
         }
     }
 

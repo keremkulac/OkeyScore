@@ -58,7 +58,8 @@ class SaveGameViewModel
         return totalScore.split("Toplam: ")[1]
     }
 
-    private fun setBackgroundColor(team1View: View ,team2View: View,context: Context,team1TotalScore: Int,team2TotalScore: Int){
+    private fun setBackgroundColor(team1View: View ,team2View: View,context: Context,
+                                   team1TotalScore: Int,team2TotalScore: Int){
         if(team1TotalScore > team2TotalScore){
             team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
             team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.green))
@@ -73,7 +74,7 @@ class SaveGameViewModel
 
      fun setTotal(team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,
                   team1TotalScoreEditText : EditText, team2TotalScoreEditText : EditText,
-                  team1View: View, team2View: View, context: Context){
+                  team1View: View, team2View: View,context: Context){
          val list =team1ScoreList+team2ScoreList
          for((i, scoreListItem) in list.withIndex()){
              if (i !=0 && i != 12){
