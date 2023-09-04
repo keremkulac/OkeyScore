@@ -2,17 +2,6 @@
     <string name="app_name">OkeyScore</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="_1">1</string>
-    <string name="_2">2</string>
-    <string name="_3">3</string>
-    <string name="_4">4</string>
-    <string name="_5">5</string>
-    <string name="_6">6</string>
-    <string name="_7">7</string>
-    <string name="_8">8</string>
-    <string name="_9">9</string>
-    <string name="_10">10</string>
-    <string name="_11">11</string>
     <string name="team_name">Takım adı</string>
     <string name="save_game">OYUNU KAYDET</string>
     <string name="tag">Tag</string>
@@ -28,8 +17,8 @@
     <string name="my_game_history">Geçmiş oyunlarım</string>
     <string name="total_0">Toplam: 0</string>
     <string name="round_11">Tur 11</string>
-    <string name="round_9">Tur 9</string>
     <string name="round_10">Tur 10</string>
+    <string name="round_9">Tur 9</string>
     <string name="round_8">Tur 8</string>
     <string name="round_7">Tur 7</string>
     <string name="round_6">Tur 6</string>
@@ -42,4 +31,7 @@
     <string name="total_scores">Toplam Skorlar</string>
     <string name="record_not_found">Kayıt bulunamadı</string>
     <string name="toolbar_save_game">Oyun kayıt</string>
+    <string name="difference_0">Fark: 0</string>
+    <string name="save">Kaydet</string>
+    <string name="todo">TODO</string>
 </resources>

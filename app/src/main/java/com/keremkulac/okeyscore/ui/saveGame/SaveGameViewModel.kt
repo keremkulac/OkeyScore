@@ -7,8 +7,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -58,34 +60,32 @@ class SaveGameViewModel
         return totalScore.split("Toplam: ")[1]
     }
 
-    private fun setBackgroundColor(team1View: View ,team2View: View,context: Context,
-                                   team1TotalScore: Int,team2TotalScore: Int){
-        if(team1TotalScore > team2TotalScore){
-            team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
-            team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.green))
-        }else if(team1TotalScore < team2TotalScore){
-            team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
-            team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.green))
-        }else{
-            team2View.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
-            team1View.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
-        }
+    @SuppressLint("SetTextI18n")
+    private fun setDifferenceText(team1TotalScore: Int, team2TotalScore: Int, differenceText : TextView
+                                  , team1Name: String, team2Name: String){
+            if(team1TotalScore > team2TotalScore){
+                differenceText.text = "Fark : ${team1TotalScore-team2TotalScore}. ${team2Name} takımı önde"
+            }else if(team1TotalScore < team2TotalScore){
+                differenceText.text = "Fark : ${team2TotalScore-team1TotalScore}. ${team1Name} takımı önde"
+            }else{
+                differenceText.text = "Fark : Skorlar eşit"
+            }
     }
 
      fun setTotal(team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,
-                  team1TotalScoreEditText : EditText, team2TotalScoreEditText : EditText,
-                  team1View: View, team2View: View,context: Context){
+                  team1TotalScoreEditText : EditText, team2TotalScoreEditText : EditText, differenceText : TextView){
          val list =team1ScoreList+team2ScoreList
          for((i, scoreListItem) in list.withIndex()){
              if (i !=0 && i != 12){
                  scoreListItem.addTextChangedListener(object : TextWatcher {
-                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                     }
                      @SuppressLint("SetTextI18n")
                      override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                          team1TotalScoreEditText.setText("Toplam: ${calculateTotalScore(team1ScoreList)}")
                          team2TotalScoreEditText.setText("Toplam: ${calculateTotalScore(team2ScoreList)}")
-                         setBackgroundColor(team1View,team2View,context,
-                             calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList))
+                         setDifferenceText(calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList),differenceText,team1ScoreList[0].text.toString(),team2ScoreList[0].text.toString())
                      }
                      override fun afterTextChanged(s: Editable?) {}
                  })
@@ -93,7 +93,7 @@ class SaveGameViewModel
         }
     }
 
-    private fun calculateTotalScore(scoreList: List<EditText>) : Int{
+     fun calculateTotalScore(scoreList: List<EditText>) : Int{
         var total = 0
         for((i, editText) in scoreList.withIndex()){
             if(i>0){
@@ -106,29 +106,36 @@ class SaveGameViewModel
         return total
     }
 
-    fun getTeam1Scores(team1EditTexts : List<EditText>): List<String?> {
-        val team1Scores = ArrayList<String?>()
-        for(editText in team1EditTexts){
-            team1Scores.add(editText.text.toString())
+    fun getTeamScoreInformations(teamInformationEditTexts : List<EditText>): List<String?> {
+        val informations = ArrayList<String?>()
+        for((i, editText) in teamInformationEditTexts.withIndex()){
+            if (i != 0){
+                informations.add(editText.text.toString())
+            }
         }
-        return team1Scores
+        return informations
     }
 
-    fun getTeam2Score(team2EditTexts : List<EditText>): List<String?> {
-        val team2Scores = ArrayList<String?>()
-        for(editText in team2EditTexts){
-            team2Scores.add(editText.text.toString())
-        }
-        return team2Scores
-    }
-
-     fun getSharedPrefAndSetTeamScores(keyName : String,editTextList : List<EditText>,sharedPreferences : SharedPreferences) {
+     fun getSharedPrefAndSetTeamScores(keyName : String,teamName : String,editTextList : List<EditText>,
+                                       sharedPreferences : SharedPreferences,
+                                       layout: LinearLayout,scoreContainer : LinearLayout,
+                                       arrowButton : ImageButton,differenceText : TextView) {
          val getContinuingTeamScores = sharedPreferences.getString(keyName, "")
+         val continuingTeamName = sharedPreferences.getString(teamName, "")
          val continuingList = getContinuingTeamScores?.split(",")
          if (continuingList != null) {
              if (getContinuingTeamScores != "") {
+                 layout.visibility = View.GONE
+                 scoreContainer.visibility = View.VISIBLE
+                 arrowButton.setImageResource(R.drawable.ic_arrow_right)
+                 differenceText.visibility = View.VISIBLE
                  for ((i, editText) in editTextList.withIndex()) {
-                     editText.setText(continuingList[i])
+                     if(i == 0){
+                         editText.setText(continuingTeamName)
+                     }else{
+                         editText.setText(continuingList[i-1])
+                     }
+
                  }
              }
          }
