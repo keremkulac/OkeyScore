@@ -34,4 +34,6 @@
     <string name="difference_0">Fark: 0</string>
     <string name="save">Kaydet</string>
     <string name="todo">TODO</string>
+    <string name="_0">0</string>
+    <string name="game_info">Oyun bilgi</string>
 </resources>
