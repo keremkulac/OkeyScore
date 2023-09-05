@@ -1,7 +1,6 @@
 package com.keremkulac.okeyscore.ui.saveGame
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.SharedPreferences
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +9,6 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,29 +29,58 @@ class SaveGameViewModel
     private val _isTrue = MutableLiveData<Boolean>()
     val isTrue: LiveData<Boolean>
         get() = _isTrue
+
     fun insertFinishedGame(  team1Name : String, team2Name : String,
                              finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
-                             redTeamTotalScore : String, blueTeamTotalScore : String,context: Context,sharedPreferences: SharedPreferences){
+                             team1TotalScore : String, team2TotalScore : String,gameInfo : String,
+                             sharedPreferences: SharedPreferences){
         viewModelScope.launch{
-            if(team1Name.isBlank() || team2Name.isBlank()){
-                Toast.makeText(context,"Lütfen takım isimlerini giriniz",Toast.LENGTH_SHORT).show()
-                _isTrue.postValue(false)
-            }else{
-                if(redTeamTotalScore.isNotBlank() && blueTeamTotalScore.isNotBlank()){
-                    _isTrue.postValue(true)
-
-                    val finished = Finished( 0,team1Name,team2Name,finishedTeam1,finishedTeam2,
-                        splitTotal(redTeamTotalScore),splitTotal(blueTeamTotalScore),getCurrentDate())
-                    okeyScoreRepository.insertFinishedGame(finished)
-                    val editor = sharedPreferences.edit()
-                    editor.clear()
-                    editor.apply()
-                }else{
-                    _isTrue.postValue(false)
-
-                }
+            if(team1TotalScore.isNotBlank() && team2TotalScore.isNotBlank()){
+                clearSharedPreferences(sharedPreferences)
+                val finished = Finished( 0,team1Name,team2Name,finishedTeam1,finishedTeam2,
+                    splitTotal(team1TotalScore),splitTotal(team2TotalScore),gameInfo,getCurrentDate())
+                check(finished,sharedPreferences)
             }
         }
+    }
+
+     fun getTeamScoreDifference(team1ScoreList: List<EditText>, team2ScoreList: List<EditText>,team1Name: String,team2Name: String) : String{
+        val team1TotalScore = calculateTotalScore(team1ScoreList)
+        val team2TotalScore = calculateTotalScore(team2ScoreList)
+        if(team1TotalScore > team2TotalScore)
+            return "${team2Name} takımı oyunu ${team1TotalScore-team2TotalScore} fark ile kazanmıştır"
+        else if(team2TotalScore > team1TotalScore)
+            return "${team1Name} takımı oyunu ${team2TotalScore-team1TotalScore} fark ile kazanmıştır"
+        return "Oyun eşit skor ile bitmiştir"
+
+    }
+
+    private suspend fun check(finished: Finished,sharedPreferences: SharedPreferences){
+        val result = runCatching {
+            val affectedRows = okeyScoreRepository.insertFinishedGame(finished)
+            affectedRows
+        }
+
+        if (result.isSuccess) {
+            val insertedRowCount = result.getOrNull()
+            if (insertedRowCount != null ) {
+                _isTrue.postValue(true)
+                clearSharedPreferences(sharedPreferences)
+            } else {
+                _isTrue.postValue(false)
+            }
+        } else {
+            val exception = result.exceptionOrNull()
+            println("Hata meydana geldi: ${exception?.message}")
+        }
+
+
+    }
+
+    fun clearSharedPreferences(sharedPreferences: SharedPreferences){
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
     }
 
     private fun splitTotal(totalScore: String): String {

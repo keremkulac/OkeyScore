@@ -14,5 +14,6 @@ data class Finished(
     val finishedTeam2 : List<String?>?,
     val team1TotalScore : String,
     val team2TotalScore : String,
+    val gameInfo : String,
     val date : String
 )

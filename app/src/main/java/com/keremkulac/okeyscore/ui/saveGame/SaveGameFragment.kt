@@ -1,5 +1,6 @@
 package com.keremkulac.okeyscore.ui.saveGame
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
@@ -29,26 +30,21 @@ class SaveGameFragment : Fragment(){
         saveToRoomDb()
         return binding.root
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences("ContinuingSharedPref",
             Context.MODE_PRIVATE)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTotalScores()
         goToSaveFragment()
         setTeamInfo()
     }
-
    private  fun setTotalScores(){
        viewModel.setTotal(team1EditTexts(),team2EditTexts(),
            binding.team1TotalScore,binding.team2TotalScore, binding.differenceText)
     }
-
-
     private fun team1EditTexts(): List<EditText> {
         return listOf(
             binding.team1Name,
@@ -81,8 +77,6 @@ class SaveGameFragment : Fragment(){
             binding.team2Score11,
         )
     }
-
-
     private fun setTeamInfo(){
         binding.arrowButton.setOnClickListener {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -111,22 +105,26 @@ class SaveGameFragment : Fragment(){
         }
     }
 
-
-
     private fun saveToRoomDb(){
         binding.saveGame.setOnClickListener {
-            viewModel.insertFinishedGame(
-                binding.team1Name.text.toString(),
-                binding.team2Name.text.toString(),
-                viewModel.getTeamScoreInformations(team1EditTexts()),
-                viewModel.getTeamScoreInformations(team2EditTexts()),
-                binding.team1TotalScore.text.toString(),
-                binding.team2TotalScore.text.toString(),requireContext(),sharedPreferences)
-            viewModel.isTrue.observe(viewLifecycleOwner){
-                if (it){
-                   findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
-                }
+            val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
+            alertDialogBuilder.setTitle("İşlem Onayı")
+            alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
+            alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
+                viewModel.insertFinishedGame(
+                    binding.team1Name.text.toString(),
+                    binding.team2Name.text.toString(),
+                    viewModel.getTeamScoreInformations(team1EditTexts()),
+                    viewModel.getTeamScoreInformations(team2EditTexts()),
+                    binding.team1TotalScore.text.toString(),
+                    binding.team2TotalScore.text.toString(),
+                    viewModel.getTeamScoreDifference(team1EditTexts(),team2EditTexts(),binding.team1Name.text.toString(),binding.team2Name.text.toString()),sharedPreferences)
+                findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
+
             }
+            alertDialogBuilder.setNegativeButton("Hayır") { dialog, which -> }
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
         }
     }
 

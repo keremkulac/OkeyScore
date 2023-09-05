@@ -50,5 +50,7 @@
         <item name="cardUseCompatPadding">true</item>
     </style>
 
-
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
 </resources>

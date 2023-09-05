@@ -28,18 +28,18 @@ class FinishedGameAdapter(private val itemList: List<Finished?>) : RecyclerView.
         val team2Name =  itemView.findViewById<TextView>(R.id.team2Name)
         val team1TotalScore =  itemView.findViewById<TextView>(R.id.team1TotalScore)
         val team2TotalScore =  itemView.findViewById<TextView>(R.id.team2TotalScore)
+        val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
         val date =  itemView.findViewById<TextView>(R.id.gameDate)
+
         fun bind(item: Finished?) {
             item?.let {
                 team1Name.text = item.team1Name
                 team2Name.text = item.team2Name
                 team1TotalScore.text = item.team1TotalScore
                 team2TotalScore.text = item.team2TotalScore
+                gameInfo.text = item.gameInfo
                 date.text = item.date
             }
-
-
-
         }
     }
 }
