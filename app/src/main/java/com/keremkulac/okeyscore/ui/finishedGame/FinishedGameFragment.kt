@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,19 +31,49 @@ class FinishedGameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeAllFinishedGame()
         goToSaveGameFragment()
+        searchClick()
     }
     private fun observeAllFinishedGame(){
         viewModel.finishedGame.observe(viewLifecycleOwner){
             if(it.isNotEmpty()){
                 binding.recordNotFound.visibility = View.INVISIBLE
                 setRecyclerView(it)
+
             }else{
                 binding.recordNotFound.visibility = View.VISIBLE
             }
         }
     }
+    private fun searchClick(){
 
-    private fun setRecyclerView(finishedGames : List<Finished?>){
+        binding.searchView.setOnSearchClickListener {
+            binding.gameHistoryText.visibility = View.GONE
+            search()
+
+        }
+
+        binding.searchView.setOnCloseListener {
+            binding.gameHistoryText.visibility = View.VISIBLE
+            false
+        }
+
+
+    }
+
+    private fun search(){
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.search(newText,finishedGameAdapter)
+                return true
+            }
+        })
+    }
+
+    private fun setRecyclerView(finishedGames : ArrayList<Finished?>){
         finishedGameAdapter = FinishedGameAdapter(finishedGames)
         binding.finishedGameRecyclerView.adapter =  finishedGameAdapter
         binding.finishedGameRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

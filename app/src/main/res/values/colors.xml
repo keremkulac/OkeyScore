@@ -53,4 +53,11 @@
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:windowBackground">@android:color/black</item>
     </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">14sp</item>
+
+    </style>
 </resources>

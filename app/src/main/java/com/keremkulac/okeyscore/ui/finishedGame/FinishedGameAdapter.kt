@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.Finished
 
-class FinishedGameAdapter(private val itemList: List<Finished?>) : RecyclerView.Adapter<FinishedGameAdapter.FinishedGameViewHolder>() {
+class FinishedGameAdapter(private var itemList: ArrayList<Finished?>) : RecyclerView.Adapter<FinishedGameAdapter.FinishedGameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedGameViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.finished_game_item, parent, false)
@@ -41,5 +41,10 @@ class FinishedGameAdapter(private val itemList: List<Finished?>) : RecyclerView.
                 date.text = item.date
             }
         }
+    }
+
+    fun updateData(newList: ArrayList<Finished?>) {
+        itemList = newList
+        notifyDataSetChanged()
     }
 }
