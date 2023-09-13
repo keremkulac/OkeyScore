@@ -9,8 +9,6 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.R
@@ -26,19 +24,17 @@ import javax.inject.Inject
 @HiltViewModel
 class SaveGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel(){
-    private val _isTrue = MutableLiveData<Boolean>()
-    val isTrue: LiveData<Boolean>
-        get() = _isTrue
+
 
     fun insertFinishedGame(  team1Name : String, team2Name : String,
                              finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
-                             team1TotalScore : String, team2TotalScore : String,gameInfo : String,
+                             team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,gameInfo : String,
                              sharedPreferences: SharedPreferences){
         viewModelScope.launch{
-            if(team1TotalScore.isNotBlank() && team2TotalScore.isNotBlank()){
+            if(team1ScoreList.isNotEmpty() && team2ScoreList.isNotEmpty()){
                 clearSharedPreferences(sharedPreferences)
                 val finished = Finished( 0,team1Name,team2Name,finishedTeam1,finishedTeam2,
-                    splitTotal(team1TotalScore),splitTotal(team2TotalScore),gameInfo,getCurrentDate())
+                    calculateTotalScore(team1ScoreList).toString(),calculateTotalScore(team2ScoreList).toString(),gameInfo,getCurrentDate())
                 check(finished,sharedPreferences)
             }
         }
@@ -64,10 +60,7 @@ class SaveGameViewModel
         if (result.isSuccess) {
             val insertedRowCount = result.getOrNull()
             if (insertedRowCount != null ) {
-                _isTrue.postValue(true)
                 clearSharedPreferences(sharedPreferences)
-            } else {
-                _isTrue.postValue(false)
             }
         } else {
             val exception = result.exceptionOrNull()
@@ -77,15 +70,12 @@ class SaveGameViewModel
 
     }
 
-    fun clearSharedPreferences(sharedPreferences: SharedPreferences){
+    private fun clearSharedPreferences(sharedPreferences: SharedPreferences){
         val editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
     }
 
-    private fun splitTotal(totalScore: String): String {
-        return totalScore.split("Toplam: ")[1]
-    }
 
     @SuppressLint("SetTextI18n")
     private fun setDifferenceText(team1TotalScore: Int, team2TotalScore: Int, differenceText : TextView

@@ -116,11 +116,10 @@ class SaveGameFragment : Fragment(){
                     binding.team2Name.text.toString(),
                     viewModel.getTeamScoreInformations(team1EditTexts()),
                     viewModel.getTeamScoreInformations(team2EditTexts()),
-                    binding.team1TotalScore.text.toString(),
-                    binding.team2TotalScore.text.toString(),
+                    team1EditTexts(),
+                    team2EditTexts(),
                     viewModel.getTeamScoreDifference(team1EditTexts(),team2EditTexts(),binding.team1Name.text.toString(),binding.team2Name.text.toString()),sharedPreferences)
                 findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
-
             }
             alertDialogBuilder.setNegativeButton("Hayır") { dialog, which -> }
             val alertDialog = alertDialogBuilder.create()

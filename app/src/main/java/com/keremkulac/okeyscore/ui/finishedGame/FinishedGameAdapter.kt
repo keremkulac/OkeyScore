@@ -4,11 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.Finished
+import javax.inject.Inject
 
-class FinishedGameAdapter(private var itemList: ArrayList<Finished?>) : RecyclerView.Adapter<FinishedGameAdapter.FinishedGameViewHolder>() {
+class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<FinishedGameAdapter.FinishedGameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedGameViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.finished_game_item, parent, false)
@@ -16,12 +19,32 @@ class FinishedGameAdapter(private var itemList: ArrayList<Finished?>) : Recycler
     }
 
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
-        holder.bind(itemList[position])
+        holder.bind(finishedList[position])
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return finishedList.size
     }
+
+    private val diffUtil = object : DiffUtil.ItemCallback<Finished?>(){
+        override fun areItemsTheSame(oldItem: Finished, newItem: Finished): Boolean {
+            return oldItem == newItem
+
+        }
+
+        override fun areContentsTheSame(oldItem: Finished, newItem: Finished): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
+    private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
+    var finishedList : List<Finished?>
+        get() = recyclerListDiffer.currentList
+        set(value)  {
+            recyclerListDiffer.submitList(value)
+            notifyDataSetChanged()
+        }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val team1Name =  itemView.findViewById<TextView>(R.id.team1Name)
@@ -44,7 +67,7 @@ class FinishedGameAdapter(private var itemList: ArrayList<Finished?>) : Recycler
     }
 
     fun updateData(newList: ArrayList<Finished?>) {
-        itemList = newList
+        finishedList = newList
         notifyDataSetChanged()
     }
 }

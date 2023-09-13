@@ -2,42 +2,45 @@ package com.keremkulac.okeyscore.ui.finishedGame
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedGameBinding
-import com.keremkulac.okeyscore.model.Finished
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
 @AndroidEntryPoint
-class FinishedGameFragment : Fragment() {
+class FinishedGameFragment @Inject constructor(
+    private val finishedGameAdapter: FinishedGameAdapter
+)  : Fragment(R.layout.fragment_finished_game) {
+
 
     private val viewModel by viewModels<FinishedGameViewModel>()
     private lateinit var binding : FragmentFinishedGameBinding
-    private lateinit var finishedGameAdapter: FinishedGameAdapter
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentFinishedGameBinding.inflate(inflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentFinishedGameBinding.bind(view)
         observeAllFinishedGame()
+        setRecyclerView()
         goToSaveGameFragment()
         searchClick()
     }
+
+    private fun setRecyclerView(){
+        binding.finishedGameRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.finishedGameRecyclerView.setHasFixedSize(false)
+    }
+
     private fun observeAllFinishedGame(){
-        viewModel.finishedGame.observe(viewLifecycleOwner){
-            if(it.isNotEmpty()){
-                binding.recordNotFound.visibility = View.INVISIBLE
-                setRecyclerView(it)
+        viewModel.finishedGame.observe(viewLifecycleOwner){finishedList->
+            if(finishedList.isNotEmpty()){
+                binding.recordNotFound.visibility = View.GONE
+                finishedGameAdapter.finishedList = finishedList
+                binding.finishedGameRecyclerView.adapter =  finishedGameAdapter
 
             }else{
                 binding.recordNotFound.visibility = View.VISIBLE
@@ -45,19 +48,14 @@ class FinishedGameFragment : Fragment() {
         }
     }
     private fun searchClick(){
-
         binding.searchView.setOnSearchClickListener {
             binding.gameHistoryText.visibility = View.GONE
             search()
-
         }
-
         binding.searchView.setOnCloseListener {
             binding.gameHistoryText.visibility = View.VISIBLE
             false
         }
-
-
     }
 
     private fun search(){
@@ -73,16 +71,11 @@ class FinishedGameFragment : Fragment() {
         })
     }
 
-    private fun setRecyclerView(finishedGames : ArrayList<Finished?>){
-        finishedGameAdapter = FinishedGameAdapter(finishedGames)
-        binding.finishedGameRecyclerView.adapter =  finishedGameAdapter
-        binding.finishedGameRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.finishedGameRecyclerView.setHasFixedSize(true)
-    }
 
     private fun goToSaveGameFragment(){
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_finishedGameFragment_to_saveGameFragment)
         }
     }
+
 }

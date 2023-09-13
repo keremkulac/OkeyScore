@@ -22,20 +22,16 @@ class FinishedGameViewModel
    private fun getFinishedGames(){
         viewModelScope.launch {
             _allFinishedGames.postValue(ArrayList(okeyScoreRepository.getAllFinishedGames()))
-
         }
     }
 
     fun search(newText : String?,adapter: FinishedGameAdapter){
-        val query = newText?.toLowerCase()
+        val query = newText?.lowercase()
         if (query.isNullOrEmpty()) {
             _allFinishedGames.value?.let { adapter.updateData(it) }
         } else {
             val filteredList = _allFinishedGames.value?.filter { item ->
-                item!!.team1Name.toLowerCase().contains(query)
-                item!!.team2Name.toLowerCase().contains(query)
-                item!!.date.toLowerCase().contains(query)
-
+                item!!.team1Name.lowercase().contains(query) || item.team2Name.lowercase().contains(query) || item.date.lowercase().contains(query)
             }
             adapter.updateData(ArrayList(filteredList))
         }

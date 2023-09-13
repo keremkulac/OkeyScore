@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="16dp"
     android:background="@drawable/custom_cardview"
-    android:padding="16dp">
+    android:padding="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/date"
-            android:textSize="8sp"
+            android:textSize="6sp"
             android:textStyle="bold"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
