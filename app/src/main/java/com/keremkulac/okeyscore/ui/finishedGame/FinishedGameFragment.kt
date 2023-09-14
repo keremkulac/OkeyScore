@@ -1,21 +1,27 @@
 package com.keremkulac.okeyscore.ui.finishedGame
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
+import com.keremkulac.okeyscore.util.SwipeGesture
 import com.keremkulac.okeyscore.databinding.FragmentFinishedGameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class FinishedGameFragment @Inject constructor(
     private val finishedGameAdapter: FinishedGameAdapter
-)  : Fragment(R.layout.fragment_finished_game) {
+)  : Fragment(R.layout.fragment_finished_game)  {
 
 
     private val viewModel by viewModels<FinishedGameViewModel>()
@@ -28,6 +34,7 @@ class FinishedGameFragment @Inject constructor(
         setRecyclerView()
         goToSaveGameFragment()
         searchClick()
+        deleteItemDatabase()
     }
 
     private fun setRecyclerView(){
@@ -38,8 +45,10 @@ class FinishedGameFragment @Inject constructor(
     private fun observeAllFinishedGame(){
         viewModel.finishedGame.observe(viewLifecycleOwner){finishedList->
             if(finishedList.isNotEmpty()){
+                Log.d("TAG123",finishedList.size.toString())
+
                 binding.recordNotFound.visibility = View.GONE
-                finishedGameAdapter.finishedList = finishedList
+                finishedGameAdapter.finishedList = ArrayList(finishedList)
                 binding.finishedGameRecyclerView.adapter =  finishedGameAdapter
 
             }else{
@@ -76,6 +85,27 @@ class FinishedGameFragment @Inject constructor(
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_finishedGameFragment_to_saveGameFragment)
         }
+    }
+
+    private fun deleteItemDatabase(){
+        val swipeGesture = object  : SwipeGesture(requireContext()){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val itemToDelete = finishedGameAdapter.finishedList[position]
+                viewModel.deleteFinishedGame(itemToDelete)
+                findNavController().navigate(R.id.finishedGameFragment)
+                Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_SHORT).setAction(
+                    "Geri al",View.OnClickListener {
+                        viewModel.saveFinishedGame(itemToDelete!!)
+                        findNavController().navigate(R.id.finishedGameFragment)
+                    }
+                ).show()
+
+            }
+
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeGesture)
+        itemTouchHelper.attachToRecyclerView(binding.finishedGameRecyclerView)
     }
 
 }

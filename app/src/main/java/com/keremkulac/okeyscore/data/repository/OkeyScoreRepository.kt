@@ -14,4 +14,7 @@ class OkeyScoreRepository @Inject constructor(private val okeyScoreDao: OkeyScor
 
     suspend fun getAllFinishedGames() = okeyScoreDao.getAllFinishedGames()
 
+    suspend fun deleteFinishedGame(finished: Finished?) = okeyScoreDao.deleteFinishedGame(finished)
+
+
 }

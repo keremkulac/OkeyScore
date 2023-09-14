@@ -37,4 +37,16 @@ class FinishedGameViewModel
         }
     }
 
+    fun deleteFinishedGame(finished: Finished?){
+        viewModelScope.launch {
+            okeyScoreRepository.deleteFinishedGame(finished)
+        }
+    }
+
+    fun saveFinishedGame(finished: Finished){
+        viewModelScope.launch {
+            okeyScoreRepository.insertFinishedGame(finished)
+        }
+    }
+
 }

@@ -1,9 +1,6 @@
 package com.keremkulac.okeyscore.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.keremkulac.okeyscore.model.Finished
 
 @Dao
@@ -17,4 +14,7 @@ interface OkeyScoreDao {
 
     @Query("SELECT * FROM finished ORDER BY date DESC")
     suspend fun getAllFinishedGames(): List<Finished?>
+
+    @Delete
+    suspend fun deleteFinishedGame(finished : Finished?)
 }
