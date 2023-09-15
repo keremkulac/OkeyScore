@@ -7,10 +7,10 @@
     <string name="tag">Tag</string>
     <string name="total">Toplam</string>
     <string name="team1">Takım 1</string>
-    <string name="team1Name">Takım 1 Adı</string>
+    <string name="team1Name">1. Takım adı</string>
     <string name="team1TotalScore">Toplam Skor: 0</string>
     <string name="team2">Takım 2</string>
-    <string name="team2Name">Takım 2 Adı</string>
+    <string name="team2Name">2. Takım adı </string>
     <string name="team2TotalScore">Toplam Skor: 0</string>
     <string name="date">Tarih</string>
     <string name="score">Skor</string>

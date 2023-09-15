@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore
+package com.keremkulac.okeyscore.util
 
 import androidx.room.TypeConverter
 

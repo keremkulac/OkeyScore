@@ -1,7 +1,6 @@
 package com.keremkulac.okeyscore.ui.finishedGame
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -45,8 +44,6 @@ class FinishedGameFragment @Inject constructor(
     private fun observeAllFinishedGame(){
         viewModel.finishedGame.observe(viewLifecycleOwner){finishedList->
             if(finishedList.isNotEmpty()){
-                Log.d("TAG123",finishedList.size.toString())
-
                 binding.recordNotFound.visibility = View.GONE
                 finishedGameAdapter.finishedList = ArrayList(finishedList)
                 binding.finishedGameRecyclerView.adapter =  finishedGameAdapter

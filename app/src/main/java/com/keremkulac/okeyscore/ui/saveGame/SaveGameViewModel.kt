@@ -1,17 +1,15 @@
 package com.keremkulac.okeyscore.ui.saveGame
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.keremkulac.okeyscore.R
+import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.Finished
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,20 +21,43 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SaveGameViewModel
-@Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel(){
-
-
+@Inject constructor(private val okeyScoreRepository: OkeyScoreRepository,
+                    private val sharedPreferencesManager: SharedPreferencesManager) : ViewModel(){
+    private val _isEmpty = MutableLiveData<Boolean>()
+    val isEmpty: LiveData<Boolean>
+        get() = _isEmpty
     fun insertFinishedGame(  team1Name : String, team2Name : String,
                              finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
-                             team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,gameInfo : String,
-                             sharedPreferences: SharedPreferences){
+                             team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,gameInfo : String){
         viewModelScope.launch{
             if(team1ScoreList.isNotEmpty() && team2ScoreList.isNotEmpty()){
-                clearSharedPreferences(sharedPreferences)
-                val finished = Finished( 0,team1Name,team2Name,finishedTeam1,finishedTeam2,
-                    calculateTotalScore(team1ScoreList).toString(),calculateTotalScore(team2ScoreList).toString(),gameInfo,getCurrentDate())
-                check(finished,sharedPreferences)
+                val finished = Finished(
+                    0,
+                    team1Name,
+                    team2Name,
+                    finishedTeam1,
+                    finishedTeam2,
+                    calculateTotalScore(team1ScoreList).toString(),
+                    calculateTotalScore(team2ScoreList).toString(),
+                    gameInfo,
+                    getCurrentDate())
+                check(finished)
             }
+        }
+    }
+
+    private suspend fun check(finished: Finished){
+        val result = runCatching {
+            val affectedRows = okeyScoreRepository.insertFinishedGame(finished)
+            affectedRows
+        }
+        if (result.isSuccess) {
+            val insertedRowCount = result.getOrNull()
+            if (insertedRowCount != null ) {
+                sharedPreferencesManager.clearStoredData() }
+        } else {
+            val exception = result.exceptionOrNull()
+            println("Hata meydana geldi: ${exception?.message}")
         }
     }
 
@@ -48,34 +69,7 @@ class SaveGameViewModel
         else if(team2TotalScore > team1TotalScore)
             return "${team1Name} takımı oyunu ${team2TotalScore-team1TotalScore} fark ile kazanmıştır"
         return "Oyun eşit skor ile bitmiştir"
-
     }
-
-    private suspend fun check(finished: Finished,sharedPreferences: SharedPreferences){
-        val result = runCatching {
-            val affectedRows = okeyScoreRepository.insertFinishedGame(finished)
-            affectedRows
-        }
-
-        if (result.isSuccess) {
-            val insertedRowCount = result.getOrNull()
-            if (insertedRowCount != null ) {
-                clearSharedPreferences(sharedPreferences)
-            }
-        } else {
-            val exception = result.exceptionOrNull()
-            println("Hata meydana geldi: ${exception?.message}")
-        }
-
-
-    }
-
-    private fun clearSharedPreferences(sharedPreferences: SharedPreferences){
-        val editor = sharedPreferences.edit()
-        editor.clear()
-        editor.apply()
-    }
-
 
     @SuppressLint("SetTextI18n")
     private fun setDifferenceText(team1TotalScore: Int, team2TotalScore: Int, differenceText : TextView
@@ -133,26 +127,17 @@ class SaveGameViewModel
         return informations
     }
 
-     fun getSharedPrefAndSetTeamScores(keyName : String,teamName : String,editTextList : List<EditText>,
-                                       sharedPreferences : SharedPreferences,
-                                       layout: LinearLayout,scoreContainer : LinearLayout,
-                                       arrowButton : ImageButton,differenceText : TextView) {
-         val getContinuingTeamScores = sharedPreferences.getString(keyName, "")
-         val continuingTeamName = sharedPreferences.getString(teamName, "")
-         val continuingList = getContinuingTeamScores?.split(",")
-         if (continuingList != null) {
-             if (getContinuingTeamScores != "") {
-                 layout.visibility = View.GONE
-                 scoreContainer.visibility = View.VISIBLE
-                 arrowButton.setImageResource(R.drawable.ic_arrow_right)
-                 differenceText.visibility = View.VISIBLE
-                 for ((i, editText) in editTextList.withIndex()) {
-                     if(i == 0){
-                         editText.setText(continuingTeamName)
-                     }else{
-                         editText.setText(continuingList[i-1])
-                     }
-
+     fun getSharedPrefAndSetTeamScores(keyName : String,teamName : String,editTextList : List<EditText>){
+         val getContinuingTeamScores = getDataFromSharedPreferences(keyName)
+         val continuingTeamName = getDataFromSharedPreferences(teamName)
+         val continuingList = getContinuingTeamScores!!.split(",")
+         if (continuingTeamName != "") {
+             _isEmpty.postValue(true)
+             for ((i, editText) in editTextList.withIndex()) {
+                 if(i == 0){
+                     editText.setText(continuingTeamName)
+                 }else{
+                     editText.setText(continuingList[i-1])
                  }
              }
          }
@@ -161,5 +146,13 @@ class SaveGameViewModel
     private fun getCurrentDate(): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         return ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
+    }
+
+   private fun getDataFromSharedPreferences(key : String): String {
+        return sharedPreferencesManager.getStoredData(key,"")
+    }
+
+    fun saveDataToSharedPreferences(key : String,data: String) {
+        sharedPreferencesManager.saveData(key, data)
     }
 }

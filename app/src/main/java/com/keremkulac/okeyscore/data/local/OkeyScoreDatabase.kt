@@ -3,7 +3,7 @@ package com.keremkulac.okeyscore.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.keremkulac.okeyscore.Converters
+import com.keremkulac.okeyscore.util.Converters
 import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
 import com.keremkulac.okeyscore.model.Finished
 

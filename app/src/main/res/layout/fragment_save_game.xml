@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -99,18 +100,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
 
                 <EditText
-                    android:background="@drawable/custom_edittext"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
                     android:id="@id/team1Name"
-                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:autofillHints=""
+                    android:background="@drawable/custom_edittext"
+                    android:hint="@string/team1Name"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    android:inputType="text"
-                    android:hint="@string/team1Name"
-                    android:autofillHints="" />
+                    tools:ignore="RtlSymmetry" />
 
                 <EditText
                     android:background="@drawable/custom_edittext"
@@ -118,6 +121,7 @@
                     android:layout_width="match_parent"
                     android:id="@id/team2Name"
                     android:padding="10dp"
+                    android:paddingStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
@@ -125,7 +129,8 @@
                     android:textColorHint="@color/white"
                     android:inputType="text"
                     android:hint="@string/team2Name"
-                    android:autofillHints="" />
+                    android:autofillHints=""
+                    tools:ignore="RtlSymmetry" />
 
                 <Button
                     android:id="@+id/saveTeamNames"

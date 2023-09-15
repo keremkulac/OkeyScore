@@ -47,21 +47,21 @@ class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<Finished
         }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val team1Name =  itemView.findViewById<TextView>(R.id.team1Name)
-        val team2Name =  itemView.findViewById<TextView>(R.id.team2Name)
-        val team1TotalScore =  itemView.findViewById<TextView>(R.id.team1TotalScore)
-        val team2TotalScore =  itemView.findViewById<TextView>(R.id.team2TotalScore)
-        val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
-        val date =  itemView.findViewById<TextView>(R.id.gameDate)
+        private val team1Name =  itemView.findViewById<TextView>(R.id.team1Name)
+        private val team2Name =  itemView.findViewById<TextView>(R.id.team2Name)
+        private val team1TotalScore =  itemView.findViewById<TextView>(R.id.team1TotalScore)
+        private val team2TotalScore =  itemView.findViewById<TextView>(R.id.team2TotalScore)
+        private val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
+        private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
-        fun bind(item: Finished?) {
-            item?.let {
-                team1Name.text = item.team1Name
-                team2Name.text = item.team2Name
-                team1TotalScore.text = item.team1TotalScore
-                team2TotalScore.text = item.team2TotalScore
-                gameInfo.text = item.gameInfo
-                date.text = item.date
+        fun bind(finished: Finished?) {
+            finished?.let {
+                team1Name.text = finished.team1Name
+                team2Name.text = finished.team2Name
+                team1TotalScore.text = finished.team1TotalScore
+                team2TotalScore.text = finished.team2TotalScore
+                gameInfo.text = finished.gameInfo
+                date.text = finished.date
             }
         }
     }
