@@ -13,6 +13,8 @@ import javax.inject.Inject
 
 class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<FinishedGameAdapter.FinishedGameViewHolder>() {
 
+    var clickListener: ((Finished) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedGameViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.finished_game_item, parent, false)
         return FinishedGameViewHolder(view)
@@ -20,6 +22,11 @@ class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<Finished
 
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
         holder.bind(finishedList[position])
+        holder.itemView.setOnClickListener {
+            clickListener?.let {
+                it.invoke(finishedList[position]!!)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -65,7 +72,6 @@ class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<Finished
             }
         }
     }
-
 
     fun updateData(newList: ArrayList<Finished?>) {
         finishedList = newList

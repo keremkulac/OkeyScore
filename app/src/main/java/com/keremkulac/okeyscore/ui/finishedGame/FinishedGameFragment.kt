@@ -34,6 +34,7 @@ class FinishedGameFragment @Inject constructor(
         goToSaveGameFragment()
         searchClick()
         deleteItemDatabase()
+        clickFinishedGame()
     }
 
     private fun setRecyclerView(){
@@ -105,4 +106,10 @@ class FinishedGameFragment @Inject constructor(
         itemTouchHelper.attachToRecyclerView(binding.finishedGameRecyclerView)
     }
 
+    private fun clickFinishedGame(){
+        finishedGameAdapter.clickListener={
+            val action = FinishedGameFragmentDirections.actionFinishedGameFragmentToFinishedGameDetailFragment(it.id)
+            findNavController().navigate(action)
+        }
+    }
 }

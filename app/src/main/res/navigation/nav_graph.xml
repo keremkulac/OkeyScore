@@ -26,5 +26,22 @@
         <action
             android:id="@+id/action_finishedGameFragment_to_saveGameFragment"
             app:destination="@id/saveGameFragment" />
+        <action
+            android:id="@+id/action_finishedGameFragment_to_finishedGameDetailFragment"
+            app:destination="@id/finishedGameDetailFragment" >
+            <argument
+                android:name="finishedGameID"
+                app:argType="integer" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/finishedGameDetailFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedGameDetail.FinishedGameDetailFragment"
+        android:label="fragment_finished_game_detail"
+        tools:layout="@layout/fragment_finished_game_detail" >
+        <action
+            android:id="@+id/action_finishedGameDetailFragment_to_finishedGameFragment"
+            app:destination="@id/finishedGameFragment" />
     </fragment>
 </navigation>
