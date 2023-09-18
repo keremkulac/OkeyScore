@@ -1,6 +1,5 @@
 package com.keremkulac.okeyscore.ui.finishedGameDetail
 
-import android.util.Log
 import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,8 +28,6 @@ class FinishedGameDetailViewModel @Inject constructor(
     fun setTeamInformations(team1EditTextList : List<EditText>,team2EditTextList : List<EditText>,finished: Finished){
         set(team1EditTextList,finished,"team1",finished.finishedTeam1)
         set(team2EditTextList,finished,"team2",finished.finishedTeam2)
-
-
     }
 
     private fun set(editTextList : List<EditText>,finished: Finished,whichTeam : String,scores : List<String?>?){
