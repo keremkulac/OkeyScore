@@ -94,8 +94,8 @@ class SaveGameViewModel
                      }
                      @SuppressLint("SetTextI18n")
                      override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                         team1TotalScoreEditText.setText("Toplam: ${calculateTotalScore(team1ScoreList)}")
-                         team2TotalScoreEditText.setText("Toplam: ${calculateTotalScore(team2ScoreList)}")
+                         team1TotalScoreEditText.setText("${calculateTotalScore(team1ScoreList)}")
+                         team2TotalScoreEditText.setText("${calculateTotalScore(team2ScoreList)}")
                          setDifferenceText(calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList),differenceText,team1ScoreList[0].text.toString(),team2ScoreList[0].text.toString())
                      }
                      override fun afterTextChanged(s: Editable?) {}

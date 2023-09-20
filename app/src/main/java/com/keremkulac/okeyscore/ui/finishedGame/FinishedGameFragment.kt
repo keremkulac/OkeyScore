@@ -92,7 +92,7 @@ class FinishedGameFragment @Inject constructor(
                 val itemToDelete = finishedGameAdapter.finishedList[position]
                 viewModel.deleteFinishedGame(itemToDelete)
                 findNavController().navigate(R.id.finishedGameFragment)
-                Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_SHORT).setAction(
+                Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_LONG).setAction(
                     "Geri al",View.OnClickListener {
                         viewModel.saveFinishedGame(itemToDelete!!)
                         findNavController().navigate(R.id.finishedGameFragment)

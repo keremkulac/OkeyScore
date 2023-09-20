@@ -35,543 +35,523 @@
                 android:layout_toEndOf="@+id/goToSaveFragment"/>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/base_cardview"
-        style="@style/Base.CardView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_below="@id/toolBar">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@color/black"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/base_cardview"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.511">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fixed_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
-
-
-                <ImageButton
-                    android:background="@color/black"
-                    android:id="@+id/arrow_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/todo" />
-
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/differenceText"
-                    style="@style/TextViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/difference_0"
-                    android:layout_marginStart="50dp"
-                    app:layout_constraintStart_toEndOf="@+id/arrow_button"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_margin="20dp"
-                android:id="@+id/layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
-
-                <EditText
-                    android:id="@id/team1Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:autofillHints=""
-                    android:background="@drawable/custom_edittext"
-                    android:hint="@string/team1Name"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    tools:ignore="RtlSymmetry" />
-
-                <EditText
-                    android:background="@drawable/custom_edittext"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:id="@id/team2Name"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:inputType="text"
-                    android:hint="@string/team2Name"
-                    android:autofillHints=""
-                    tools:ignore="RtlSymmetry" />
-
-                <Button
-                    android:id="@+id/saveTeamNames"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_margin="20dp"
-                    android:text="@string/save"/>
-
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
-
-    <LinearLayout
-        android:visibility="invisible"
-        android:id="@+id/scoreContainer"
-        android:layout_below="@id/base_cardview"
-        android:background="@drawable/custom_layout_border"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                android:layout_weight="3"
-                style="@style/TextViewStyle" />
-
-            <TextView
-                android:id="@+id/roundLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/round_scores"
-                android:textColor="@color/white"
-                android:layout_marginStart="10dp"
-                android:textSize="18sp" />
-
-            <TextView
-                style="@style/TextViewStyle" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_1" />
-
-            <EditText
-                android:id="@+id/team1Score1"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-
-            <EditText
-                android:id="@+id/team2Score1"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_2" />
-
-            <EditText
-                android:id="@+id/team1Score2"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-
-            <EditText
-                android:id="@+id/team2Score2"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_3" />
-
-            <EditText
-                android:id="@+id/team1Score3"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score3"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_4" />
-
-            <EditText
-                android:id="@+id/team1Score4"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score4"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_5" />
-
-            <EditText
-                android:id="@+id/team1Score5"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score5"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_6" />
-
-            <EditText
-                android:id="@+id/team1Score6"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score6"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_7" />
-
-            <EditText
-                android:id="@+id/team1Score7"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score7"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_8" />
-
-            <EditText
-                android:id="@+id/team1Score8"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score8"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_9" />
-
-            <EditText
-                android:id="@+id/team1Score9"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score9"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_10" />
-
-            <EditText
-                android:id="@+id/team1Score10"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2Score10"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LinearLayoutStyle">
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:text="@string/round_11" />
-
-            <EditText
-                android:id="@+id/team1Score11"
-                style="@style/EditTextStyle"
-                android:focusable="true"
-                android:autofillHints="" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="25dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:focusable="true"
-                android:id="@+id/team2Score11"
-                style="@style/EditTextStyle"
-                android:autofillHints="" />
-
-        </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
         <LinearLayout
-            style="@style/LinearLayoutStyle"
-            android:layout_marginTop="10dp">
-
-
-            <TextView
-                style="@style/TextViewStyle"
-                android:layout_weight="5"
-                android:text="@string/total_scores"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/team1TotalScore"
-                style="@style/EditTextStyle"
-                android:autofillHints=""
-                android:hint="@string/total_0"
-                android:maxLength="14"
-                android:textSize="12sp" />
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="20dp">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/vertical_line" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/team2TotalScore"
-                style="@style/EditTextStyle"
-                android:autofillHints=""
-                android:hint="@string/total_0"
-                android:maxLength="14"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <Button
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="60dp"
-            android:background="@drawable/custom_button"
-            android:id="@+id/saveGame"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:text="@string/save_game" />
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/base_cardview"
+                style="@style/Base.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:background="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/base_cardview"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.511">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fixed_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
+
+
+                        <ImageButton
+                            android:background="@color/black"
+                            android:id="@+id/arrow_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="@string/todo" />
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/differenceText"
+                            style="@style/TextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/difference_0"
+                            android:layout_marginStart="50dp"
+                            app:layout_constraintStart_toEndOf="@+id/arrow_button"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
+
+                        <EditText
+                            android:id="@id/team1Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:autofillHints=""
+                            android:background="@drawable/custom_edittext"
+                            android:hint="@string/team1Name"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:paddingStart="20dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            tools:ignore="RtlSymmetry" />
+
+                        <EditText
+                            android:background="@drawable/custom_edittext"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:id="@id/team2Name"
+                            android:padding="10dp"
+                            android:paddingStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:inputType="text"
+                            android:hint="@string/team2Name"
+                            android:autofillHints=""
+                            tools:ignore="RtlSymmetry" />
+
+                        <Button
+                            android:background="@drawable/custom_button"
+                            android:id="@+id/saveTeamNames"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="20dp"
+                            android:text="@string/save"/>
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_margin="16dp"
+                android:visibility="invisible"
+                android:id="@+id/scoreContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_layout_border"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_weight="3" />
+
+                    <TextView
+                        android:id="@+id/roundLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/round_scores"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView style="@style/TextViewStyle" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_1" />
+
+                    <EditText
+                        android:id="@+id/team1Score1"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score1"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_2" />
+
+                    <EditText
+                        android:id="@+id/team1Score2"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score2"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_3" />
+
+                    <EditText
+                        android:id="@+id/team1Score3"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score3"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_4" />
+
+                    <EditText
+                        android:id="@+id/team1Score4"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score4"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_5" />
+
+                    <EditText
+                        android:id="@+id/team1Score5"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score5"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_6" />
+
+                    <EditText
+                        android:id="@+id/team1Score6"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score6"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_7" />
+
+                    <EditText
+                        android:id="@+id/team1Score7"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score7"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_8" />
+
+                    <EditText
+                        android:id="@+id/team1Score8"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score8"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_9" />
+
+                    <EditText
+                        android:id="@+id/team1Score9"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score9"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_10" />
+
+                    <EditText
+                        android:id="@+id/team1Score10"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score10"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/LinearLayoutStyle">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:text="@string/round_11" />
+
+                    <EditText
+                        android:id="@+id/team1Score11"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2Score11"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/LinearLayoutStyle"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_weight="2"
+                        android:text="@string/total_scores"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/team1TotalScore"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:hint="@string/total_0"
+                        android:maxLength="10" />
+
+                    <LinearLayout style="@style/VerticalLinearLayoutSeperatorStyle">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/team2TotalScore"
+                        style="@style/EditTextStyle"
+                        android:autofillHints=""
+                        android:hint="@string/total_0"
+                        android:maxLength="10" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/saveGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/custom_button"
+                    android:text="@string/save_game" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
