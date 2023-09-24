@@ -1,6 +1,5 @@
 package com.keremkulac.okeyscore.ui.finishedGameDetail
 
-import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,29 +24,14 @@ class FinishedGameDetailViewModel @Inject constructor(
         }
     }
 
-    fun setTeamInformations(team1EditTextList : List<EditText>,team2EditTextList : List<EditText>,finished: Finished){
-        set(team1EditTextList,finished,"team1",finished.finishedTeam1)
-        set(team2EditTextList,finished,"team2",finished.finishedTeam2)
-    }
-
-    private fun set(editTextList : List<EditText>,finished: Finished,whichTeam : String,scores : List<String?>?){
-        for ((i, editText) in editTextList.withIndex()) {
-            if(i == 0){
-                if(whichTeam == "team1"){
-                    editText.setText(finished.team1Name)
-                }else{
-                    editText.setText(finished.team2Name)
-                }
-            }else if(i == 12){
-                if(whichTeam == "team1"){
-                    editText.setText(finished.team1TotalScore)
-                }else{
-                    editText.setText(finished.team2TotalScore)
-                }
-            } else{
-                editText.setText(scores?.get(i-1))
+    fun findNumberOfGames(finished: Finished) : Int{
+        var numberOfGames = 0
+        for(i in 0 until  finished.team1AllScores!!.size){
+            if (finished.team1AllScores[i]!! != "" && finished.team2AllScores!![i]!! != "") {
+                numberOfGames++
             }
         }
+        return numberOfGames
     }
 
 }

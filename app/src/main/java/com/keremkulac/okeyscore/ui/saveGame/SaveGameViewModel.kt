@@ -26,21 +26,20 @@ class SaveGameViewModel
     private val _isEmpty = MutableLiveData<Boolean>()
     val isEmpty: LiveData<Boolean>
         get() = _isEmpty
-    fun insertFinishedGame(  team1Name : String, team2Name : String,
-                             finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
-                             team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,gameInfo : String){
+    fun insertFinishedGame(finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
+                             team1Information : List<EditText>, team2Information: List<EditText>){
         viewModelScope.launch{
-            if(team1ScoreList.isNotEmpty() && team2ScoreList.isNotEmpty()){
+            if(team1Information.isNotEmpty() && team2Information.isNotEmpty()){
                 val finished = Finished(
                     0,
-                    team1Name,
-                    team2Name,
+                    team1Information[0].text.toString(),
+                    team2Information[0].text.toString(),
                     finishedTeam1,
                     finishedTeam2,
-                    calculateTotalScore(team1ScoreList).toString(),
-                    calculateTotalScore(team2ScoreList).toString(),
-                    gameInfo,
-                    getCurrentDate())
+                    calculateTotalScore(team1Information).toString(),
+                    calculateTotalScore(team2Information).toString(),
+                    getTeamScoreDifference(team1Information,team2Information,  team1Information[0].text.toString(),  team2Information[0].text.toString()),
+                getCurrentDate())
                 check(finished)
             }
         }
@@ -72,30 +71,26 @@ class SaveGameViewModel
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setDifferenceText(team1TotalScore: Int, team2TotalScore: Int, differenceText : TextView
-                                  , team1Name: String, team2Name: String){
+    private fun setDifferenceText(team1TotalScore: Int, team2TotalScore: Int, differenceText : TextView, team1Name: String, team2Name: String){
             if(team1TotalScore > team2TotalScore){
-                differenceText.text = "Fark : ${team1TotalScore-team2TotalScore}. ${team2Name} takımı önde"
+                differenceText.text = "Fark : ${team1TotalScore-team2TotalScore}. \n${team2Name} takımı önde"
             }else if(team1TotalScore < team2TotalScore){
-                differenceText.text = "Fark : ${team2TotalScore-team1TotalScore}. ${team1Name} takımı önde"
+                differenceText.text = "Fark : ${team2TotalScore-team1TotalScore}. \n${team1Name} takımı önde"
             }else{
                 differenceText.text = "Fark : Skorlar eşit"
             }
     }
 
-     fun setTotal(team1ScoreList : List<EditText>, team2ScoreList: List<EditText>,
-                  team1TotalScoreEditText : EditText, team2TotalScoreEditText : EditText, differenceText : TextView){
+     fun setTotal(team1ScoreList : List<EditText>, team2ScoreList: List<EditText>, differenceText : TextView){
          val list =team1ScoreList+team2ScoreList
          for((i, scoreListItem) in list.withIndex()){
-             if (i !=0 && i != 12){
+             if (i !=0 && i != 12 && i !=13 && i != 25){
                  scoreListItem.addTextChangedListener(object : TextWatcher {
-                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                     }
+                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                      @SuppressLint("SetTextI18n")
                      override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                         team1TotalScoreEditText.setText("${calculateTotalScore(team1ScoreList)}")
-                         team2TotalScoreEditText.setText("${calculateTotalScore(team2ScoreList)}")
+                         team1ScoreList[12].setText("${calculateTotalScore(team1ScoreList)}")
+                         team2ScoreList[12].setText("${calculateTotalScore(team2ScoreList)}")
                          setDifferenceText(calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList),differenceText,team1ScoreList[0].text.toString(),team2ScoreList[0].text.toString())
                      }
                      override fun afterTextChanged(s: Editable?) {}
@@ -107,7 +102,7 @@ class SaveGameViewModel
      fun calculateTotalScore(scoreList: List<EditText>) : Int{
         var total = 0
         for((i, editText) in scoreList.withIndex()){
-            if(i>0){
+            if (i > 0 && i < 12){
                 val inputValue = editText.text.toString()
                 if (inputValue.isNotEmpty() && inputValue != "-") {
                     total += inputValue.toInt()
@@ -120,24 +115,25 @@ class SaveGameViewModel
     fun getTeamScoreInformations(teamInformationEditTexts : List<EditText>): List<String?> {
         val informations = ArrayList<String?>()
         for((i, editText) in teamInformationEditTexts.withIndex()){
-            if (i != 0){
+            if(i != 0 && i != 12){
                 informations.add(editText.text.toString())
             }
         }
         return informations
     }
 
-     fun getSharedPrefAndSetTeamScores(keyName : String,teamName : String,editTextList : List<EditText>){
+     fun getSharedPrefAndSetTeamScores(keyName : String,editTextList : List<EditText>){
          val getContinuingTeamScores = getDataFromSharedPreferences(keyName)
-         val continuingTeamName = getDataFromSharedPreferences(teamName)
          val continuingList = getContinuingTeamScores!!.split(",")
-         if (continuingTeamName != "") {
+         if (continuingList[0] != "") {
              _isEmpty.postValue(true)
              for ((i, editText) in editTextList.withIndex()) {
                  if(i == 0){
-                     editText.setText(continuingTeamName)
+                     editText.setText(continuingList[i])
+                 }else if(i == 12){
+                     editText.setText(continuingList[i])
                  }else{
-                     editText.setText(continuingList[i-1])
+                     editText.setText(continuingList[i])
                  }
              }
          }

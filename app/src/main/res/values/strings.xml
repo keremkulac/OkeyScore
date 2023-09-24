@@ -37,4 +37,6 @@
     <string name="_0">0</string>
     <string name="game_info">Oyun bilgi</string>
     <string name="game_detail">Oyun detay</string>
+    <string name="teamNames">Takım İsimleri</string>
+    <string name="detail">Detay</string>
 </resources>

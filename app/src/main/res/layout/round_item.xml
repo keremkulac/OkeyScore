@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/black"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"    >
+
+    <TextView
+        android:id="@+id/roundCount"
+        style="@style/TextViewStyle"
+        android:text="@string/round_1" />
+
+    <EditText
+        android:id="@+id/team1Score"
+        style="@style/EditTextStyle"
+        android:autofillHints="" />
+    <LinearLayout
+        style="@style/VerticalLinearLayoutSeperatorStyle">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/vertical_line" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/team2Score"
+        style="@style/EditTextStyle"
+        android:autofillHints="" />
+
+
+
+</LinearLayout>

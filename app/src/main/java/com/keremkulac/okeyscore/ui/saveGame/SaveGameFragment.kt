@@ -29,8 +29,7 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
         saveToRoomDb()
     }
    private  fun setTotalScores(){
-       viewModel.setTotal(team1EditTexts(),team2EditTexts(),
-           binding.team1TotalScore,binding.team2TotalScore, binding.differenceText)
+       viewModel.setTotal(team1EditTexts(),team2EditTexts(),binding.differenceText)
     }
     private fun team1EditTexts(): List<EditText> {
         return listOf(
@@ -46,6 +45,7 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
             binding.team1Score9,
             binding.team1Score10,
             binding.team1Score11,
+            binding.team1TotalScore
         )
     }
     private fun team2EditTexts(): List<EditText> {
@@ -62,6 +62,7 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
             binding.team2Score9,
             binding.team2Score10,
             binding.team2Score11,
+            binding.team2TotalScore
         )
     }
     private fun setVisibility(){
@@ -72,13 +73,13 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
     }
     private fun setTeamInfo(){
         binding.arrowButton.setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    TransitionManager.beginDelayedTransition(binding.layout, AutoTransition())
-                }
-                binding.scoreContainer.visibility = View.GONE
-                binding.layout.visibility = View.VISIBLE
-                binding.arrowButton.setImageResource(R.drawable.ic_arrow_down)
-                binding.differenceText.visibility = View.GONE
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                TransitionManager.beginDelayedTransition(binding.layout, AutoTransition())
+            }
+            binding.scoreContainer.visibility = View.GONE
+            binding.layout.visibility = View.VISIBLE
+            binding.arrowButton.setImageResource(R.drawable.ic_arrow_down)
+            binding.differenceText.visibility = View.GONE
         }
 
         binding.saveTeamNames.setOnClickListener {
@@ -105,13 +106,10 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
             alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
             alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
                 viewModel.insertFinishedGame(
-                    binding.team1Name.text.toString(),
-                    binding.team2Name.text.toString(),
                     viewModel.getTeamScoreInformations(team1EditTexts()),
                     viewModel.getTeamScoreInformations(team2EditTexts()),
                     team1EditTexts(),
-                    team2EditTexts(),
-                    viewModel.getTeamScoreDifference(team1EditTexts(),team2EditTexts(),binding.team1Name.text.toString(),binding.team2Name.text.toString()))
+                    team2EditTexts())
                 findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
             }
             alertDialogBuilder.setNegativeButton("Hayır") { dialog, which -> }
@@ -130,21 +128,18 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
         val continuingTeam1InformationList = viewModel.getTeamScoreInformations(team1EditTexts()).joinToString(separator = ",")
         val continuingTeam2InformationList = viewModel.getTeamScoreInformations(team2EditTexts()).joinToString(separator = ",")
        viewModel.saveDataToSharedPreferences("continuingTeam1InformationList",continuingTeam1InformationList)
-       viewModel.saveDataToSharedPreferences("team1Name", binding.team1Name.text.toString())
        viewModel.saveDataToSharedPreferences("continuingTeam2InformationList",continuingTeam2InformationList)
-       viewModel.saveDataToSharedPreferences("team2Name", binding.team2Name.text.toString())
     }
 
     private fun setSharedPrefInformations(){
-        viewModel.getSharedPrefAndSetTeamScores("continuingTeam1InformationList","team1Name",team1EditTexts())
-        viewModel.getSharedPrefAndSetTeamScores("continuingTeam2InformationList","team2Name",team2EditTexts())
+        viewModel.getSharedPrefAndSetTeamScores("continuingTeam1InformationList",team1EditTexts())
+        viewModel.getSharedPrefAndSetTeamScores("continuingTeam2InformationList",team2EditTexts())
         viewModel.isEmpty.observe(viewLifecycleOwner){
             if(it){
                 setVisibility()
             }
         }
     }
-
 
     override fun onStop() {
         super.onStop()
@@ -153,11 +148,6 @@ class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
 
     override fun onStart() {
         super.onStart()
-        setSharedPrefInformations()
-    }
-
-    override fun onResume() {
-        super.onResume()
         setSharedPrefInformations()
     }
 

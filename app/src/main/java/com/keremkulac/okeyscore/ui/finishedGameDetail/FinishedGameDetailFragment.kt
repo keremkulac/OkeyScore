@@ -3,15 +3,21 @@ package com.keremkulac.okeyscore.ui.finishedGameDetail
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.EditText
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedGameDetailBinding
+import com.keremkulac.okeyscore.model.Finished
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
 
 @AndroidEntryPoint
-class FinishedGameDetailFragment : Fragment(R.layout.fragment_finished_game_detail) {
+class FinishedGameDetailFragment @Inject constructor(
+    private val finishedGameDetailAdapter : FinishedDetailGameAdapter
+) : Fragment(R.layout.fragment_finished_game_detail) {
+
     private lateinit var binding : FragmentFinishedGameDetailBinding
     private val viewModel by viewModels<FinishedGameDetailViewModel>()
 
@@ -22,43 +28,6 @@ class FinishedGameDetailFragment : Fragment(R.layout.fragment_finished_game_deta
         getAndSetFinishedGames()
     }
 
-    private fun team1EditTexts(): List<EditText> {
-        return listOf(
-            binding.team1Name,
-            binding.team1Score1,
-            binding.team1Score2,
-            binding.team1Score3,
-            binding.team1Score4,
-            binding.team1Score5,
-            binding.team1Score6,
-            binding.team1Score7,
-            binding.team1Score8,
-            binding.team1Score9,
-            binding.team1Score10,
-            binding.team1Score11,
-            binding.team1TotalScore
-        )
-    }
-    private fun team2EditTexts(): List<EditText> {
-        return listOf(
-            binding.team2Name,
-            binding.team2Score1,
-            binding.team2Score2,
-            binding.team2Score3,
-            binding.team2Score4,
-            binding.team2Score5,
-            binding.team2Score6,
-            binding.team2Score7,
-            binding.team2Score8,
-            binding.team2Score9,
-            binding.team2Score10,
-            binding.team2Score11,
-            binding.team2TotalScore
-        )
-    }
-
-
-
     private fun goToFinishedGameFragment(){
         binding.goToFinishedGameFragment.setOnClickListener {
             findNavController().navigate(R.id.action_finishedGameDetailFragment_to_finishedGameFragment)
@@ -68,7 +37,19 @@ class FinishedGameDetailFragment : Fragment(R.layout.fragment_finished_game_deta
     private fun getAndSetFinishedGames(){
         viewModel.getFinishedGame(arguments!!.getInt("finishedGameID"))
         viewModel.finishedGame.observe(viewLifecycleOwner){
-            viewModel.setTeamInformations(team1EditTexts(),team2EditTexts(),it!!)
+            it?.let {
+                setRecyclerView(it)
+                finishedGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
+            }
         }
+    }
+    private fun setRecyclerView(finished: Finished?){
+        binding.team1Name.setText(finished!!.team1Name)
+        binding.team2Name.setText(finished.team2Name)
+        binding.gameDate.text = finished.date
+        binding.gameDetail.text = finished.gameInfo
+        finishedGameDetailAdapter.finished = finished
+        binding.roundRecyclerView.adapter = finishedGameDetailAdapter
+        binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 }
