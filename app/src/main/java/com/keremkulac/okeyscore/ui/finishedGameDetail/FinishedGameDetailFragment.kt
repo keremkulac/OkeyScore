@@ -44,10 +44,10 @@ class FinishedGameDetailFragment @Inject constructor(
         }
     }
     private fun setRecyclerView(finished: Finished?){
-        binding.team1Name.setText(finished!!.team1Name)
-        binding.team2Name.setText(finished.team2Name)
-        binding.gameDate.text = finished.date
-        binding.gameDetail.text = finished.gameInfo
+        binding.team1Name.setText(finished!!.team1!!.name)
+        binding.team2Name.setText(finished.team2!!.name)
+        binding.gameDate.text = finished.gameInfo.date
+        binding.gameDetail.text = finished.gameInfo.gameInfo
         finishedGameDetailAdapter.finished = finished
         binding.roundRecyclerView.adapter = finishedGameDetailAdapter
         binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())

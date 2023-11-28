@@ -26,8 +26,8 @@ class FinishedGameDetailViewModel @Inject constructor(
 
     fun findNumberOfGames(finished: Finished) : Int{
         var numberOfGames = 0
-        for(i in 0 until  finished.team1AllScores!!.size){
-            if (finished.team1AllScores[i]!! != "" && finished.team2AllScores!![i]!! != "") {
+        for(i in 0 until  finished.team1!!.allScores!!.size){
+            if (finished.team1!!.allScores!![i]!! != "" && finished.team2!!.allScores!![i]!! != "") {
                 numberOfGames++
             }
         }

@@ -25,11 +25,11 @@ class FinishedDetailGameAdapter @Inject constructor(): RecyclerView.Adapter<Fini
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.roundCount.setText("${position+1}. tur ")
         finished?.let {
-            if(it.team1AllScores!![position].equals("") && it.team2AllScores!![position].equals("")){
+            if(it.team1!!.allScores!![position].equals("") && it.team2!!.allScores!![position].equals("")){
 
             }else{
-                holder.team1ScoreEditText.setText(it.team1AllScores[position])
-                holder.team2ScoreEditText.setText(it.team2AllScores!![position])
+                holder.team1ScoreEditText.setText(it.team1!!.allScores!![position])
+                holder.team2ScoreEditText.setText(it.team2!!.allScores!![position])
             }
         }
     }

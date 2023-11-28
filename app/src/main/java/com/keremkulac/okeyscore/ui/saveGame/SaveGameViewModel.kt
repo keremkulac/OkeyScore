@@ -12,6 +12,8 @@ import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.Info
+import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.ZoneId
@@ -30,16 +32,19 @@ class SaveGameViewModel
                              team1Information : List<EditText>, team2Information: List<EditText>){
         viewModelScope.launch{
             if(team1Information.isNotEmpty() && team2Information.isNotEmpty()){
-                val finished = Finished(
+                val gameInfo = Info(getTeamScoreDifference(team1Information,team2Information,  team1Information[0].text.toString(),  team2Information[0].text.toString()),getCurrentDate())
+                val player1 = Player(
                     0,
                     team1Information[0].text.toString(),
-                    team2Information[0].text.toString(),
                     finishedTeam1,
+                    calculateTotalScore(team1Information).toString())
+
+                val player2 = Player(
+                    0,
+                    team2Information[0].text.toString(),
                     finishedTeam2,
-                    calculateTotalScore(team1Information).toString(),
-                    calculateTotalScore(team2Information).toString(),
-                    getTeamScoreDifference(team1Information,team2Information,  team1Information[0].text.toString(),  team2Information[0].text.toString()),
-                getCurrentDate())
+                    calculateTotalScore(team2Information).toString())
+                    val finished = Finished(0,player1,player2,gameInfo)
                 check(finished)
             }
         }

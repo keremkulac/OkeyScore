@@ -30,10 +30,13 @@ class FinishedGameViewModel
         if (query.isNullOrEmpty()) {
             _allFinishedGames.value?.let { adapter.updateData(it) }
         } else {
+            /*
             val filteredList = _allFinishedGames.value?.filter { item ->
                 item!!.team1Name.lowercase().contains(query) || item.team2Name.lowercase().contains(query) || item.date.lowercase().contains(query)
             }
             adapter.updateData(ArrayList(filteredList))
+
+             */
         }
     }
 

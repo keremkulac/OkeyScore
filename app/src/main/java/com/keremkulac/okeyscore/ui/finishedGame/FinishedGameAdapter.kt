@@ -63,12 +63,12 @@ class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<Finished
 
         fun bind(finished: Finished?) {
             finished?.let {
-                team1Name.text = finished.team1Name
-                team2Name.text = finished.team2Name
-                team1TotalScore.text = finished.team1TotalScore
-                team2TotalScore.text = finished.team2TotalScore
-                gameInfo.text = finished.gameInfo
-                date.text = finished.date
+                team1Name.text = finished.team1!!.name
+                team2Name.text = finished.team2!!.name
+                team1TotalScore.text = finished.team1.totalScore
+                team2TotalScore.text = finished.team2.totalScore
+                gameInfo.text = finished.gameInfo.gameInfo
+                date.text = finished.gameInfo.date
             }
         }
     }
