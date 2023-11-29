@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.ui.finishedGame
+package com.keremkulac.okeyscore.ui.finishedPartnerGame
 
 import android.os.Bundle
 import android.view.View
@@ -12,27 +12,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.util.SwipeGesture
-import com.keremkulac.okeyscore.databinding.FragmentFinishedGameBinding
+import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FinishedGameFragment @Inject constructor(
-    private val finishedGameAdapter: FinishedGameAdapter
-)  : Fragment(R.layout.fragment_finished_game)  {
+class FinishedPartnerGameFragment @Inject constructor(
+    private val finishedPartnerGameAdapter: FinishedPartnerGameAdapter
+)  : Fragment(R.layout.fragment_finished_partner_game)  {
 
 
-    private val viewModel by viewModels<FinishedGameViewModel>()
-    private lateinit var binding : FragmentFinishedGameBinding
+    private val viewModel by viewModels<FinishedPartnerGameViewModel>()
+    private lateinit var binding : FragmentFinishedPartnerGameBinding
     private var fabVisible = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFinishedGameBinding.bind(view)
+        binding = FragmentFinishedPartnerGameBinding.bind(view)
         observeAllFinishedGame()
         setRecyclerView()
-        goToSaveGameFragment()
         searchClick()
         deleteItemDatabase()
         clickFinishedGame()
@@ -44,11 +43,11 @@ class FinishedGameFragment @Inject constructor(
     }
 
     private fun observeAllFinishedGame(){
-        viewModel.finishedGame.observe(viewLifecycleOwner){finishedList->
+        viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner){ finishedList->
             if(finishedList.isNotEmpty()){
                 binding.recordNotFound.visibility = View.GONE
-                finishedGameAdapter.finishedList = ArrayList(finishedList)
-                binding.finishedGameRecyclerView.adapter =  finishedGameAdapter
+                finishedPartnerGameAdapter.finishedPartnerGameLists = ArrayList(finishedList)
+                binding.finishedGameRecyclerView.adapter =  finishedPartnerGameAdapter
 
             }else{
                 binding.recordNotFound.visibility = View.VISIBLE
@@ -73,47 +72,20 @@ class FinishedGameFragment @Inject constructor(
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.search(newText,finishedGameAdapter)
+                viewModel.search(newText,finishedPartnerGameAdapter)
                 return true
             }
         })
     }
 
 
-    private fun goToSaveGameFragment(){
-        fabVisible = false
-        binding.fab.setOnClickListener {
-            //findNavController().navigate(R.id.action_finishedGameFragment_to_saveGameFragment)
-            if(!fabVisible){
-                binding.fabSingle.show()
-                binding.fabPartner.show()
-                binding.fabPartnerText.visibility = View.VISIBLE
-                binding.fabSingleText.visibility = View.VISIBLE
-                binding.fabSingle.visibility = View.VISIBLE
-                binding.fabPartner.visibility = View.VISIBLE
-                binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_close))
-                fabVisible = true
-            }else{
-                binding.fabSingle.hide()
-                binding.fabPartner.hide()
-                binding.fabPartnerText.visibility = View.GONE
-                binding.fabSingleText.visibility = View.GONE
-                binding.fabSingle.visibility = View.GONE
-                binding.fabPartner.visibility = View.GONE
-                binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
-                fabVisible = false
-            }
-
-        }
-
-    }
 
     private fun deleteItemDatabase(){
         val swipeGesture = object  : SwipeGesture(requireContext()){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                val itemToDelete = finishedGameAdapter.finishedList[position]
+                val itemToDelete = finishedPartnerGameAdapter.finishedPartnerGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
                 findNavController().navigate(R.id.finishedGameFragment)
                 Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_LONG).setAction(
@@ -131,8 +103,8 @@ class FinishedGameFragment @Inject constructor(
     }
 
     private fun clickFinishedGame(){
-        finishedGameAdapter.clickListener={
-            val action = FinishedGameFragmentDirections.actionFinishedGameFragmentToFinishedGameDetailFragment(it.id)
+        finishedPartnerGameAdapter.clickListener={
+            val action = FinishedPartnerGameFragmentDirections.actionFinishedGameFragmentToFinishedGameDetailFragment(it.id)
             findNavController().navigate(action)
         }
     }

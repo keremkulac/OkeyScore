@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedGameDetailBinding
-import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -36,19 +36,19 @@ class FinishedGameDetailFragment @Inject constructor(
 
     private fun getAndSetFinishedGames(){
         viewModel.getFinishedGame(arguments!!.getInt("finishedGameID"))
-        viewModel.finishedGame.observe(viewLifecycleOwner){
+        viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner){
             it?.let {
                 setRecyclerView(it)
                 finishedGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
             }
         }
     }
-    private fun setRecyclerView(finished: Finished?){
-        binding.team1Name.setText(finished!!.team1!!.name)
-        binding.team2Name.setText(finished.team2!!.name)
-        binding.gameDate.text = finished.gameInfo.date
-        binding.gameDetail.text = finished.gameInfo.gameInfo
-        finishedGameDetailAdapter.finished = finished
+    private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame?){
+        binding.team1Name.setText(finishedPartnerGame!!.team1!!.name)
+        binding.team2Name.setText(finishedPartnerGame.team2!!.name)
+        binding.gameDate.text = finishedPartnerGame.gameInfo.date
+        binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
+        finishedGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
         binding.roundRecyclerView.adapter = finishedGameDetailAdapter
         binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

@@ -41,4 +41,8 @@
     <string name="detail">Detay</string>
     <string name="partner">Eşli</string>
     <string name="single">Tekli</string>
+    <string-array name="tablayoutTitleArray">
+        <item>Tekli oyunlarım</item>
+        <item>Eşli oyunlarım</item>
+    </string-array>
 </resources>

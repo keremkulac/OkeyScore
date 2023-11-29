@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ui.finishedGame.FinishedGameFragment">
+    tools:context=".ui.finishedPartnerGame.FinishedPartnerGameFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -89,74 +89,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabPartner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/purple_200"
-            android:contentDescription="@string/app_name"
-            android:padding="4dp"
-            android:src="@drawable/ic_partner_person"
-            android:visibility="gone"
-            app:backgroundTint="@color/purple_200"
-            app:tint="@color/white" />
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/fabPartnerText"
-            android:text="@string/partner"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabSingle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/purple_200"
-            android:contentDescription="@string/app_name"
-            android:padding="4dp"
-            android:src="@drawable/ic_single_person"
-            android:visibility="gone"
-            app:backgroundTint="@color/purple_200"
-            app:tint="@color/white" />
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/fabSingleText"
-            android:text="@string/single"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/purple_200"
-            android:contentDescription="@string/app_name"
-            android:padding="4dp"
-            android:src="@drawable/ic_add"
-            app:backgroundTint="@color/purple_200"
-            app:tint="@color/white" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

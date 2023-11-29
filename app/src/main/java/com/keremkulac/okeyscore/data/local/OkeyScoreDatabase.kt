@@ -5,9 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.keremkulac.okeyscore.util.Converters
 import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
-import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.FinishedPartnerGame
 
-@Database(entities = [Finished::class], version = 1)
+@Database(entities = [FinishedPartnerGame::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class OkeyScoreDatabase : RoomDatabase() {
     abstract fun okeyScoreDao(): OkeyScoreDao

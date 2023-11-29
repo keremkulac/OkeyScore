@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "finished")
-data class Finished(
+@Entity(tableName = "finishedPartnerGame")
+data class FinishedPartnerGame(
     @PrimaryKey(autoGenerate = true)
     val id : Int,
     @Embedded(prefix = "team1") val team1 : Player?,

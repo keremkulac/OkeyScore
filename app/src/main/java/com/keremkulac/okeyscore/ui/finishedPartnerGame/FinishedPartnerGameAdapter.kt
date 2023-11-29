@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.ui.finishedGame
+package com.keremkulac.okeyscore.ui.finishedPartnerGame
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import javax.inject.Inject
 
-class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<FinishedGameAdapter.FinishedGameViewHolder>() {
+class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<FinishedPartnerGameAdapter.FinishedGameViewHolder>() {
 
-    var clickListener: ((Finished) -> Unit)? = null
+    var clickListener: ((FinishedPartnerGame) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedGameViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.finished_game_item, parent, false)
@@ -21,33 +21,33 @@ class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<Finished
     }
 
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
-        holder.bind(finishedList[position])
+        holder.bind(finishedPartnerGameLists[position])
         holder.itemView.setOnClickListener {
             clickListener?.let {
-                it.invoke(finishedList[position]!!)
+                it.invoke(finishedPartnerGameLists[position]!!)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return finishedList.size
+        return finishedPartnerGameLists.size
     }
 
-    private val diffUtil = object : DiffUtil.ItemCallback<Finished?>(){
-        override fun areItemsTheSame(oldItem: Finished, newItem: Finished): Boolean {
+    private val diffUtil = object : DiffUtil.ItemCallback<FinishedPartnerGame?>(){
+        override fun areItemsTheSame(oldItem: FinishedPartnerGame, newItem: FinishedPartnerGame): Boolean {
             return oldItem == newItem
 
         }
 
-        override fun areContentsTheSame(oldItem: Finished, newItem: Finished): Boolean {
+        override fun areContentsTheSame(oldItem: FinishedPartnerGame, newItem: FinishedPartnerGame): Boolean {
             return oldItem == newItem
         }
 
     }
 
     private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
-    var finishedList : ArrayList<Finished?>
-        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<Finished?>
+    var finishedPartnerGameLists : ArrayList<FinishedPartnerGame?>
+        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<FinishedPartnerGame?>
         set(value)  {
             recyclerListDiffer.submitList(value)
             notifyDataSetChanged()
@@ -61,20 +61,20 @@ class FinishedGameAdapter @Inject constructor()  : RecyclerView.Adapter<Finished
         private val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
-        fun bind(finished: Finished?) {
-            finished?.let {
-                team1Name.text = finished.team1!!.name
-                team2Name.text = finished.team2!!.name
-                team1TotalScore.text = finished.team1.totalScore
-                team2TotalScore.text = finished.team2.totalScore
-                gameInfo.text = finished.gameInfo.gameInfo
-                date.text = finished.gameInfo.date
+        fun bind(finishedPartnerGame: FinishedPartnerGame?) {
+            finishedPartnerGame?.let {
+                team1Name.text = finishedPartnerGame.team1!!.name
+                team2Name.text = finishedPartnerGame.team2!!.name
+                team1TotalScore.text = finishedPartnerGame.team1.totalScore
+                team2TotalScore.text = finishedPartnerGame.team2.totalScore
+                gameInfo.text = finishedPartnerGame.gameInfo.gameInfo
+                date.text = finishedPartnerGame.gameInfo.date
             }
         }
     }
 
-    fun updateData(newList: ArrayList<Finished?>) {
-        finishedList = newList
+    fun updateData(newList: ArrayList<FinishedPartnerGame?>) {
+        finishedPartnerGameLists = newList
         notifyDataSetChanged()
     }
 }

@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.ui.saveGame
+package com.keremkulac.okeyscore.ui.savePartnerGame
 
 import android.app.AlertDialog
 import android.os.Build
@@ -12,17 +12,17 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.databinding.FragmentSaveGameBinding
+import com.keremkulac.okeyscore.databinding.FragmentSavePartnerGameBinding
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
-class SaveGameFragment : Fragment(R.layout.fragment_save_game)  {
-    private val viewModel by viewModels<SaveGameViewModel>()
-    private lateinit var binding : FragmentSaveGameBinding
+class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
+    private val viewModel by viewModels<SavePartnerGameViewModel>()
+    private lateinit var binding : FragmentSavePartnerGameBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSaveGameBinding.bind(view)
+        binding = FragmentSavePartnerGameBinding.bind(view)
         setTotalScores()
         goToSaveFragment()
         setTeamInfo()

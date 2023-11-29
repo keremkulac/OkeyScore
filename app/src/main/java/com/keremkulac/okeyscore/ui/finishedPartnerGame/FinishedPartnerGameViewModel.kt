@@ -1,34 +1,34 @@
-package com.keremkulac.okeyscore.ui.finishedGame
+package com.keremkulac.okeyscore.ui.finishedPartnerGame
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
-import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FinishedGameViewModel
+class FinishedPartnerGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel() {
-    private val _allFinishedGames = MutableLiveData<ArrayList<Finished?>>()
-    val finishedGame: LiveData<ArrayList<Finished?>>
-        get() = _allFinishedGames
+    private val _allFinishedGamesPartnerGame = MutableLiveData<ArrayList<FinishedPartnerGame?>>()
+    val finishedPartnerGameGame: LiveData<ArrayList<FinishedPartnerGame?>>
+        get() = _allFinishedGamesPartnerGame
     init {
         getFinishedGames()
     }
    private fun getFinishedGames(){
         viewModelScope.launch {
-            _allFinishedGames.postValue(ArrayList(okeyScoreRepository.getAllFinishedGames()))
+            _allFinishedGamesPartnerGame.postValue(ArrayList(okeyScoreRepository.getAllFinishedGames()))
         }
     }
 
-    fun search(newText : String?,adapter: FinishedGameAdapter){
+    fun search(newText : String?,adapter: FinishedPartnerGameAdapter){
         val query = newText?.lowercase()
         if (query.isNullOrEmpty()) {
-            _allFinishedGames.value?.let { adapter.updateData(it) }
+            _allFinishedGamesPartnerGame.value?.let { adapter.updateData(it) }
         } else {
             /*
             val filteredList = _allFinishedGames.value?.filter { item ->
@@ -40,15 +40,15 @@ class FinishedGameViewModel
         }
     }
 
-    fun deleteFinishedGame(finished: Finished?){
+    fun deleteFinishedGame(finishedPartnerGame: FinishedPartnerGame?){
         viewModelScope.launch {
-            okeyScoreRepository.deleteFinishedGame(finished)
+            okeyScoreRepository.deleteFinishedGame(finishedPartnerGame)
         }
     }
 
-    fun saveFinishedGame(finished: Finished){
+    fun saveFinishedGame(finishedPartnerGame: FinishedPartnerGame){
         viewModelScope.launch {
-            okeyScoreRepository.insertFinishedGame(finished)
+            okeyScoreRepository.insertFinishedGame(finishedPartnerGame)
         }
     }
 

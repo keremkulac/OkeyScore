@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.ui.saveGame
+package com.keremkulac.okeyscore.ui.savePartnerGame
 
 import android.annotation.SuppressLint
 import android.text.Editable
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
-import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.model.Info
 import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
-class SaveGameViewModel
+class SavePartnerGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository,
                     private val sharedPreferencesManager: SharedPreferencesManager) : ViewModel(){
     private val _isEmpty = MutableLiveData<Boolean>()
@@ -44,15 +44,15 @@ class SaveGameViewModel
                     team2Information[0].text.toString(),
                     finishedTeam2,
                     calculateTotalScore(team2Information).toString())
-                    val finished = Finished(0,player1,player2,gameInfo)
-                check(finished)
+                    val finishedPartnerGame = FinishedPartnerGame(0,player1,player2,gameInfo)
+                check(finishedPartnerGame)
             }
         }
     }
 
-    private suspend fun check(finished: Finished){
+    private suspend fun check(finishedPartnerGame: FinishedPartnerGame){
         val result = runCatching {
-            val affectedRows = okeyScoreRepository.insertFinishedGame(finished)
+            val affectedRows = okeyScoreRepository.insertFinishedGame(finishedPartnerGame)
             affectedRows
         }
         if (result.isSuccess) {

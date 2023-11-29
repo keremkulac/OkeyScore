@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/finishedGameFragment">
+    app:startDestination="@id/finishedGameViewFragment">
 
     <fragment
-        android:id="@+id/saveGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.saveGame.SaveGameFragment"
+        android:id="@+id/savePartnerGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.savePartnerGame.SavePartnerGameFragment"
         android:label="fragment_save_game"
-        tools:layout="@layout/fragment_save_game" >
+        tools:layout="@layout/fragment_save_partner_game" >
 
         <action
             android:id="@+id/action_saveGameFragment_to_finishedGameFragment"
@@ -20,12 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/finishedGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedGame.FinishedGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameFragment"
         android:label="fragment_finished_game"
-        tools:layout="@layout/fragment_finished_game" >
+        tools:layout="@layout/fragment_finished_partner_game" >
         <action
             android:id="@+id/action_finishedGameFragment_to_saveGameFragment"
-            app:destination="@id/saveGameFragment" />
+            app:destination="@id/savePartnerGameFragment" />
         <action
             android:id="@+id/action_finishedGameFragment_to_finishedGameDetailFragment"
             app:destination="@id/finishedGameDetailFragment" >
@@ -44,4 +44,25 @@
             android:id="@+id/action_finishedGameDetailFragment_to_finishedGameFragment"
             app:destination="@id/finishedGameFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/finishedSingleGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment"
+        android:label="fragment_finished_single_game"
+        tools:layout="@layout/fragment_finished_single_game" />
+    <fragment
+        android:id="@+id/finishedGameViewFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragment"
+        android:label="fragment_finished_game_view"
+        tools:layout="@layout/fragment_finished_game_view" >
+        <action
+            android:id="@+id/action_finishedGameViewFragment_to_saveSingleGameFragment"
+            app:destination="@id/saveSingleGameFragment" />
+        <action
+            android:id="@+id/action_finishedGameViewFragment_to_savePartnerGameFragment"
+            app:destination="@id/savePartnerGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveSingleGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.saveSingleGame.SaveSingleGameFragment"
+        android:label="SaveSingleGameFragment" />
 </navigation>

@@ -8,12 +8,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.model.Finished
+import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import javax.inject.Inject
 
 class FinishedDetailGameAdapter @Inject constructor(): RecyclerView.Adapter<FinishedDetailGameAdapter.ViewHolder>() {
 
-    var finished : Finished? = null
+    var finishedPartnerGame : FinishedPartnerGame? = null
     var numberOfGames =0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,7 +24,7 @@ class FinishedDetailGameAdapter @Inject constructor(): RecyclerView.Adapter<Fini
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.roundCount.setText("${position+1}. tur ")
-        finished?.let {
+        finishedPartnerGame?.let {
             if(it.team1!!.allScores!![position].equals("") && it.team2!!.allScores!![position].equals("")){
 
             }else{
