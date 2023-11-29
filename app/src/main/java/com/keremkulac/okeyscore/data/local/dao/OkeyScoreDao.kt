@@ -12,8 +12,8 @@ interface OkeyScoreDao {
     @Query("SELECT * FROM finished WHERE id = :id")
     suspend fun getFinishedGameById(id: Int): Finished?
 
-    @Query("SELECT * FROM finished ORDER BY date DESC")
-    suspend fun getAllFinishedGames(): List<Finished?>
+    @Query("SELECT * FROM finished ORDER BY gameInfoDate DESC")
+    suspend fun getAllFinishedGames(): List<Finished>
 
     @Delete
     suspend fun deleteFinishedGame(finished : Finished?)

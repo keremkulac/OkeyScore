@@ -25,6 +25,7 @@ class FinishedGameFragment @Inject constructor(
 
     private val viewModel by viewModels<FinishedGameViewModel>()
     private lateinit var binding : FragmentFinishedGameBinding
+    private var fabVisible = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,9 +81,32 @@ class FinishedGameFragment @Inject constructor(
 
 
     private fun goToSaveGameFragment(){
+        fabVisible = false
         binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_finishedGameFragment_to_saveGameFragment)
+            //findNavController().navigate(R.id.action_finishedGameFragment_to_saveGameFragment)
+            if(!fabVisible){
+                binding.fabSingle.show()
+                binding.fabPartner.show()
+                binding.fabPartnerText.visibility = View.VISIBLE
+                binding.fabSingleText.visibility = View.VISIBLE
+                binding.fabSingle.visibility = View.VISIBLE
+                binding.fabPartner.visibility = View.VISIBLE
+                binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_close))
+                fabVisible = true
+            }else{
+                binding.fabSingle.hide()
+                binding.fabPartner.hide()
+                binding.fabPartnerText.visibility = View.GONE
+                binding.fabSingleText.visibility = View.GONE
+                binding.fabSingle.visibility = View.GONE
+                binding.fabPartner.visibility = View.GONE
+                binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
+
+                fabVisible = false
+            }
+
         }
+
     }
 
     private fun deleteItemDatabase(){

@@ -39,4 +39,6 @@
     <string name="game_detail">Oyun detay</string>
     <string name="teamNames">Takım İsimleri</string>
     <string name="detail">Detay</string>
+    <string name="partner">Eşli</string>
+    <string name="single">Tekli</string>
 </resources>
