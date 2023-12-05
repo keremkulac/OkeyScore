@@ -52,7 +52,7 @@ class SavePartnerGameViewModel
 
     private suspend fun check(finishedPartnerGame: FinishedPartnerGame){
         val result = runCatching {
-            val affectedRows = okeyScoreRepository.insertFinishedGame(finishedPartnerGame)
+            val affectedRows = okeyScoreRepository.insertFinishedPartnerGame(finishedPartnerGame)
             affectedRows
         }
         if (result.isSuccess) {
@@ -129,7 +129,7 @@ class SavePartnerGameViewModel
 
      fun getSharedPrefAndSetTeamScores(keyName : String,editTextList : List<EditText>){
          val getContinuingTeamScores = getDataFromSharedPreferences(keyName)
-         val continuingList = getContinuingTeamScores!!.split(",")
+         val continuingList = getContinuingTeamScores.split(",")
          if (continuingList[0] != "") {
              _isEmpty.postValue(true)
              for ((i, editText) in editTextList.withIndex()) {

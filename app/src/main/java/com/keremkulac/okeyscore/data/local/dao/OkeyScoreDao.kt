@@ -2,19 +2,27 @@ package com.keremkulac.okeyscore.data.local.dao
 
 import androidx.room.*
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
+import com.keremkulac.okeyscore.model.FinishedSingleGame
 
 @Dao
 interface OkeyScoreDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFinishedGame(finishedPartnerGame: FinishedPartnerGame)
+    suspend fun insertFinishedPartnerGame(finishedPartnerGame: FinishedPartnerGame)
 
     @Query("SELECT * FROM finishedPartnerGame WHERE id = :id")
-    suspend fun getFinishedGameById(id: Int): FinishedPartnerGame?
+    suspend fun getFinishedPartnerGameById(id: Int): FinishedPartnerGame?
 
-    @Query("SELECT * FROM finishedPartnerGame ORDER BY gameInfoDate DESC")
-    suspend fun getAllFinishedGames(): List<FinishedPartnerGame>
+    @Query("SELECT * FROM finishedPartnerGame ORDER BY gameInfodate DESC")
+    suspend fun getAllFinishedPartnerGames(): List<FinishedPartnerGame>
 
     @Delete
-    suspend fun deleteFinishedGame(finishedPartnerGame : FinishedPartnerGame?)
+    suspend fun deleteFinishedPartnerGame(finishedPartnerGame : FinishedPartnerGame?)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFinishedSingleGame(finishedSingleGame: FinishedSingleGame)
+
+    @Query("SELECT * FROM finishedSingleGame ORDER BY gameInfodate DESC")
+    suspend fun getAllFinishedSingleGames(): List<FinishedSingleGame>
+
 }

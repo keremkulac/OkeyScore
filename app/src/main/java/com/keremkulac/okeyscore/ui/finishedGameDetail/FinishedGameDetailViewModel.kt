@@ -20,14 +20,14 @@ class FinishedGameDetailViewModel @Inject constructor(
 
     fun getFinishedGame(id: Int){
         viewModelScope.launch {
-            _finishedPartnerGameGame.postValue(okeyScoreRepository.getFinishedGame(id))
+            _finishedPartnerGameGame.postValue(okeyScoreRepository.getFinishedPartnerGame(id))
         }
     }
 
     fun findNumberOfGames(finishedPartnerGame: FinishedPartnerGame) : Int{
         var numberOfGames = 0
         for(i in 0 until  finishedPartnerGame.team1!!.allScores!!.size){
-            if (finishedPartnerGame.team1!!.allScores!![i]!! != "" && finishedPartnerGame.team2!!.allScores!![i]!! != "") {
+            if (finishedPartnerGame.team1.allScores!![i]!! != "" && finishedPartnerGame.team2!!.allScores!![i]!! != "") {
                 numberOfGames++
             }
         }

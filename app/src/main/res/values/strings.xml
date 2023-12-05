@@ -41,6 +41,16 @@
     <string name="detail">Detay</string>
     <string name="partner">Eşli</string>
     <string name="single">Tekli</string>
+    <string name="player_1">Oyuncu 1</string>
+    <string name="player_2">Oyuncu 2</string>
+    <string name="player_3">Oyuncu 3</string>
+    <string name="player_4">Oyuncu 4</string>
+    <string name="enter_player1_name">1. oyuncu için isim giriniz</string>
+    <string name="enter_player2_name">2. oyuncu için isim giriniz</string>
+    <string name="enter_player3_name">3. oyuncu için isim giriniz</string>
+    <string name="enter_player4_name">4. oyuncu için isim giriniz</string>
+    <string name="new_round">Yeni Tur</string>
+    <string name="save_names">İsimleri Kaydet</string>
     <string-array name="tablayoutTitleArray">
         <item>Tekli oyunlarım</item>
         <item>Eşli oyunlarım</item>

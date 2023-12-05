@@ -21,7 +21,7 @@ class FinishedPartnerGameViewModel
     }
    private fun getFinishedGames(){
         viewModelScope.launch {
-            _allFinishedGamesPartnerGame.postValue(ArrayList(okeyScoreRepository.getAllFinishedGames()))
+            _allFinishedGamesPartnerGame.postValue(ArrayList(okeyScoreRepository.getAllFinishedPartnerGames()))
         }
     }
 
@@ -42,13 +42,13 @@ class FinishedPartnerGameViewModel
 
     fun deleteFinishedGame(finishedPartnerGame: FinishedPartnerGame?){
         viewModelScope.launch {
-            okeyScoreRepository.deleteFinishedGame(finishedPartnerGame)
+            okeyScoreRepository.deleteFinishedPartnerGame(finishedPartnerGame)
         }
     }
 
     fun saveFinishedGame(finishedPartnerGame: FinishedPartnerGame){
         viewModelScope.launch {
-            okeyScoreRepository.insertFinishedGame(finishedPartnerGame)
+            okeyScoreRepository.insertFinishedPartnerGame(finishedPartnerGame)
         }
     }
 

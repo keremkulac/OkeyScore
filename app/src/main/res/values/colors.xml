@@ -80,4 +80,19 @@
         <item name="android:textSize">14sp</item>
 
     </style>
+
+    <style name="SingleGameEditTextStyle" parent="Widget.AppCompat.EditText" >
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:hint">Oyuncu</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+
+
+
+
+    </style>
 </resources>
