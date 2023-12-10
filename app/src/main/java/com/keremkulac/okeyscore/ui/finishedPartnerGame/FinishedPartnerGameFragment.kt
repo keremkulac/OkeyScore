@@ -13,19 +13,17 @@ import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.util.SwipeGesture
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameBinding
+import com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class FinishedPartnerGameFragment @Inject constructor(
-    private val finishedPartnerGameAdapter: FinishedPartnerGameAdapter
-)  : Fragment(R.layout.fragment_finished_partner_game)  {
-
+    private val finishedPartnerGameAdapter: FinishedPartnerGameAdapter)  : Fragment(R.layout.fragment_finished_partner_game)  {
 
     private val viewModel by viewModels<FinishedPartnerGameViewModel>()
     private lateinit var binding : FragmentFinishedPartnerGameBinding
-    private var fabVisible = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -87,16 +85,14 @@ class FinishedPartnerGameFragment @Inject constructor(
                 val position = viewHolder.adapterPosition
                 val itemToDelete = finishedPartnerGameAdapter.finishedPartnerGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
-                findNavController().navigate(R.id.finishedGameFragment)
+                findNavController().navigate(R.id.finishedPartnerGameFragment)
                 Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_LONG).setAction(
                     "Geri al",View.OnClickListener {
                         viewModel.saveFinishedGame(itemToDelete!!)
-                        findNavController().navigate(R.id.finishedGameFragment)
+                        findNavController().navigate(R.id.finishedPartnerGameFragment)
                     }
                 ).show()
-
             }
-
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)
         itemTouchHelper.attachToRecyclerView(binding.finishedGameRecyclerView)
@@ -104,7 +100,7 @@ class FinishedPartnerGameFragment @Inject constructor(
 
     private fun clickFinishedGame(){
         finishedPartnerGameAdapter.clickListener={
-            val action = FinishedPartnerGameFragmentDirections.actionFinishedGameFragmentToFinishedGameDetailFragment(it.id)
+            val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedGameDetailFragment(it.id)
             findNavController().navigate(action)
         }
     }

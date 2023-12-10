@@ -11,8 +11,6 @@ import android.widget.EditText
 import androidx.fragment.app.viewModels
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
-import com.keremkulac.okeyscore.model.FinishedSingleGame
-import com.keremkulac.okeyscore.model.Info
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +21,8 @@ class SaveSingleGameFragment : Fragment() {
     private var player2ScoreEditTextList = ArrayList<EditText>()
     private var player3ScoreEditTextList = ArrayList<EditText>()
     private var player4ScoreEditTextList = ArrayList<EditText>()
+    private var totalScoreEditTextList = ArrayList<EditText>()
+    private var allPlayerScoreEditTextList = ArrayList<ArrayList<EditText>>()
 
     var lineCount = 1
 
@@ -31,6 +31,7 @@ class SaveSingleGameFragment : Fragment() {
         checkPlayerNames()
         saveGame()
         newRound(layoutInflater)
+        fillTotalScoreEditTextList()
         return binding.root
     }
 
@@ -48,14 +49,39 @@ class SaveSingleGameFragment : Fragment() {
             if(isEmpty){
                 Log.d("TAG","Lütfen isimleri giriniz")
             }else{
-                binding.nameLayout.visibility = View.GONE
+                binding.nameEntryLayout.visibility = View.GONE
                 binding.confirmNames.visibility = View.GONE
                 binding.newRound.visibility = View.VISIBLE
                 binding.saveGame.visibility = View.VISIBLE
                 binding.scoreLayout.visibility = View.VISIBLE
+                binding.namesLayout.visibility = View.VISIBLE
+                binding.totalScoresLayout.visibility = View.VISIBLE
+                setTotalScoresEditTextView()
+                calculate()
+                setPlayerNames()
             }
         }
 
+    }
+
+    private fun setPlayerNames(){
+        binding.names.player1Score.text = playerNames()[0].text
+        binding.names.player2Score.text = playerNames()[1].text
+        binding.names.player3Score.text = playerNames()[2].text
+        binding.names.player4Score.text = playerNames()[3].text
+    }
+
+    private fun fillTotalScoreEditTextList(){
+        totalScoreEditTextList.add(binding.totalScores.player1Score)
+        totalScoreEditTextList.add(binding.totalScores.player2Score)
+        totalScoreEditTextList.add(binding.totalScores.player3Score)
+        totalScoreEditTextList.add(binding.totalScores.player4Score)
+    }
+    private fun setTotalScoresEditTextView(){
+        for (totalScoreEditText in totalScoreEditTextList){
+            totalScoreEditText.hint = "Toplam"
+            totalScoreEditText.isEnabled = false
+        }
     }
     private fun newRound(inflater : LayoutInflater){
         var newLine = createNewLine(inflater)
@@ -67,49 +93,51 @@ class SaveSingleGameFragment : Fragment() {
                 Log.d("TAG","boş değil")
                 lineCount++
                 newLine = createNewLine(inflater)
+                calculate()
             }
         }
     }
 
+    val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
 
     private fun createNewLine(inflater : LayoutInflater) : List<EditText>{
         val parentLayout = binding.scoreLayout
         val includedLayout = inflater.inflate(R.layout.single_game_round_item, null)
         parentLayout.addView(includedLayout)
-        val player1EditText = includedLayout.findViewById<EditText>(R.id.player1Score)
-        val player2EditText = includedLayout.findViewById<EditText>(R.id.player2Score)
-        val player3EditText = includedLayout.findViewById<EditText>(R.id.player3Score)
-        val player4EditText = includedLayout.findViewById<EditText>(R.id.player4Score)
-        player1ScoreEditTextList.add(player1EditText)
-        player2ScoreEditTextList.add(player2EditText)
-        player3ScoreEditTextList.add(player3EditText)
-        player4ScoreEditTextList.add(player4EditText)
+        createAllPlayerScoreEditTextList()
+        val editTextList = mutableListOf<EditText>()
+        editTextIds.forEachIndexed{index, id ->
+            val editText = includedLayout.findViewById<EditText>(id)
+            allPlayerScoreEditTextList[index].add(editText)
+            editTextList.add(editText)
+        }
 
-        val list = listOf<EditText>(
-            player1EditText,
-            player2EditText,
-            player3EditText,
-            player4EditText)
-        setEditText(list)
-        return list
+        setEditText(editTextList)
+        return editTextList
     }
 
+    private fun createAllPlayerScoreEditTextList(){
+        allPlayerScoreEditTextList.add(player1ScoreEditTextList)
+        allPlayerScoreEditTextList.add(player2ScoreEditTextList)
+        allPlayerScoreEditTextList.add(player3ScoreEditTextList)
+        allPlayerScoreEditTextList.add(player4ScoreEditTextList)
+    }
+
+    private fun calculate(){
+       viewModel.setTotal(player1ScoreEditTextList,totalScoreEditTextList[0])
+       viewModel.setTotal(player2ScoreEditTextList,totalScoreEditTextList[1])
+       viewModel.setTotal(player3ScoreEditTextList,totalScoreEditTextList[2])
+       viewModel.setTotal(player4ScoreEditTextList,totalScoreEditTextList[3])
+   }
     private fun setEditText(editTextList: List<EditText>){
-        for(item in editTextList){
-            item.hint = "Tur $lineCount"
-            item.inputType = InputType.TYPE_CLASS_NUMBER
+        for(editText in editTextList){
+            editText.hint = "Tur $lineCount"
+            editText.inputType = InputType.TYPE_CLASS_NUMBER
         }
     }
    private fun saveGame(){
         binding.saveGame.setOnClickListener {
-            Log.d("TAG","Kayıt başarılı")
-            val scoreLists = listOf<List<EditText>>(player1ScoreEditTextList,player2ScoreEditTextList,player3ScoreEditTextList,player4ScoreEditTextList)
-            val players = viewModel.createPlayers(playerNames(),scoreLists)
-            val info = Info("info", "date")
-            val finishedSingleGame = FinishedSingleGame(0,players[0],players[1],players[2],players[3],info)
-            viewModel.insertGame(finishedSingleGame)
-
+            viewModel.insertSingleGame(player1ScoreEditTextList,player2ScoreEditTextList,player3ScoreEditTextList,player4ScoreEditTextList,playerNames())
         }
-
     }
 }

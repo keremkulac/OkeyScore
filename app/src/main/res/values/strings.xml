@@ -51,6 +51,12 @@
     <string name="enter_player4_name">4. oyuncu için isim giriniz</string>
     <string name="new_round">Yeni Tur</string>
     <string name="save_names">İsimleri Kaydet</string>
+    <string name="player_name">Oyuncu adı</string>
+    <string name="total_score">Toplam skor</string>
+    <string name="game_info_okey">Oyun Bilgisi: Okey</string>
+    <string name="date_info">Oyun Tarihi: 30 Kasım 2023</string>
+    <string name="player">Player</string>
+    <string name="_120">120</string>
     <string-array name="tablayoutTitleArray">
         <item>Tekli oyunlarım</item>
         <item>Eşli oyunlarım</item>

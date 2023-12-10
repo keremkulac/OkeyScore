@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.ui.finishedGameDetail
+package com.keremkulac.okeyscore.ui.finishedPartnerGameDetail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.databinding.FragmentFinishedGameDetailBinding
+import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -15,22 +15,22 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FinishedGameDetailFragment @Inject constructor(
-    private val finishedGameDetailAdapter : FinishedDetailGameAdapter
-) : Fragment(R.layout.fragment_finished_game_detail) {
+    private val finishedPartnerGameDetailAdapter : FinishedPartnerGameDetailAdapter
+) : Fragment(R.layout.fragment_finished_partner_game_detail) {
 
-    private lateinit var binding : FragmentFinishedGameDetailBinding
-    private val viewModel by viewModels<FinishedGameDetailViewModel>()
+    private lateinit var binding : FragmentFinishedPartnerGameDetailBinding
+    private val viewModel by viewModels<FinishedPartnerGameDetailViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFinishedGameDetailBinding.bind(view)
+        binding = FragmentFinishedPartnerGameDetailBinding.bind(view)
         goToFinishedGameFragment()
         getAndSetFinishedGames()
     }
 
     private fun goToFinishedGameFragment(){
         binding.goToFinishedGameFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_finishedGameDetailFragment_to_finishedGameFragment)
+          //  findNavController().navigate(R.id.action_finishedGameDetailFragment_to_finishedGameFragment)
         }
     }
 
@@ -39,7 +39,7 @@ class FinishedGameDetailFragment @Inject constructor(
         viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner){
             it?.let {
                 setRecyclerView(it)
-                finishedGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
+                finishedPartnerGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
             }
         }
     }
@@ -48,8 +48,8 @@ class FinishedGameDetailFragment @Inject constructor(
         binding.team2Name.setText(finishedPartnerGame.team2!!.name)
         binding.gameDate.text = finishedPartnerGame.gameInfo.date
         binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
-        finishedGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
-        binding.roundRecyclerView.adapter = finishedGameDetailAdapter
+        finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
+        binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
         binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 }

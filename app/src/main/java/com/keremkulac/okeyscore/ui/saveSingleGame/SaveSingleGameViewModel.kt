@@ -1,23 +1,39 @@
 package com.keremkulac.okeyscore.ui.saveSingleGame
 
+import android.annotation.SuppressLint
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedSingleGame
+import com.keremkulac.okeyscore.model.Info
 import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
 class SaveSingleGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel() {
 
-    fun insertGame(finishedSingleGame: FinishedSingleGame){
+    fun insertSingleGame(
+        player1ScoreEditTextList : ArrayList<EditText>,
+        player2ScoreEditTextList : ArrayList<EditText>,
+        player3ScoreEditTextList : ArrayList<EditText>,
+        player4ScoreEditTextList : ArrayList<EditText>,
+                    playerNames: List<EditText>){
+        val scoreLists = listOf<List<EditText>>(player1ScoreEditTextList,player2ScoreEditTextList,player3ScoreEditTextList,player4ScoreEditTextList)
+        val players = createPlayers(playerNames,scoreLists)
+        val finishedSingleGame = FinishedSingleGame(0,players[0],players[1],players[2],players[3],createInfo(players))
         viewModelScope.launch {
             okeyScoreRepository.insertFinishedSingleGame(finishedSingleGame)
+            Log.d("TAG","Kayıt başarılı")
         }
     }
 
@@ -32,7 +48,10 @@ class SaveSingleGameViewModel
     fun calculateTotalScore(playerScoreEditTextList: List<EditText>) : Int{
         var totalScore = 0
         for(playerScoreEditText in playerScoreEditTextList){
-            totalScore += playerScoreEditText.text.toString().toInt()
+            if(playerScoreEditText.text.toString() != ""){
+                totalScore += playerScoreEditText.text.toString().toInt()
+
+            }
         }
         return totalScore
     }
@@ -41,7 +60,6 @@ class SaveSingleGameViewModel
         var isEmpty = false
         for (editText in editTextList) {
             Log.d("TAG",editText.text.toString())
-
             if (editText.text.toString().isEmpty()) {
                 isEmpty = true
             }
@@ -49,10 +67,9 @@ class SaveSingleGameViewModel
         return isEmpty
     }
 
-    fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>): List<Player> {
+   private fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>): List<Player> {
         val players = mutableListOf<Player>()
-
-        for (i in 0 until playerNames.size) {
+        for (i in playerNames.indices) {
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
             val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
@@ -60,6 +77,30 @@ class SaveSingleGameViewModel
             players.add(player)
         }
         return players
+    }
+
+    fun setTotal(team1ScoreList : List<EditText>,totalScoreEditText: EditText){
+        for ((i, scoreListItem) in team1ScoreList.withIndex()) {
+            scoreListItem.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                @SuppressLint("SetTextI18n")
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    totalScoreEditText.setText("${calculateTotalScore(team1ScoreList)}")
+                    //  setDifferenceText(calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList),differenceText,team1ScoreList[0].text.toString(),team2ScoreList[0].text.toString())
+                }
+                override fun afterTextChanged(s: Editable?) {}
+            })
+        }
+    }
+
+
+    private fun createInfo(player: List<Player>): Info {
+        val minScorePlayer = player.minBy { it.totalScore }
+        return Info("Oyunu ${minScorePlayer.name}' adlı oyuncu toplam ${minScorePlayer.totalScore} skor ile kazanmıştır", getCurrentDate())
+    }
+    private fun getCurrentDate(): String {
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+        return ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
     }
 
 }
