@@ -109,8 +109,8 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                     viewModel.getTeamScoreInformations(team1EditTexts()),
                     viewModel.getTeamScoreInformations(team2EditTexts()),
                     team1EditTexts(),
-                    team2EditTexts())
-                findNavController().navigate(R.id.action_saveGameFragment_to_finishedGameFragment)
+                    team2EditTexts(),
+                findNavController())
             }
             alertDialogBuilder.setNegativeButton("Hayır") { dialog, which -> }
             val alertDialog = alertDialogBuilder.create()

@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.ui.saveSingleGame
+package com.keremkulac.okeyscore.ui.finishedGameView
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

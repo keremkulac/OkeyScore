@@ -13,7 +13,6 @@ import com.keremkulac.okeyscore.databinding.FragmentFinishedGameViewBinding
 import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameAdapter
 import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameFragment
 import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment
-import com.keremkulac.okeyscore.ui.saveSingleGame.ViewPagerAdapter
 
 
 class FinishedGameViewFragment : Fragment() {
@@ -25,6 +24,7 @@ class FinishedGameViewFragment : Fragment() {
         binding = FragmentFinishedGameViewBinding.inflate(inflater)
         saveGameFabClick()
         setViewPager()
+        setViewPagerPage()
         goToSaveSingleGame()
         goToSavePartnerGame()
         return binding.root
@@ -52,9 +52,7 @@ class FinishedGameViewFragment : Fragment() {
                 binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
                 fabVisible = false
             }
-
         }
-
     }
 
     private fun goToSaveSingleGame(){
@@ -79,4 +77,15 @@ class FinishedGameViewFragment : Fragment() {
     }
 
 
+    private fun setViewPagerPage(){
+        val argument = arguments?.getString("gameType")
+        if(argument != null){
+            if(argument == "single"){
+                binding.viewPager.setCurrentItem(0, true) // 2. sayfayı açmak için
+
+            }else{
+                binding.viewPager.setCurrentItem(1, true) // 2. sayfayı açmak için
+            }
+        }
+    }
 }

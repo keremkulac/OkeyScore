@@ -1,5 +1,6 @@
 package com.keremkulac.okeyscore.ui.saveSingleGame
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +24,7 @@ class SaveSingleGameFragment : Fragment() {
     private var player2ScoreEditTextList = ArrayList<EditText>()
     private var player3ScoreEditTextList = ArrayList<EditText>()
     private var player4ScoreEditTextList = ArrayList<EditText>()
-    private var totalScoreEditTextList = ArrayList<EditText>()
+    private var totalScoreEditTextList = ArrayList<TextView>()
     private var allPlayerScoreEditTextList = ArrayList<ArrayList<EditText>>()
 
     var lineCount = 1
@@ -37,10 +40,10 @@ class SaveSingleGameFragment : Fragment() {
 
     private fun playerNames(): List<EditText> {
         return listOf(
-            binding.player1Name,
-            binding.player2Name,
-            binding.player3Name,
-            binding.player4Name
+            binding.player1NameEntry,
+            binding.player2NameEntry,
+            binding.player3NameEntry,
+            binding.player4NameEntry
         )
     }
     private fun checkPlayerNames(){
@@ -54,8 +57,8 @@ class SaveSingleGameFragment : Fragment() {
                 binding.newRound.visibility = View.VISIBLE
                 binding.saveGame.visibility = View.VISIBLE
                 binding.scoreLayout.visibility = View.VISIBLE
-                binding.namesLayout.visibility = View.VISIBLE
-                binding.totalScoresLayout.visibility = View.VISIBLE
+                binding.playerLayout.visibility = View.VISIBLE
+                binding.seperator.visibility = View.VISIBLE
                 setTotalScoresEditTextView()
                 calculate()
                 setPlayerNames()
@@ -65,18 +68,19 @@ class SaveSingleGameFragment : Fragment() {
     }
 
     private fun setPlayerNames(){
-        binding.names.player1Score.text = playerNames()[0].text
-        binding.names.player2Score.text = playerNames()[1].text
-        binding.names.player3Score.text = playerNames()[2].text
-        binding.names.player4Score.text = playerNames()[3].text
+        binding.player1Name.text = playerNames()[0].text
+        binding.player2Name.text = playerNames()[1].text
+        binding.player3Name.text = playerNames()[2].text
+        binding.player4Name.text = playerNames()[3].text
     }
 
     private fun fillTotalScoreEditTextList(){
-        totalScoreEditTextList.add(binding.totalScores.player1Score)
-        totalScoreEditTextList.add(binding.totalScores.player2Score)
-        totalScoreEditTextList.add(binding.totalScores.player3Score)
-        totalScoreEditTextList.add(binding.totalScores.player4Score)
+        totalScoreEditTextList.add(binding.player1TotalScore)
+        totalScoreEditTextList.add(binding.player2TotalScore)
+        totalScoreEditTextList.add(binding.player3TotalScore)
+        totalScoreEditTextList.add(binding.player4TotalScore)
     }
+
     private fun setTotalScoresEditTextView(){
         for (totalScoreEditText in totalScoreEditTextList){
             totalScoreEditText.hint = "Toplam"
@@ -98,13 +102,13 @@ class SaveSingleGameFragment : Fragment() {
         }
     }
 
-    val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
 
     private fun createNewLine(inflater : LayoutInflater) : List<EditText>{
         val parentLayout = binding.scoreLayout
         val includedLayout = inflater.inflate(R.layout.single_game_round_item, null)
         parentLayout.addView(includedLayout)
         createAllPlayerScoreEditTextList()
+        val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
         val editTextList = mutableListOf<EditText>()
         editTextIds.forEachIndexed{index, id ->
             val editText = includedLayout.findViewById<EditText>(id)
@@ -137,7 +141,15 @@ class SaveSingleGameFragment : Fragment() {
     }
    private fun saveGame(){
         binding.saveGame.setOnClickListener {
-            viewModel.insertSingleGame(player1ScoreEditTextList,player2ScoreEditTextList,player3ScoreEditTextList,player4ScoreEditTextList,playerNames())
+            val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
+            alertDialogBuilder.setTitle("İşlem Onayı")
+            alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
+            alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
+                viewModel.insertSingleGame(player1ScoreEditTextList,player2ScoreEditTextList,player3ScoreEditTextList,player4ScoreEditTextList,playerNames(),findNavController())
+            }
+            alertDialogBuilder.setNegativeButton("Hayır") { dialog, which -> }
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
         }
     }
 }

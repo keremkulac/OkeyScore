@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/black"
-    android:layout_marginTop="6dp"
-    android:padding="6dp">
+    android:layout_marginTop="6dp">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -27,7 +26,7 @@
 
                         <TextView
                             android:layout_width="1dp"
-                            android:layout_height="24dp"
+                            android:layout_height="match_parent"
                             android:background="#FFFFFF" />
                 </LinearLayout>
 
@@ -47,7 +46,7 @@
 
                         <TextView
                             android:layout_width="1dp"
-                            android:layout_height="24dp"
+                            android:layout_height="match_parent"
                             android:background="#FFFFFF" />
                 </LinearLayout>
 
@@ -66,7 +65,7 @@
 
                         <TextView
                             android:layout_width="1dp"
-                            android:layout_height="24dp"
+                            android:layout_height="match_parent"
                             android:background="#FFFFFF" />
                 </LinearLayout>
 
@@ -79,6 +78,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/seperator"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>

@@ -5,8 +5,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Info
@@ -27,12 +29,14 @@ class SaveSingleGameViewModel
         player2ScoreEditTextList : ArrayList<EditText>,
         player3ScoreEditTextList : ArrayList<EditText>,
         player4ScoreEditTextList : ArrayList<EditText>,
-                    playerNames: List<EditText>){
+                    playerNames: List<EditText>,navController: NavController){
         val scoreLists = listOf<List<EditText>>(player1ScoreEditTextList,player2ScoreEditTextList,player3ScoreEditTextList,player4ScoreEditTextList)
         val players = createPlayers(playerNames,scoreLists)
         val finishedSingleGame = FinishedSingleGame(0,players[0],players[1],players[2],players[3],createInfo(players))
         viewModelScope.launch {
             okeyScoreRepository.insertFinishedSingleGame(finishedSingleGame)
+            val action = SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
+            navController.navigate(action)
             Log.d("TAG","Kayıt başarılı")
         }
     }
@@ -79,14 +83,13 @@ class SaveSingleGameViewModel
         return players
     }
 
-    fun setTotal(team1ScoreList : List<EditText>,totalScoreEditText: EditText){
+    fun setTotal(team1ScoreList : List<EditText>,totalScoreTextView: TextView){
         for ((i, scoreListItem) in team1ScoreList.withIndex()) {
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 @SuppressLint("SetTextI18n")
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    totalScoreEditText.setText("${calculateTotalScore(team1ScoreList)}")
-                    //  setDifferenceText(calculateTotalScore(team1ScoreList), calculateTotalScore(team2ScoreList),differenceText,team1ScoreList[0].text.toString(),team2ScoreList[0].text.toString())
+                    totalScoreTextView.text = "${calculateTotalScore(team1ScoreList)}"
                 }
                 override fun afterTextChanged(s: Editable?) {}
             })
@@ -96,7 +99,7 @@ class SaveSingleGameViewModel
 
     private fun createInfo(player: List<Player>): Info {
         val minScorePlayer = player.minBy { it.totalScore }
-        return Info("Oyunu ${minScorePlayer.name}' adlı oyuncu toplam ${minScorePlayer.totalScore} skor ile kazanmıştır", getCurrentDate())
+        return Info("Oyunu ${minScorePlayer.name} adlı oyuncu toplam ${minScorePlayer.totalScore} skor ile kazanmıştır", getCurrentDate())
     }
     private fun getCurrentDate(): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")

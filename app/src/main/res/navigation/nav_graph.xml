@@ -17,6 +17,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             />
+        <action
+            android:id="@+id/action_savePartnerGameFragment_to_finishedGameViewFragment"
+            app:destination="@id/finishedGameViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/finishedPartnerGameFragment"
@@ -50,11 +53,18 @@
         <action
             android:id="@+id/action_finishedGameViewFragment_to_finishedGameDetailFragment"
             app:destination="@id/finishedGameDetailFragment" />
+        <argument
+            android:name="gameType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/saveSingleGameFragment"
         android:name="com.keremkulac.okeyscore.ui.saveSingleGame.SaveSingleGameFragment"
-        android:label="SaveSingleGameFragment" />
+        android:label="SaveSingleGameFragment" >
+        <action
+            android:id="@+id/action_saveSingleGameFragment_to_finishedGameViewFragment"
+            app:destination="@id/finishedGameViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/finishedGameDetailFragment"
         android:name="com.keremkulac.okeyscore.ui.finishedPartnerGameDetail.FinishedGameDetailFragment"

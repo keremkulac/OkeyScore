@@ -18,94 +18,122 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <EditText
+            android:id="@+id/player1NameEntry"
+            style="@style/SingleGameEditTextStyle2"
+            android:hint="@string/enter_player1_name"/>
 
         <EditText
-            android:id="@+id/player1Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:hint="@string/enter_player1_name"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="text"
-            android:importantForAutofill="no" />
+            android:id="@+id/player2NameEntry"
+            style="@style/SingleGameEditTextStyle2"
+            android:hint="@string/enter_player2_name"/>
 
         <EditText
-            android:id="@+id/player2Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:hint="@string/enter_player2_name"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="text"
-            android:importantForAutofill="no" />
-
+            android:id="@+id/player3NameEntry"
+            style="@style/SingleGameEditTextStyle2"
+            android:hint="@string/enter_player3_name"/>
 
         <EditText
-            android:id="@+id/player3Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:hint="@string/enter_player3_name"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="text"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/player4Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:hint="@string/enter_player4_name"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="text"
-            android:importantForAutofill="no" />
+            android:id="@+id/player4NameEntry"
+            style="@style/SingleGameEditTextStyle2"
+            android:hint="@string/enter_player4_name"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/namesLayout"
-        android:visibility="gone"
+        android:id="@+id/playerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/confirmNames">
 
-        <include
-            android:id="@+id/names"
-            layout="@layout/single_game_round_item" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/player1Name"
+                style="@style/SingleGameNameTextViewStyle"/>
+
+            <TextView
+                android:id="@+id/player1TotalScore"
+                style="@style/SingleGameTotalScoreTextViewStyle" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/SingleGameVerticalSeperatorTextViewStyle"/>
+
+        <LinearLayout
+            style="@style/SingleGameLayoutStyle">
+
+            <TextView
+                android:id="@+id/player2Name"
+                style="@style/SingleGameNameTextViewStyle"/>
+
+            <TextView
+                android:id="@+id/player2TotalScore"
+                style="@style/SingleGameTotalScoreTextViewStyle" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/SingleGameVerticalSeperatorTextViewStyle"/>
+
+        <LinearLayout
+            style="@style/SingleGameLayoutStyle">
+
+            <TextView
+                android:id="@+id/player3Name"
+                style="@style/SingleGameNameTextViewStyle"/>
+
+            <TextView
+                android:id="@+id/player3TotalScore"
+                style="@style/SingleGameTotalScoreTextViewStyle" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/SingleGameVerticalSeperatorTextViewStyle"/>
+
+        <LinearLayout
+            style="@style/SingleGameLayoutStyle">
+
+            <TextView
+                android:id="@+id/player4Name"
+                style="@style/SingleGameNameTextViewStyle"/>
+
+            <TextView
+                android:id="@+id/player4TotalScore"
+                style="@style/SingleGameTotalScoreTextViewStyle" />
+
+        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/totalScoresLayout"
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/seperator"
         android:visibility="gone"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namesLayout">
-        <include
-            android:id="@+id/totalScores"
-            layout="@layout/single_game_round_item" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/playerLayout"/>
 
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/scoreLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalScoresLayout">
+        app:layout_constraintTop_toBottomOf="@+id/seperator">
     </LinearLayout>
 
     <Button
@@ -140,4 +168,5 @@
         android:text="@string/save"
         app:layout_constraintEnd_toStartOf="@+id/newRound"
         app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

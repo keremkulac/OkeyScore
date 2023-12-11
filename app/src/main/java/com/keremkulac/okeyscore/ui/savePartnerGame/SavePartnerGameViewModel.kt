@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
@@ -29,7 +30,7 @@ class SavePartnerGameViewModel
     val isEmpty: LiveData<Boolean>
         get() = _isEmpty
     fun insertFinishedGame(finishedTeam1: List<String?>?, finishedTeam2: List<String?>?,
-                             team1Information : List<EditText>, team2Information: List<EditText>){
+                             team1Information : List<EditText>, team2Information: List<EditText>,navController: NavController){
         viewModelScope.launch{
             if(team1Information.isNotEmpty() && team2Information.isNotEmpty()){
                 val gameInfo = Info(getTeamScoreDifference(team1Information,team2Information,  team1Information[0].text.toString(),  team2Information[0].text.toString()),getCurrentDate())
@@ -45,18 +46,20 @@ class SavePartnerGameViewModel
                     finishedTeam2,
                     calculateTotalScore(team2Information).toString())
                     val finishedPartnerGame = FinishedPartnerGame(0,player1,player2,gameInfo)
-                check(finishedPartnerGame)
+                check(finishedPartnerGame,navController)
             }
         }
     }
 
-    private suspend fun check(finishedPartnerGame: FinishedPartnerGame){
+    private suspend fun check(finishedPartnerGame: FinishedPartnerGame,navController: NavController){
         val result = runCatching {
             val affectedRows = okeyScoreRepository.insertFinishedPartnerGame(finishedPartnerGame)
             affectedRows
         }
         if (result.isSuccess) {
             val insertedRowCount = result.getOrNull()
+            val action = SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
+            navController.navigate(action)
             if (insertedRowCount != null ) {
                 sharedPreferencesManager.clearStoredData() }
         } else {
