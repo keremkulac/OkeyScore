@@ -17,13 +17,13 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        app:tabTextColor="@color/white"
+        app:tabTextColor="@color/button_text_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:tabIndicatorColor="@color/white"
-        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorColor="@color/button_text_color"
+        app:tabSelectedTextColor="@color/button_text_color"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,13 +52,13 @@
             android:src="@drawable/ic_partner_person"
             android:visibility="gone"
             app:backgroundTint="@color/purple_200"
-            app:tint="@color/white" />
+            app:tint="@color/button_text_color" />
         <TextView
             android:visibility="gone"
             android:id="@+id/fabPartnerText"
             android:text="@string/partner"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/main_title_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -75,14 +75,14 @@
             android:src="@drawable/ic_single_person"
             android:visibility="gone"
             app:backgroundTint="@color/purple_200"
-            app:tint="@color/white" />
+            app:tint="@color/button_text_color" />
 
         <TextView
             android:visibility="gone"
             android:id="@+id/fabSingleText"
             android:text="@string/single"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/main_title_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -96,7 +96,7 @@
             android:padding="4dp"
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/purple_200"
-            app:tint="@color/white" />
+            app:tint="@color/button_text_color" />
 
     </LinearLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/main_background_color"
     tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
 
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/record_not_found"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/main_title_color"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

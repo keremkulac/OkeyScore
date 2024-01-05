@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/black"
     android:layout_marginTop="6dp">
 
         <LinearLayout
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/player1Score"
+
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/SingleGameEditTextStyle"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    tools:ignore="LabelFor" />
+                    android:id="@+id/player1ScoreHint">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/player1Score"
+                            style="@style/SingleGameTextInputEditTextStyle"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -27,16 +28,16 @@
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#FFFFFF" />
+                            android:background="@color/main_title_color" />
                 </LinearLayout>
 
-
-                <EditText
-                    android:id="@+id/player2Score"
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/SingleGameEditTextStyle"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    tools:ignore="LabelFor" />
+                    android:id="@+id/player2ScoreHint">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/player2Score"
+                            style="@style/SingleGameTextInputEditTextStyle"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -47,15 +48,16 @@
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#FFFFFF" />
+                            android:background="@color/main_title_color" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/player3Score"
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/SingleGameEditTextStyle"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    tools:ignore="LabelFor" />
+                    android:id="@+id/player3ScoreHint">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/player3Score"
+                            style="@style/SingleGameTextInputEditTextStyle"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -66,20 +68,16 @@
                         <TextView
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#FFFFFF" />
+                            android:background="@color/main_title_color" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/player4Score"
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/SingleGameEditTextStyle"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    tools:ignore="LabelFor" />
+                    android:id="@+id/player4ScoreHint">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/player4Score"
+                            style="@style/SingleGameTextInputEditTextStyle"/>
+                </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/seperator"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
 </LinearLayout>

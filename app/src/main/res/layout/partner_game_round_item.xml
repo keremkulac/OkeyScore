@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:background="@color/black"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"    >
+    android:orientation="vertical"
+    android:layout_marginTop="6dp">
 
-    <TextView
-        android:id="@+id/roundCount"
-        style="@style/TextViewStyle"
-        android:text="@string/round_1" />
-
-    <EditText
-        android:id="@+id/team1Score"
-        style="@style/EditTextStyle"
-        android:autofillHints="" />
     <LinearLayout
-        style="@style/VerticalLinearLayoutSeperatorStyle">
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="1dp"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/SingleGameEditTextStyle"
+            android:id="@+id/team1ScoreHint">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/team1Score"
+                style="@style/SingleGameTextInputEditTextStyle"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
 
-            android:background="@drawable/vertical_line" />
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/main_title_color" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/SingleGameEditTextStyle"
+            android:id="@+id/team2ScoreHint">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/team2Score"
+                style="@style/SingleGameTextInputEditTextStyle"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/team2Score"
-        style="@style/EditTextStyle"
-        android:autofillHints="" />
-
-
 
 </LinearLayout>

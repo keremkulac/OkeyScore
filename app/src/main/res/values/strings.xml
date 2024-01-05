@@ -57,6 +57,11 @@
     <string name="date_info">Oyun Tarihi: 30 Kasım 2023</string>
     <string name="player">Player</string>
     <string name="_120">120</string>
+    <string name="teamNamesAndScoresTitle">Oyuncu İsimleri ve Toplam Skorları</string>
+    <string name="teamScoresTitle">Oyuncu Tur Skorları</string>
+    <string name="enter_team1_name">1. takım için isim giriniz</string>
+    <string name="enter_team2_name">2. takım için isim giriniz</string>
+    <string name="team_round_scores">Takım Tur Skorları</string>
     <string-array name="tablayoutTitleArray">
         <item>Tekli oyunlarım</item>
         <item>Eşli oyunlarım</item>

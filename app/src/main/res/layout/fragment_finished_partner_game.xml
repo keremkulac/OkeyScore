@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".ui.finishedPartnerGame.FinishedPartnerGameFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -28,7 +27,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:text="@string/my_game_history"
-                android:textColor="@color/white"
+                android:textColor="@color/button_text_color"
                 android:textSize="16sp"
                 android:textStyle= "bold"/>
 
@@ -83,7 +82,7 @@
         android:layout_height="wrap_content"
         android:text="@string/record_not_found"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/main_title_color"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
