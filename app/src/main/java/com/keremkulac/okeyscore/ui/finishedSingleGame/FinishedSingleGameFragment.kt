@@ -2,24 +2,30 @@ package com.keremkulac.okeyscore.ui.finishedSingleGame
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameBinding
+import com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class FinishedSingleGameFragment : Fragment() {
+class FinishedSingleGameFragment @Inject constructor(
+    private val finishedSingleGameAdapter: FinishedSingleGameAdapter) : Fragment(R.layout.fragment_finished_single_game) {
 
     private lateinit var binding : FragmentFinishedSingleGameBinding
     private val viewModel by viewModels<FinishedSingleGameViewModel>()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentFinishedSingleGameBinding.inflate(inflater)
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentFinishedSingleGameBinding.bind(view)
         setRecyclerView()
         observeAllFinishedGame()
-        return binding.root
+        clickFinishedGame()
     }
 
     private fun setRecyclerView(){
@@ -31,13 +37,19 @@ class FinishedSingleGameFragment : Fragment() {
         viewModel.allFinishedSingleGames.observe(viewLifecycleOwner){ finishedSingleList->
             if(finishedSingleList.isNotEmpty()){
                 binding.recordNotFound.visibility = View.GONE
-                val finishedSingleGameAdapter = FinishedSingleGameAdapter()
                 finishedSingleGameAdapter.finishedSingleGameLists = ArrayList(finishedSingleList)
                 binding.finishedGameRecyclerView.adapter =  finishedSingleGameAdapter
 
             }else{
                 binding.recordNotFound.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun clickFinishedGame(){
+        finishedSingleGameAdapter.clickListener={
+            val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedSingleGameDetailFragment(it.id)
+            findNavController().navigate(action)
         }
     }
 

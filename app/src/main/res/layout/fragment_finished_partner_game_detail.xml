@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_title_color"
-    tools:context=".ui.finishedPartnerGameDetail.FinishedGameDetailFragment">
+    android:background="@color/white"
+    tools:context=".ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -68,8 +68,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/teamNames"
-                        android:textColor="@color/button_text_color"
-                        android:layout_marginStart="110dp"
+                        android:textColor="@color/main_title_color"
+                        android:layout_gravity="center"
                         android:layout_marginBottom="8dp"
                         android:textStyle="bold"
                         android:textSize="20sp" />
@@ -129,8 +129,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/round_scores"
-                        android:textColor="@color/button_text_color"
-                        android:layout_marginStart="135dp"
+                        android:textColor="@color/main_title_color"
+                        android:layout_gravity="center"
                         android:layout_marginBottom="8dp"
                         android:textStyle="bold"
                         android:textSize="20sp" />
@@ -155,8 +155,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/detail"
-                    android:textColor="@color/button_text_color"
-                    android:layout_marginStart="135dp"
+                    android:textColor="@color/main_title_color"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
                     android:textStyle="bold"
                     android:textSize="20sp" />
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/detail"
-                    android:textColor="@color/button_text_color"
+                    android:textColor="@color/main_title_color"
                     android:layout_marginBottom="8dp"
                     android:textStyle="bold" />
                 <TextView
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date"
-                    android:textColor="@color/button_text_color"
+                    android:textColor="@color/main_title_color"
                     android:layout_marginBottom="8dp"
                     android:textStyle="bold" />
 

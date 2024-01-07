@@ -31,7 +31,7 @@
             app:destination="@id/savePartnerGameFragment" />
         <action
             android:id="@+id/action_finishedPartnerGameFragment_to_finishedGameDetailFragment"
-            app:destination="@id/finishedGameDetailFragment" />
+            app:destination="@id/finishedPartnerGameDetailFragment" />
 
     </fragment>
     <fragment
@@ -52,10 +52,13 @@
             app:destination="@id/savePartnerGameFragment" />
         <action
             android:id="@+id/action_finishedGameViewFragment_to_finishedGameDetailFragment"
-            app:destination="@id/finishedGameDetailFragment" />
+            app:destination="@id/finishedPartnerGameDetailFragment" />
         <argument
             android:name="gameType"
             app:argType="string" />
+        <action
+            android:id="@+id/action_finishedGameViewFragment_to_finishedSingleGameDetailFragment"
+            app:destination="@id/finishedSingleGameDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/saveSingleGameFragment"
@@ -66,10 +69,18 @@
             app:destination="@id/finishedGameViewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/finishedGameDetailFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedPartnerGameDetail.FinishedGameDetailFragment"
+        android:id="@+id/finishedPartnerGameDetailFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment"
         android:label="fragment_finished_partner_game_detail"
         tools:layout="@layout/fragment_finished_partner_game_detail" >
+        <argument
+            android:name="finishedGameID"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishedSingleGameDetailFragment"
+        android:name="com.keremkulac.okeyscore.ui.finishedSingleGameDetail.FinishedSingleGameDetailFragment"
+        android:label="FinishedSingleGameDetailFragment" >
         <argument
             android:name="finishedGameID"
             app:argType="integer" />

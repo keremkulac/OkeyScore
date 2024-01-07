@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import javax.inject.Inject
@@ -23,15 +23,14 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.roundCount.text = "${position+1}. tur "
         finishedPartnerGame?.let {
-            if(it.team1!!.allScores!![position].equals("") && it.team2!!.allScores!![position].equals("")){
-
-            }else{
-                holder.team1ScoreEditText.setText(it.team1.allScores!![position])
-                holder.team2ScoreEditText.setText(it.team2!!.allScores!![position])
-            }
+            holder.team1ScoreHint.hint = ("${position+1}. tur ")
+            holder.team2ScoreHint.hint = ("${position+1}. tur ")
+            holder.team1Score.setText(it.team1!!.allScores!![position])
+            holder.team2Score.setText(it.team2!!.allScores!![position])
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -39,9 +38,11 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val roundCount: TextView = itemView.findViewById(R.id.roundCount)
-        val team1ScoreEditText: EditText = itemView.findViewById(R.id.team1Score)
-        val team2ScoreEditText: EditText = itemView.findViewById(R.id.team2Score)
+        val team1ScoreHint : TextInputLayout = itemView.findViewById(R.id.team1ScoreHint)
+        val team2ScoreHint : TextInputLayout = itemView.findViewById(R.id.team2ScoreHint)
+        val team1Score : EditText = itemView.findViewById(R.id.team1Score)
+        val team2Score : EditText = itemView.findViewById(R.id.team2Score)
+
     }
 
 }

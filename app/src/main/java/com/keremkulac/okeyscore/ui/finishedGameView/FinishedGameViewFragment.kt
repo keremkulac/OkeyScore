@@ -12,6 +12,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedGameViewBinding
 import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameAdapter
 import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameFragment
+import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameAdapter
 import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment
 
 
@@ -67,7 +68,7 @@ class FinishedGameViewFragment : Fragment() {
     }
     private fun setViewPager(){
         adapter = ViewPagerAdapter(requireActivity().supportFragmentManager,lifecycle)
-        adapter.addFragment(FinishedSingleGameFragment())
+        adapter.addFragment(FinishedSingleGameFragment(FinishedSingleGameAdapter()))
         adapter.addFragment(FinishedPartnerGameFragment(FinishedPartnerGameAdapter()))
         binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.viewPager.adapter = adapter
@@ -81,10 +82,10 @@ class FinishedGameViewFragment : Fragment() {
         val argument = arguments?.getString("gameType")
         if(argument != null){
             if(argument == "single"){
-                binding.viewPager.setCurrentItem(0, true) // 2. sayfayı açmak için
+                binding.viewPager.setCurrentItem(0, true)
 
             }else{
-                binding.viewPager.setCurrentItem(1, true) // 2. sayfayı açmak için
+                binding.viewPager.setCurrentItem(1, true)
             }
         }
     }

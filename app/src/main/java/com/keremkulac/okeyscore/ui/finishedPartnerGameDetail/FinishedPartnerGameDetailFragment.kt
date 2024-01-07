@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FinishedGameDetailFragment @Inject constructor(
+class FinishedPartnerGameDetailFragment @Inject constructor(
     private val finishedPartnerGameDetailAdapter : FinishedPartnerGameDetailAdapter
 ) : Fragment(R.layout.fragment_finished_partner_game_detail) {
 
@@ -44,12 +44,15 @@ class FinishedGameDetailFragment @Inject constructor(
         }
     }
     private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame?){
-        binding.team1Name.setText(finishedPartnerGame!!.team1!!.name)
-        binding.team2Name.setText(finishedPartnerGame.team2!!.name)
-        binding.gameDate.text = finishedPartnerGame.gameInfo.date
-        binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
-        finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
-        binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
-        binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        finishedPartnerGame?.let {
+            binding.team1Name.setText(finishedPartnerGame.team1!!.name)
+            binding.team2Name.setText(finishedPartnerGame.team2!!.name)
+            binding.gameDate.text = finishedPartnerGame.gameInfo.date
+            binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
+            finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
+            binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
+            binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        }
+
     }
 }

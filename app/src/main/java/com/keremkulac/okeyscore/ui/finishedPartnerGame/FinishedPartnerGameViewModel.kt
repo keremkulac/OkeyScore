@@ -14,7 +14,7 @@ import javax.inject.Inject
 class FinishedPartnerGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel() {
     private val _allFinishedGamesPartnerGame = MutableLiveData<ArrayList<FinishedPartnerGame?>>()
-    val finishedPartnerGameGame: LiveData<ArrayList<FinishedPartnerGame?>>
+    val finishedPartnerGame: LiveData<ArrayList<FinishedPartnerGame?>>
         get() = _allFinishedGamesPartnerGame
     init {
         getFinishedGames()

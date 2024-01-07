@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/purple_700"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/goToFinishedGameFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/tag"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/goToFinishedGameFragment"
+                android:text="@string/game_detail"
+                android:textColor="@color/button_text_color"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                style="@style/LinearLayoutStyle"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_layout_border">
+
+                <TextView
+                    android:id="@+id/teamNames"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/teamNames"
+                    android:textColor="@color/main_title_color"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:hint="@string/player1_name"
+                        android:id="@+id/player1Name"
+                        style="@style/EditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:autofillHints="" />
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp">
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+                    <EditText
+                        android:hint="@string/player2_name"
+                        android:id="@+id/player2Name"
+                        style="@style/EditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:autofillHints="" />
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp">
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+                    <EditText
+                        android:hint="@string/player3_name"
+                        android:id="@+id/player3Name"
+                        style="@style/EditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:autofillHints="" />
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp">
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/vertical_line" />
+                    </LinearLayout>
+                    <EditText
+                        android:hint="@string/player4_name"
+                        android:id="@+id/player4Name"
+                        style="@style/EditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:autofillHints="" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@drawable/custom_layout_border"
+                android:id="@+id/scoreContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_margin="16dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    style="@style/LinearLayoutStyle">
+                    <TextView
+                        android:id="@+id/roundLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/round_scores"
+                        android:textColor="@color/main_title_color"
+                        android:layout_marginBottom="8dp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/roundRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/custom_layout_border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail"
+                    android:textColor="@color/main_title_color"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/gameDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail"
+                    android:textColor="@color/main_title_color"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold" />
+                <TextView
+
+                    android:id="@+id/gameDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textColor="@color/main_title_color"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

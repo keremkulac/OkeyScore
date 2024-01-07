@@ -14,13 +14,13 @@ import javax.inject.Inject
 class FinishedPartnerGameDetailViewModel @Inject constructor(
     private val okeyScoreRepository: OkeyScoreRepository) : ViewModel() {
 
-    private val _finishedPartnerGameGame = MutableLiveData<FinishedPartnerGame?>()
+    private val _finishedPartnerGame = MutableLiveData<FinishedPartnerGame?>()
     val finishedPartnerGameGame: LiveData<FinishedPartnerGame?>
-        get() = _finishedPartnerGameGame
+        get() = _finishedPartnerGame
 
     fun getFinishedGame(id: Int){
         viewModelScope.launch {
-            _finishedPartnerGameGame.postValue(okeyScoreRepository.getFinishedPartnerGame(id))
+            _finishedPartnerGame.postValue(okeyScoreRepository.getFinishedPartnerGame(id))
         }
     }
 

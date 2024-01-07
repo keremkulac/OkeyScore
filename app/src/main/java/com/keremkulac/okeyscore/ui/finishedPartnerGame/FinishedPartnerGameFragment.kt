@@ -41,7 +41,7 @@ class FinishedPartnerGameFragment @Inject constructor(
     }
 
     private fun observeAllFinishedGame(){
-        viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner){ finishedList->
+        viewModel.finishedPartnerGame.observe(viewLifecycleOwner){ finishedList->
             if(finishedList.isNotEmpty()){
                 binding.recordNotFound.visibility = View.GONE
                 finishedPartnerGameAdapter.finishedPartnerGameLists = ArrayList(finishedList)
