@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:text="@string/record_not_found"
         android:textSize="20sp"
-        android:textColor="@color/main_title_color"
+        android:textColor="@color/error_text_color"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

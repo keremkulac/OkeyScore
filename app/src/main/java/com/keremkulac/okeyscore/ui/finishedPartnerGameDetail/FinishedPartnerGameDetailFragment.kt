@@ -24,13 +24,14 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedPartnerGameDetailBinding.bind(view)
-        goToFinishedGameFragment()
+        goToFinishedGameViewFragment()
         getAndSetFinishedGames()
     }
 
-    private fun goToFinishedGameFragment(){
-        binding.goToFinishedGameFragment.setOnClickListener {
-          //  findNavController().navigate(R.id.action_finishedGameDetailFragment_to_finishedGameFragment)
+    private fun goToFinishedGameViewFragment(){
+        binding.goToFinishedGameViewFragment.setOnClickListener {
+            val action = FinishedPartnerGameDetailFragmentDirections.actionFinishedPartnerGameDetailFragmentToFinishedGameViewFragment("partner")
+            findNavController().navigate(action)
         }
     }
 

@@ -76,6 +76,9 @@
         <argument
             android:name="finishedGameID"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_finishedPartnerGameDetailFragment_to_finishedGameViewFragment"
+            app:destination="@id/finishedGameViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/finishedSingleGameDetailFragment"
@@ -84,5 +87,8 @@
         <argument
             android:name="finishedGameID"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_finishedSingleGameDetailFragment_to_finishedGameViewFragment"
+            app:destination="@id/finishedGameViewFragment" />
     </fragment>
 </navigation>

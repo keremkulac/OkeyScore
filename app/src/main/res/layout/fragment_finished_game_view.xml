@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background_color"
     tools:context=".ui.finishedGameView.FinishedGameViewFragment">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -46,19 +47,19 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/purple_200"
             android:contentDescription="@string/app_name"
+            android:tooltipText="@string/partner"
             android:padding="4dp"
             android:src="@drawable/ic_partner_person"
             android:visibility="gone"
-            app:backgroundTint="@color/purple_200"
+            app:backgroundTint="@color/fab_background_color"
             app:tint="@color/button_text_color" />
         <TextView
             android:visibility="gone"
             android:id="@+id/fabPartnerText"
             android:text="@string/partner"
             android:layout_gravity="center"
-            android:textColor="@color/main_title_color"
+            android:textColor="@color/fab_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -69,12 +70,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/purple_200"
             android:contentDescription="@string/app_name"
             android:padding="4dp"
             android:src="@drawable/ic_single_person"
             android:visibility="gone"
-            app:backgroundTint="@color/purple_200"
+            app:backgroundTint="@color/fab_background_color"
             app:tint="@color/button_text_color" />
 
         <TextView
@@ -82,20 +82,20 @@
             android:id="@+id/fabSingleText"
             android:text="@string/single"
             android:layout_gravity="center"
-            android:textColor="@color/main_title_color"
+            android:textColor="@color/fab_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/purple_200"
             android:contentDescription="@string/app_name"
             android:padding="4dp"
             android:src="@drawable/ic_add"
-            app:backgroundTint="@color/purple_200"
+            app:backgroundTint="@color/fab_background_color"
             app:tint="@color/button_text_color" />
 
     </LinearLayout>

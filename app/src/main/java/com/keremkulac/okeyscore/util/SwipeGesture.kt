@@ -9,7 +9,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 
 abstract class SwipeGesture(context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
-    private val deleteColor = ContextCompat.getColor(context, com.keremkulac.okeyscore.R.color.red2)
+    private val deleteColor = ContextCompat.getColor(context, com.keremkulac.okeyscore.R.color.purple_200)
     private val deleteIcon = com.keremkulac.okeyscore.R.drawable.ic_delete
     override fun onMove(
         recyclerView: RecyclerView,

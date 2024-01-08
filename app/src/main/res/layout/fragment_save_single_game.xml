@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background_color"
     tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
 
     <TextView
         android:visibility="gone"
         android:id="@+id/playerNameTitle"
-        android:text="@string/teamNamesAndScoresTitle"
+        android:text="@string/playerNamesAndScoresTitle"
         android:textSize="20sp"
+        android:textColor="@color/title_text_color"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +107,6 @@
         </LinearLayout>
 
         <TextView
-            android:background="@color/main_title_color"
             style="@style/SingleGameVerticalSeperatorTextViewStyle"/>
 
         <LinearLayout
@@ -122,7 +123,6 @@
         </LinearLayout>
 
         <TextView
-            android:background="@color/main_title_color"
             style="@style/SingleGameVerticalSeperatorTextViewStyle"/>
 
         <LinearLayout
@@ -139,7 +139,6 @@
         </LinearLayout>
 
         <TextView
-            android:background="@color/main_title_color"
             style="@style/SingleGameVerticalSeperatorTextViewStyle"/>
 
         <LinearLayout
@@ -160,7 +159,7 @@
         android:layout_marginTop="20dp"
         android:id="@+id/seperator"
         android:visibility="gone"
-        android:background="@color/main_title_color"
+        android:background="@color/seperator_color"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,6 +171,7 @@
         android:text="@string/teamScoresTitle"
         android:visibility="gone"
         android:textSize="20sp"
+        android:textColor="@color/title_text_color"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -6,8 +6,8 @@
         <item name="android:paddingStart">8dp</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:padding">5dp</item>
-        <item name="android:textColor">@color/main_title_color</item>
-        <item name="android:textColorHint">@color/main_title_color</item>
+        <item name="android:textColor">@color/score_text_color</item>
+        <item name="android:textColorHint">@color/score_hint_text_color</item>
         <item name="android:background">@drawable/custom_edittext</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:inputType">numberSigned</item>
@@ -21,7 +21,7 @@
 
 
     <style name="TextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/main_title_color</item>
+        <item name="android:textColor">@color/title_text_color</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_gravity">center</item>
@@ -70,8 +70,8 @@
     <style name="SingleGameEditTextStyle" parent="Widget.AppCompat.EditText" >
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/black</item>
+        <item name="android:textColor">@color/score_text_color</item>
+        <item name="android:textColorHint">@color/score_hint_text_color</item>
         <item name="android:hint">Oyuncu</item>
         <item name="android:layout_weight">4</item>
         <item name="android:textSize">14sp</item>
@@ -96,8 +96,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">80dp</item>
         <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/black</item>
+        <item name="android:textColor">@color/score_hint_text_color</item>
+        <item name="android:textColorHint">@color/score_hint_text_color</item>
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:padding">4dp</item>
         <item name="android:textStyle">bold</item>
@@ -110,8 +110,8 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/white</item>
         <item name="android:backgroundTint">@color/white</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/black</item>
+        <item name="android:textColor">@color/score_text_color</item>
+        <item name="android:textColorHint">@color/score_text_color</item>
         <item name="android:maxLength">4</item>
         <item name="android:inputType">numberSigned</item>
 
@@ -120,7 +120,7 @@
     <style name="SingleGameVerticalSeperatorTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/seperator_color</item>
         <item name="android:layout_margin">8dp</item>
     </style>
 
@@ -136,6 +136,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">6dp</item>
+        <item name="android:textColor">@color/button_text_color</item>
         <item name="android:background">@drawable/custom_button</item>
 
     </style>

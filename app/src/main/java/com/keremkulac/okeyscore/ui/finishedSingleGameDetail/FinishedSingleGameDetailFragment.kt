@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameDetailBinding
@@ -22,8 +23,15 @@ class FinishedSingleGameDetailFragment @Inject constructor(
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameDetailBinding.bind(view)
         getAndSetFinishedGame()
+        goToFinishedGameViewFragment()
     }
 
+    private fun goToFinishedGameViewFragment(){
+        binding.goToFinishedGameViewFragment.setOnClickListener {
+            val action = FinishedSingleGameDetailFragmentDirections.actionFinishedSingleGameDetailFragmentToFinishedGameViewFragment("single")
+            findNavController().navigate(action)
+        }
+    }
     private fun setRecyclerView(finishedSingleGame: FinishedSingleGame?){
         finishedSingleGame?.let {
             binding.player1Name.setText(finishedSingleGame.player1!!.name)
