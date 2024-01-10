@@ -28,6 +28,8 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
             holder.team2ScoreHint.hint = ("${position+1}. tur ")
             holder.team1Score.setText(it.team1!!.allScores!![position])
             holder.team2Score.setText(it.team2!!.allScores!![position])
+            holder.team1Score.isFocusable = false
+            holder.team2Score.isFocusable = false
         }
 
 

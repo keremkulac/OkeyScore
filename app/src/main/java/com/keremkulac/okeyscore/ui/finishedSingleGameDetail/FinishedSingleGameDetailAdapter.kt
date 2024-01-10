@@ -29,7 +29,10 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
             holder.player2Score.setText(it.player2!!.allScores!![position])
             holder.player3Score.setText(it.player3!!.allScores!![position])
             holder.player4Score.setText(it.player4!!.allScores!![position])
-
+            holder.player1Score.isFocusable = false
+            holder.player2Score.isFocusable = false
+            holder.player3Score.isFocusable = false
+            holder.player4Score.isFocusable = false
         }
     }
 

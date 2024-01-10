@@ -46,14 +46,17 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
     }
     private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame?){
         finishedPartnerGame?.let {
-            binding.team1Name.setText(finishedPartnerGame.team1!!.name)
-            binding.team2Name.setText(finishedPartnerGame.team2!!.name)
+            binding.team1Name.hint = (finishedPartnerGame.team1!!.name)
+            binding.team2Name.hint = (finishedPartnerGame.team2!!.name)
+            binding.team1TotalScore.setText(finishedPartnerGame.team1.totalScore)
+            binding.team2TotalScore.setText (finishedPartnerGame.team2.totalScore)
+            binding.team1TotalScore.isFocusable = false
+            binding.team2TotalScore.isFocusable = false
             binding.gameDate.text = finishedPartnerGame.gameInfo.date
             binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
             binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
-
     }
 }

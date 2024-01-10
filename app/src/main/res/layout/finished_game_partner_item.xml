@@ -23,67 +23,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/NameTextInputLayoutStyle"
                 android:id="@+id/team1Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/team1"
-                android:textColor="@color/name_text_color"
-                android:textSize="24sp"
-                android:textStyle="bold"/>
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:boxStrokeWidth="0dp">
 
-            <TextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/team1TotalScore"
+                    style="@style/ScoreTextInputEditTextStyle" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <include layout="@layout/vertical_seperator" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/NameTextInputLayoutStyle"
                 android:id="@+id/team2Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/team2"
-                android:textColor="@color/name_text_color"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:boxStrokeWidth="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/team2TotalScore"
+                    style="@style/ScoreTextInputEditTextStyle" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+        <include layout="@layout/horizontal_seperator" />
 
-            <TextView
-                android:id="@+id/team1TotalScore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/_0"
-                android:textColor="@color/score_text_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
-            <TextView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/seperator_color"/>
-
-            <TextView
-                android:id="@+id/team2TotalScore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/_0"
-                android:textColor="@color/score_text_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/seperator_color"/>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -91,23 +59,11 @@
 
             <TextView
                 android:id="@+id/gameInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/game_info"
-                android:textColor="@color/info_text_color"
-                android:textSize="13sp" />
+                style="@style/InfoTextViewStyle"/>
 
             <TextView
                 android:id="@+id/gameDate"
-                android:textColor="@color/date_text_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                />
+                style="@style/DateTextViewStyle"/>
         </LinearLayout>
     </LinearLayout>
 

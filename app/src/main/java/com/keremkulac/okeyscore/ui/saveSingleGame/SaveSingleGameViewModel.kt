@@ -108,6 +108,7 @@ class SaveSingleGameViewModel
     }
 
     private fun createInfo(player: List<Player>): Info {
+
         val minScorePlayer = player.minBy { it.totalScore }
         return Info("Oyunu ${minScorePlayer.name} adlı oyuncu toplam ${minScorePlayer.totalScore} skor ile kazanmıştır", getCurrentDate())
     }

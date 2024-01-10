@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background_color"
     tools:context=".ui.finishedPartnerGame.FinishedPartnerGameFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -43,9 +44,6 @@
                 android:layoutDirection="rtl"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true" />
-
-
-
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -54,7 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="20dp"
         android:contentDescription="@string/tag"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,12 +64,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
     </ScrollView>
 
     <TextView

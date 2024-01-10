@@ -34,10 +34,18 @@ class FinishedSingleGameDetailFragment @Inject constructor(
     }
     private fun setRecyclerView(finishedSingleGame: FinishedSingleGame?){
         finishedSingleGame?.let {
-            binding.player1Name.setText(finishedSingleGame.player1!!.name)
-            binding.player2Name.setText(finishedSingleGame.player2!!.name)
-            binding.player3Name.setText(finishedSingleGame.player3!!.name)
-            binding.player4Name.setText(finishedSingleGame.player4!!.name)
+            binding.player1Name.hint = finishedSingleGame.player1!!.name
+            binding.player2Name.hint = finishedSingleGame.player2!!.name
+            binding.player3Name.hint = finishedSingleGame.player3!!.name
+            binding.player4Name.hint = finishedSingleGame.player4!!.name
+            binding.player1TotalScore.setText(finishedSingleGame.player1.totalScore)
+            binding.player2TotalScore.setText(finishedSingleGame.player2.totalScore)
+            binding.player3TotalScore.setText(finishedSingleGame.player3.totalScore)
+            binding.player4TotalScore.setText(finishedSingleGame.player4.totalScore)
+            binding.player1TotalScore.isFocusable = false
+            binding.player2TotalScore.isFocusable = false
+            binding.player3TotalScore.isFocusable = false
+            binding.player4TotalScore.isFocusable = false
             binding.gameDate.text = finishedSingleGame.gameInfo.date
             binding.gameDetail.text = finishedSingleGame.gameInfo.gameInfo
             finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame

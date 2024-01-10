@@ -64,57 +64,44 @@
 
                     <TextView
                         android:id="@+id/teamNames"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="@string/teamNames"
-                        android:textColor="@color/title_text_color"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="8dp"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
+                        style="@style/TitleTextViewStyle" />
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:hint="@string/team1Name"
-                            android:id="@+id/team1Name"
-                            style="@style/EditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="20"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:autofillHints="" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp">
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/vertical_line" />
-                        </LinearLayout>
-                        <EditText
-                            android:hint="@string/team2Name"
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/NameTextInputLayoutStyle"
+                            android:id="@+id/team1Name"
+                            app:hintTextAppearance="@style/HintTextAppearance"
+                            app:boxStrokeWidth="0dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/team1TotalScore"
+                                style="@style/ScoreTextInputEditTextStyle" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <include layout="@layout/vertical_seperator" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/NameTextInputLayoutStyle"
                             android:id="@+id/team2Name"
-                            style="@style/EditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="20"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:autofillHints="" />
+                            app:hintTextAppearance="@style/HintTextAppearance"
+                            app:boxStrokeWidth="0dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/team2TotalScore"
+                                style="@style/ScoreTextInputEditTextStyle" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
+
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/seperator_color"/>
+                <include layout="@layout/horizontal_seperator" />
 
-            <LinearLayout
+                <LinearLayout
                 android:background="@drawable/custom_layout_border"
                 android:id="@+id/scoreContainer"
                 android:layout_width="match_parent"
@@ -125,16 +112,11 @@
                 <LinearLayout
                     android:orientation="vertical"
                     style="@style/LinearLayoutStyle">
+
                     <TextView
                         android:id="@+id/roundLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="@string/round_scores"
-                        android:textColor="@color/title_text_color"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="8dp"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
+                        style="@style/TitleTextViewStyle"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/roundRecyclerView"
@@ -145,45 +127,28 @@
 
         </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/seperator_color"/>
+        <include layout="@layout/horizontal_seperator" />
+
         <LinearLayout
-            android:background="@drawable/custom_layout_border"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="16dp">
+        android:background="@drawable/custom_layout_border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail"
-                    android:textColor="@color/title_text_color"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+            <TextView
+                android:text="@string/detail"
+                style="@style/TitleTextViewStyle"/>
 
-                <TextView
-                    android:id="@+id/gameDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail"
-                    android:textColor="@color/info_text_color"
-                    android:layout_marginBottom="8dp"
-                    android:textStyle="bold" />
-                <TextView
+            <TextView
+                android:id="@+id/gameDetail"
+                android:text="@string/detail"
+                style="@style/InfoTextViewStyle"/>
+            <TextView
 
-                    android:id="@+id/gameDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/date"
-                    android:textColor="@color/date_text_color"
-                    android:layout_marginBottom="8dp"
-                    android:textStyle="bold" />
+                android:id="@+id/gameDate"
+                android:text="@string/date"
+                style="@style/DateTextViewStyle"/>
 
             </LinearLayout>
         </LinearLayout>

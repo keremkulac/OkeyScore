@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="green">#95FF00</color>
     <color name="score_text_color">#45494A</color>
     <color name="score_hint_text_color">#FF6200EE</color>
     <color name="date_text_color">#FF6200EE</color>
@@ -20,5 +21,8 @@
     <color name="stroke_color">#45494A</color>
     <color name="main_background_color">#FFFFFF</color>
     <color name="button_text_color">#FFFFFF</color>
-    <color name="green">#22D11B</color>
+
+    <color name="min_score_color">#8022D11B</color>
+    <color name="max_score_color">#80FF0000</color>
+
 </resources>
