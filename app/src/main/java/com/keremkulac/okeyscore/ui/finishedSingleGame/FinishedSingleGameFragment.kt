@@ -3,6 +3,7 @@ package com.keremkulac.okeyscore.ui.finishedSingleGame
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,7 @@ class FinishedSingleGameFragment @Inject constructor(
         setRecyclerView()
         observeAllFinishedGame()
         clickFinishedGame()
+        search()
     }
 
     private fun setRecyclerView(){
@@ -44,6 +46,19 @@ class FinishedSingleGameFragment @Inject constructor(
                 binding.recordNotFound.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun search(){
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.search(newText,finishedSingleGameAdapter)
+                return true
+            }
+        })
     }
 
     private fun clickFinishedGame(){

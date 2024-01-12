@@ -77,8 +77,6 @@ class FinishedPartnerGameFragment @Inject constructor(
     }
 
 
-
-
     private fun deleteItemDatabase(){
         val swipeGesture = object  : SwipeGesture(requireContext()){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

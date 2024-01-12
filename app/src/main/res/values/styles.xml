@@ -11,11 +11,19 @@
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <item name="android:editTextColor">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
+        <item name="android:editTextColor">@color/searchview_text_color</item>
+        <item name="android:textColorHint">@color/searchview_text_color</item>
         <item name="android:textSize">14sp</item>
+        <item name="colorAccent">@color/searchview_text_color</item>
+
+
     </style>
 
+    <style name="Theme.MyApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/searchview_text_color</item>
+
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+    </style>
     <style name="SingleGameTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

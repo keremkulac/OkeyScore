@@ -106,4 +106,9 @@ class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<Fi
         return  list.min()
     }
 
+    fun updateData(newList: ArrayList<FinishedSingleGame?>) {
+        finishedSingleGameLists = newList
+        notifyDataSetChanged()
+    }
+
 }

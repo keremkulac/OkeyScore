@@ -25,4 +25,20 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
             _allFinishedSingleGames.postValue(ArrayList(okeyScoreRepository.getAllFinishedSingleGames()))
         }
     }
+
+    fun search(newText : String?,adapter: FinishedSingleGameAdapter){
+        val query = newText?.lowercase()
+        if (query.isNullOrEmpty()) {
+            _allFinishedSingleGames.value?.let { adapter.updateData(it) }
+        } else {
+            val filteredList = _allFinishedSingleGames.value?.filter { finishedSingleGame ->
+                finishedSingleGame!!.player1!!.name.lowercase().contains(query) ||
+                        finishedSingleGame.player2!!.name.lowercase().contains(query) ||
+                        finishedSingleGame.player3!!.name.lowercase().contains(query) ||
+                        finishedSingleGame.player4!!.name.lowercase().contains(query) ||
+                        finishedSingleGame.gameInfo.date.lowercase().contains(query)
+            }
+            adapter.updateData(ArrayList(filteredList))
+        }
+    }
 }
