@@ -16,6 +16,10 @@ class FinishedPartnerGameViewModel
     private val _allFinishedGamesPartnerGame = MutableLiveData<ArrayList<FinishedPartnerGame?>>()
     val finishedPartnerGame: LiveData<ArrayList<FinishedPartnerGame?>>
         get() = _allFinishedGamesPartnerGame
+
+    private val _filteredList = MutableLiveData<ArrayList<FinishedPartnerGame?>>()
+    val filteredList: LiveData<ArrayList<FinishedPartnerGame?>>
+        get() = _filteredList
     init {
         getFinishedGames()
     }
@@ -33,6 +37,8 @@ class FinishedPartnerGameViewModel
             val filteredList = _allFinishedGamesPartnerGame.value?.filter { finishedPartnerGame ->
                 finishedPartnerGame!!.team1!!.name.lowercase().contains(query) || finishedPartnerGame.team2!!.name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
             }
+            _filteredList.postValue(ArrayList(filteredList))
+
             adapter.updateData(ArrayList(filteredList))
         }
     }

@@ -19,6 +19,8 @@
 
     </style>
 
+
+
     <style name="Theme.MyApp" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/searchview_text_color</item>
 
@@ -60,26 +62,23 @@
     <style name="NameTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">2</item>
         <item name="android:text">@string/player</item>
         <item name="android:textColor">@color/name_text_color</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_margin">6dp</item>
-        <item name="android:maxWidth">120dp</item>
+        <item name="android:layout_margin">8dp</item>
 
     </style>
 
+
     <style name="ScoreTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:text">@string/_0</item>
+        <item name="android:text">@string/score</item>
         <item name="android:textColor">@color/score_text_color</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">8dp</item>
 
     </style>
 
@@ -98,8 +97,7 @@
     <style name="ScoreTextInputEditTextStyle" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">@color/score_text_color</item>
         <item name="android:textColorHint">@color/score_text_color</item>
         <item name="android:maxLength">21</item>
@@ -114,7 +112,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/date</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginTop">8dp</item>
     </style>

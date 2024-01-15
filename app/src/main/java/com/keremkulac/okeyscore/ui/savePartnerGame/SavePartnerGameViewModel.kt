@@ -59,9 +59,9 @@ class SavePartnerGameViewModel
         )
     }
 
-     fun createInfo(player: List<Player>): Info {
+     private fun createInfo(player: List<Player>): Info {
         val minScorePlayer = player.minBy { it.totalScore }
-        return Info("Oyunu ${minScorePlayer.name} adlı takım toplam ${minScorePlayer.totalScore} skor ile kazanmıştır", getCurrentDate())
+        return Info("Kazanan takım: ${minScorePlayer.name}. Skor: ${minScorePlayer.totalScore} ", getCurrentDate())
     }
 
     fun setTotalScore(team1ScoreList : List<EditText>,totalScoreTextView: TextView){

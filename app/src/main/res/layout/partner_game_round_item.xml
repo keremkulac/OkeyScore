@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="16dp"
+    android:background="@color/main_background_color"
+    android:id="@+id/partnerGameItemBackground">
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/NameTextInputLayoutStyle"
@@ -13,7 +15,9 @@
             style="@style/ScoreTextInputEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <include layout="@layout/vertical_seperator" />
+    <include
+        android:id="@+id/vertical_seperator"
+        layout="@layout/vertical_seperator" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/NameTextInputLayoutStyle"
@@ -22,6 +26,5 @@
             android:id="@+id/team2Score"
             style="@style/ScoreTextInputEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
-
 
 </LinearLayout>

@@ -39,6 +39,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.10.1'
@@ -74,6 +75,4 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.2"
     implementation "androidx.room:room-ktx:2.5.2"
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
-
-
 }

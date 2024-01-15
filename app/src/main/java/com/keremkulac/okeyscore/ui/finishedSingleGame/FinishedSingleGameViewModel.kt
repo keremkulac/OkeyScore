@@ -16,6 +16,9 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
     val allFinishedSingleGames: LiveData<ArrayList<FinishedSingleGame?>>
         get() = _allFinishedSingleGames
 
+    private val _filteredList = MutableLiveData<ArrayList<FinishedSingleGame?>>()
+    val filteredList: LiveData<ArrayList<FinishedSingleGame?>>
+        get() = _filteredList
     init {
         getAllFinishedSingleGame()
     }
@@ -38,6 +41,7 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
                         finishedSingleGame.player4!!.name.lowercase().contains(query) ||
                         finishedSingleGame.gameInfo.date.lowercase().contains(query)
             }
+            _filteredList.postValue(ArrayList(filteredList))
             adapter.updateData(ArrayList(filteredList))
         }
     }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -20,6 +21,7 @@ class FinishedGameViewFragment : Fragment() {
     private lateinit var adapter: ViewPagerAdapter
     private lateinit var binding : FragmentFinishedGameViewBinding
     private var fabVisible = false
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentFinishedGameViewBinding.inflate(inflater)
@@ -41,8 +43,9 @@ class FinishedGameViewFragment : Fragment() {
                 binding.fabSingleText.visibility = View.VISIBLE
                 binding.fabSingle.visibility = View.VISIBLE
                 binding.fabPartner.visibility = View.VISIBLE
-                binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_close))
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_close))
                 fabVisible = true
+                binding.view.alpha = 0.5f
             }else{
                 binding.fabSingle.hide()
                 binding.fabPartner.hide()
@@ -50,11 +53,14 @@ class FinishedGameViewFragment : Fragment() {
                 binding.fabSingleText.visibility = View.GONE
                 binding.fabSingle.visibility = View.GONE
                 binding.fabPartner.visibility = View.GONE
-                binding.fab.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_add))
                 fabVisible = false
+                binding.view.alpha = 1.0f
             }
         }
     }
+
+
 
     private fun goToSaveSingleGame(){
         binding.fabSingle.setOnClickListener {
@@ -81,7 +87,7 @@ class FinishedGameViewFragment : Fragment() {
     private fun setViewPagerPage(){
         val argument = arguments?.getString("gameType")
         if(argument != null){
-            if(argument == "single"){
+            if(argument == "single" || binding.viewPager.currentItem == 0){
                 binding.viewPager.setCurrentItem(0, true)
 
             }else{

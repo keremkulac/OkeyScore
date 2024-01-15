@@ -1,177 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="parent"
+    android:layout_marginBottom="8dp"
+    android:background="@color/main_background_color"
     tools:context=".ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/purple_700"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/main_background_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            android:background="@color/purple_700"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/goToFinishedGameViewFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/ic_back" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
-                android:text="@string/game_detail"
-                android:textColor="@color/button_text_color"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+                <ImageView
+                    android:id="@+id/goToFinishedGameViewFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/tag"
+                    android:src="@drawable/ic_back" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
+                    android:text="@string/game_detail"
+                    android:textColor="@color/button_text_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/teamNames"
+            style="@style/TitleTextViewStyle"
+            android:text="@string/teamNames"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamNames"
+            android:contentDescription="@string/todo"/>
+
+        <TextView
+            android:id="@+id/player1Name"
+            style="@style/NameTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/teamNames" />
+
+
+        <TextView
+            android:id="@+id/player1TotalScore"
+            style="@style/ScoreTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/player1Name" />
+
+
+        <View
+            android:id="@+id/horizontal_seperator1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/seperator_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <View
+            android:id="@+id/vertical_seperator1"
+            android:layout_width="1dp"
+            android:layout_height="36dp"
+            android:layout_margin="16dp"
+            android:background="@color/seperator_color"
+            app:layout_constraintBottom_toBottomOf="@+id/horizontal_seperator1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamNames" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_player"
+            app:layout_constraintStart_toEndOf="@+id/vertical_seperator1"
+            app:layout_constraintTop_toBottomOf="@+id/teamNames"
+            android:contentDescription="@string/todo"/>
+
+
+        <TextView
+            android:id="@+id/player2Name"
+            style="@style/NameTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/teamNames" />
+
+
+        <TextView
+            android:id="@+id/player2TotalScore"
+            style="@style/ScoreTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/player2Name" />
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1"
+            android:contentDescription="@string/todo"/>
+
+
+        <TextView
+            android:id="@+id/player3Name"
+            style="@style/NameTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+
+
+        <View
+            android:id="@+id/vertical_seperator2"
+            android:layout_width="1dp"
+            android:layout_height="36dp"
+            android:layout_margin="16dp"
+            android:background="@color/seperator_color"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_seperator2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+
+
+        <TextView
+            android:id="@+id/player3TotalScore"
+            style="@style/ScoreTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/player3Name" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:layout_marginTop="65dp"
+            android:src="@drawable/ic_player"
+            app:layout_constraintStart_toEndOf="@+id/vertical_seperator2"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1"
+            android:contentDescription="@string/todo"/>
+
+        <View
+            android:id="@+id/horizontal_seperator2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/seperator_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <TextView
+            android:id="@+id/player4Name"
+            style="@style/NameTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+
+        <TextView
+            android:id="@+id/player4TotalScore"
+            style="@style/ScoreTextViewStyle"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/player4Name" />
+
+
+        <TextView
+            android:id="@+id/roundLabel"
+            style="@style/TitleTextViewStyle"
+            android:text="@string/round_scores"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator2" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/roundRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout"
-            android:orientation="vertical">
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roundLabel" />
 
-            <LinearLayout
-                android:layout_margin="16dp"
-                style="@style/LinearLayoutStyle"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout_border">
+        <TextView
+            android:id="@+id/detailLabel"
+            style="@style/TitleTextViewStyle"
+            android:text="@string/detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roundRecyclerView" />
 
-                <TextView
-                    android:id="@+id/teamNames"
-                    android:text="@string/teamNames"
-                    style="@style/TitleTextViewStyle"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/NameTextInputLayoutStyle"
-                        android:id="@+id/player1Name"
-                        app:hintTextAppearance="@style/HintTextAppearance"
-                        app:boxStrokeWidth="0dp">
+        <TextView
+            android:id="@+id/gameDetail"
+            style="@style/InfoTextViewStyle"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/detail"
+            android:layout_margin="8dp"
+            app:drawableLeftCompat="@drawable/ic_trophy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailLabel" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player1TotalScore"
-                            style="@style/ScoreTextInputEditTextStyle" />
-                    </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/gameDate"
+            android:text="@string/date"
+            android:gravity="center_vertical"
+            android:drawablePadding="8dp"
+            style="@style/DateTextViewStyle"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            app:drawableLeftCompat="@drawable/ic_calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gameDetail" />
 
-                    <include layout="@layout/vertical_seperator" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/NameTextInputLayoutStyle"
-                        android:id="@+id/player2Name"
-                        app:hintTextAppearance="@style/HintTextAppearance"
-                        app:boxStrokeWidth="0dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player2TotalScore"
-                            style="@style/ScoreTextInputEditTextStyle" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <include layout="@layout/vertical_seperator" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/NameTextInputLayoutStyle"
-                        android:id="@+id/player3Name"
-                        app:hintTextAppearance="@style/HintTextAppearance"
-                        app:boxStrokeWidth="0dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player3TotalScore"
-                            style="@style/ScoreTextInputEditTextStyle" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <include layout="@layout/vertical_seperator" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/NameTextInputLayoutStyle"
-                        android:id="@+id/player4Name"
-                        app:hintTextAppearance="@style/HintTextAppearance"
-                        app:boxStrokeWidth="0dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player4TotalScore"
-                            style="@style/ScoreTextInputEditTextStyle" />
-                    </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-            </LinearLayout>
-
-            <include layout="@layout/horizontal_seperator" />
-
-            <LinearLayout
-                android:background="@drawable/custom_layout_border"
-                android:id="@+id/scoreContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="16dp">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    style="@style/LinearLayoutStyle">
-                    <TextView
-                        android:id="@+id/roundLabel"
-                        android:text="@string/round_scores"
-                        style="@style/TitleTextViewStyle" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginTop="8dp"
-                        android:id="@+id/roundRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <include layout="@layout/horizontal_seperator" />
-
-            <LinearLayout
-                android:background="@drawable/custom_layout_border"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="16dp">
-
-                <TextView
-                    android:text="@string/detail"
-                    style="@style/TitleTextViewStyle"/>
-
-                <TextView
-                    android:id="@+id/gameDetail"
-                    android:text="@string/detail"
-                    style="@style/InfoTextViewStyle"/>
-                <TextView
-
-                    android:id="@+id/gameDate"
-                    android:text="@string/date"
-                    style="@style/DateTextViewStyle"/>
-
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

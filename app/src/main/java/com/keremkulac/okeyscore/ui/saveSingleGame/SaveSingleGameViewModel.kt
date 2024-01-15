@@ -110,7 +110,7 @@ class SaveSingleGameViewModel
     private fun createInfo(player: List<Player>): Info {
 
         val minScorePlayer = player.minBy { it.totalScore }
-        return Info("Oyunu ${minScorePlayer.name} adlı oyuncu toplam ${minScorePlayer.totalScore} skor ile kazanmıştır", getCurrentDate())
+        return Info("Kazanan oyuncu: ${minScorePlayer.name}. Skor: ${minScorePlayer.totalScore} ", getCurrentDate())
     }
     private fun getCurrentDate(): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")

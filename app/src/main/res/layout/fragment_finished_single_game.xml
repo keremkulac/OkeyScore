@@ -8,64 +8,45 @@
     tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
 
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:contentDescription="@string/tag"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-    <LinearLayout
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="68dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/searchview_border"
+        android:layoutDirection="rtl"
+        app:closeIcon="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Aramak için bir tarih veya oyuncu adı yazınız"
+        app:searchHintIcon="@drawable/ic_search"
+        app:searchIcon="@drawable/ic_search"
+        app:theme="@style/SearchViewStyle"
+        app:tint="@color/searchview_text_color" />
 
-            <androidx.appcompat.widget.SearchView
-                android:background="@drawable/searchview_border"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="16dp"
-                app:closeIcon="@drawable/ic_close"
-                app:searchIcon="@drawable/ic_search"
-                app:searchHintIcon="@drawable/ic_search"
-                android:id="@+id/searchView"
-                app:tint="@color/searchview_text_color"
-                app:theme="@style/SearchViewStyle"
-                app:queryHint="Aramak için bir tarih veya oyuncu adı yazınız"
-                android:layout_width="match_parent"
-                android:layoutDirection="rtl"
-                android:layout_height="wrap_content" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/finishedGameRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/finishedGameRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:paddingBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </LinearLayout>
-
-    </ScrollView>
 
     <TextView
         android:id="@+id/recordNotFound"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/record_not_found"
-        android:textSize="20sp"
         android:textColor="@color/error_text_color"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

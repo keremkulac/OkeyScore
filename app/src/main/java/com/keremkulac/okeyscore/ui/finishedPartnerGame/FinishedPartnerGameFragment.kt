@@ -30,9 +30,9 @@ class FinishedPartnerGameFragment @Inject constructor(
         binding = FragmentFinishedPartnerGameBinding.bind(view)
         observeAllFinishedGame()
         setRecyclerView()
-        searchClick()
         deleteItemDatabase()
         clickFinishedGame()
+        search()
     }
 
     private fun setRecyclerView(){
@@ -52,14 +52,15 @@ class FinishedPartnerGameFragment @Inject constructor(
             }
         }
     }
-    private fun searchClick(){
-        binding.searchView.setOnSearchClickListener {
-            binding.gameHistoryText.visibility = View.GONE
-            search()
-        }
-        binding.searchView.setOnCloseListener {
-            binding.gameHistoryText.visibility = View.VISIBLE
-            false
+
+    private fun observeFilteredList(){
+        viewModel.filteredList.observe(viewLifecycleOwner){filteredList->
+            if(filteredList.isNotEmpty()){
+                binding.recordNotFound.visibility = View.GONE
+            }else{
+                binding.recordNotFound.visibility = View.VISIBLE
+            }
+
         }
     }
 
@@ -71,6 +72,7 @@ class FinishedPartnerGameFragment @Inject constructor(
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.search(newText,finishedPartnerGameAdapter)
+                observeFilteredList()
                 return true
             }
         })

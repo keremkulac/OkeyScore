@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import javax.inject.Inject
@@ -56,31 +53,23 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
         }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val team1Name =  itemView.findViewById<TextInputLayout>(R.id.team1Name)
-        private val team2Name =  itemView.findViewById<TextInputLayout>(R.id.team2Name)
-        private val team1TotalScore =  itemView.findViewById<TextInputEditText>(R.id.team1TotalScore)
-        private val team2TotalScore =  itemView.findViewById<TextInputEditText>(R.id.team2TotalScore)
+        private val team1Name =  itemView.findViewById<TextView>(R.id.team1Name)
+        private val team2Name =  itemView.findViewById<TextView>(R.id.team2Name)
+        private val team1TotalScore =  itemView.findViewById<TextView>(R.id.team1TotalScore)
+        private val team2TotalScore =  itemView.findViewById<TextView>(R.id.team2TotalScore)
         private val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
         fun bind(finishedPartnerGame: FinishedPartnerGame?,context: Context) {
             finishedPartnerGame?.let {
-                team1Name.hint = finishedPartnerGame.team1!!.name
-                team2Name.hint = finishedPartnerGame.team2!!.name
-                team1TotalScore.setText(finishedPartnerGame.team1.totalScore)
-                team2TotalScore.setText(finishedPartnerGame.team2.totalScore)
+                team1Name.text = finishedPartnerGame.team1!!.name
+                team2Name.text = finishedPartnerGame.team2!!.name
+                team1TotalScore.text = finishedPartnerGame.team1.totalScore
+                team2TotalScore.text = finishedPartnerGame.team2.totalScore
                 gameInfo.text = finishedPartnerGame.gameInfo.gameInfo
                 date.text = finishedPartnerGame.gameInfo.date
                 team1TotalScore.isFocusable = false
                 team2TotalScore.isFocusable = false
-                if(finishedPartnerGame.team1.totalScore > finishedPartnerGame.team2.totalScore){
-                    team2TotalScore.setTextColor(ContextCompat.getColor(context,R.color.min_score_color))
-                    team2TotalScore.setTextColor(ContextCompat.getColor(context,R.color.max_score_color))
-
-                }else{
-                    team1TotalScore.setTextColor(ContextCompat.getColor(context,R.color.min_score_color))
-                    team2TotalScore.setTextColor(ContextCompat.getColor(context,R.color.max_score_color))
-                }
             }
         }
     }

@@ -46,10 +46,10 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
     }
     private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame?){
         finishedPartnerGame?.let {
-            binding.team1Name.hint = (finishedPartnerGame.team1!!.name)
-            binding.team2Name.hint = (finishedPartnerGame.team2!!.name)
-            binding.team1TotalScore.setText(finishedPartnerGame.team1.totalScore)
-            binding.team2TotalScore.setText (finishedPartnerGame.team2.totalScore)
+            binding.team1Name.text = (finishedPartnerGame.team1!!.name)
+            binding.team2Name.text = (finishedPartnerGame.team2!!.name)
+            binding.team1TotalScore.text = "Toplam skor: "+finishedPartnerGame.team1.totalScore
+            binding.team2TotalScore.text = "Toplam skor: "+ finishedPartnerGame.team2.totalScore
             binding.team1TotalScore.isFocusable = false
             binding.team2TotalScore.isFocusable = false
             binding.gameDate.text = finishedPartnerGame.gameInfo.date

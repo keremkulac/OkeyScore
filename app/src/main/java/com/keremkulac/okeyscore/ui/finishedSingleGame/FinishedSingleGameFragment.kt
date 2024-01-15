@@ -48,14 +48,24 @@ class FinishedSingleGameFragment @Inject constructor(
         }
     }
 
+    private fun observeFilteredList(){
+        viewModel.filteredList.observe(viewLifecycleOwner){filteredList->
+            if(filteredList.isNotEmpty()){
+                binding.recordNotFound.visibility = View.GONE
+            }else{
+                binding.recordNotFound.visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun search(){
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.search(newText,finishedSingleGameAdapter)
+                observeFilteredList()
                 return true
             }
         })
