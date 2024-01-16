@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
@@ -32,14 +30,7 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
             holder.team2Score.setText(it.team2!!.allScores!![position])
             holder.team1Score.isFocusable = false
             holder.team2Score.isFocusable = false
-            if(position % 2 == 0){
-                holder.partnerGameItemBackground.setBackgroundColor(ContextCompat.getColor(holder.itemView.context,R.color.item_background_color1))
-            }else{
-                holder.partnerGameItemBackground.setBackgroundColor(ContextCompat.getColor(holder.itemView.context,R.color.item_background_color2))
-            }
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -51,8 +42,6 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
         val team2ScoreHint : TextInputLayout = itemView.findViewById(R.id.team2ScoreHint)
         val team1Score : EditText = itemView.findViewById(R.id.team1Score)
         val team2Score : EditText = itemView.findViewById(R.id.team2Score)
-        val partnerGameItemBackground : LinearLayout = itemView.findViewById(R.id.partnerGameItemBackground)
-
     }
 
 }

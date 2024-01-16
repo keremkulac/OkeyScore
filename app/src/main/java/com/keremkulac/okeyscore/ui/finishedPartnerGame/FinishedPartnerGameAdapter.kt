@@ -64,12 +64,10 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
             finishedPartnerGame?.let {
                 team1Name.text = finishedPartnerGame.team1!!.name
                 team2Name.text = finishedPartnerGame.team2!!.name
-                team1TotalScore.text = finishedPartnerGame.team1.totalScore
-                team2TotalScore.text = finishedPartnerGame.team2.totalScore
+                team1TotalScore.text = context.getString(R.string.total_score_text, finishedPartnerGame.team1.totalScore)
+                team2TotalScore.text = context.getString(R.string.total_score_text, finishedPartnerGame.team2.totalScore)
                 gameInfo.text = finishedPartnerGame.gameInfo.gameInfo
                 date.text = finishedPartnerGame.gameInfo.date
-                team1TotalScore.isFocusable = false
-                team2TotalScore.isFocusable = false
             }
         }
     }

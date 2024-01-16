@@ -15,17 +15,13 @@
         <item name="android:textColorHint">@color/searchview_text_color</item>
         <item name="android:textSize">14sp</item>
         <item name="colorAccent">@color/searchview_text_color</item>
-
-
     </style>
-
-
 
     <style name="Theme.MyApp" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/searchview_text_color</item>
-
         <item name="searchViewStyle">@style/SearchViewStyle</item>
     </style>
+
     <style name="SingleGameTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -58,27 +54,29 @@
         <item name="android:background">@drawable/custom_button</item>
     </style>
 
-
     <style name="NameTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/player</item>
         <item name="android:textColor">@color/name_text_color</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
 
     </style>
-
 
     <style name="ScoreTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/score</item>
         <item name="android:textColor">@color/score_text_color</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
 
     </style>
 
@@ -104,8 +102,31 @@
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:paddingTop">40dp</item>
+        <item name="android:paddingTop">30dp</item>
     </style>
+
+    <style name="PlayerImageViewStyle" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_player</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">6dp</item>
+        <item name="android:contentDescription">@string/todo</item>
+        <item name="android:layout_marginEnd">8dp</item>
+
+    </style>
+
+    <style name="TeamImageViewStyle" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_group</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">6dp</item>
+        <item name="android:contentDescription">@string/todo</item>
+        <item name="android:layout_marginEnd">8dp</item>
+
+    </style>
+
 
     <style name="DateTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/date_text_color</item>
@@ -115,6 +136,10 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginTop">8dp</item>
+        <item name="android:drawableLeft">@drawable/ic_calendar</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_margin">8dp</item>
     </style>
 
     <style name="TitleTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -125,7 +150,22 @@
         <item name="android:textSize">20sp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">8dp</item>
+        <item name="background">@color/seperator_color</item>
+    </style>
 
+    <style name="VerticalSeperatorStyle">
+        <item name="android:background">@color/seperator_color</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="HorizontalSeperatorStyle">
+        <item name="android:background">@color/seperator_color</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="InfoTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -135,7 +175,10 @@
         <item name="android:textColor">@color/info_text_color</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">13sp</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawableLeft">@drawable/ic_trophy</item>
     </style>
 
     <style name="HintTextAppearance" parent="TextAppearance.Design.Hint">

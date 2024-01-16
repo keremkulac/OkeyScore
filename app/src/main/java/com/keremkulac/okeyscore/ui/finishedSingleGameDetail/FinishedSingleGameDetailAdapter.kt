@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
@@ -31,14 +29,8 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
             holder.player2Score.setText(it.player2!!.allScores!![position])
             holder.player3Score.setText(it.player3!!.allScores!![position])
             holder.player4Score.setText(it.player4!!.allScores!![position])
-            holder.player1Score.isFocusable = false
-            holder.player2Score.isFocusable = false
-            holder.player3Score.isFocusable = false
-            holder.player4Score.isFocusable = false
-            if(position % 2 == 0){
-                holder.singleGameItemBackground.setBackgroundColor(ContextCompat.getColor(holder.itemView.context,R.color.item_background_color1))
-            }else{
-                holder.singleGameItemBackground.setBackgroundColor(ContextCompat.getColor(holder.itemView.context,R.color.item_background_color2))
+            for (editText in listOf(holder.player1Score, holder.player2Score, holder.player3Score, holder.player4Score)) {
+                editText.isFocusable = false
             }
         }
     }
@@ -56,7 +48,6 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
         val player2Score : EditText = itemView.findViewById(R.id.player2Score)
         val player3Score : EditText = itemView.findViewById(R.id.player3Score)
         val player4Score : EditText = itemView.findViewById(R.id.player4Score)
-        val singleGameItemBackground : LinearLayout = itemView.findViewById(R.id.singleGameItemBackground)
 
     }
 }

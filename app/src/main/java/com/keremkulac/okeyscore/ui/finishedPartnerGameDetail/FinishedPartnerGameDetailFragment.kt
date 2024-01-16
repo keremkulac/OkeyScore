@@ -48,10 +48,8 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
         finishedPartnerGame?.let {
             binding.team1Name.text = (finishedPartnerGame.team1!!.name)
             binding.team2Name.text = (finishedPartnerGame.team2!!.name)
-            binding.team1TotalScore.text = "Toplam skor: "+finishedPartnerGame.team1.totalScore
-            binding.team2TotalScore.text = "Toplam skor: "+ finishedPartnerGame.team2.totalScore
-            binding.team1TotalScore.isFocusable = false
-            binding.team2TotalScore.isFocusable = false
+            binding.team1TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team1.totalScore)
+            binding.team2TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team2.totalScore)
             binding.gameDate.text = finishedPartnerGame.gameInfo.date
             binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame

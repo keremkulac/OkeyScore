@@ -4,12 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="parent"
-    android:layout_marginBottom="8dp"
     android:background="@color/main_background_color"
     tools:context=".ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
 
@@ -53,20 +52,18 @@
         <TextView
             android:id="@+id/teamNames"
             style="@style/TitleTextViewStyle"
-            android:text="@string/teamNames"
+            android:text="@string/players"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_player"
+            style="@style/PlayerImageViewStyle"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teamNames"
-            android:contentDescription="@string/todo"/>
+            app:layout_constraintTop_toBottomOf="@+id/teamNames" />
 
         <TextView
             android:id="@+id/player1Name"
@@ -84,22 +81,14 @@
 
         <View
             android:id="@+id/horizontal_seperator1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/seperator_color"
+            style="@style/HorizontalSeperatorStyle"
+            android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <View
             android:id="@+id/vertical_seperator1"
-            android:layout_width="1dp"
-            android:layout_height="36dp"
-            android:layout_margin="16dp"
-            android:background="@color/seperator_color"
+            style="@style/VerticalSeperatorStyle"
             app:layout_constraintBottom_toBottomOf="@+id/horizontal_seperator1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,38 +96,34 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_player"
-            app:layout_constraintStart_toEndOf="@+id/vertical_seperator1"
-            app:layout_constraintTop_toBottomOf="@+id/teamNames"
-            android:contentDescription="@string/todo"/>
+            style="@style/PlayerImageViewStyle"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamNames" />
 
 
         <TextView
             android:id="@+id/player2Name"
             style="@style/NameTextViewStyle"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
 
 
         <TextView
             android:id="@+id/player2TotalScore"
             style="@style/ScoreTextViewStyle"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/player2Name" />
 
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_player"
+            style="@style/PlayerImageViewStyle"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1"
-            android:contentDescription="@string/todo"/>
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
 
 
         <TextView
@@ -150,10 +135,7 @@
 
         <View
             android:id="@+id/vertical_seperator2"
-            android:layout_width="1dp"
-            android:layout_height="36dp"
-            android:layout_margin="16dp"
-            android:background="@color/seperator_color"
+            style="@style/VerticalSeperatorStyle"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_seperator2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,37 +150,29 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:layout_marginTop="65dp"
-            android:src="@drawable/ic_player"
-            app:layout_constraintStart_toEndOf="@+id/vertical_seperator2"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1"
-            android:contentDescription="@string/todo"/>
+            style="@style/PlayerImageViewStyle"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
 
         <View
             android:id="@+id/horizontal_seperator2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/seperator_color"
+            style="@style/HorizontalSeperatorStyle"
+            android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <TextView
             android:id="@+id/player4Name"
             style="@style/NameTextViewStyle"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
 
         <TextView
             android:id="@+id/player4TotalScore"
             style="@style/ScoreTextViewStyle"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/player4Name" />
 
 
@@ -215,7 +189,8 @@
             android:id="@+id/roundRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/roundLabel" />
 
@@ -230,26 +205,16 @@
         <TextView
             android:id="@+id/gameDetail"
             style="@style/InfoTextViewStyle"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:text="@string/detail"
-            android:layout_margin="8dp"
-            app:drawableLeftCompat="@drawable/ic_trophy"
+            android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailLabel" />
 
         <TextView
             android:id="@+id/gameDate"
-            android:text="@string/date"
-            android:gravity="center_vertical"
-            android:drawablePadding="8dp"
             style="@style/DateTextViewStyle"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="16dp"
-            app:drawableLeftCompat="@drawable/ic_calendar"
+            android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gameDetail" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
