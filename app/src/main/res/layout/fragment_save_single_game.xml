@@ -1,201 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background_color"
-    tools:context=".ui.saveSingleGame.SaveSingleGameFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        <TextView
-            android:id="@+id/playerNameTitle"
-            android:text="@string/playerNamesAndScoresTitle"
-            style="@style/TitleTextViewStyle"
-            android:visibility="gone"
-            android:layout_marginTop="20dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player1NameEntryHint"
+            style="@style/SingleGameTextInputLayoutStyle"
+            android:layout_marginTop="8dp"
+            android:hint="@string/enter_player1_name"
+            app:boxStrokeColor="@color/score_hint_text_color"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/score_hint_text_color"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/nameEntryLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/SingleGameTextInputLayoutStyle"
-                android:hint="@string/enter_player1_name"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player1NameEntry"
-                    android:maxLength="21"
-                    android:inputType="text"
-                    style="@style/SingleGameTextInputEditTextStyle" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/SingleGameTextInputLayoutStyle"
-                android:hint="@string/enter_player2_name"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player2NameEntry"
-                    android:maxLength="21"
-                    android:inputType="text"
-                    style="@style/SingleGameTextInputEditTextStyle" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/SingleGameTextInputLayoutStyle"
-                android:hint="@string/enter_player3_name"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player3NameEntry"
-                    android:maxLength="21"
-                    android:inputType="text"
-                    style="@style/SingleGameTextInputEditTextStyle" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/SingleGameTextInputLayoutStyle"
-                android:hint="@string/enter_player4_name"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player4NameEntry"
-                    android:maxLength="21"
-                    android:inputType="text"
-                    style="@style/SingleGameTextInputEditTextStyle" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/playerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_margin="8dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player1Name"
-                style="@style/NameTextInputLayoutStyle">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player1TotalScore"
-                    style="@style/ScoreTextInputEditTextStyle"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-        <include layout="@layout/vertical_seperator" />
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player2Name"
-                style="@style/NameTextInputLayoutStyle">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player2TotalScore"
-                    style="@style/ScoreTextInputEditTextStyle"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-        <include layout="@layout/vertical_seperator" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player1NameEntry"
+                style="@style/SingleGameTextInputEditTextStyle"
+                android:inputType="text"
+                android:maxLength="21" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player3Name"
-                style="@style/NameTextInputLayoutStyle">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player3TotalScore"
-                    style="@style/ScoreTextInputEditTextStyle"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            android:id="@+id/player2NameEntryHint"
+            style="@style/SingleGameTextInputLayoutStyle"
+            android:hint="@string/enter_player2_name"
+            app:boxStrokeColor="@color/score_hint_text_color"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/score_hint_text_color"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player1NameEntryHint">
 
-        <include layout="@layout/vertical_seperator" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player2NameEntry"
+                style="@style/SingleGameTextInputEditTextStyle"
+                android:inputType="text"
+                android:maxLength="21" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player4Name"
-                style="@style/NameTextInputLayoutStyle">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player4TotalScore"
-                    style="@style/ScoreTextInputEditTextStyle"/>
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player3NameEntryHint"
+            style="@style/SingleGameTextInputLayoutStyle"
+            android:hint="@string/enter_player3_name"
+            app:boxStrokeColor="@color/score_hint_text_color"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/score_hint_text_color"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player2NameEntryHint">
 
-        </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player3NameEntry"
+                style="@style/SingleGameTextInputEditTextStyle"
+                android:inputType="text"
+                android:maxLength="21" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player4NameEntryHint"
+            style="@style/SingleGameTextInputLayoutStyle"
+            android:hint="@string/enter_player4_name"
+            app:boxStrokeColor="@color/score_hint_text_color"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/score_hint_text_color"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player3NameEntryHint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player4NameEntry"
+                style="@style/SingleGameTextInputEditTextStyle"
+                android:inputType="text"
+                android:maxLength="21" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/confirmNames"
+            style="@style/SingleGameButtonStyle"
+            android:layout_gravity="end"
+            android:text="@string/save_names"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player4NameEntryHint" />
 
         <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/seperator"
-            android:visibility="gone"
-            android:background="@color/seperator_color"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:id="@+id/playerNameTitle"
+            style="@style/TitleTextViewStyle"
+            android:layout_marginTop="16dp"
+            android:text="@string/playerNamesAndScoresTitle"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmNames" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player1Name"
+            style="@style/NameTextInputLayoutStyle"
+            android:layout_marginStart="8dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/scoreColumnSeparator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player1TotalScore"
+                style="@style/ScoreTextInputEditTextStyle"
+                android:focusable="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <View
+            android:id="@+id/scoreColumnSeparator"
+            style="@style/VerticalSeparatorStyle"
+            app:layout_constraintEnd_toStartOf="@id/player2Name"
+            android:layout_margin="8dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/player1Name"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player2Name"
+            style="@style/NameTextInputLayoutStyle"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/scoreColumnSeparator2"
+            app:layout_constraintStart_toEndOf="@+id/scoreColumnSeparator"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player2TotalScore"
+                style="@style/ScoreTextInputEditTextStyle"
+                android:focusable="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/scoreColumnSeparator2"
+            style="@style/VerticalSeparatorStyle"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle"
+            app:layout_constraintEnd_toStartOf="@id/player3Name"
+            app:layout_constraintStart_toEndOf="@id/player2Name"
+            android:layout_margin="8dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player3Name"
+            style="@style/NameTextInputLayoutStyle"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@id/scoreColumnSeparator3"
+            app:layout_constraintStart_toEndOf="@id/scoreColumnSeparator2"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player3TotalScore"
+                style="@style/ScoreTextInputEditTextStyle"
+                android:focusable="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/scoreColumnSeparator3"
+            style="@style/VerticalSeparatorStyle"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle"
+            app:layout_constraintEnd_toStartOf="@id/player4Name"
+            app:layout_constraintStart_toEndOf="@id/player3Name"
+            android:layout_margin="8dp"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player4Name"
+            style="@style/NameTextInputLayoutStyle"
+            android:visibility="invisible"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/scoreColumnSeparator3"
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player4TotalScore"
+                style="@style/ScoreTextInputEditTextStyle"
+                android:focusable="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/roundsAndTitleSeparator"
+            style="@style/HorizontalSeparatorStyle"
+            android:visibility="invisible"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/player1Name"/>
 
         <TextView
             android:id="@+id/roundScoreTitle"
-            android:text="@string/teamScoresTitle"
             style="@style/TitleTextViewStyle"
-            android:visibility="gone"
-            android:layout_marginTop="20dp"/>
+            android:text="@string/teamScoresTitle"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/roundsAndTitleSeparator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <LinearLayout
             android:id="@+id/scoreLayout"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_margin="8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/roundScoreTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
         </LinearLayout>
 
         <Button
-            android:id="@+id/confirmNames"
-            android:text="@string/save_names"
+            android:id="@+id/saveGame"
             style="@style/SingleGameButtonStyle"
-            android:visibility="visible"
-            android:layout_gravity="end"/>
+            android:text="@string/save"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/scoreLayout"
+            app:layout_constraintTop_toBottomOf="@id/scoreLayout" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="end" >
+        <Button
+            android:id="@+id/newRound"
+            style="@style/SingleGameButtonStyle"
+            android:text="@string/new_round"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/saveGame"
+            app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Button
-                    android:id="@+id/newRound"
-                    android:text="@string/new_round"
-                    style="@style/SingleGameButtonStyle"/>
-
-                <Button
-                    android:id="@+id/saveGame"
-                    android:text="@string/save"
-                    style="@style/SingleGameButtonStyle" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

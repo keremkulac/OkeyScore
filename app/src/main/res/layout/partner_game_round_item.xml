@@ -11,19 +11,19 @@
         android:id="@+id/team1ScoreHint">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/team1Score"
-            style="@style/ScoreTextInputEditTextStyle"/>
+            style="@style/ScoreTextInputEditTextStyle" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <include
-        android:id="@+id/vertical_seperator"
-        layout="@layout/vertical_seperator" />
+        android:id="@+id/vertical_separator"
+        layout="@layout/vertical_separator" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/NameTextInputLayoutStyle"
         android:id="@+id/team2ScoreHint">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/team2Score"
-            style="@style/ScoreTextInputEditTextStyle"/>
+            style="@style/ScoreTextInputEditTextStyle" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

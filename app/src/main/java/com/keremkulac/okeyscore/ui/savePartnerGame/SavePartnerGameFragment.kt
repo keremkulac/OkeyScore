@@ -46,15 +46,18 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             if(viewModel.checkList(playerNames())){
                 requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz")
             }else{
-                binding.nameEntryLayout.visibility = View.GONE
+                binding.team1NameEntryHint.visibility = View.GONE
+                binding.team2NameEntryHint.visibility = View.GONE
                 binding.confirmNames.visibility = View.GONE
                 binding.newRound.visibility = View.VISIBLE
                 binding.saveGame.visibility = View.VISIBLE
+                binding.team1Name.visibility = View.VISIBLE
+                binding.team2Name.visibility = View.VISIBLE
                 binding.scoreLayout.visibility = View.VISIBLE
-                binding.playerLayout.visibility = View.VISIBLE
-                binding.seperator.visibility = View.VISIBLE
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
+                binding.roundsAndTitleSeparator.visibility = View.INVISIBLE
+                binding.scoreColumnSeparator.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
                 calculate()
                 setPlayerNames()

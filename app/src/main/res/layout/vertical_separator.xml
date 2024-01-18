@@ -4,4 +4,4 @@
     android:layout_width="1dp"
     android:layout_height="40dp"
     android:layout_gravity="center"
-    android:background="@color/seperator_color" />
+    android:background="@color/separator_color" />

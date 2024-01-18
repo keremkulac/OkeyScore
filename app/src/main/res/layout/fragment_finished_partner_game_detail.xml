@@ -67,19 +67,21 @@
         <TextView
             android:id="@+id/team1Name"
             style="@style/NameTextViewStyle"
+            android:layout_marginStart="6dp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
 
         <TextView
             android:id="@+id/team1TotalScore"
             style="@style/ScoreTextViewStyle"
+            android:layout_marginStart="6dp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/team1Name" />
 
         <View
-            android:id="@+id/vertical_seperator"
-            style="@style/VerticalSeperatorStyle"
-            app:layout_constraintBottom_toTopOf="@+id/horizontal_seperator"
+            android:id="@+id/partnerColumnSeparator"
+            style="@style/VerticalSeparatorStyle"
+            app:layout_constraintBottom_toTopOf="@+id/partnerAndRecyclerViewRowSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
@@ -95,21 +97,25 @@
         <TextView
             android:id="@+id/team2Name"
             style="@style/NameTextViewStyle"
+            android:layout_marginEnd="6dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
 
         <TextView
             android:id="@+id/team2TotalScore"
             style="@style/ScoreTextViewStyle"
+            android:layout_marginEnd="6dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/team2Name" />
 
         <View
-            android:id="@+id/horizontal_seperator"
-            style="@style/HorizontalSeperatorStyle"
-            android:layout_margin="16dp"
+            android:id="@+id/partnerAndRecyclerViewRowSeparator"
+            style="@style/HorizontalSeparatorStyle"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vertical_seperator" />
+            app:layout_constraintTop_toBottomOf="@+id/partnerColumnSeparator" />
 
         <TextView
             android:id="@+id/roundLabel"
@@ -117,7 +123,7 @@
             android:text="@string/round_scores"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator" />
+            app:layout_constraintTop_toBottomOf="@+id/partnerAndRecyclerViewRowSeparator" />
 
 
         <androidx.recyclerview.widget.RecyclerView

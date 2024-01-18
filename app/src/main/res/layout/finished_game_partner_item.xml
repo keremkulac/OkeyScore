@@ -25,6 +25,7 @@
         <TextView
             android:id="@+id/team1Name"
             style="@style/NameTextViewStyle"
+            android:layout_marginStart="6dp"
             app:layout_constraintStart_toEndOf="@+id/winnerTextViewImageView1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,13 +33,14 @@
         <TextView
             android:id="@+id/team1TotalScore"
             style="@style/ScoreTextViewStyle"
+            android:layout_marginStart="6dp"
             app:layout_constraintStart_toEndOf="@+id/winnerTextViewImageView1"
             app:layout_constraintTop_toBottomOf="@+id/team1Name" />
 
         <View
-            android:id="@+id/vertical_seperator"
-            style="@style/VerticalSeperatorStyle"
-            app:layout_constraintBottom_toTopOf="@+id/horizontal_seperator"
+            android:id="@+id/partnerColumnSeparator"
+            style="@style/VerticalSeparatorStyle"
+            app:layout_constraintBottom_toTopOf="@+id/partnerAndDetailRowSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +48,7 @@
         <ImageView
             android:id="@+id/winnerTextViewImageView2"
             style="@style/TeamImageViewStyle"
+            android:paddingStart="6dp"
             android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,6 +57,7 @@
         <TextView
             android:id="@+id/team2Name"
             style="@style/NameTextViewStyle"
+            android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toStartOf="@+id/winnerTextViewImageView2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,22 +65,23 @@
         <TextView
             android:id="@+id/team2TotalScore"
             style="@style/ScoreTextViewStyle"
+            android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toStartOf="@+id/winnerTextViewImageView2"
             app:layout_constraintTop_toBottomOf="@+id/team2Name" />
 
 
         <View
-            android:id="@+id/horizontal_seperator"
-            style="@style/HorizontalSeperatorStyle"
+            android:id="@+id/partnerAndDetailRowSeparator"
+            style="@style/HorizontalSeparatorStyle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vertical_seperator" />
+            app:layout_constraintTop_toBottomOf="@+id/partnerColumnSeparator" />
 
         <TextView
             android:id="@+id/gameInfo"
             style="@style/InfoTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/horizontal_seperator" />
+            app:layout_constraintTop_toTopOf="@+id/partnerAndDetailRowSeparator" />
 
         <TextView
             android:id="@+id/gameDate"

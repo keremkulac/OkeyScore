@@ -58,13 +58,24 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             if(viewModel.checkList(playerNames())){
                 requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz")
             }else{
-                binding.nameEntryLayout.visibility = View.GONE
+                binding.player1NameEntryHint.visibility = View.GONE
+                binding.player2NameEntryHint.visibility = View.GONE
+                binding.player3NameEntryHint.visibility = View.GONE
+                binding.player4NameEntryHint.visibility = View.GONE
+
                 binding.confirmNames.visibility = View.GONE
                 binding.newRound.visibility = View.VISIBLE
                 binding.saveGame.visibility = View.VISIBLE
                 binding.scoreLayout.visibility = View.VISIBLE
-                binding.playerLayout.visibility = View.VISIBLE
-                binding.seperator.visibility = View.VISIBLE
+                binding.player1Name.visibility = View.VISIBLE
+                binding.player2Name.visibility = View.VISIBLE
+                binding.player3Name.visibility = View.VISIBLE
+                binding.player4Name.visibility = View.VISIBLE
+                binding.scoreColumnSeparator.visibility = View.VISIBLE
+                binding.scoreColumnSeparator2.visibility = View.VISIBLE
+                binding.scoreColumnSeparator3.visibility = View.VISIBLE
+                binding.roundsAndTitleSeparator.visibility = View.INVISIBLE
+
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false

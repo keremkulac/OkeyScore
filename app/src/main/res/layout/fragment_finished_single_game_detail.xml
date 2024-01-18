@@ -80,16 +80,16 @@
 
 
         <View
-            android:id="@+id/horizontal_seperator1"
-            style="@style/HorizontalSeperatorStyle"
+            android:id="@+id/playerRowSeparator"
+            style="@style/HorizontalSeparatorStyle"
             android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <View
-            android:id="@+id/vertical_seperator1"
-            style="@style/VerticalSeperatorStyle"
-            app:layout_constraintBottom_toBottomOf="@+id/horizontal_seperator1"
+            android:id="@+id/playerColumnSeparator"
+            style="@style/VerticalSeparatorStyle"
+            app:layout_constraintBottom_toBottomOf="@+id/playerRowSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
@@ -123,23 +123,23 @@
             android:layout_marginStart="16dp"
             android:contentDescription="@string/todo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
 
         <TextView
             android:id="@+id/player3Name"
             style="@style/NameTextViewStyle"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
 
         <View
-            android:id="@+id/vertical_seperator2"
-            style="@style/VerticalSeperatorStyle"
-            app:layout_constraintBottom_toTopOf="@+id/horizontal_seperator2"
+            android:id="@+id/playerColumnSeparator2"
+            style="@style/VerticalSeparatorStyle"
+            app:layout_constraintBottom_toTopOf="@+id/playerAndDetailRowSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
 
         <TextView
@@ -154,11 +154,11 @@
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
         <View
-            android:id="@+id/horizontal_seperator2"
-            style="@style/HorizontalSeperatorStyle"
+            android:id="@+id/playerAndDetailRowSeparator"
+            style="@style/HorizontalSeparatorStyle"
             android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -167,7 +167,7 @@
             android:id="@+id/player4Name"
             style="@style/NameTextViewStyle"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator1" />
+            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
         <TextView
             android:id="@+id/player4TotalScore"
@@ -182,7 +182,7 @@
             android:text="@string/round_scores"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_seperator2" />
+            app:layout_constraintTop_toBottomOf="@+id/playerAndDetailRowSeparator" />
 
 
         <androidx.recyclerview.widget.RecyclerView

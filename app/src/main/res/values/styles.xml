@@ -32,6 +32,9 @@
         <item name="android:padding">4dp</item>
         <item name="android:textStyle">bold</item>
         <item name="boxStrokeWidth">1dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+
     </style>
 
     <style name="SingleGameTextInputEditTextStyle"  >
@@ -41,7 +44,6 @@
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:textColor">@color/score_text_color</item>
         <item name="android:textColorHint">@color/score_text_color</item>
-        <item name="android:maxLength">4</item>
         <item name="android:inputType">numberSigned</item>
     </style>
 
@@ -49,7 +51,7 @@
         <item name="android:visibility">gone</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">6dp</item>
+        <item name="android:layout_margin">8dp</item>
         <item name="android:textColor">@color/button_text_color</item>
         <item name="android:background">@drawable/custom_button</item>
     </style>
@@ -62,8 +64,6 @@
         <item name="android:textSize">17sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginStart">4dp</item>
-        <item name="android:layout_marginEnd">4dp</item>
 
     </style>
 
@@ -75,8 +75,6 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_marginTop">2dp</item>
-        <item name="android:layout_marginStart">4dp</item>
-        <item name="android:layout_marginEnd">4dp</item>
 
     </style>
 
@@ -98,7 +96,7 @@
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">@color/score_text_color</item>
         <item name="android:textColorHint">@color/score_text_color</item>
-        <item name="android:maxLength">21</item>
+        <item name="android:maxLength">4</item>
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
@@ -110,20 +108,18 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:src">@drawable/ic_player</item>
         <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginStart">6dp</item>
         <item name="android:contentDescription">@string/todo</item>
-        <item name="android:layout_marginEnd">8dp</item>
 
     </style>
 
     <style name="TeamImageViewStyle" >
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:src">@drawable/ic_group</item>
+        <item name="android:src">@drawable/ic_partner</item>
         <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginStart">6dp</item>
-        <item name="android:contentDescription">@string/todo</item>
+        <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:contentDescription">@string/todo</item>
 
     </style>
 
@@ -149,19 +145,19 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="background">@color/seperator_color</item>
-    </style>
-
-    <style name="VerticalSeperatorStyle">
-        <item name="android:background">@color/seperator_color</item>
-        <item name="android:layout_width">1dp</item>
-        <item name="android:layout_height">40dp</item>
         <item name="android:layout_margin">16dp</item>
     </style>
 
-    <style name="HorizontalSeperatorStyle">
-        <item name="android:background">@color/seperator_color</item>
+    <style name="VerticalSeparatorStyle">
+        <item name="android:background">@color/separator_color</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">16dp</item>
+
+    </style>
+
+    <style name="HorizontalSeparatorStyle">
+        <item name="android:background">@color/separator_color</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_margin">8dp</item>
