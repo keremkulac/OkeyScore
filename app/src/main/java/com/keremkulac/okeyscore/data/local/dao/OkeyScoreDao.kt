@@ -27,4 +27,8 @@ interface OkeyScoreDao {
 
     @Query("SELECT * FROM finishedSingleGame WHERE id = :id")
     suspend fun getFinishedSingleGameById(id: Int): FinishedSingleGame?
+
+    @Delete
+    suspend fun deleteFinishedSingleGame(finishedSingleGame: FinishedSingleGame?)
+
 }

@@ -6,10 +6,14 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameBinding
 import com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragmentDirections
+import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -28,6 +32,7 @@ class FinishedSingleGameFragment @Inject constructor(
         observeAllFinishedGame()
         clickFinishedGame()
         search()
+        deleteItemDatabase()
     }
 
     private fun setRecyclerView(){
@@ -57,6 +62,26 @@ class FinishedSingleGameFragment @Inject constructor(
             }
         }
     }
+
+    private fun deleteItemDatabase(){
+        val swipeGesture = object  : SwipeGesture(requireContext()){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val itemToDelete = finishedSingleGameAdapter.finishedSingleGameLists[position]
+                viewModel.deleteFinishedGame(itemToDelete)
+                findNavController().navigate(R.id.finishedGameViewFragment)
+                Snackbar.make(binding.finishedGameRecyclerView,"Silindi", Snackbar.LENGTH_LONG).setAction(
+                    "Geri al",View.OnClickListener {
+                        viewModel.saveSingleGame(itemToDelete!!)
+                        findNavController().navigate(R.id.finishedGameViewFragment)
+                    }
+                ).show()
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeGesture)
+        itemTouchHelper.attachToRecyclerView(binding.finishedGameRecyclerView)
+    }
+
 
     private fun search(){
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

@@ -25,7 +25,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private var player3ScoreEditTextList = ArrayList<EditText>()
     private var player4ScoreEditTextList = ArrayList<EditText>()
     private var allPlayerScoreEditTextList = ArrayList<ArrayList<EditText>>()
-    var lineCount = 1
+    private var lineCount = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,6 +33,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         checkPlayerNames()
         saveGame()
         newRound(layoutInflater)
+        goToFinishedGameViewFragment()
     }
 
     private fun playerNames(): List<EditText> {
@@ -62,7 +63,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 binding.player2NameEntryHint.visibility = View.GONE
                 binding.player3NameEntryHint.visibility = View.GONE
                 binding.player4NameEntryHint.visibility = View.GONE
-
                 binding.confirmNames.visibility = View.GONE
                 binding.newRound.visibility = View.VISIBLE
                 binding.saveGame.visibility = View.VISIBLE
@@ -75,7 +75,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 binding.scoreColumnSeparator2.visibility = View.VISIBLE
                 binding.scoreColumnSeparator3.visibility = View.VISIBLE
                 binding.roundsAndTitleSeparator.visibility = View.INVISIBLE
-
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
@@ -182,6 +181,13 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             alertDialogBuilder.setNegativeButton("Hayır",null)
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
+        }
+    }
+
+    private fun goToFinishedGameViewFragment(){
+        binding.goToFinishedGameViewFragment.setOnClickListener {
+            val action = SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
+            findNavController().navigate(action)
         }
     }
 }

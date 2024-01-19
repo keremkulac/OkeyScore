@@ -69,6 +69,8 @@
     <string name="player4_name">4. oyuncu adı</string>
     <string name="teams">Takımlar</string>
     <string name="players">Oyuncular</string>
+    <string name="partner_game">Eşli Oyun Kayıt</string>
+    <string name="single_game">Tekli Oyun Kayıt</string>
     <string-array name="tablayoutTitleArray">
         <item>Tekli oyunlarım</item>
         <item>Eşli oyunlarım</item>

@@ -29,6 +29,13 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
         }
     }
 
+    fun deleteFinishedGame(finishedSingleGame : FinishedSingleGame?){
+        viewModelScope.launch {
+            okeyScoreRepository.deleteFinishedSingleGame(finishedSingleGame)
+        }
+    }
+
+
     fun search(newText : String?,adapter: FinishedSingleGameAdapter){
         val query = newText?.lowercase()
         if (query.isNullOrEmpty()) {
@@ -43,6 +50,12 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
             }
             _filteredList.postValue(ArrayList(filteredList))
             adapter.updateData(ArrayList(filteredList))
+        }
+    }
+
+    fun saveSingleGame(finishedSingleGame: FinishedSingleGame){
+        viewModelScope.launch {
+            okeyScoreRepository.insertFinishedSingleGame(finishedSingleGame)
         }
     }
 }

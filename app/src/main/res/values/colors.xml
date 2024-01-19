@@ -28,6 +28,7 @@
     <color name="max_score_color">#80FF0000</color>
     <color name="item_background_color1">#FFFFFF</color>
     <color name="item_background_color2">#F3F3F3</color>
-    <color name="winner">#FFF176</color>
+    <color name="winner_color">#FFF176</color>
+    <color name="delete_color">#FF0000</color>
 
 </resources>

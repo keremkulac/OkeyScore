@@ -10,10 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/purple_700"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/goToFinishedGameViewFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/tag"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
+                    android:text="@string/single_game"
+                    android:textColor="@color/button_text_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/player1NameEntryHint"
             style="@style/SingleGameTextInputLayoutStyle"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/enter_player1_name"
             app:boxStrokeColor="@color/score_hint_text_color"
             app:counterEnabled="true"
@@ -22,7 +54,7 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/player1NameEntry"

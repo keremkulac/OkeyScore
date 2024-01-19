@@ -22,7 +22,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private var team1ScoreEditTextList = ArrayList<EditText>()
     private var team2ScoreEditTextList = ArrayList<EditText>()
     private var allTeamScoreEditTextList = ArrayList<ArrayList<EditText>>()
-    var lineCount = 1
+    private var lineCount = 1
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,6 +31,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         checkTeamNames()
         saveToRoomDb()
         newRound(layoutInflater)
+        goToFinishedGameViewFragment()
     }
 
     private fun playerNames(): List<EditText> {
@@ -148,6 +149,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
 
 
     private fun calculate(){
+
         var size = allTeamScoreEditTextList.size
         if(size > 2){
             size = 2
@@ -172,6 +174,13 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             }
         })
         return empty
+    }
+
+    private fun goToFinishedGameViewFragment(){
+        binding.goToFinishedGameViewFragment.setOnClickListener {
+            val action = SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
+            findNavController().navigate(action)
+        }
     }
 
 }
