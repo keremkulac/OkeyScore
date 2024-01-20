@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:id="@+id/singleGameItemBackground">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/NameTextInputLayoutStyle"
+            app:boxStrokeWidth="0dp"
             android:id="@+id/player1ScoreHint">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/player1Score"
@@ -17,6 +19,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/NameTextInputLayoutStyle"
+            app:boxStrokeWidth="0dp"
             android:id="@+id/player2ScoreHint">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/player2Score"
@@ -27,6 +30,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/NameTextInputLayoutStyle"
+            app:boxStrokeWidth="0dp"
             android:id="@+id/player3ScoreHint">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/player3Score"
@@ -37,6 +41,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/NameTextInputLayoutStyle"
+            app:boxStrokeWidth="0dp"
             android:id="@+id/player4ScoreHint">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/player4Score"

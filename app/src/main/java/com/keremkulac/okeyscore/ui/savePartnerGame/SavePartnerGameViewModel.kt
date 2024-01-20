@@ -1,14 +1,11 @@
 package com.keremkulac.okeyscore.ui.savePartnerGame
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
@@ -29,9 +26,7 @@ import javax.inject.Inject
 class SavePartnerGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository,
                     private val sharedPreferencesManager: SharedPreferencesManager) : ViewModel(){
-    private val _isEmpty = MutableLiveData<Boolean>()
-    val isEmpty: LiveData<Boolean>
-        get() = _isEmpty
+
 
     fun insertFinishedGame(
         allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
@@ -47,7 +42,7 @@ class SavePartnerGameViewModel
         }
     }
 
-    fun createFinishedPartnerGame(playerNames: List<EditText>,
+   private  fun createFinishedPartnerGame(playerNames: List<EditText>,
         allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>
     ): FinishedPartnerGame {
         val players = createPlayers(playerNames, allPlayerScoreEditTextList)
@@ -64,13 +59,12 @@ class SavePartnerGameViewModel
         return Info("Kazanan takım: ${minScorePlayer.name}. Skor: ${minScorePlayer.totalScore} ", getCurrentDate())
     }
 
-    fun setTotalScore(team1ScoreList : List<EditText>,totalScoreTextView: TextView){
-        for ((i, scoreListItem) in team1ScoreList.withIndex()) {
+    fun setTotalScore(teamScoreList : List<EditText>,totalScoreTextView: TextView){
+        for(scoreListItem in teamScoreList){
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                @SuppressLint("SetTextI18n")
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    totalScoreTextView.text = "${calculateTotalScore(team1ScoreList)}"
+                    totalScoreTextView.text = "${calculateTotalScore(teamScoreList)}"
                 }
                 override fun afterTextChanged(s: Editable?) {}
             })
@@ -81,7 +75,14 @@ class SavePartnerGameViewModel
         var totalScore = 0
         for(teamScoreEditText in teamScoreEditTextList){
             if(teamScoreEditText.text.toString() != ""){
-                totalScore += teamScoreEditText.text.toString().toInt()
+                if(teamScoreEditText.text.contains("-")){
+                    if(teamScoreEditText.text.count() > 1){
+                        val score = teamScoreEditText.text.toString().split("-")
+                        totalScore -= score[1].toInt()
+                    }
+                }else{
+                    totalScore += teamScoreEditText.text.toString().toInt()
+                }
             }
         }
         return totalScore
@@ -109,7 +110,7 @@ class SavePartnerGameViewModel
         return players
     }
 
-    fun createPlayerScoreList(playerScoreEditTextList: List<EditText>) : ArrayList<String>{
+    private fun createPlayerScoreList(playerScoreEditTextList: List<EditText>) : ArrayList<String>{
         val scoreList = ArrayList<String>()
         for(playerScoreEditText in playerScoreEditTextList){
             scoreList.add(playerScoreEditText.text.toString())

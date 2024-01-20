@@ -1,6 +1,5 @@
 package com.keremkulac.okeyscore.ui.saveSingleGame
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -40,7 +39,7 @@ class SaveSingleGameViewModel
         }
     }
 
-    fun createFinishedSingleGame(
+    private fun createFinishedSingleGame(
         playerNames: List<EditText>,
         allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>
     ): FinishedSingleGame {
@@ -54,7 +53,7 @@ class SaveSingleGameViewModel
             createInfo(players)
         )
     }
-    fun createPlayerScoreList(playerScoreEditTextList: List<EditText>) : ArrayList<String>{
+   private fun createPlayerScoreList(playerScoreEditTextList: List<EditText>) : ArrayList<String>{
         val scoreList = ArrayList<String>()
         for(playerScoreEditText in playerScoreEditTextList){
             scoreList.add(playerScoreEditText.text.toString())
@@ -62,17 +61,25 @@ class SaveSingleGameViewModel
         return scoreList
     }
 
-    fun calculateTotalScore(playerScoreEditTextList: List<EditText>) : Int{
+    fun calculateTotalScore(teamScoreEditTextList: List<EditText>) : Int{
         var totalScore = 0
-        for(playerScoreEditText in playerScoreEditTextList){
-            if(playerScoreEditText.text.toString() != ""){
-                totalScore += playerScoreEditText.text.toString().toInt()
+        for(teamScoreEditText in teamScoreEditTextList){
+            if(teamScoreEditText.text.toString() != ""){
+                if(teamScoreEditText.text.contains("-")){
+                    if(teamScoreEditText.text.count() > 1){
+                        val score = teamScoreEditText.text.toString().split("-")
+                        totalScore -= score[1].toInt()
+                    }
+                }else{
+                    totalScore += teamScoreEditText.text.toString().toInt()
+                }
             }
         }
         return totalScore
     }
 
-     fun checkList(editTextList : List<EditText>) : Boolean{
+
+    fun checkList(editTextList : List<EditText>) : Boolean{
         var isEmpty = false
         for (editText in editTextList) {
             if (editText.text.toString().isEmpty()) {
@@ -94,13 +101,12 @@ class SaveSingleGameViewModel
         return players
     }
 
-    fun setTotalScore(team1ScoreList : List<EditText>,totalScoreTextView: TextView){
-        for ((i, scoreListItem) in team1ScoreList.withIndex()) {
+    fun setTotalScore(playerScoreList : List<EditText>,totalScoreTextView: TextView){
+        for(scoreListItem in playerScoreList){
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                @SuppressLint("SetTextI18n")
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    totalScoreTextView.text = "${calculateTotalScore(team1ScoreList)}"
+                    totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
                 }
                 override fun afterTextChanged(s: Editable?) {}
             })
