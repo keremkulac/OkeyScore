@@ -9,6 +9,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/NameTextInputLayoutStyle"
+        app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
         app:boxStrokeWidth="0dp"
         android:id="@+id/team1ScoreHint">
         <com.google.android.material.textfield.TextInputEditText
@@ -22,6 +23,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/NameTextInputLayoutStyle"
+        app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
         app:boxStrokeWidth="0dp"
         android:id="@+id/team2ScoreHint">
         <com.google.android.material.textfield.TextInputEditText

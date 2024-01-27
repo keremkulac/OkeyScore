@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="LinearLayoutStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:windowBackground">@android:color/black</item>
+    <style name="AlertDialogStyle" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:textColor">@color/delete_color</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/alert_dialog_button_text_color</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/alert_dialog_button_text_color</item>
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
@@ -25,10 +37,10 @@
     <style name="SingleGameTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/score_hint_text_color</item>
-        <item name="android:textColorHint">@color/score_hint_text_color</item>
-        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:background">@color/main_background_color</item>
+        <item name="android:textColor">@color/text_input_layout_text_color</item>
+        <item name="android:textColorHint">@color/text_input_layout_hint_color</item>
+        <item name="android:backgroundTint">@color/main_background_color</item>
         <item name="android:padding">4dp</item>
         <item name="android:textStyle">bold</item>
         <item name="boxStrokeWidth">1dp</item>
@@ -40,18 +52,19 @@
     <style name="SingleGameTextInputEditTextStyle"  >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:background">@color/main_background_color</item>
+        <item name="android:backgroundTint">@color/main_background_color</item>
         <item name="android:textColor">@color/score_text_color</item>
         <item name="android:textColorHint">@color/score_text_color</item>
         <item name="android:inputType">numberSigned</item>
     </style>
 
-    <style name="SingleGameButtonStyle" parent="@style/Widget.AppCompat.Button">
+    <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button">
         <item name="android:visibility">gone</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">8dp</item>
+
         <item name="android:textColor">@color/button_text_color</item>
         <item name="android:background">@drawable/custom_button</item>
     </style>
@@ -72,7 +85,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/score</item>
         <item name="android:textColor">@color/score_text_color</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">11sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_marginTop">2dp</item>
 
@@ -81,8 +94,11 @@
     <style name="NameTextInputLayoutStyle" parent="Widget.AppCompat.EditText" >
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/score_hint_text_color</item>
+        <item name="android:textColor">@color/score_hint_text_color</item>
+        <item name="android:textColorPrimary">@color/score_hint_text_color</item>
+        <item name="android:textColorPrimaryInverseDisableOnly">@color/score_hint_text_color</item>
+
         <item name="android:hint">Oyuncu</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">16sp</item>
@@ -90,17 +106,20 @@
         <item name="android:maxLength">4</item>
     </style>
 
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/score_hint_text_color</color>
+
     <style name="ScoreTextInputEditTextStyle" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">@color/score_text_color</item>
-        <item name="android:textColorHint">@color/score_text_color</item>
         <item name="android:maxLength">4</item>
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingTop">30dp</item>
+        <item name="android:textStyle">normal</item>
+
     </style>
 
     <style name="PlayerImageViewStyle" >
@@ -130,7 +149,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/date</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:drawableLeft">@drawable/ic_calendar</item>
         <item name="android:gravity">center_vertical</item>
@@ -142,15 +161,14 @@
         <item name="android:textColor">@color/title_text_color</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">16dp</item>
     </style>
 
     <style name="VerticalSeparatorStyle">
         <item name="android:background">@color/separator_color</item>
-        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_width">0.5dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_margin">16dp</item>
 
@@ -159,7 +177,7 @@
     <style name="HorizontalSeparatorStyle">
         <item name="android:background">@color/separator_color</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_height">0.5dp</item>
         <item name="android:layout_margin">8dp</item>
         <item name="android:gravity">center</item>
     </style>

@@ -178,7 +178,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
                 viewModel.insertSingleGame(allPlayerScoreEditTextList,playerNames(),findNavController(),requireContext())
             }
-            alertDialogBuilder.setNegativeButton("Hayır",null)
+            alertDialogBuilder.setNegativeButton("Hayır",null).setIcon(R.drawable.ic_add)
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }

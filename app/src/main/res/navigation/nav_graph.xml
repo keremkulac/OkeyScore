@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_finishedGameViewFragment_to_finishedSingleGameDetailFragment"
             app:destination="@id/finishedSingleGameDetailFragment" />
+        <action
+            android:id="@+id/action_finishedGameViewFragment_self"
+            app:destination="@id/finishedGameViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/saveSingleGameFragment"

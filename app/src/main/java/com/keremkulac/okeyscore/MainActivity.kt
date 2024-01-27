@@ -16,5 +16,4 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.fragmentFactory = defaultFragmentFactory
         setContentView(R.layout.activity_main)
     }
-
 }

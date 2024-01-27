@@ -1,6 +1,7 @@
 package com.keremkulac.okeyscore.ui.finishedSingleGame
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView
@@ -35,6 +36,10 @@ class FinishedSingleGameFragment @Inject constructor(
         deleteItemDatabase()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     private fun setRecyclerView(){
         binding.finishedGameRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.finishedGameRecyclerView.setHasFixedSize(false)
@@ -55,6 +60,7 @@ class FinishedSingleGameFragment @Inject constructor(
 
     private fun observeFilteredList(){
         viewModel.filteredList.observe(viewLifecycleOwner){filteredList->
+            Log.d("TAG",filteredList.size.toString())
             if(filteredList.isNotEmpty()){
                 binding.recordNotFound.visibility = View.GONE
             }else{
@@ -69,13 +75,19 @@ class FinishedSingleGameFragment @Inject constructor(
                 val position = viewHolder.adapterPosition
                 val itemToDelete = finishedSingleGameAdapter.finishedSingleGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
-                findNavController().navigate(R.id.finishedGameViewFragment)
+                val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("single")
+                findNavController().navigate(action)
                 Snackbar.make(binding.finishedGameRecyclerView,"Silindi", Snackbar.LENGTH_LONG).setAction(
                     "Geri al",View.OnClickListener {
                         viewModel.saveSingleGame(itemToDelete!!)
-                        findNavController().navigate(R.id.finishedGameViewFragment)
+                        findNavController().navigate(action)
                     }
-                ).show()
+                )
+                    .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))
+                    .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
+                    .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
+                    .show()
+
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)

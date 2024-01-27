@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.finishedPartnerGame.FinishedPartnerGameFragment"
+    android:background="@color/main_background_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +15,7 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/purple_700"
+            android:background="@color/toolbar_background_color"
             app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
@@ -34,7 +36,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
                     android:text="@string/partner_game"
-                    android:textColor="@color/button_text_color"
+                    android:textColor="@color/toolbar_text_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -44,14 +46,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/team1NameEntryHint"
             style="@style/SingleGameTextInputLayoutStyle"
-            android:gravity="top"
             android:layout_marginTop="16dp"
+            android:gravity="top"
             android:hint="@string/enter_team1_name"
-            app:boxStrokeColor="@color/score_hint_text_color"
+            app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
             app:counterEnabled="true"
             app:counterMaxLength="20"
-            app:counterTextColor="@color/score_hint_text_color"
+            app:counterTextColor="@color/text_input_layout_counter_text_color"
             app:errorEnabled="true"
+            app:hintTextColor="@color/text_input_layout_hint_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBar">
@@ -67,11 +70,12 @@
             android:id="@+id/team2NameEntryHint"
             style="@style/SingleGameTextInputLayoutStyle"
             android:hint="@string/enter_team2_name"
-            app:boxStrokeColor="@color/score_hint_text_color"
+            app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
             app:counterEnabled="true"
             app:counterMaxLength="20"
-            app:counterTextColor="@color/score_hint_text_color"
+            app:counterTextColor="@color/text_input_layout_counter_text_color"
             app:errorEnabled="true"
+            app:hintTextColor="@color/text_input_layout_hint_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/team1NameEntryHint">
@@ -86,11 +90,13 @@
 
         <Button
             android:id="@+id/confirmNames"
-            style="@style/SingleGameButtonStyle"
-            android:layout_gravity="end"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/cursor_color"
             android:text="@string/save_names"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/team2NameEntryHint" />
 
         <TextView
@@ -105,12 +111,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/team1Name"
             style="@style/NameTextInputLayoutStyle"
-            android:visibility="invisible"
-            android:backgroundTint="@color/main_background_color"
+            android:layout_marginStart="8dp"
             android:background="@color/main_background_color"
+            android:backgroundTint="@color/main_background_color"
+            android:visibility="invisible"
             app:boxStrokeColor="@android:color/transparent"
             app:boxStrokeWidth="1dp"
-            android:layout_marginStart="8dp"
             app:layout_constraintEnd_toStartOf="@+id/scoreColumnSeparator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
@@ -118,16 +124,16 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/team1TotalScore"
                 style="@style/ScoreTextInputEditTextStyle"
-                android:focusable="false"/>
+                android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <View
             android:id="@+id/scoreColumnSeparator"
             style="@style/VerticalSeparatorStyle"
-            app:layout_constraintEnd_toStartOf="@id/team2Name"
             android:layout_margin="8dp"
             android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@id/team2Name"
             app:layout_constraintStart_toEndOf="@id/team1Name"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle" />
 
@@ -135,8 +141,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/team2Name"
             style="@style/NameTextInputLayoutStyle"
-            android:visibility="invisible"
             android:layout_marginEnd="8dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/scoreColumnSeparator"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
@@ -144,57 +150,63 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/team2TotalScore"
                 style="@style/ScoreTextInputEditTextStyle"
-                android:focusable="false"/>
+                android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <View
             android:id="@+id/roundsAndTitleSeparator"
             style="@style/HorizontalSeparatorStyle"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/team1Name"/>
+            app:layout_constraintTop_toBottomOf="@id/team1Name" />
 
         <TextView
             android:id="@+id/roundScoreTitle"
             style="@style/TitleTextViewStyle"
             android:text="@string/team_round_scores"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/roundsAndTitleSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/roundsAndTitleSeparator" />
 
         <LinearLayout
             android:id="@+id/scoreLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_margin="8dp"
             android:orientation="vertical"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/roundScoreTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/roundScoreTitle">
 
         </LinearLayout>
 
         <Button
             android:id="@+id/saveGame"
-            style="@style/SingleGameButtonStyle"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
             android:text="@string/save"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/scoreLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/newRound"
             app:layout_constraintTop_toBottomOf="@id/scoreLayout" />
 
         <Button
             android:id="@+id/newRound"
-            style="@style/SingleGameButtonStyle"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
             android:text="@string/new_round"
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/saveGame"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

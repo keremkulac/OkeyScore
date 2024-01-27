@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources >
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
+    <color name="status_bar_color">#FFFFFF</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="green">#95FF00</color>
 
+    <color name="primary_color">#000000</color>
+    <color name="date_text_color">#45494A</color>
+    <color name="info_text_color">#45494A</color>
+    <color name="name_text_color">#000000</color>
     <color name="score_text_color">#45494A</color>
-    <color name="score_hint_text_color">#FF6200EE</color>
-    <color name="date_text_color">#FF6200EE</color>
-    <color name="info_text_color">#FF6200EE</color>
-    <color name="name_text_color">#FF6200EE</color>
+    <color name="score_hint_text_color">#000000</color>
     <color name="separator_color">#45494A</color>
     <color name="fab_text_color">#45494A</color>
-    <color name="fab_background_color">#FF6200EE</color>
+    <color name="fab_background_color">#4CAF50</color>
     <color name="title_text_color">#45494A</color>
     <color name="error_text_color">#45494A</color>
     <color name="stroke_color">#45494A</color>
@@ -30,5 +30,21 @@
     <color name="item_background_color2">#F3F3F3</color>
     <color name="winner_color">#FFF176</color>
     <color name="delete_color">#FF0000</color>
+    <color name="snackbar_background_color">#4CAF50</color>
+    <color name="snackbar_text_color">#FFFFFF</color>
+    <color name="toolbar_background_color">#FFFFFF</color>
+    <color name="toolbar_text_color">#000000</color>
+    <color name="cardview_background_color">#FFFFFF</color>
+    <color name="cardview_shadow_color">#000000</color>
+    <color name="alert_dialog_background_color">#000000</color>
+    <color name="alert_dialog_button_text_color">#FFFFFF</color>
+    <color name="text_input_layout_text_color">#45494A</color>
+    <color name="text_input_layout_hint_color">#45494A</color>
+    <color name="text_input_layout_box_stroke_color">#000000</color>
+    <color name="text_input_layout_counter_text_color">#000000</color>
+    <color name="cursor_color">#000000</color>
+    <color name="tablayout_text_color">#000000</color>
+    <color name="back_icon_color">#000000</color>
+    <color name="button_background_color">#E8E8E8</color>
 
 </resources>

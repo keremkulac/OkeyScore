@@ -1,6 +1,7 @@
 package com.keremkulac.okeyscore.ui.finishedPartnerGame
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -85,13 +86,18 @@ class FinishedPartnerGameFragment @Inject constructor(
                 val position = viewHolder.adapterPosition
                 val itemToDelete = finishedPartnerGameAdapter.finishedPartnerGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
-                findNavController().navigate(R.id.finishedGameViewFragment)
-                Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_LONG).setAction(
-                    "Geri al",View.OnClickListener {
+                val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("partner")
+                findNavController().navigate(action)
+                Log.d("TAF",findNavController().currentDestination.toString())
+                Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_LONG)
+                    .setAction("Geri al",View.OnClickListener {
                         viewModel.saveFinishedGame(itemToDelete!!)
-                        findNavController().navigate(R.id.finishedGameViewFragment)
-                    }
-                ).show()
+                        findNavController().navigate(action)
+                    })
+                    .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))
+                    .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
+                    .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
+                    .show()
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)

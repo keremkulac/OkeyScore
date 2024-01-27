@@ -20,8 +20,10 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/purple_700"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_background_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
@@ -42,11 +44,19 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
                     android:text="@string/game_detail"
-                    android:textColor="@color/button_text_color"
+                    android:textColor="@color/toolbar_text_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/toolbarAndTeamsSeparator"
+            style="@style/HorizontalSeparatorStyle"
+            android:layout_margin="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
         <TextView
             android:id="@+id/teamNames"

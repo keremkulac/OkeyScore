@@ -24,13 +24,13 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            app:tabTextColor="@color/button_text_color"
+            app:tabTextColor="@color/tablayout_text_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/toolbar_background_color"
             android:minHeight="?attr/actionBarSize"
-            app:tabIndicatorColor="@color/button_text_color"
-            app:tabSelectedTextColor="@color/button_text_color"
+            app:tabIndicatorColor="@color/tablayout_text_color"
+            app:tabSelectedTextColor="@color/tablayout_text_color"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

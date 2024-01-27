@@ -22,7 +22,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private var team1ScoreEditTextList = ArrayList<EditText>()
     private var team2ScoreEditTextList = ArrayList<EditText>()
     private var allTeamScoreEditTextList = ArrayList<ArrayList<EditText>>()
-    private var lineCount = 1
+    var lineCount = 1
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

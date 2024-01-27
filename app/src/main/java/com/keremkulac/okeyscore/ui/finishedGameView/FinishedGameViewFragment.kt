@@ -1,6 +1,7 @@
 package com.keremkulac.okeyscore.ui.finishedGameView
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -86,8 +87,9 @@ class FinishedGameViewFragment : Fragment() {
 
     private fun setViewPagerPage(){
         val argument = arguments?.getString("gameType")
+        Log.d("TAFASF",argument.toString())
         if(argument != null){
-            if(argument == "single" || binding.viewPager.currentItem == 0){
+            if(argument == "single"){
                 binding.viewPager.setCurrentItem(0, true)
 
             }else{

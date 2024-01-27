@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vertical_separator"
     android:layout_width="match_parent"
-    android:layout_height="1dp"
+    android:layout_height="0.5dp"
     android:layout_gravity="center"
     android:background="@color/separator_color" />
 
