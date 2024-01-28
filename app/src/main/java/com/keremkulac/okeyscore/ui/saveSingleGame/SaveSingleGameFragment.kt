@@ -57,7 +57,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private fun checkPlayerNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
-                requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz")
+                requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz.", R.drawable.ic_warning)
             }else{
                 binding.player1NameEntryHint.visibility = View.GONE
                 binding.player2NameEntryHint.visibility = View.GONE
@@ -89,7 +89,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         checkRoundScores(newLine)
         binding.newRound.setOnClickListener {
             if (viewModel.checkList(newLine)){
-                requireContext().toast("Lütfen $lineCount. turdaki tüm alanları doldurun.")
+                requireContext().toast("Lütfen $lineCount. turdaki tüm alanları doldurun.", R.drawable.ic_warning)
             }else{
                 lineCount++
                 newLine = createNewLine(inflater)

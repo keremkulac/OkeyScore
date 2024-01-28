@@ -1,7 +1,6 @@
 package com.keremkulac.okeyscore.ui.finishedPartnerGame
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -12,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.util.SwipeGesture
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameBinding
 import com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragmentDirections
+import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -74,6 +73,7 @@ class FinishedPartnerGameFragment @Inject constructor(
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.search(newText,finishedPartnerGameAdapter)
                 observeFilteredList()
+
                 return true
             }
         })
@@ -88,8 +88,9 @@ class FinishedPartnerGameFragment @Inject constructor(
                 viewModel.deleteFinishedGame(itemToDelete)
                 val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("partner")
                 findNavController().navigate(action)
-                Log.d("TAF",findNavController().currentDestination.toString())
-                Snackbar.make(binding.finishedGameRecyclerView,"Silindi",Snackbar.LENGTH_LONG)
+
+
+                Snackbar.make(binding.root,"Silindi",Snackbar.LENGTH_LONG)
                     .setAction("Geri al",View.OnClickListener {
                         viewModel.saveFinishedGame(itemToDelete!!)
                         findNavController().navigate(action)
@@ -98,6 +99,24 @@ class FinishedPartnerGameFragment @Inject constructor(
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .show()
+
+              /*
+                 val snackbar = Snackbar.make(binding.root,"",Snackbar.LENGTH_LONG)
+                val customSnackView: View = layoutInflater.inflate(R.layout.custom_snackbar, null)
+                val snackbarLayout = snackbar.view as SnackbarLayout
+
+                snackbar.view.setBackgroundColor(Color.TRANSPARENT)
+
+                snackbar.view.setPadding(0, 0, 0, 0)
+
+
+                val bGotoWebsite: Button = customSnackView.findViewById(R.id.gotoWebsiteButton)
+                bGotoWebsite.setOnClickListener {
+                }
+                snackbarLayout.addView(customSnackView, 0);
+
+                snackbar.show();
+               */
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)

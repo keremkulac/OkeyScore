@@ -45,7 +45,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private fun checkTeamNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
-                requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz")
+                requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz", R.drawable.ic_warning)
             }else{
                 binding.team1NameEntryHint.visibility = View.GONE
                 binding.team2NameEntryHint.visibility = View.GONE
@@ -84,7 +84,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         checkRoundScores(newLine)
         binding.newRound.setOnClickListener {
             if (viewModel.checkList(newLine)){
-                requireContext().toast("Lütfen $lineCount. turdaki tüm alanları doldurun.")
+                requireContext().toast("Lütfen $lineCount. turdaki tüm alanları doldurun.", R.drawable.ic_warning)
             }else{
                 lineCount++
                 newLine = createNewLine(inflater)

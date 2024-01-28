@@ -61,10 +61,10 @@
             android:contentDescription="@string/app_name"
             android:tooltipText="@string/partner"
             android:padding="4dp"
-            android:src="@drawable/ic_partner"
+            android:src="@drawable/ic_group"
             android:visibility="gone"
             app:backgroundTint="@color/fab_background_color"
-            app:tint="@color/button_text_color" />
+            app:tint="@color/fab_icon_color"/>
         <TextView
             android:visibility="gone"
             android:id="@+id/fabPartnerText"
@@ -85,7 +85,7 @@
             android:src="@drawable/ic_single_person"
             android:visibility="gone"
             app:backgroundTint="@color/fab_background_color"
-            app:tint="@color/button_text_color" />
+            app:tint="@color/fab_icon_color" />
 
         <TextView
             android:visibility="gone"
@@ -106,7 +106,7 @@
             android:padding="4dp"
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/fab_background_color"
-            app:tint="@color/button_text_color" />
+            app:tint="@color/fab_icon_color" />
 
     </LinearLayout>
 

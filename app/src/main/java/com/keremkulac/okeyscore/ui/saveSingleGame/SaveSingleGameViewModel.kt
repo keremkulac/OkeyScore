@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Info
@@ -35,7 +36,7 @@ class SaveSingleGameViewModel
             okeyScoreRepository.insertFinishedSingleGame(createFinishedSingleGame(playerNames,allPlayerScoreEditTextList))
             val action = SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
             navController.navigate(action)
-            context.toast("Kayıt başarılı.")
+            context.toast("Kayıt başarılı.", R.drawable.ic_successful)
         }
     }
 

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
@@ -38,7 +39,7 @@ class SavePartnerGameViewModel
             okeyScoreRepository.insertFinishedPartnerGame(createFinishedPartnerGame(playerNames,allPlayerScoreEditTextList))
             val action = SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
             navController.navigate(action)
-            context.toast("Kayıt başarılı.")
+            context.toast("Kayıt başarılı.", R.drawable.ic_successful)
         }
     }
 
