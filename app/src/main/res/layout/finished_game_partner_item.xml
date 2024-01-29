@@ -2,13 +2,15 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="10dp"
+    app:cardElevation="4dp"
     app:cardCornerRadius="20dp"
     android:outlineSpotShadowColor="@color/cardview_shadow_color"
     app:cardBackgroundColor="@color/cardview_background_color"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    tools:targetApi="p">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,7 +54,8 @@
             android:paddingStart="6dp"
             android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
 
 
         <TextView

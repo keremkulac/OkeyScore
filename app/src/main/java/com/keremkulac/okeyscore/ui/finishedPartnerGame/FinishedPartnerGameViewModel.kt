@@ -37,9 +37,9 @@ class FinishedPartnerGameViewModel
             val filteredList = _allFinishedGamesPartnerGame.value?.filter { finishedPartnerGame ->
                 finishedPartnerGame!!.team1!!.name.lowercase().contains(query) || finishedPartnerGame.team2!!.name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
             }
-            _filteredList.postValue(ArrayList(filteredList))
+            _filteredList.postValue(filteredList?.let { ArrayList(it) })
 
-            adapter.updateData(ArrayList(filteredList))
+            filteredList?.let { ArrayList(it) }?.let { adapter.updateData(it) }
         }
     }
 

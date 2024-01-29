@@ -23,7 +23,7 @@
     <color name="stroke_color">#45494A</color>
     <color name="main_background_color">#FFFFFF</color>
     <color name="button_text_color">#FFFFFF</color>
-    <color name="icon_color">#777E80</color>
+    <color name="icon_color">#646E72</color>
     <color name="searchview_text_color">#292F33</color>
     <color name="min_score_color">#8022D11B</color>
     <color name="max_score_color">#80FF0000</color>
@@ -47,5 +47,6 @@
     <color name="tablayout_text_color">#292F33</color>
     <color name="back_icon_color">#000000</color>
     <color name="button_background_color">#E8E8E8</color>
+
 
 </resources>

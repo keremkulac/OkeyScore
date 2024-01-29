@@ -48,8 +48,8 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
                         finishedSingleGame.player4!!.name.lowercase().contains(query) ||
                         finishedSingleGame.gameInfo.date.lowercase().contains(query)
             }
-            _filteredList.postValue(ArrayList(filteredList))
-            adapter.updateData(ArrayList(filteredList))
+            _filteredList.postValue(filteredList?.let { ArrayList(it) })
+            filteredList?.let { ArrayList(it) }?.let { adapter.updateData(it) }
         }
     }
 

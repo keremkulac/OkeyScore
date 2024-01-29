@@ -33,7 +33,7 @@
     <color name="delete_color">#FF0000</color>
     <color name="snackbar_background_color">#4CAF50</color>
     <color name="snackbar_text_color">#FFFFFF</color>
-    <color name="toolbar_background_color">#000000</color>
+    <color name="toolbar_background_color">#121212</color>
     <color name="cardview_background_color">#121212</color>
     <color name="cardview_shadow_color">#FFFFFF</color>
     <color name="toolbar_text_color">#FFFFFF</color>

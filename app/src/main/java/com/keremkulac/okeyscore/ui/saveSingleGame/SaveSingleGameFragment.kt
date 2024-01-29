@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -107,8 +108,9 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     }
 
     private fun createNewLine(inflater : LayoutInflater) : List<EditText>{
+        val nullParent : ViewGroup? = null
         val parentLayout = binding.scoreLayout
-        val includedLayout = inflater.inflate(R.layout.single_game_round_item, null)
+        val includedLayout = inflater.inflate(R.layout.single_game_round_item, nullParent)
         parentLayout.addView(includedLayout)
         createAllPlayerScoreEditTextList()
         val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
@@ -175,7 +177,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
             alertDialogBuilder.setTitle("İşlem Onayı")
             alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
-            alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
+            alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
                 viewModel.insertSingleGame(allPlayerScoreEditTextList,playerNames(),findNavController(),requireContext())
             }
             alertDialogBuilder.setNegativeButton("Hayır",null).setIcon(R.drawable.ic_add)

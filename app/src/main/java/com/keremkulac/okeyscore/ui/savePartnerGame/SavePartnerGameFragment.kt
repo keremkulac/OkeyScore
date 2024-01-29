@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,8 +23,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private var team1ScoreEditTextList = ArrayList<EditText>()
     private var team2ScoreEditTextList = ArrayList<EditText>()
     private var allTeamScoreEditTextList = ArrayList<ArrayList<EditText>>()
-    var lineCount = 1
-
+    private var lineCount = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -96,8 +96,9 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     }
 
     private fun createNewLine(inflater : LayoutInflater) : List<EditText>{
+        val nullParent : ViewGroup? = null
         val parentLayout = binding.scoreLayout
-        val includedLayout = inflater.inflate(R.layout.partner_game_round_item, null)
+        val includedLayout = inflater.inflate(R.layout.partner_game_round_item, nullParent)
         parentLayout.addView(includedLayout)
         createAllTeamScoreEditTextList()
         val editTextIds = listOf(R.id.team1Score, R.id.team2Score)
@@ -130,11 +131,11 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
             alertDialogBuilder.setTitle("İşlem Onayı")
             alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
-            alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
+            alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
                 viewModel.insertFinishedGame(allTeamScoreEditTextList,playerNames(),findNavController(),requireContext())
 
             }
-            alertDialogBuilder.setNegativeButton("Hayır") { dialog, which -> }
+            alertDialogBuilder.setNegativeButton("Hayır") { _, _ -> }
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }

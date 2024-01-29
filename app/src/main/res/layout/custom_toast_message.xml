@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
-        android:outlineSpotShadowColor="@color/cardview_shadow_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_gravity="bottom"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    android:outlineSpotShadowColor="@color/cardview_shadow_color"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:targetApi="p">
 
         <RelativeLayout
             android:layout_marginTop="16dp"
@@ -23,12 +24,13 @@
 
             <ImageView
                 android:id="@+id/toastMessageIcon"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_successful"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_successful"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/toastMessageText"
@@ -38,7 +40,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Başarılı" />
+                android:hint="@string/successful" />
         </RelativeLayout>
 </androidx.cardview.widget.CardView>
 

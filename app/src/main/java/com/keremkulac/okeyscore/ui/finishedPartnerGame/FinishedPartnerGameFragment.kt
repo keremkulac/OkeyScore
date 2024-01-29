@@ -73,17 +73,24 @@ class FinishedPartnerGameFragment @Inject constructor(
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.search(newText,finishedPartnerGameAdapter)
                 observeFilteredList()
-
+                if(newText.isNullOrEmpty()){
+                    observeAllFinishedGame()
+                }
                 return true
             }
         })
+
+        binding.searchView.setOnCloseListener {
+            observeAllFinishedGame()
+            false
+        }
     }
 
 
     private fun deleteItemDatabase(){
         val swipeGesture = object  : SwipeGesture(requireContext()){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
+                val position = viewHolder.absoluteAdapterPosition
                 val itemToDelete = finishedPartnerGameAdapter.finishedPartnerGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
                 val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("partner")
@@ -91,32 +98,14 @@ class FinishedPartnerGameFragment @Inject constructor(
 
 
                 Snackbar.make(binding.root,"Silindi",Snackbar.LENGTH_LONG)
-                    .setAction("Geri al",View.OnClickListener {
+                    .setAction("Geri al") {
                         viewModel.saveFinishedGame(itemToDelete!!)
                         findNavController().navigate(action)
-                    })
+                    }
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .show()
-
-              /*
-                 val snackbar = Snackbar.make(binding.root,"",Snackbar.LENGTH_LONG)
-                val customSnackView: View = layoutInflater.inflate(R.layout.custom_snackbar, null)
-                val snackbarLayout = snackbar.view as SnackbarLayout
-
-                snackbar.view.setBackgroundColor(Color.TRANSPARENT)
-
-                snackbar.view.setPadding(0, 0, 0, 0)
-
-
-                val bGotoWebsite: Button = customSnackView.findViewById(R.id.gotoWebsiteButton)
-                bGotoWebsite.setOnClickListener {
-                }
-                snackbarLayout.addView(customSnackView, 0);
-
-                snackbar.show();
-               */
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)

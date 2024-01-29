@@ -1,7 +1,6 @@
 package com.keremkulac.okeyscore.ui.finishedSingleGame
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView
@@ -36,9 +35,6 @@ class FinishedSingleGameFragment @Inject constructor(
         deleteItemDatabase()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     private fun setRecyclerView(){
         binding.finishedGameRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -60,7 +56,6 @@ class FinishedSingleGameFragment @Inject constructor(
 
     private fun observeFilteredList(){
         viewModel.filteredList.observe(viewLifecycleOwner){filteredList->
-            Log.d("TAG",filteredList.size.toString())
             if(filteredList.isNotEmpty()){
                 binding.recordNotFound.visibility = View.GONE
             }else{
@@ -72,17 +67,17 @@ class FinishedSingleGameFragment @Inject constructor(
     private fun deleteItemDatabase(){
         val swipeGesture = object  : SwipeGesture(requireContext()){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
+                val position = viewHolder.absoluteAdapterPosition
                 val itemToDelete = finishedSingleGameAdapter.finishedSingleGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
                 val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("single")
                 findNavController().navigate(action)
                 Snackbar.make(binding.finishedGameRecyclerView,"Silindi", Snackbar.LENGTH_LONG).setAction(
-                    "Geri al",View.OnClickListener {
-                        viewModel.saveSingleGame(itemToDelete!!)
-                        findNavController().navigate(action)
-                    }
-                )
+                    "Geri al"
+                ) {
+                    viewModel.saveSingleGame(itemToDelete!!)
+                    findNavController().navigate(action)
+                }
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
@@ -103,9 +98,19 @@ class FinishedSingleGameFragment @Inject constructor(
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.search(newText,finishedSingleGameAdapter)
                 observeFilteredList()
+                if(newText.isNullOrEmpty()){
+                    observeAllFinishedGame()
+                }
                 return true
             }
         })
+
+        binding.searchView.setOnCloseListener {
+            observeAllFinishedGame()
+            false
+        }
+
+        binding.searchView.clearAnimation()
     }
 
     private fun clickFinishedGame(){
