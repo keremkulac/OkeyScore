@@ -9,6 +9,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="parent"
+    android:layout_marginBottom="16dp"
     android:background="@color/main_background_color"
     tools:context=".ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
 
@@ -40,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="16dp"
                     android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
                     android:text="@string/game_detail"
                     android:textColor="@color/toolbar_text_color"
@@ -49,14 +50,14 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <View
-            android:id="@+id/toolbarAndPlayersSeparator"
-            style="@style/HorizontalSeparatorStyle"
-            android:layout_margin="0dp"
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/toolbarAndPlayersDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
-
+            app:layout_constraintTop_toBottomOf="@+id/toolBar"
+            android:layout_marginTop="0dp"
+            style="@style/DividerStyle"/>
 
         <TextView
             android:id="@+id/teamNames"
@@ -64,7 +65,7 @@
             android:text="@string/players"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarAndPlayersDivider" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -88,20 +89,15 @@
             app:layout_constraintTop_toBottomOf="@+id/player1Name" />
 
 
-        <View
-            android:id="@+id/playerRowSeparator"
-            style="@style/HorizontalSeparatorStyle"
-            android:layout_margin="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <View
-            android:id="@+id/playerColumnSeparator"
-            style="@style/VerticalSeparatorStyle"
-            app:layout_constraintBottom_toBottomOf="@+id/playerRowSeparator"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/playerColumnDivider"
+            android:layout_width="0.5dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/playerRowSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teamNames" />
+            app:layout_constraintTop_toBottomOf="@+id/teamNames"
+            style="@style/DividerStyle"/>
 
         <ImageView
             android:id="@+id/imageView2"
@@ -125,6 +121,13 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/player2Name" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/playerRowSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="26dp"
+            app:layout_constraintTop_toBottomOf="@+id/playerColumnDivider"
+            style="@style/DividerStyle"/>
 
         <ImageView
             android:id="@+id/imageView3"
@@ -142,13 +145,15 @@
             app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
 
-        <View
-            android:id="@+id/playerColumnSeparator2"
-            style="@style/VerticalSeparatorStyle"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/playerColumnDivider2"
+            android:layout_width="0.5dp"
+            android:layout_height="30dp"
             app:layout_constraintBottom_toTopOf="@+id/playerAndDetailRowSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
+            app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator"
+            style="@style/DividerStyle"/>
 
 
         <TextView
@@ -165,13 +170,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playerRowSeparator" />
 
-        <View
+        <com.google.android.material.divider.MaterialDivider
             android:id="@+id/playerAndDetailRowSeparator"
-            style="@style/HorizontalSeparatorStyle"
-            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
+            android:layout_marginTop="26dp"
+            app:layout_constraintTop_toBottomOf="@+id/playerColumnDivider2"
+            style="@style/DividerStyle"/>
         <TextView
             android:id="@+id/player4Name"
             style="@style/NameTextViewStyle"
@@ -203,27 +208,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/roundLabel" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/detailLabelRecyclerViewRowDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roundRecyclerView"
+            style="@style/DividerStyle"/>
+
         <TextView
             android:id="@+id/detailLabel"
             style="@style/TitleTextViewStyle"
             android:text="@string/detail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/roundRecyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/detailLabelRecyclerViewRowDivider" />
 
         <TextView
             android:id="@+id/gameDetail"
             style="@style/InfoTextViewStyle"
-            android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailLabel" />
 
         <TextView
             android:id="@+id/gameDate"
             style="@style/DateTextViewStyle"
-            android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gameDetail" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/gameDateDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gameDate"
+            style="@style/DividerStyle"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -5,6 +5,8 @@
         <item name="colorPrimaryDark">@color/primary_color</item>
         <item name="android:colorPrimaryDark">@color/primary_color</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorControlActivated">@color/cursor_color</item>
+
     </style>
 
 </resources>

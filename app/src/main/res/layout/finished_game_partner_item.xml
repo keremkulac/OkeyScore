@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-
         <ImageView
             android:id="@+id/winnerTextViewImageView1"
             style="@style/TeamImageViewStyle"
@@ -32,7 +31,6 @@
             app:layout_constraintStart_toEndOf="@+id/winnerTextViewImageView1"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/team1TotalScore"
             style="@style/ScoreTextViewStyle"
@@ -40,13 +38,15 @@
             app:layout_constraintStart_toEndOf="@+id/winnerTextViewImageView1"
             app:layout_constraintTop_toBottomOf="@+id/team1Name" />
 
-        <View
-            android:id="@+id/partnerColumnSeparator"
-            style="@style/VerticalSeparatorStyle"
-            app:layout_constraintBottom_toTopOf="@+id/partnerAndDetailRowSeparator"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/partnerColumnDivider"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/partnerAndDetailRowDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/DividerStyle"/>
 
         <ImageView
             android:id="@+id/winnerTextViewImageView2"
@@ -71,23 +71,27 @@
             app:layout_constraintEnd_toStartOf="@+id/winnerTextViewImageView2"
             app:layout_constraintTop_toBottomOf="@+id/team2Name" />
 
-
-        <View
-            android:id="@+id/partnerAndDetailRowSeparator"
-            style="@style/HorizontalSeparatorStyle"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/partnerAndDetailRowDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerColumnSeparator" />
+            app:layout_constraintTop_toBottomOf="@+id/partnerColumnDivider"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            style="@style/DividerStyle"/>
 
         <TextView
             android:id="@+id/gameInfo"
             style="@style/InfoTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/partnerAndDetailRowSeparator" />
+            app:layout_constraintTop_toTopOf="@+id/partnerAndDetailRowDivider" />
 
         <TextView
             android:id="@+id/gameDate"
             style="@style/DateTextViewStyle"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

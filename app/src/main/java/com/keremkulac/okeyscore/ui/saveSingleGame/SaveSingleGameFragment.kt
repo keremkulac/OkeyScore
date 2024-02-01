@@ -72,10 +72,10 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 binding.player2Name.visibility = View.VISIBLE
                 binding.player3Name.visibility = View.VISIBLE
                 binding.player4Name.visibility = View.VISIBLE
-                binding.scoreColumnSeparator.visibility = View.VISIBLE
-                binding.scoreColumnSeparator2.visibility = View.VISIBLE
-                binding.scoreColumnSeparator3.visibility = View.VISIBLE
-                binding.roundsAndTitleSeparator.visibility = View.INVISIBLE
+                binding.scoreColumnDivider.visibility = View.VISIBLE
+                binding.scoreColumnDivider2.visibility = View.VISIBLE
+                binding.scoreColumnDivider3.visibility = View.VISIBLE
+                binding.roundsAndTitleDivider.visibility = View.VISIBLE
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
@@ -180,7 +180,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
                 viewModel.insertSingleGame(allPlayerScoreEditTextList,playerNames(),findNavController(),requireContext())
             }
-            alertDialogBuilder.setNegativeButton("Hayır",null).setIcon(R.drawable.ic_add)
+            alertDialogBuilder.setNegativeButton("Hayır",null)
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }

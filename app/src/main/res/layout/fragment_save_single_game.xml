@@ -42,6 +42,15 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/toolbarDivider"
+            style="@style/DividerStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/player1NameEntryHint"
@@ -56,7 +65,7 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar">
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDivider">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/player1NameEntry"
@@ -155,8 +164,10 @@
             android:id="@+id/player1Name"
             style="@style/NameTextInputLayoutStyle"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/scoreColumnSeparator"
+            app:boxStrokeWidth="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/scoreColumnDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
 
@@ -166,23 +177,26 @@
                 android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <View
-            android:id="@+id/scoreColumnSeparator"
-            style="@style/VerticalSeparatorStyle"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/scoreColumnDivider"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
             app:layout_constraintEnd_toStartOf="@id/player2Name"
             android:layout_margin="8dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/roundsAndTitleDivider"
             app:layout_constraintStart_toEndOf="@id/player1Name"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle" />
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/player2Name"
             style="@style/NameTextInputLayoutStyle"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/scoreColumnSeparator2"
-            app:layout_constraintStart_toEndOf="@+id/scoreColumnSeparator"
+            android:layout_marginTop="16dp"
+            app:boxStrokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="@id/scoreColumnDivider2"
+            app:layout_constraintStart_toEndOf="@+id/scoreColumnDivider"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -191,21 +205,28 @@
                 android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <View
-            android:id="@+id/scoreColumnSeparator2"
-            style="@style/VerticalSeparatorStyle"
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/scoreColumnDivider2"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle"
+            app:layout_constraintBottom_toTopOf="@+id/roundsAndTitleDivider"
             app:layout_constraintEnd_toStartOf="@id/player3Name"
             app:layout_constraintStart_toEndOf="@id/player2Name"
-            android:layout_margin="8dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/player3Name"
             style="@style/NameTextInputLayoutStyle"
             android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@id/scoreColumnSeparator3"
-            app:layout_constraintStart_toEndOf="@id/scoreColumnSeparator2"
+            android:layout_marginTop="16dp"
+            app:boxStrokeWidth="0dp"
+            app:layout_constraintEnd_toStartOf="@id/scoreColumnDivider3"
+            app:layout_constraintStart_toEndOf="@id/scoreColumnDivider2"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -214,23 +235,27 @@
                 android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <View
-            android:id="@+id/scoreColumnSeparator3"
-            style="@style/VerticalSeparatorStyle"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/scoreColumnDivider3"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/roundsAndTitleDivider"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle"
             app:layout_constraintEnd_toStartOf="@id/player4Name"
-            app:layout_constraintStart_toEndOf="@id/player3Name"
-            android:layout_margin="8dp"/>
-
+            app:layout_constraintStart_toEndOf="@id/player3Name" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/player4Name"
             style="@style/NameTextInputLayoutStyle"
             android:visibility="invisible"
+            android:layout_marginTop="16dp"
+            app:boxStrokeWidth="0dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/scoreColumnSeparator3"
+            app:layout_constraintStart_toEndOf="@+id/scoreColumnDivider3"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -239,22 +264,21 @@
                 android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <View
-            android:id="@+id/roundsAndTitleSeparator"
-            style="@style/HorizontalSeparatorStyle"
-            android:visibility="invisible"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/roundsAndTitleDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/player1Name"/>
+            app:layout_constraintTop_toBottomOf="@+id/player1Name"
+            android:visibility="invisible"
+            android:layout_marginTop="16dp"
+            style="@style/DividerStyle"/>
 
         <TextView
             android:id="@+id/roundScoreTitle"
             style="@style/TitleTextViewStyle"
             android:text="@string/teamScoresTitle"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/roundsAndTitleSeparator"
+            app:layout_constraintTop_toBottomOf="@id/roundsAndTitleDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -262,9 +286,10 @@
             android:id="@+id/scoreLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/roundScoreTitle"

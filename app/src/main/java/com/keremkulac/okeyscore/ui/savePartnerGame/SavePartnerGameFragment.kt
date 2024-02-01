@@ -57,8 +57,8 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                 binding.scoreLayout.visibility = View.VISIBLE
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
-                binding.roundsAndTitleSeparator.visibility = View.INVISIBLE
-                binding.scoreColumnSeparator.visibility = View.VISIBLE
+                binding.roundsAndTitleDivider.visibility = View.VISIBLE
+                binding.scoreColumnDivider.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
                 calculate()
                 setPlayerNames()
