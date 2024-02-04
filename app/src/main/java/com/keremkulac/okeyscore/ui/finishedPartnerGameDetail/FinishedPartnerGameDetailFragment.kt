@@ -1,8 +1,10 @@
 package com.keremkulac.okeyscore.ui.finishedPartnerGameDetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,10 +46,19 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
             }
         }
     }
+
+    private fun createTeamNameTextViewList() : List<TextView>{
+        return listOf(binding.team1Name,binding.team2Name)
+    }
     private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame?){
         finishedPartnerGame?.let {
             binding.team1Name.text = (finishedPartnerGame.team1!!.name)
             binding.team2Name.text = (finishedPartnerGame.team2!!.name)
+            for (textView in createTeamNameTextViewList()){
+                if(textView.text == viewModel.sortByMin(finishedPartnerGame)[0].name){
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(requireContext(),R.drawable.ic_trophy),null)
+                }
+            }
             binding.team1TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team1.totalScore)
             binding.team2TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team2.totalScore)
             binding.gameDate.text = finishedPartnerGame.gameInfo.date
@@ -55,6 +66,21 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
             binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            setScoreDifferences(finishedPartnerGame)
+        }
+    }
+
+    private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame?){
+        var isClicked = true
+        binding.expandableTextView.text = viewModel.scoreDifferences(finishedPartnerGame)
+        binding.gameDetail.setOnClickListener {
+            if(isClicked){
+                binding.expandableTextView.visibility = View.VISIBLE
+                isClicked = false
+            }else{
+                binding.expandableTextView.visibility = View.GONE
+                isClicked = true
+            }
         }
     }
 }

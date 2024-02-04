@@ -1,6 +1,5 @@
 package com.keremkulac.okeyscore.ui.finishedPartnerGameDetail
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,15 +20,18 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
         return ViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        finishedPartnerGame?.let {
+        finishedPartnerGame?.let { finishedPartnerGame ->
             holder.team1ScoreHint.hint = ("${position+1}. tur ")
             holder.team2ScoreHint.hint = ("${position+1}. tur ")
-            holder.team1Score.setText(it.team1!!.allScores!![position])
-            holder.team2Score.setText(it.team2!!.allScores!![position])
+            holder.team1Score.setText(finishedPartnerGame.team1!!.allScores!![position])
+            holder.team2Score.setText(finishedPartnerGame.team2!!.allScores!![position])
             holder.team1Score.isFocusable = false
             holder.team2Score.isFocusable = false
+            if(position % 2 == 0){
+                holder.team1ScoreHint.setBackgroundColor(holder.team1Score.context.getColor(R.color.line_color_dark))
+                holder.team2ScoreHint.setBackgroundColor(holder.team2Score.context.getColor(R.color.line_color_dark))
+            }
         }
     }
 

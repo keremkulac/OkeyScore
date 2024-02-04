@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
+import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,4 +35,24 @@ class FinishedPartnerGameDetailViewModel @Inject constructor(
         return numberOfGames
     }
 
+    fun sortByMin(finishedPartnerGame: FinishedPartnerGame) : List<Player>{
+        val players = listOf(
+            finishedPartnerGame.team1!!,
+            finishedPartnerGame.team2!!)
+        return players.sortedBy { it.totalScore.toInt() }
+    }
+
+    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame?) : String{
+        var result = ""
+        finishedPartnerGame?.let {
+            result = if(finishedPartnerGame.team1!!.totalScore > finishedPartnerGame.team2!!.totalScore){
+                "${finishedPartnerGame.team2.name} ile ${finishedPartnerGame.team1.name} skor farkı " +
+                        " ${(finishedPartnerGame.team2.totalScore.toInt() - finishedPartnerGame.team1.totalScore.toInt())}"
+            }else{
+                "${finishedPartnerGame.team1.name} ile ${finishedPartnerGame.team2.name} skor farkı " +
+                        " ${(finishedPartnerGame.team1.totalScore.toInt() - finishedPartnerGame.team2.totalScore.toInt())}"
+            }
+        }
+        return result
+    }
 }

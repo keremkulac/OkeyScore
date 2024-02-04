@@ -60,7 +60,6 @@ class FinishedPartnerGameFragment @Inject constructor(
             }else{
                 binding.recordNotFound.visibility = View.VISIBLE
             }
-
         }
     }
 
@@ -69,7 +68,6 @@ class FinishedPartnerGameFragment @Inject constructor(
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.search(newText,finishedPartnerGameAdapter)
                 observeFilteredList()

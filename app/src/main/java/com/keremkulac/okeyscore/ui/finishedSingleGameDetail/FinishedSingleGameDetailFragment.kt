@@ -3,6 +3,8 @@ package com.keremkulac.okeyscore.ui.finishedSingleGameDetail
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,12 +34,22 @@ class FinishedSingleGameDetailFragment @Inject constructor(
             findNavController().navigate(action)
         }
     }
-    private fun setRecyclerView(finishedSingleGame: FinishedSingleGame?){
-        finishedSingleGame?.let {
+
+    private fun createPlayerNameTextViewList() : List<TextView>{
+        return listOf(binding.player1Name,binding.player2Name,binding.player3Name,binding.player4Name)
+    }
+
+    private fun setRecyclerView(finishedSingleGame: FinishedSingleGame){
             binding.player1Name.text = finishedSingleGame.player1!!.name
             binding.player2Name.text = finishedSingleGame.player2!!.name
             binding.player3Name.text = finishedSingleGame.player3!!.name
             binding.player4Name.text = finishedSingleGame.player4!!.name
+            for(textView in createPlayerNameTextViewList()){
+                if(textView.text ==  viewModel.sortByMin(finishedSingleGame)[0].name){
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                        ContextCompat.getDrawable(requireContext(),R.drawable.ic_trophy),null)
+                }
+            }
             binding.player1TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player1.totalScore)
             binding.player2TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player2.totalScore)
             binding.player3TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player3.totalScore)
@@ -47,8 +59,7 @@ class FinishedSingleGameDetailFragment @Inject constructor(
             finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
             binding.roundRecyclerView.adapter = finishedSingleGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        }
-
+            setScoreDifferences(finishedSingleGame)
     }
 
     private fun getAndSetFinishedGame(){
@@ -57,6 +68,20 @@ class FinishedSingleGameDetailFragment @Inject constructor(
             it?.let {
                 setRecyclerView(it)
                 finishedSingleGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
+            }
+        }
+    }
+
+    private fun setScoreDifferences(finishedSingleGame: FinishedSingleGame){
+        var isClicked = true
+        binding.expandableTextView.text = viewModel.scoreDifferences(finishedSingleGame)
+        binding.gameDetail.setOnClickListener {
+            if(isClicked){
+                binding.expandableTextView.visibility = View.VISIBLE
+                isClicked = false
+            }else{
+                binding.expandableTextView.visibility = View.GONE
+                isClicked = true
             }
         }
     }

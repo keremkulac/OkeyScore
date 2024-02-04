@@ -1,6 +1,5 @@
 package com.keremkulac.okeyscore.ui.finishedPartnerGame
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,7 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
     }
 
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
-        holder.bind(finishedPartnerGameLists[position],holder.itemView.context)
+        holder.bind(finishedPartnerGameLists[position])
         holder.itemView.setOnClickListener {
             clickListener?.invoke(finishedPartnerGameLists[position]!!)
         }
@@ -35,13 +34,11 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
     private val diffUtil = object : DiffUtil.ItemCallback<FinishedPartnerGame?>(){
         override fun areItemsTheSame(oldItem: FinishedPartnerGame, newItem: FinishedPartnerGame): Boolean {
             return oldItem == newItem
-
         }
 
         override fun areContentsTheSame(oldItem: FinishedPartnerGame, newItem: FinishedPartnerGame): Boolean {
             return oldItem == newItem
         }
-
     }
 
     private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
@@ -53,19 +50,10 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
         }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val team1Name =  itemView.findViewById<TextView>(R.id.team1Name)
-        private val team2Name =  itemView.findViewById<TextView>(R.id.team2Name)
-        private val team1TotalScore =  itemView.findViewById<TextView>(R.id.team1TotalScore)
-        private val team2TotalScore =  itemView.findViewById<TextView>(R.id.team2TotalScore)
         private val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
-
-        fun bind(finishedPartnerGame: FinishedPartnerGame?,context: Context) {
+        fun bind(finishedPartnerGame: FinishedPartnerGame?) {
             finishedPartnerGame?.let {
-                team1Name.text = finishedPartnerGame.team1!!.name
-                team2Name.text = finishedPartnerGame.team2!!.name
-                team1TotalScore.text = context.getString(R.string.total_score_text, finishedPartnerGame.team1.totalScore)
-                team2TotalScore.text = context.getString(R.string.total_score_text, finishedPartnerGame.team2.totalScore)
                 gameInfo.text = finishedPartnerGame.gameInfo.gameInfo
                 date.text = finishedPartnerGame.gameInfo.date
             }

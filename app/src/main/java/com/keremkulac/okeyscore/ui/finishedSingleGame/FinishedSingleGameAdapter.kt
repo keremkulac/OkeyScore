@@ -1,6 +1,5 @@
 package com.keremkulac.okeyscore.ui.finishedSingleGame
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,7 @@ class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<Fi
     }
 
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
-        holder.bind(finishedSingleGameLists[position],holder.itemView.context)
+        holder.bind(finishedSingleGameLists[position])
         holder.itemView.setOnClickListener {
             clickListener?.invoke(finishedSingleGameLists[position]!!)
         }
@@ -53,29 +52,12 @@ class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<Fi
         }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val player1Name =  itemView.findViewById<TextView>(R.id.player1Name)
-        private val player2Name =  itemView.findViewById<TextView>(R.id.player2Name)
-        private val player3Name =  itemView.findViewById<TextView>(R.id.player3Name)
-        private val player4Name =  itemView.findViewById<TextView>(R.id.player4Name)
-        private val player1TotalScore =  itemView.findViewById<TextView>(R.id.player1TotalScore)
-        private val player2TotalScore =  itemView.findViewById<TextView>(R.id.player2TotalScore)
-        private val player3TotalScore =  itemView.findViewById<TextView>(R.id.player3TotalScore)
-        private val player4TotalScore =  itemView.findViewById<TextView>(R.id.player4TotalScore)
         private val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
-        fun bind(finishedSingleGame: FinishedSingleGame?,context: Context) {
+        fun bind(finishedSingleGame: FinishedSingleGame?) {
             finishedSingleGame?.let {
-                player1Name.text = finishedSingleGame.player1!!.name
-                player2Name.text = finishedSingleGame.player2!!.name
-                player3Name.text = finishedSingleGame.player3!!.name
-                player4Name.text = finishedSingleGame.player4!!.name
-                player1TotalScore.text = context.getString(R.string.total_score_text,finishedSingleGame.player1.totalScore)
-                player2TotalScore.text = context.getString(R.string.total_score_text,finishedSingleGame.player2.totalScore)
-                player3TotalScore.text = context.getString(R.string.total_score_text,finishedSingleGame.player3.totalScore)
-                player4TotalScore.text = context.getString(R.string.total_score_text,finishedSingleGame.player4.totalScore)
-                gameInfo.text = finishedSingleGame.gameInfo.gameInfo
+              gameInfo.text = finishedSingleGame.gameInfo.gameInfo
                 date.text = finishedSingleGame.gameInfo.date
             }
         }

@@ -50,5 +50,9 @@
     <color name="divider_color">#45494A</color>
     <color name="searchview_border_color">#45494A</color>
     <color name="tab_indicator_color">#4CAF50</color>
+    <color name="line_color_dark">#F1F1F1</color>
+    <color name="line_color_light">#FFFFFF</color>
+    <color name="header_text_color">#FFFFFF</color>
+    <color name="header_background_color">#45494A</color>
 
 </resources>

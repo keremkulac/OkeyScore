@@ -38,7 +38,6 @@ class FinishedPartnerGameViewModel
                 finishedPartnerGame!!.team1!!.name.lowercase().contains(query) || finishedPartnerGame.team2!!.name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
             }
             _filteredList.postValue(filteredList?.let { ArrayList(it) })
-
             filteredList?.let { ArrayList(it) }?.let { adapter.updateData(it) }
         }
     }

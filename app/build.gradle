@@ -75,5 +75,6 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.2"
     implementation "androidx.room:room-ktx:2.5.2"
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
+    implementation 'at.blogc:expandabletextview:1.0.5'
 
 }

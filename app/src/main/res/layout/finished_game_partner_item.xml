@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="4dp"
     app:cardCornerRadius="20dp"
+    android:id="@+id/cardView"
     android:outlineSpotShadowColor="@color/cardview_shadow_color"
     app:cardBackgroundColor="@color/cardview_background_color"
     android:layout_margin="8dp"
@@ -17,86 +18,20 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/winnerTextViewImageView1"
-            style="@style/TeamImageViewStyle"
-            android:contentDescription="@string/todo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/team1Name"
-            style="@style/NameTextViewStyle"
-            android:layout_marginStart="6dp"
-            app:layout_constraintStart_toEndOf="@+id/winnerTextViewImageView1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/team1TotalScore"
-            style="@style/ScoreTextViewStyle"
-            android:layout_marginStart="6dp"
-            app:layout_constraintStart_toEndOf="@+id/winnerTextViewImageView1"
-            app:layout_constraintTop_toBottomOf="@+id/team1Name" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/partnerColumnDivider"
-            android:layout_width="0.3dp"
-            android:layout_height="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/partnerAndDetailRowDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/DividerStyle"/>
-
-        <ImageView
-            android:id="@+id/winnerTextViewImageView2"
-            style="@style/TeamImageViewStyle"
-            android:paddingStart="6dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
-
-
-        <TextView
-            android:id="@+id/team2Name"
-            style="@style/NameTextViewStyle"
-            app:layout_constraintEnd_toStartOf="@+id/winnerTextViewImageView2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/team2TotalScore"
-            style="@style/ScoreTextViewStyle"
-            app:layout_constraintEnd_toStartOf="@+id/winnerTextViewImageView2"
-            app:layout_constraintTop_toBottomOf="@+id/team2Name" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/partnerAndDetailRowDivider"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerColumnDivider"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            style="@style/DividerStyle"/>
-
         <TextView
             android:id="@+id/gameInfo"
             style="@style/InfoTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/partnerAndDetailRowDivider" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/gameDate"
             style="@style/DateTextViewStyle"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gameInfo" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

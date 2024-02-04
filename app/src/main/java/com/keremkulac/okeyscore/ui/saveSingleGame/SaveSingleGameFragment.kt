@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
@@ -75,7 +76,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 binding.scoreColumnDivider.visibility = View.VISIBLE
                 binding.scoreColumnDivider2.visibility = View.VISIBLE
                 binding.scoreColumnDivider3.visibility = View.VISIBLE
-                binding.roundsAndTitleDivider.visibility = View.VISIBLE
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
@@ -112,6 +112,9 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         val parentLayout = binding.scoreLayout
         val includedLayout = inflater.inflate(R.layout.single_game_round_item, nullParent)
         parentLayout.addView(includedLayout)
+        if(lineCount % 2 != 0){
+            includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
+        }
         createAllPlayerScoreEditTextList()
         val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
         val hintIds = listOf(R.id.player1ScoreHint, R.id.player2ScoreHint, R.id.player3ScoreHint, R.id.player4ScoreHint)

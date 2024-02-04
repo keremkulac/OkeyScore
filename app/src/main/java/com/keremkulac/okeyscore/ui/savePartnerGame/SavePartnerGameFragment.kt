@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
@@ -57,7 +58,6 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                 binding.scoreLayout.visibility = View.VISIBLE
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
-                binding.roundsAndTitleDivider.visibility = View.VISIBLE
                 binding.scoreColumnDivider.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
                 calculate()
@@ -100,6 +100,9 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         val parentLayout = binding.scoreLayout
         val includedLayout = inflater.inflate(R.layout.partner_game_round_item, nullParent)
         parentLayout.addView(includedLayout)
+        if(lineCount % 2 != 0){
+            includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
+        }
         createAllTeamScoreEditTextList()
         val editTextIds = listOf(R.id.team1Score, R.id.team2Score)
         val hintIds = listOf(R.id.team1ScoreHint, R.id.team2ScoreHint)

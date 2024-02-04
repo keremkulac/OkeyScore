@@ -29,6 +29,12 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
             holder.player2Score.setText(it.player2!!.allScores!![position])
             holder.player3Score.setText(it.player3!!.allScores!![position])
             holder.player4Score.setText(it.player4!!.allScores!![position])
+            if(position % 2 == 0){
+                holder.player1ScoreHint.setBackgroundColor(holder.player1Score.context.getColor(R.color.line_color_dark))
+                holder.player2ScoreHint.setBackgroundColor(holder.player2Score.context.getColor(R.color.line_color_dark))
+                holder.player3ScoreHint.setBackgroundColor(holder.player3Score.context.getColor(R.color.line_color_dark))
+                holder.player4ScoreHint.setBackgroundColor(holder.player4Score.context.getColor(R.color.line_color_dark))
+            }
             for (editText in listOf(holder.player1Score, holder.player2Score, holder.player3Score, holder.player4Score)) {
                 editText.isFocusable = false
             }

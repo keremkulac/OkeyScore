@@ -72,24 +72,43 @@
     </style>
 
     <style name="NameTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/player</item>
         <item name="android:textColor">@color/name_text_color</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:layout_marginTop">13dp</item>
 
     </style>
 
+
     <style name="ScoreTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">@string/score</item>
-        <item name="android:textColor">@color/score_text_color</item>
-        <item name="android:textSize">11sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:layout_marginTop">1.5dp</item>
+        <item name="android:text">@string/total_score</item>
+        <item name="android:textColor">@color/name_text_color</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textSize">14sp</item>
+
+    </style>
+    <style name="HeaderTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textColor">@color/header_text_color</item>
+        <item name="android:background">@color/header_background_color</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">8dp</item>
+
 
     </style>
 
@@ -119,7 +138,7 @@
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingTop">25dp</item>
         <item name="android:textStyle">normal</item>
 
     </style>
@@ -171,33 +190,12 @@
         <item name="android:layout_margin">16dp</item>
     </style>
 
-    <style name="VerticalSeparatorStyle">
-        <item name="android:background">@color/separator_color</item>
-        <item name="android:layout_width">0.5dp</item>
-        <item name="android:layout_height">30dp</item>
-        <item name="android:layout_margin">16dp</item>
-
-    </style>
-
-    <style name="HorizontalSeparatorStyle">
-        <item name="android:background">@color/separator_color</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-
-        <item name="android:gravity">center</item>
-    </style>
-
-
     <style name="DividerStyle" parent="Widget.MaterialComponents.MaterialDivider">
         <item name="android:background">@color/separator_color</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">16dp</item>
-        <item name="dividerThickness">0.3dp</item>
+        <item name="dividerThickness">0.1dp</item>
         <item name="dividerColor">@color/divider_color</item>
 
     </style>

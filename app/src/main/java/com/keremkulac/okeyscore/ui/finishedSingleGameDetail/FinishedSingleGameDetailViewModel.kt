@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedSingleGame
+import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,4 +35,27 @@ class FinishedSingleGameDetailViewModel
         }
         return numberOfGames
     }
+
+
+     fun sortByMin(finishedSingleGame: FinishedSingleGame) : List<Player>{
+        val players = listOf(
+            finishedSingleGame.player1!!,
+            finishedSingleGame.player2!!,
+            finishedSingleGame.player3!!,
+            finishedSingleGame.player4!!)
+        return players.sortedBy { it.totalScore.toInt() }
+    }
+
+    fun scoreDifferences(finishedSingleGame: FinishedSingleGame) : String {
+        val minScorePlayer = sortByMin(finishedSingleGame)[0]
+        var result = ""
+        for(player in sortByMin(finishedSingleGame)){
+            if(minScorePlayer.totalScore.toInt() != player.totalScore.toInt()){
+                result += "${minScorePlayer.name} ile ${player.name} skor farkı " +"${player.totalScore.toInt()-minScorePlayer.totalScore.toInt()}\n"
+            }
+        }
+        return result
+    }
 }
+
+
