@@ -13,12 +13,12 @@ import javax.inject.Inject
 @HiltViewModel
 class FinishedPartnerGameViewModel
 @Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel() {
-    private val _allFinishedGamesPartnerGame = MutableLiveData<ArrayList<FinishedPartnerGame?>>()
-    val finishedPartnerGame: LiveData<ArrayList<FinishedPartnerGame?>>
+    private val _allFinishedGamesPartnerGame = MutableLiveData<ArrayList<FinishedPartnerGame>>()
+    val finishedPartnerGame: LiveData<ArrayList<FinishedPartnerGame>>
         get() = _allFinishedGamesPartnerGame
 
-    private val _filteredList = MutableLiveData<ArrayList<FinishedPartnerGame?>>()
-    val filteredList: LiveData<ArrayList<FinishedPartnerGame?>>
+    private val _filteredList = MutableLiveData<ArrayList<FinishedPartnerGame>>()
+    val filteredList: LiveData<ArrayList<FinishedPartnerGame>>
         get() = _filteredList
     init {
         getFinishedGames()
@@ -32,17 +32,18 @@ class FinishedPartnerGameViewModel
     fun search(newText : String?,adapter: FinishedPartnerGameAdapter){
         val query = newText?.lowercase()
         if (query.isNullOrEmpty()) {
+
             _allFinishedGamesPartnerGame.value?.let { adapter.updateData(it) }
         } else {
             val filteredList = _allFinishedGamesPartnerGame.value?.filter { finishedPartnerGame ->
-                finishedPartnerGame!!.team1!!.name.lowercase().contains(query) || finishedPartnerGame.team2!!.name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
+                finishedPartnerGame.team1!!.name.lowercase().contains(query) || finishedPartnerGame.team2!!.name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
             }
             _filteredList.postValue(filteredList?.let { ArrayList(it) })
             filteredList?.let { ArrayList(it) }?.let { adapter.updateData(it) }
         }
     }
 
-    fun deleteFinishedGame(finishedPartnerGame: FinishedPartnerGame?){
+    fun deleteFinishedGame(finishedPartnerGame: FinishedPartnerGame){
         viewModelScope.launch {
             okeyScoreRepository.deleteFinishedPartnerGame(finishedPartnerGame)
         }

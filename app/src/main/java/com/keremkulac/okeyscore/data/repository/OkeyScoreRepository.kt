@@ -1,16 +1,13 @@
 package com.keremkulac.okeyscore.data.repository
 
-import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import javax.inject.Inject
 
-class OkeyScoreRepository @Inject constructor(private val okeyScoreDao: OkeyScoreDao,
-                                              private val sharedPreferencesManager: SharedPreferencesManager) {
+class OkeyScoreRepository @Inject constructor(private val okeyScoreDao: OkeyScoreDao) {
 
     suspend fun insertFinishedPartnerGame(finishedPartnerGame: FinishedPartnerGame) {
-        sharedPreferencesManager.clearStoredData()
         okeyScoreDao.insertFinishedPartnerGame(finishedPartnerGame)
     }
 
@@ -18,7 +15,7 @@ class OkeyScoreRepository @Inject constructor(private val okeyScoreDao: OkeyScor
 
     suspend fun getAllFinishedPartnerGames() = okeyScoreDao.getAllFinishedPartnerGames()
 
-    suspend fun deleteFinishedPartnerGame(finishedPartnerGame: FinishedPartnerGame?) = okeyScoreDao.deleteFinishedPartnerGame(finishedPartnerGame)
+    suspend fun deleteFinishedPartnerGame(finishedPartnerGame: FinishedPartnerGame) = okeyScoreDao.deleteFinishedPartnerGame(finishedPartnerGame)
 
     suspend fun insertFinishedSingleGame(finishedSingleGame: FinishedSingleGame) = okeyScoreDao.insertFinishedSingleGame(finishedSingleGame)
 
@@ -26,6 +23,6 @@ class OkeyScoreRepository @Inject constructor(private val okeyScoreDao: OkeyScor
 
     suspend fun getFinishedSingleGame(id : Int) = okeyScoreDao.getFinishedSingleGameById(id)
 
-    suspend fun deleteFinishedSingleGame(finishedSingleGame: FinishedSingleGame?) = okeyScoreDao.deleteFinishedSingleGame(finishedSingleGame)
+    suspend fun deleteFinishedSingleGame(finishedSingleGame: FinishedSingleGame) = okeyScoreDao.deleteFinishedSingleGame(finishedSingleGame)
 
 }

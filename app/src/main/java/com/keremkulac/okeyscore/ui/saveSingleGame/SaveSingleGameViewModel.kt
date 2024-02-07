@@ -30,12 +30,12 @@ class SaveSingleGameViewModel
         allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
         playerNames: List<EditText>,navController: NavController,
         context: Context){
-
         viewModelScope.launch {
-
-            okeyScoreRepository.insertFinishedSingleGame(createFinishedSingleGame(playerNames,allPlayerScoreEditTextList))
-            val action = SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
-            navController.navigate(action)
+            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList)
+            okeyScoreRepository.insertFinishedSingleGame(finishedSingleGame)
+            navController.navigate(
+                SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
+            )
             context.toast("Kayıt başarılı.", R.drawable.ic_successful)
         }
     }

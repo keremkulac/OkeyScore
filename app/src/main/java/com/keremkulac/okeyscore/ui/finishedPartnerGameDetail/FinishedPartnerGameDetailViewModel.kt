@@ -42,17 +42,14 @@ class FinishedPartnerGameDetailViewModel @Inject constructor(
         return players.sortedBy { it.totalScore.toInt() }
     }
 
-    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame?) : String{
-        var result = ""
-        finishedPartnerGame?.let {
-            result = if(finishedPartnerGame.team1!!.totalScore > finishedPartnerGame.team2!!.totalScore){
+    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame) : String{
+        val result = if(finishedPartnerGame.team1!!.totalScore > finishedPartnerGame.team2!!.totalScore){
                 "${finishedPartnerGame.team2.name} ile ${finishedPartnerGame.team1.name} skor farkı " +
-                        " ${(finishedPartnerGame.team2.totalScore.toInt() - finishedPartnerGame.team1.totalScore.toInt())}"
+                        " ${(finishedPartnerGame.team1.totalScore.toInt() - finishedPartnerGame.team2.totalScore.toInt())}"
             }else{
                 "${finishedPartnerGame.team1.name} ile ${finishedPartnerGame.team2.name} skor farkı " +
-                        " ${(finishedPartnerGame.team1.totalScore.toInt() - finishedPartnerGame.team2.totalScore.toInt())}"
+                        " ${(finishedPartnerGame.team2.totalScore.toInt() - finishedPartnerGame.team1.totalScore.toInt())}"
             }
-        }
         return result
     }
 }

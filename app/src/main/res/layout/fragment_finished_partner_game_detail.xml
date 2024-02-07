@@ -9,8 +9,6 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="parent"
-    android:layout_marginBottom="16dp"
-    android:background="@color/main_background_color"
     tools:context=".ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,11 +57,9 @@
             app:layout_constraintTop_toBottomOf="@+id/toolBar"
             app:drawableLeftCompat="@drawable/ic_partner" />
 
-
         <TextView
             android:id="@+id/team1Name"
             style="@style/NameTextViewStyle"
-            android:background="#F1F1F1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
@@ -75,13 +71,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/team1Name" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/team1TotalScore"
+            app:layout_constraintBottom_toTopOf="@id/team2Name"
+            style="@style/DividerStyle"/>
+
         <TextView
             android:id="@+id/team2Name"
             style="@style/NameTextViewStyle"
-            android:background="#F1F1F1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team1TotalScore" />
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <TextView
             android:id="@+id/team2TotalScore"
@@ -122,12 +125,27 @@
         <TextView
             android:id="@+id/gameDetail"
             style="@style/InfoTextViewStyle"
-            android:layout_margin="16dp"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/showScoreDifferencesTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailLabel" />
 
+
         <TextView
-            android:id="@+id/expandableTextView"
+            android:id="@+id/showScoreDifferencesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/show_differences"
+            android:textColor="@color/score_differences_text_color"
+            android:textSize="11sp"
+            app:drawableRightCompat="@drawable/ic_show_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailLabel" />
+
+        <TextView
+            android:id="@+id/scoreDifferencesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -143,14 +161,17 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gameDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/gameDetail"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:id="@+id/gameDate"
             style="@style/DateTextViewStyle"
             android:layout_margin="16dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/expandableTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/scoreDifferencesTextView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

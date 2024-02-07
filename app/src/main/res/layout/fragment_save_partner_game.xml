@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.finishedPartnerGame.FinishedPartnerGameFragment"
-    android:background="@color/main_background_color">
+    tools:context=".ui.finishedPartnerGame.FinishedPartnerGameFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,16 +41,6 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/toolbarDivider"
-            style="@style/DividerStyle"
-            android:layout_width="match_parent"
-            android:layout_marginTop="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/team1NameEntryHint"
             style="@style/SingleGameTextInputLayoutStyle"
@@ -66,7 +55,7 @@
             app:hintTextColor="@color/text_input_layout_hint_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarDivider">
+            app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/team1NameEntry"
@@ -144,6 +133,7 @@
             android:layout_width="0.3dp"
             android:layout_height="30dp"
             android:visibility="invisible"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toStartOf="@id/team2Name"
             app:layout_constraintStart_toEndOf="@id/team1Name"
             app:layout_constraintTop_toBottomOf="@+id/playerNameTitle" />
@@ -169,12 +159,12 @@
         <TextView
             android:id="@+id/roundScoreTitle"
             style="@style/HeaderTextViewStyle"
+            app:drawableLeftCompat="@drawable/ic_scoreboard"
             android:text="@string/team_round_scores"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/team2Name"
-            app:drawableLeftCompat="@drawable/ic_scoreboard" />
+            app:layout_constraintTop_toBottomOf="@id/team2Name" />
 
         <LinearLayout
             android:id="@+id/scoreLayout"

@@ -11,13 +11,13 @@ interface OkeyScoreDao {
     suspend fun insertFinishedPartnerGame(finishedPartnerGame: FinishedPartnerGame)
 
     @Query("SELECT * FROM finishedPartnerGame WHERE id = :id")
-    suspend fun getFinishedPartnerGameById(id: Int): FinishedPartnerGame?
+    suspend fun getFinishedPartnerGameById(id: Int): FinishedPartnerGame
 
     @Query("SELECT * FROM finishedPartnerGame ORDER BY gameInfodate DESC")
     suspend fun getAllFinishedPartnerGames(): List<FinishedPartnerGame>
 
     @Delete
-    suspend fun deleteFinishedPartnerGame(finishedPartnerGame : FinishedPartnerGame?)
+    suspend fun deleteFinishedPartnerGame(finishedPartnerGame : FinishedPartnerGame)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFinishedSingleGame(finishedSingleGame: FinishedSingleGame)
@@ -26,9 +26,9 @@ interface OkeyScoreDao {
     suspend fun getAllFinishedSingleGames(): List<FinishedSingleGame>
 
     @Query("SELECT * FROM finishedSingleGame WHERE id = :id")
-    suspend fun getFinishedSingleGameById(id: Int): FinishedSingleGame?
+    suspend fun getFinishedSingleGameById(id: Int): FinishedSingleGame
 
     @Delete
-    suspend fun deleteFinishedSingleGame(finishedSingleGame: FinishedSingleGame?)
+    suspend fun deleteFinishedSingleGame(finishedSingleGame: FinishedSingleGame)
 
 }

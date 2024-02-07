@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.util.SharedPreferencesManager
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.model.Info
@@ -25,8 +24,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavePartnerGameViewModel
-@Inject constructor(private val okeyScoreRepository: OkeyScoreRepository,
-                    private val sharedPreferencesManager: SharedPreferencesManager) : ViewModel(){
+@Inject constructor(private val okeyScoreRepository: OkeyScoreRepository) : ViewModel(){
 
 
     fun insertFinishedGame(
@@ -34,11 +32,12 @@ class SavePartnerGameViewModel
         playerNames: List<EditText>,navController: NavController,
         context: Context
     ){
-
         viewModelScope.launch {
-            okeyScoreRepository.insertFinishedPartnerGame(createFinishedPartnerGame(playerNames,allPlayerScoreEditTextList))
-            val action = SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
-            navController.navigate(action)
+            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList)
+            okeyScoreRepository.insertFinishedPartnerGame(finishedPartnerGame)
+            navController.navigate(
+                SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
+            )
             context.toast("Kayıt başarılı.", R.drawable.ic_successful)
         }
     }
@@ -56,7 +55,7 @@ class SavePartnerGameViewModel
     }
 
      private fun createInfo(player: List<Player>): Info {
-        val minScorePlayer = player.minBy { it.totalScore }
+        val minScorePlayer = player.minBy { it.totalScore.toInt() }
         return Info("Kazanan takım: ${minScorePlayer.name}. Skor: ${minScorePlayer.totalScore} ", getCurrentDate())
     }
 

@@ -24,7 +24,7 @@ class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<Fi
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
         holder.bind(finishedSingleGameLists[position])
         holder.itemView.setOnClickListener {
-            clickListener?.invoke(finishedSingleGameLists[position]!!)
+            clickListener?.invoke(finishedSingleGameLists[position])
         }
     }
 
@@ -32,7 +32,7 @@ class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<Fi
         return finishedSingleGameLists.size
     }
 
-    private val diffUtil = object : DiffUtil.ItemCallback<FinishedSingleGame?>(){
+    private val diffUtil = object : DiffUtil.ItemCallback<FinishedSingleGame>(){
         override fun areItemsTheSame(oldItem: FinishedSingleGame, newItem: FinishedSingleGame): Boolean {
             return oldItem == newItem
         }
@@ -44,28 +44,24 @@ class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<Fi
     }
 
     private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
-    var finishedSingleGameLists : ArrayList<FinishedSingleGame?>
-        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<FinishedSingleGame?>
+    var finishedSingleGameLists : ArrayList<FinishedSingleGame>
+        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<FinishedSingleGame>
         set(value)  {
-            recyclerListDiffer.submitList(value)
-            notifyDataSetChanged()
+            recyclerListDiffer.submitList(value as List<FinishedSingleGame?>?)
         }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val gameInfo =  itemView.findViewById<TextView>(R.id.gameInfo)
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
-        fun bind(finishedSingleGame: FinishedSingleGame?) {
-            finishedSingleGame?.let {
+        fun bind(finishedSingleGame: FinishedSingleGame) {
               gameInfo.text = finishedSingleGame.gameInfo.gameInfo
                 date.text = finishedSingleGame.gameInfo.date
-            }
         }
     }
 
-    fun updateData(newList: ArrayList<FinishedSingleGame?>) {
+    fun updateData(newList: ArrayList<FinishedSingleGame>) {
         finishedSingleGameLists = newList
-        notifyDataSetChanged()
     }
 
 }

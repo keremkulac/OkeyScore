@@ -75,7 +75,7 @@ class FinishedSingleGameFragment @Inject constructor(
                 Snackbar.make(binding.finishedGameRecyclerView,"Silindi", Snackbar.LENGTH_LONG).setAction(
                     "Geri al"
                 ) {
-                    viewModel.saveSingleGame(itemToDelete!!)
+                    viewModel.saveSingleGame(itemToDelete)
                     findNavController().navigate(action)
                 }
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))

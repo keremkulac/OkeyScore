@@ -19,9 +19,8 @@ fun Context.toast(message: String,iconID : Int) {
     val toast = Toast(this)
     toast.apply {
         setGravity(Gravity.BOTTOM, 0, 100)
-        view = layout
+        this.view = layout
         duration = Toast.LENGTH_SHORT
         show()
     }
-
 }

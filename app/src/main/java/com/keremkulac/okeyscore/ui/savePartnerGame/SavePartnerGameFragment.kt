@@ -42,11 +42,10 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         )
     }
 
-
     private fun checkTeamNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
-                requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz", R.drawable.ic_warning)
+                requireContext().toast("Lütfen tüm takım isimlerini giriniz", R.drawable.ic_warning)
             }else{
                 binding.team1NameEntryHint.visibility = View.GONE
                 binding.team2NameEntryHint.visibility = View.GONE

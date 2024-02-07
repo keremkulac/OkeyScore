@@ -12,12 +12,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: OkeyScoreRepository) : ViewModel() {
-    private val _allFinishedSingleGames = MutableLiveData<ArrayList<FinishedSingleGame?>>()
-    val allFinishedSingleGames: LiveData<ArrayList<FinishedSingleGame?>>
+    private val _allFinishedSingleGames = MutableLiveData<ArrayList<FinishedSingleGame>>()
+    val allFinishedSingleGames: LiveData<ArrayList<FinishedSingleGame>>
         get() = _allFinishedSingleGames
 
-    private val _filteredList = MutableLiveData<ArrayList<FinishedSingleGame?>>()
-    val filteredList: LiveData<ArrayList<FinishedSingleGame?>>
+    private val _filteredList = MutableLiveData<ArrayList<FinishedSingleGame>>()
+    val filteredList: LiveData<ArrayList<FinishedSingleGame>>
         get() = _filteredList
     init {
         getAllFinishedSingleGame()
@@ -29,7 +29,7 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
         }
     }
 
-    fun deleteFinishedGame(finishedSingleGame : FinishedSingleGame?){
+    fun deleteFinishedGame(finishedSingleGame : FinishedSingleGame){
         viewModelScope.launch {
             okeyScoreRepository.deleteFinishedSingleGame(finishedSingleGame)
         }
@@ -42,7 +42,7 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepository: O
             _allFinishedSingleGames.value?.let { adapter.updateData(it) }
         } else {
             val filteredList = _allFinishedSingleGames.value?.filter { finishedSingleGame ->
-                finishedSingleGame!!.player1!!.name.lowercase().contains(query) ||
+                finishedSingleGame.player1!!.name.lowercase().contains(query) ||
                         finishedSingleGame.player2!!.name.lowercase().contains(query) ||
                         finishedSingleGame.player3!!.name.lowercase().contains(query) ||
                         finishedSingleGame.player4!!.name.lowercase().contains(query) ||

@@ -97,7 +97,7 @@ class FinishedPartnerGameFragment @Inject constructor(
 
                 Snackbar.make(binding.root,"Silindi",Snackbar.LENGTH_LONG)
                     .setAction("Geri al") {
-                        viewModel.saveFinishedGame(itemToDelete!!)
+                        viewModel.saveFinishedGame(itemToDelete)
                         findNavController().navigate(action)
                     }
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))

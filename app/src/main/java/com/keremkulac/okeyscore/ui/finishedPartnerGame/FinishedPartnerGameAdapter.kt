@@ -23,7 +23,7 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
     override fun onBindViewHolder(holder: FinishedGameViewHolder, position: Int) {
         holder.bind(finishedPartnerGameLists[position])
         holder.itemView.setOnClickListener {
-            clickListener?.invoke(finishedPartnerGameLists[position]!!)
+            clickListener?.invoke(finishedPartnerGameLists[position])
         }
     }
 
@@ -31,7 +31,7 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
         return finishedPartnerGameLists.size
     }
 
-    private val diffUtil = object : DiffUtil.ItemCallback<FinishedPartnerGame?>(){
+    private val diffUtil = object : DiffUtil.ItemCallback<FinishedPartnerGame>(){
         override fun areItemsTheSame(oldItem: FinishedPartnerGame, newItem: FinishedPartnerGame): Boolean {
             return oldItem == newItem
         }
@@ -42,11 +42,10 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
     }
 
     private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
-    var finishedPartnerGameLists : ArrayList<FinishedPartnerGame?>
-        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<FinishedPartnerGame?>
+    var finishedPartnerGameLists : ArrayList<FinishedPartnerGame>
+        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<FinishedPartnerGame>
         set(value)  {
-            recyclerListDiffer.submitList(value)
-            notifyDataSetChanged()
+            recyclerListDiffer.submitList(value as List<FinishedPartnerGame?>?)
         }
 
     class FinishedGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -60,8 +59,7 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
         }
     }
 
-    fun updateData(newList: ArrayList<FinishedPartnerGame?>) {
+    fun updateData(newList: ArrayList<FinishedPartnerGame>) {
         finishedPartnerGameLists = newList
-        notifyDataSetChanged()
     }
 }

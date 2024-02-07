@@ -74,13 +74,17 @@ class FinishedSingleGameDetailFragment @Inject constructor(
 
     private fun setScoreDifferences(finishedSingleGame: FinishedSingleGame){
         var isClicked = true
-        binding.expandableTextView.text = viewModel.scoreDifferences(finishedSingleGame)
-        binding.gameDetail.setOnClickListener {
+        binding.scoreDifferencesTextView.text = viewModel.scoreDifferences(finishedSingleGame)
+        binding.showScoreDifferencesTextView.setOnClickListener {
             if(isClicked){
-                binding.expandableTextView.visibility = View.VISIBLE
+                binding.scoreDifferencesTextView.visibility = View.VISIBLE
+                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    ContextCompat.getDrawable(requireContext(),R.drawable.ic_close_detail),null)
                 isClicked = false
             }else{
-                binding.expandableTextView.visibility = View.GONE
+                binding.scoreDifferencesTextView.visibility = View.GONE
+                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    ContextCompat.getDrawable(requireContext(),R.drawable.ic_show_detail),null)
                 isClicked = true
             }
         }

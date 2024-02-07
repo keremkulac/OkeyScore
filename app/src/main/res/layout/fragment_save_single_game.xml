@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment"
-    android:background="@color/main_background_color">
+    tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,16 +41,6 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/toolbarDivider"
-            style="@style/DividerStyle"
-            android:layout_width="match_parent"
-            android:layout_marginTop="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
-
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/player1NameEntryHint"
             style="@style/SingleGameTextInputLayoutStyle"
@@ -65,7 +54,7 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarDivider">
+            app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/player1NameEntry"

@@ -50,15 +50,13 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
     private fun createTeamNameTextViewList() : List<TextView>{
         return listOf(binding.team1Name,binding.team2Name)
     }
-    private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame?){
-        finishedPartnerGame?.let {
+    private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame){
             binding.team1Name.text = (finishedPartnerGame.team1!!.name)
             binding.team2Name.text = (finishedPartnerGame.team2!!.name)
             for (textView in createTeamNameTextViewList()){
                 if(textView.text == viewModel.sortByMin(finishedPartnerGame)[0].name){
                     textView.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(requireContext(),R.drawable.ic_trophy),null)
                 }
-            }
             binding.team1TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team1.totalScore)
             binding.team2TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team2.totalScore)
             binding.gameDate.text = finishedPartnerGame.gameInfo.date
@@ -70,15 +68,19 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
         }
     }
 
-    private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame?){
+    private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame){
         var isClicked = true
-        binding.expandableTextView.text = viewModel.scoreDifferences(finishedPartnerGame)
-        binding.gameDetail.setOnClickListener {
+        binding.scoreDifferencesTextView.text = viewModel.scoreDifferences(finishedPartnerGame)
+        binding.showScoreDifferencesTextView.setOnClickListener {
             if(isClicked){
-                binding.expandableTextView.visibility = View.VISIBLE
+                binding.scoreDifferencesTextView.visibility = View.VISIBLE
+                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    ContextCompat.getDrawable(requireContext(),R.drawable.ic_close_detail),null)
                 isClicked = false
             }else{
-                binding.expandableTextView.visibility = View.GONE
+                binding.scoreDifferencesTextView.visibility = View.GONE
+                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    ContextCompat.getDrawable(requireContext(),R.drawable.ic_show_detail),null)
                 isClicked = true
             }
         }
