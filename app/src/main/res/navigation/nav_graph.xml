@@ -8,15 +8,8 @@
     <fragment
         android:id="@+id/savePartnerGameFragment"
         android:name="com.keremkulac.okeyscore.ui.savePartnerGame.SavePartnerGameFragment"
-        android:label="fragment_save_game"
+        android:label="fragment_save_partner_game"
         tools:layout="@layout/fragment_save_partner_game" >
-
-        <action
-            android:id="@+id/action_saveGameFragment_to_finishedGameFragment"
-            app:destination="@id/finishedPartnerGameFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            />
         <action
             android:id="@+id/action_savePartnerGameFragment_to_finishedGameViewFragment"
             app:destination="@id/finishedGameViewFragment" />
@@ -24,21 +17,15 @@
     <fragment
         android:id="@+id/finishedPartnerGameFragment"
         android:name="com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameFragment"
-        android:label="fragment_finished_game"
+        android:label="fragment_finished_partner_game"
         tools:layout="@layout/fragment_finished_partner_game" >
-        <action
-            android:id="@+id/action_finishedGameFragment_to_saveGameFragment"
-            app:destination="@id/savePartnerGameFragment" />
-        <action
-            android:id="@+id/action_finishedPartnerGameFragment_to_finishedGameDetailFragment"
-            app:destination="@id/finishedPartnerGameDetailFragment" />
-
     </fragment>
     <fragment
         android:id="@+id/finishedSingleGameFragment"
         android:name="com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment"
         android:label="fragment_finished_single_game"
-        tools:layout="@layout/fragment_finished_single_game" />
+        tools:layout="@layout/fragment_finished_single_game" >
+    </fragment>
     <fragment
         android:id="@+id/finishedGameViewFragment"
         android:name="com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragment"
@@ -50,9 +37,7 @@
         <action
             android:id="@+id/action_finishedGameViewFragment_to_savePartnerGameFragment"
             app:destination="@id/savePartnerGameFragment" />
-        <action
-            android:id="@+id/action_finishedGameViewFragment_to_finishedGameDetailFragment"
-            app:destination="@id/finishedPartnerGameDetailFragment" />
+
         <argument
             android:name="gameType"
             app:argType="string" />
@@ -62,11 +47,15 @@
         <action
             android:id="@+id/action_finishedGameViewFragment_self"
             app:destination="@id/finishedGameViewFragment" />
+        <action
+            android:id="@+id/action_finishedGameViewFragment_to_finishedPartnerGameDetailFragment"
+            app:destination="@id/finishedPartnerGameDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/saveSingleGameFragment"
         android:name="com.keremkulac.okeyscore.ui.saveSingleGame.SaveSingleGameFragment"
-        android:label="SaveSingleGameFragment" >
+        android:label="fragment_save_single_game"
+        tools:layout="@layout/fragment_save_single_game">
         <action
             android:id="@+id/action_saveSingleGameFragment_to_finishedGameViewFragment"
             app:destination="@id/finishedGameViewFragment" />
@@ -86,7 +75,8 @@
     <fragment
         android:id="@+id/finishedSingleGameDetailFragment"
         android:name="com.keremkulac.okeyscore.ui.finishedSingleGameDetail.FinishedSingleGameDetailFragment"
-        android:label="FinishedSingleGameDetailFragment" >
+        android:label="fragment_finished_single_game_detail"
+        tools:layout="@layout/fragment_finished_single_game_detail">
         <argument
             android:name="finishedGameID"
             app:argType="integer" />

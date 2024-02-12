@@ -93,8 +93,6 @@ class FinishedPartnerGameFragment @Inject constructor(
                 viewModel.deleteFinishedGame(itemToDelete)
                 val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("partner")
                 findNavController().navigate(action)
-
-
                 Snackbar.make(binding.root,"Silindi",Snackbar.LENGTH_LONG)
                     .setAction("Geri al") {
                         viewModel.saveFinishedGame(itemToDelete)
@@ -112,8 +110,9 @@ class FinishedPartnerGameFragment @Inject constructor(
 
     private fun clickFinishedGame(){
         finishedPartnerGameAdapter.clickListener={
-            val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedGameDetailFragment(it.id)
-            findNavController().navigate(action)
+            findNavController().navigate(
+                FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedPartnerGameDetailFragment(it.id)
+            )
         }
     }
 }

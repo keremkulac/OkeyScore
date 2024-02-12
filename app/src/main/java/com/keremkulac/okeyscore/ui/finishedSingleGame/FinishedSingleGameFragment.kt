@@ -115,8 +115,9 @@ class FinishedSingleGameFragment @Inject constructor(
 
     private fun clickFinishedGame(){
         finishedSingleGameAdapter.clickListener={
-            val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedSingleGameDetailFragment(it.id)
-            findNavController().navigate(action)
+            findNavController().navigate(
+                FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedSingleGameDetailFragment(it.id)
+            )
         }
     }
 
