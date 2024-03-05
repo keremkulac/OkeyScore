@@ -32,7 +32,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         checkTeamNames()
         saveToRoomDb()
         newRound(layoutInflater)
-        goToFinishedGameViewFragment()
+        goToChooseGameViewFragment()
     }
 
     private fun playerNames(): List<EditText> {
@@ -115,8 +115,6 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         return editTextList
     }
 
-
-
     private fun createAllTeamScoreEditTextList(){
         allTeamScoreEditTextList.add(team1ScoreEditTextList)
         allTeamScoreEditTextList.add(team2ScoreEditTextList)
@@ -135,7 +133,6 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
             alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
                 viewModel.insertFinishedGame(allTeamScoreEditTextList,playerNames(),findNavController(),requireContext())
-
             }
             alertDialogBuilder.setNegativeButton("Hayır") { _, _ -> }
             val alertDialog = alertDialogBuilder.create()
@@ -179,10 +176,9 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         return empty
     }
 
-    private fun goToFinishedGameViewFragment(){
-        binding.goToFinishedGameViewFragment.setOnClickListener {
-            val action = SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
-            findNavController().navigate(action)
+    private fun goToChooseGameViewFragment(){
+        binding.goToChooseGameViewFragment.setOnClickListener {
+            findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
         }
     }
 

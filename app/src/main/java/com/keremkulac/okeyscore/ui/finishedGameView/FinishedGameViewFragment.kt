@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.keremkulac.okeyscore.R
@@ -20,58 +18,15 @@ import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment
 class FinishedGameViewFragment : Fragment() {
     private lateinit var adapter: ViewPagerAdapter
     private lateinit var binding : FragmentFinishedGameViewBinding
-    private var fabVisible = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentFinishedGameViewBinding.inflate(inflater)
-        saveGameFabClick()
         setViewPager()
         setViewPagerPage()
-        goToSaveSingleGame()
-        goToSavePartnerGame()
         return binding.root
     }
 
-    private fun saveGameFabClick(){
-        fabVisible = false
-        binding.fab.setOnClickListener {
-            if(!fabVisible){
-                binding.fabSingle.show()
-                binding.fabPartner.show()
-                binding.fabPartnerText.visibility = View.VISIBLE
-                binding.fabSingleText.visibility = View.VISIBLE
-                binding.fabSingle.visibility = View.VISIBLE
-                binding.fabPartner.visibility = View.VISIBLE
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_close))
-                fabVisible = true
-                binding.view.alpha = 0.5f
-            }else{
-                binding.fabSingle.hide()
-                binding.fabPartner.hide()
-                binding.fabPartnerText.visibility = View.GONE
-                binding.fabSingleText.visibility = View.GONE
-                binding.fabSingle.visibility = View.GONE
-                binding.fabPartner.visibility = View.GONE
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_add))
-                fabVisible = false
-                binding.view.alpha = 1.0f
-            }
-        }
-    }
-
-
-
-    private fun goToSaveSingleGame(){
-        binding.fabSingle.setOnClickListener {
-            findNavController().navigate(R.id.action_finishedGameViewFragment_to_saveSingleGameFragment)
-        }
-    }
-    private fun goToSavePartnerGame(){
-        binding.fabPartner.setOnClickListener {
-            findNavController().navigate(R.id.action_finishedGameViewFragment_to_savePartnerGameFragment)
-        }
-    }
     private fun setViewPager(){
         adapter = ViewPagerAdapter(requireActivity().supportFragmentManager,lifecycle)
         adapter.addFragment(FinishedSingleGameFragment(FinishedSingleGameAdapter()))

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/finishedGameViewFragment">
+    app:startDestination="@id/chooseGameFragment">
 
     <fragment
         android:id="@+id/savePartnerGameFragment"
@@ -11,8 +11,8 @@
         android:label="fragment_save_partner_game"
         tools:layout="@layout/fragment_save_partner_game" >
         <action
-            android:id="@+id/action_savePartnerGameFragment_to_finishedGameViewFragment"
-            app:destination="@id/finishedGameViewFragment" />
+            android:id="@+id/action_savePartnerGameFragment_to_chooseGameFragment"
+            app:destination="@id/chooseGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/finishedPartnerGameFragment"
@@ -57,8 +57,8 @@
         android:label="fragment_save_single_game"
         tools:layout="@layout/fragment_save_single_game">
         <action
-            android:id="@+id/action_saveSingleGameFragment_to_finishedGameViewFragment"
-            app:destination="@id/finishedGameViewFragment" />
+            android:id="@+id/action_saveSingleGameFragment_to_chooseGameFragment"
+            app:destination="@id/chooseGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/finishedPartnerGameDetailFragment"
@@ -84,4 +84,30 @@
             android:id="@+id/action_finishedSingleGameDetailFragment_to_finishedGameViewFragment"
             app:destination="@id/finishedGameViewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/chooseGameFragment"
+        android:name="com.keremkulac.okeyscore.ui.chooseGame.ChooseGameFragment"
+        android:label="fragment_choose_game"
+        tools:layout="@layout/fragment_choose_game" >
+        <action
+            android:id="@+id/action_chooseGameFragment_to_saveSingleGameFragment"
+            app:destination="@id/saveSingleGameFragment" />
+        <action
+            android:id="@+id/action_chooseGameFragment_to_savePartnerGameFragment"
+            app:destination="@id/savePartnerGameFragment" />
+    </fragment>
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.keremkulac.okeyscore.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main">
+
+    </activity>
+    <action
+        android:id="@+id/action_mainActivity_to_finishedGameViewFragment"
+        app:destination="@id/finishedGameViewFragment" />
+    <action
+        android:id="@+id/action_mainActivity_to_chooseGameFragment"
+        app:destination="@id/chooseGameFragment" />
 </navigation>

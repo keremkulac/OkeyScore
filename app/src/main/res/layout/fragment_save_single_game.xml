@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/goToFinishedGameViewFragment"
+                    android:id="@+id/goToChooseGameViewFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/tag"
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
+                    android:layout_toEndOf="@+id/goToChooseGameViewFragment"
                     android:text="@string/single_game"
                     android:textColor="@color/toolbar_text_color"
                     android:textSize="16sp"

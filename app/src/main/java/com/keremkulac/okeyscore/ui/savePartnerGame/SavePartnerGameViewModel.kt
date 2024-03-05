@@ -36,7 +36,7 @@ class SavePartnerGameViewModel
             val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList)
             okeyScoreRepository.insertFinishedPartnerGame(finishedPartnerGame)
             navController.navigate(
-                SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToFinishedGameViewFragment("partner")
+                SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment()
             )
             context.toast("Kayıt başarılı.", R.drawable.ic_successful)
         }

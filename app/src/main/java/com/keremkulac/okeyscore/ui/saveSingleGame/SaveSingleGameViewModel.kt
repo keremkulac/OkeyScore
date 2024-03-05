@@ -34,8 +34,10 @@ class SaveSingleGameViewModel
             val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList)
             okeyScoreRepository.insertFinishedSingleGame(finishedSingleGame)
             navController.navigate(
-                SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
+                SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment()
             )
+
+
             context.toast("Kayıt başarılı.", R.drawable.ic_successful)
         }
     }

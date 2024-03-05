@@ -35,7 +35,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         checkPlayerNames()
         saveGame()
         newRound(layoutInflater)
-        goToFinishedGameViewFragment()
+        goToChooseGameViewFragment()
     }
 
     private fun playerNames(): List<EditText> {
@@ -189,10 +189,9 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         }
     }
 
-    private fun goToFinishedGameViewFragment(){
-        binding.goToFinishedGameViewFragment.setOnClickListener {
-            val action = SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToFinishedGameViewFragment("single")
-            findNavController().navigate(action)
+    private fun goToChooseGameViewFragment(){
+        binding.goToChooseGameViewFragment.setOnClickListener {
+            findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
         }
     }
 }
