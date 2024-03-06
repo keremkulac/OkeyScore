@@ -43,12 +43,15 @@ class FinishedPartnerGameFragment @Inject constructor(
     private fun observeAllFinishedGame(){
         viewModel.finishedPartnerGame.observe(viewLifecycleOwner){ finishedList->
             if(finishedList.isNotEmpty()){
-                binding.recordNotFound.visibility = View.GONE
+                binding.recordNotFoundText.visibility = View.GONE
+                binding.recordNotFoundImage.visibility = View.GONE
                 finishedPartnerGameAdapter.finishedPartnerGameLists = ArrayList(finishedList)
                 binding.finishedGameRecyclerView.adapter =  finishedPartnerGameAdapter
 
             }else{
-                binding.recordNotFound.visibility = View.VISIBLE
+                binding.recordNotFoundText.visibility = View.VISIBLE
+                binding.recordNotFoundImage.visibility = View.VISIBLE
+
             }
         }
     }
@@ -56,9 +59,11 @@ class FinishedPartnerGameFragment @Inject constructor(
     private fun observeFilteredList(){
         viewModel.filteredList.observe(viewLifecycleOwner){filteredList->
             if(filteredList.isNotEmpty()){
-                binding.recordNotFound.visibility = View.GONE
+                binding.recordNotFoundText.visibility = View.GONE
+                binding.recordNotFoundImage.visibility = View.GONE
             }else{
-                binding.recordNotFound.visibility = View.VISIBLE
+                binding.recordNotFoundText.visibility = View.VISIBLE
+                binding.recordNotFoundImage.visibility = View.VISIBLE
             }
         }
     }
