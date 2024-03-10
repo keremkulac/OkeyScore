@@ -41,6 +41,7 @@
     <color name="line_color_light">#000000</color>
     <color name="header_text_color">#FFFFFF</color>
     <color name="header_background_color">#121212</color>
+    <color name="onboarding_indicator_color">#4CAF50</color>
 
 </resources>
 

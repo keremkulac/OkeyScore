@@ -1,7 +1,9 @@
 package com.keremkulac.okeyscore
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var defaultFragmentFactory: DefaultFragmentFactory
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navHostFragment : FragmentContainerView
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +30,11 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = findViewById(R.id.nav_host_fragment)
         themeListener()
         checkDisplaySize()
+        sharedPreferences = getSharedPreferences("isOnboardingCompleted", MODE_PRIVATE)
         bottomNavigation()
+        checkOnboarding()
     }
+
 
    private fun themeListener(){
         addOnConfigurationChangedListener {
@@ -62,4 +68,14 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
+    private fun checkOnboarding(){
+        val isOnboardingCompleted = sharedPreferences.getBoolean("isOnboardingCompleted",false)
+        sharedPreferences.edit().putBoolean("isOnboardingCompleted",isOnboardingCompleted ).apply()
+            if(isOnboardingCompleted){
+                bottomNavigationView.visibility = View.VISIBLE
+            }else{
+                bottomNavigationView.visibility = View.GONE
+            }
+        }
 }

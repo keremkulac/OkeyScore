@@ -38,7 +38,7 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
     }
 
     private fun getAndSetFinishedGames(){
-        viewModel.getFinishedGame(arguments!!.getInt("finishedGameID"))
+        viewModel.getFinishedGame(requireArguments().getInt("finishedGameID"))
         viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner){
             it?.let {
                 setRecyclerView(it)

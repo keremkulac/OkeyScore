@@ -1,8 +1,10 @@
 package com.keremkulac.okeyscore.ui.chooseGame
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentChooseGameBinding
@@ -17,6 +19,8 @@ class ChooseGameFragment : Fragment(R.layout.fragment_choose_game) {
         binding = FragmentChooseGameBinding.bind(view)
         goToSaveSingleGameFragment()
         goToSavePartnerGameFragment()
+        setBottomNavigationVisible()
+        onBackPressCancel()
     }
 
     private fun goToSaveSingleGameFragment(){
@@ -29,5 +33,16 @@ class ChooseGameFragment : Fragment(R.layout.fragment_choose_game) {
         binding.goToSavePartnerGameFragment.setOnClickListener {
             findNavController().navigate(ChooseGameFragmentDirections.actionChooseGameFragmentToSavePartnerGameFragment())
         }
+    }
+
+    private fun onBackPressCancel(){
+        val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
+        onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+        }
+    }
+
+    private fun setBottomNavigationVisible(){
+        val bottomNavigation = requireActivity().findViewById<View>(R.id.bottomNavigation)
+        bottomNavigation.visibility = View.VISIBLE
     }
 }

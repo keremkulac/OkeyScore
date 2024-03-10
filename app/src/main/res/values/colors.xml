@@ -42,5 +42,6 @@
     <color name="header_text_color">#FFFFFF</color>
     <color name="header_background_color">#45494A</color>
     <color name="score_differences_text_color">#646E72</color>
+    <color name="onboarding_indicator_color">#4CAF50</color>
 
 </resources>

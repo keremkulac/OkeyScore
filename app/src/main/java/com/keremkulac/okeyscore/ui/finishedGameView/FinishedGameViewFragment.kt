@@ -40,7 +40,7 @@ class FinishedGameViewFragment : Fragment() {
 
 
     private fun setViewPagerPage(){
-        val argument = arguments?.getString("gameType")
+        val argument = requireArguments().getString("gameType")
         if(argument != null){
             if(argument == "single"){
                 binding.viewPager.setCurrentItem(0, true)

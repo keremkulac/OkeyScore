@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/chooseGameFragment">
+    app:startDestination="@id/onboardingFragment">
 
     <fragment
         android:id="@+id/savePartnerGameFragment"
@@ -38,6 +38,7 @@
             android:id="@+id/action_finishedGameViewFragment_to_savePartnerGameFragment"
             app:destination="@id/savePartnerGameFragment" />
 
+
         <argument
             android:name="gameType"
             app:argType="string" />
@@ -67,7 +68,8 @@
         tools:layout="@layout/fragment_finished_partner_game_detail" >
         <argument
             android:name="finishedGameID"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="0"/>
         <action
             android:id="@+id/action_finishedPartnerGameDetailFragment_to_finishedGameViewFragment"
             app:destination="@id/finishedGameViewFragment" />
@@ -102,7 +104,6 @@
         android:name="com.keremkulac.okeyscore.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main">
-
     </activity>
     <action
         android:id="@+id/action_mainActivity_to_finishedGameViewFragment"
@@ -110,4 +111,19 @@
     <action
         android:id="@+id/action_mainActivity_to_chooseGameFragment"
         app:destination="@id/chooseGameFragment" />
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.keremkulac.okeyscore.ui.onboarding.OnboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_chooseGameFragment"
+            app:destination="@id/chooseGameFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment_self"
+            app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
 </navigation>
