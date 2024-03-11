@@ -32,5 +32,4 @@ object NetworkModule {
         return okeyScoreDatabase.okeyScoreDao()
     }
 
-
 }

@@ -38,7 +38,7 @@
         android:id="@+id/skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Atla"
+        android:text="@string/skip"
         android:layout_margin="32dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

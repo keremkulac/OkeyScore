@@ -10,8 +10,6 @@
     <color name="score_text_color">#F5F5F5</color>
     <color name="score_hint_text_color">#FFFFFF</color>
     <color name="separator_color">#FFFFFF</color>
-    <color name="fab_text_color">#FFFFFF</color>
-    <color name="fab_background_color">#4CAF50</color>
     <color name="fab_icon_color">#FFFFFF</color>
     <color name="error_text_color">#FFFFFF</color>
     <color name="main_background_color">#000000</color>
@@ -42,6 +40,7 @@
     <color name="header_text_color">#FFFFFF</color>
     <color name="header_background_color">#121212</color>
     <color name="onboarding_indicator_color">#4CAF50</color>
+    <color name="logo_text_color">#FFFFFF</color>
 
 </resources>
 

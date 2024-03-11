@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = findViewById(R.id.nav_host_fragment)
         themeListener()
         checkDisplaySize()
+
         sharedPreferences = getSharedPreferences("isOnboardingCompleted", MODE_PRIVATE)
         bottomNavigation()
         checkOnboarding()

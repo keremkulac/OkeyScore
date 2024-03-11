@@ -12,6 +12,7 @@ import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
@@ -144,6 +145,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
 
     private fun editTextWatcher(editText: EditText) : Boolean{
         var empty = false
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigation)
         editText.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -152,6 +154,11 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             override fun afterTextChanged(p0: Editable?) {
             }
         })
+        editText.setOnFocusChangeListener { _,hasFocus ->
+            if(hasFocus){
+                bottomNavigation.visibility = View.GONE
+            }
+        }
         return empty
     }
 

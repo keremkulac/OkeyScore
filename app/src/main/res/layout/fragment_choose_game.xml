@@ -7,18 +7,16 @@
     tools:context=".ui.chooseGame.ChooseGameFragment">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="12dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_logo"
+        android:layout_marginTop="130dp"
         app:layout_constraintBottom_toTopOf="@+id/goToSaveSingleGameFragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/goToSaveSingleGameFragment"
