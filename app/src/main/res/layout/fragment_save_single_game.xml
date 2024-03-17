@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="60dp"
+    android:background="@color/main_background_color"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
 
@@ -23,7 +24,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/goToChooseGameViewFragment"
+                    android:id="@+id/goToChooseGameFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/tag"
@@ -34,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/goToChooseGameViewFragment"
+                    android:layout_toEndOf="@+id/goToChooseGameFragment"
                     android:text="@string/single_game"
                     android:textColor="@color/toolbar_text_color"
                     android:textSize="16sp"

@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">101 Okey Yazboz</string>
+    <string name="tag">Tag</string>
+    <string name="date">Date</string>
+    <string name="round_scores">Round Scores</string>
+    <string name="record_not_found">Kayıt oluşturmak için \"Yeni Kayıt\" butonuna tıklayınız</string>
+    <string name="save">Save</string>
+    <string name="todo">TODO</string>
+    <string name="game_info">Game info</string>
+    <string name="game_detail">Game detail</string>
+    <string name="detail">Detay</string>
+    <string name="enter_player1_name">Enter name for player 1</string>
+    <string name="enter_player2_name">Enter name for player 2</string>
+    <string name="enter_player3_name">Enter name for player 3</string>
+    <string name="enter_player4_name">Enter name for player 4</string>
+    <string name="new_round">New Round</string>
+    <string name="save_names">Save Names</string>
+    <string name="total_score">Total score</string>
+    <string name="player">Player</string>
+    <string name="playerNamesAndScoresTitle">Player Names and Total Scores</string>
+    <string name="teamNamesAndScoresTitle">Team Names and Total Scores</string>
+    <string name="total_score_text">Total score: %1$s</string>
+    <string name="teamScoresTitle">Player Round Scores</string>
+    <string name="enter_team1_name">Enter name for team 1</string>
+    <string name="enter_team2_name">Enter name for team 2</string>
+    <string name="team_round_scores">Team Round Scores</string>
+    <string name="teams">Teams</string>
+    <string name="players">Players</string>
+    <string name="partner_game">Partner Game Registration</string>
+    <string name="single_game">Single Game Registration</string>
+    <string name="successful">Successful</string>
+    <string name="show_differences">Show differences</string>
+    <string-array name="tablayoutTitleArray">
+        <item>My single games</item>
+        <item>My partner games</item>
+    </string-array>
+    <string name="new_game_record">New Registration</string>
+    <string name="history">History</string>
+    <string name="skip">Skip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="settings">SETTINGS</string>
+    <string name="language">Language</string>
+
+
+</resources>

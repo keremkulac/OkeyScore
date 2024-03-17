@@ -41,6 +41,11 @@
     <color name="header_background_color">#121212</color>
     <color name="onboarding_indicator_color">#4CAF50</color>
     <color name="logo_text_color">#FFFFFF</color>
+    <color name="circular_icon_background_color">#4CAF50</color>
+    <color name="bottom_navigation_text_color">#FFFFFF</color>
+    <color name="bottom_navigation_icon_color">#FFFFFF</color>
+    <color name="spinner_background_color">#9A000000</color>
+
 
 </resources>
 

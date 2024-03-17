@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_chooseGameFragment_to_savePartnerGameFragment"
             app:destination="@id/savePartnerGameFragment" />
+        <action
+            android:id="@+id/action_chooseGameFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <activity
@@ -125,5 +128,17 @@
         <action
             android:id="@+id/action_onboardingFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.keremkulac.okeyscore.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_chooseGameFragment"
+            app:destination="@id/chooseGameFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_self"
+            app:destination="@id/settingsFragment" />
     </fragment>
 </navigation>

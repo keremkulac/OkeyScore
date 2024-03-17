@@ -1,15 +1,17 @@
 package com.keremkulac.okeyscore
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.keremkulac.okeyscore.util.updateResources
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -20,7 +22,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var defaultFragmentFactory: DefaultFragmentFactory
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navHostFragment : FragmentContainerView
-    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var onboardingSharedPreferences: SharedPreferences
+    private lateinit var nightModeSharedPreferences: SharedPreferences
+    private lateinit var languageSharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,21 +32,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottomNavigationView = findViewById(R.id.bottomNavigation)
         navHostFragment = findViewById(R.id.nav_host_fragment)
-        themeListener()
+        onboardingSharedPreferences = getSharedPreferences("isOnboardingCompleted", MODE_PRIVATE)
+        nightModeSharedPreferences = getSharedPreferences("isNightModeActive", MODE_PRIVATE)
+        languageSharedPreferences = getSharedPreferences("selectedLanguage", MODE_PRIVATE)
         checkDisplaySize()
-
-        sharedPreferences = getSharedPreferences("isOnboardingCompleted", MODE_PRIVATE)
+        themeListener()
         bottomNavigation()
         checkOnboarding()
+        selectLanguage()
     }
 
 
    private fun themeListener(){
-        addOnConfigurationChangedListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-            this.recreate()
+       val isNightModeActive = nightModeSharedPreferences.getBoolean("isNightModeActive",false)
+        if(isNightModeActive){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
@@ -71,12 +77,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkOnboarding(){
-        val isOnboardingCompleted = sharedPreferences.getBoolean("isOnboardingCompleted",false)
-        sharedPreferences.edit().putBoolean("isOnboardingCompleted",isOnboardingCompleted ).apply()
+        val isOnboardingCompleted = onboardingSharedPreferences.getBoolean("isOnboardingCompleted",false)
+        onboardingSharedPreferences.edit().putBoolean("isOnboardingCompleted",isOnboardingCompleted ).apply()
             if(isOnboardingCompleted){
                 bottomNavigationView.visibility = View.VISIBLE
             }else{
                 bottomNavigationView.visibility = View.GONE
             }
+    }
+
+   private fun selectLanguage(){
+       val selectedLanguage = languageSharedPreferences.getString("selectedLanguage","Türkçe")
+        if(selectedLanguage == "İngilizce"){
+            val locale = Locale("en", "EN")
+            updateResources(this,locale)
+        }else{
+            val defaultLocale = Locale.getDefault()
+            updateResources(this,defaultLocale)
         }
+    }
+
 }

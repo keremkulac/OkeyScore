@@ -33,7 +33,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         checkTeamNames()
         saveToRoomDb()
         newRound(layoutInflater)
-        goToChooseGameViewFragment()
+        goToChooseGameFragment()
     }
 
     private fun playerNames(): List<EditText> {
@@ -184,8 +184,8 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         return empty
     }
 
-    private fun goToChooseGameViewFragment(){
-        binding.goToChooseGameViewFragment.setOnClickListener {
+    private fun goToChooseGameFragment(){
+        binding.goToChooseGameFragment.setOnClickListener {
             findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
         }
     }

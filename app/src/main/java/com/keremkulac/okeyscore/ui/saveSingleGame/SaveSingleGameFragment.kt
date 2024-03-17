@@ -36,7 +36,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         checkPlayerNames()
         saveGame()
         newRound(layoutInflater)
-        goToChooseGameViewFragment()
+        goToChooseGameFragment()
     }
 
     private fun playerNames(): List<EditText> {
@@ -196,8 +196,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         }
     }
 
-    private fun goToChooseGameViewFragment(){
-        binding.goToChooseGameViewFragment.setOnClickListener {
+    private fun goToChooseGameFragment(){
+        binding.goToChooseGameFragment.setOnClickListener {
             findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
         }
     }

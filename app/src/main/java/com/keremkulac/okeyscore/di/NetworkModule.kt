@@ -1,9 +1,11 @@
 package com.keremkulac.okeyscore.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
 import com.keremkulac.okeyscore.data.local.OkeyScoreDatabase
+import com.keremkulac.okeyscore.util.SharedPrefHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,5 +33,15 @@ object NetworkModule {
     fun provideDao(okeyScoreDatabase: OkeyScoreDatabase) : OkeyScoreDao {
         return okeyScoreDatabase.okeyScoreDao()
     }
+
+    @Module
+    @InstallIn(SingletonComponent::class)
+    object AppModule {
+        @Provides
+        fun provideSharedPrefHelper(context: Application): SharedPrefHelper {
+            return SharedPrefHelper(context)
+        }
+    }
+
 
 }

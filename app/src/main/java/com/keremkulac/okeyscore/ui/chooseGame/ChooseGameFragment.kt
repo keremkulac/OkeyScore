@@ -19,6 +19,7 @@ class ChooseGameFragment : Fragment(R.layout.fragment_choose_game) {
         goToSaveSingleGameFragment()
         goToSavePartnerGameFragment()
         setBottomNavigationVisible()
+        goToSettingsFragment()
         onBackPressCancel()
     }
 
@@ -43,5 +44,11 @@ class ChooseGameFragment : Fragment(R.layout.fragment_choose_game) {
     private fun setBottomNavigationVisible(){
         val bottomNavigation = requireActivity().findViewById<View>(R.id.bottomNavigation)
         bottomNavigation.visibility = View.VISIBLE
+    }
+
+    private fun goToSettingsFragment(){
+        binding.settings.setOnClickListener{
+            findNavController().navigate(ChooseGameFragmentDirections.actionChooseGameFragmentToSettingsFragment())
+        }
     }
 }
