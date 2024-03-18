@@ -1,15 +1,15 @@
 package com.keremkulac.okeyscore
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.keremkulac.okeyscore.util.SharedPrefHelper
 import com.keremkulac.okeyscore.util.updateResources
+import com.keremkulac.okeyscore.util.updateTheme
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 import javax.inject.Inject
@@ -20,11 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var defaultFragmentFactory: DefaultFragmentFactory
+    @Inject
+    lateinit var sharedPrefHelper: SharedPrefHelper
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navHostFragment : FragmentContainerView
-    private lateinit var onboardingSharedPreferences: SharedPreferences
-    private lateinit var nightModeSharedPreferences: SharedPreferences
-    private lateinit var languageSharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottomNavigationView = findViewById(R.id.bottomNavigation)
         navHostFragment = findViewById(R.id.nav_host_fragment)
-        onboardingSharedPreferences = getSharedPreferences("isOnboardingCompleted", MODE_PRIVATE)
-        nightModeSharedPreferences = getSharedPreferences("isNightModeActive", MODE_PRIVATE)
-        languageSharedPreferences = getSharedPreferences("selectedLanguage", MODE_PRIVATE)
         checkDisplaySize()
         themeListener()
         bottomNavigation()
@@ -43,13 +39,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-   private fun themeListener(){
-       val isNightModeActive = nightModeSharedPreferences.getBoolean("isNightModeActive",false)
-        if(isNightModeActive){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+    private fun themeListener(){
+        val isNightModeActive = sharedPrefHelper.getNightModeSharedPreferencesValue()
+        updateTheme(isNightModeActive)
     }
 
     private fun checkDisplaySize(){
@@ -77,24 +69,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkOnboarding(){
-        val isOnboardingCompleted = onboardingSharedPreferences.getBoolean("isOnboardingCompleted",false)
-        onboardingSharedPreferences.edit().putBoolean("isOnboardingCompleted",isOnboardingCompleted ).apply()
-            if(isOnboardingCompleted){
-                bottomNavigationView.visibility = View.VISIBLE
-            }else{
-                bottomNavigationView.visibility = View.GONE
-            }
-    }
-
-   private fun selectLanguage(){
-       val selectedLanguage = languageSharedPreferences.getString("selectedLanguage","Türkçe")
-        if(selectedLanguage == "İngilizce"){
-            val locale = Locale("en", "EN")
-            updateResources(this,locale)
+        val isOnboardingCompleted = sharedPrefHelper.getOnBoardingSharedPreferencesValue()
+        sharedPrefHelper.setOnBoardingSharedPreferencesValue(isOnboardingCompleted)
+        if(isOnboardingCompleted){
+            bottomNavigationView.visibility = View.VISIBLE
         }else{
-            val defaultLocale = Locale.getDefault()
-            updateResources(this,defaultLocale)
+            bottomNavigationView.visibility = View.GONE
         }
     }
 
+    private fun selectLanguage(){
+        val selectedLanguage = sharedPrefHelper.getLanguageSharedPreferencesValue()
+        selectedLanguage?.let {
+            if(it == "İngilizce" || it== "English"){
+                val locale = Locale("en", "EN")
+                updateResources(this,locale)
+            }else{
+                val defaultLocale = Locale.getDefault()
+                updateResources(this,defaultLocale)
+            }
+        }
+    }
 }

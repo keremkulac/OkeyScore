@@ -47,11 +47,9 @@ class FinishedPartnerGameFragment @Inject constructor(
                 binding.recordNotFoundImage.visibility = View.GONE
                 finishedPartnerGameAdapter.finishedPartnerGameLists = ArrayList(finishedList)
                 binding.finishedGameRecyclerView.adapter =  finishedPartnerGameAdapter
-
             }else{
                 binding.recordNotFoundText.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
-
             }
         }
     }

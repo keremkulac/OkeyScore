@@ -46,7 +46,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private fun checkTeamNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
-                requireContext().toast("Lütfen tüm takım isimlerini giriniz", R.drawable.ic_warning)
+                requireContext().toast(requireContext().getString(R.string.warning_enter_all_team_names), R.drawable.ic_warning)
             }else{
                 binding.team1NameEntryHint.visibility = View.GONE
                 binding.team2NameEntryHint.visibility = View.GONE
@@ -124,18 +124,17 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private fun setEditText(hintIds: List<Int>,parentLayout : View){
         for(id in hintIds){
             val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
-            textInputLayout.hint ="Tur $lineCount"
-        }
+            textInputLayout.hint ="Tur $lineCount"        }
     }
     private fun saveToRoomDb(){
         binding.saveGame.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
-            alertDialogBuilder.setTitle("İşlem Onayı")
-            alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
-            alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
+            alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
+            alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
+            alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
                 viewModel.insertFinishedGame(allTeamScoreEditTextList,playerNames(),findNavController(),requireContext())
             }
-            alertDialogBuilder.setNegativeButton("Hayır") { _, _ -> }
+            alertDialogBuilder.setNegativeButton(requireContext().getString(R.string.confirmation_no)) { _, _ -> }
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }

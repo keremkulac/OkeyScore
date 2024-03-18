@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     app:cardElevation="4dp"
     app:cardCornerRadius="20dp"
-    android:id="@+id/cardView"
     android:outlineSpotShadowColor="@color/cardview_shadow_color"
     app:cardBackgroundColor="@color/cardview_background_color"
     android:layout_margin="8dp"

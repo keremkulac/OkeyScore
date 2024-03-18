@@ -38,8 +38,21 @@
     <string name="history">Geçmiş</string>
     <string name="skip">Atla</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dark_mode">Koyu mod</string>
-    <string name="settings">AYARLAR</string>
+    <string name="settings">Ayarlar</string>
     <string name="language">Dil</string>
+    <string name="select_language">Dil seçiniz</string>
+    <string name="turkish">Türkçe</string>
+    <string name="english">İngilizce</string>
+    <string name="search_team_hint">Aramak için bir tarih veya takım adı yazınız</string>
+    <string name="search_player_hint">Aramak için bir tarih veya oyuncu adı yazınız</string>
+    <string name="confirmation_title">İşlem Onayı</string>
+    <string name="confirmation_message">Oyunu kayıt etmek istiyor musunuz?</string>
+    <string name="confirmation_yes">Evet</string>
+    <string name="confirmation_no">Hayır</string>
+    <string name="warning_enter_all_player_names">Lütfen tüm oyuncu isimlerini giriniz.</string>
+    <string name="warning_enter_all_team_names">Lütfen tüm oyuncu isimlerini giriniz.</string>
+    <string name="registration_successful">Kayıt başarılı</string>
+
+
 </resources>

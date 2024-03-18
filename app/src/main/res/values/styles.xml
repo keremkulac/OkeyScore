@@ -169,4 +169,12 @@
         <item name="android:drawableLeft">@drawable/ic_trophy</item>
     </style>
 
+    <style name="HintTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TablayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 </resources>

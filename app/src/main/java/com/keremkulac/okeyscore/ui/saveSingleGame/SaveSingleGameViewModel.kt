@@ -36,9 +36,7 @@ class SaveSingleGameViewModel
             navController.navigate(
                 SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment()
             )
-
-
-            context.toast("Kayıt başarılı.", R.drawable.ic_successful)
+            context.toast(context.getString(R.string.registration_successful), R.drawable.ic_successful)
         }
     }
 

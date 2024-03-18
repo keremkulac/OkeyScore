@@ -17,6 +17,7 @@ android {
         versionCode 11
         versionName "1.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs "en", "tr"
     }
 
     buildTypes {
@@ -77,6 +78,5 @@ dependencies {
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
     implementation 'at.blogc:expandabletextview:1.0.5'
     implementation("com.tbuonomo:dotsindicator:5.0")
-    implementation 'com.airbnb.android:lottie:2.8.0'
 
 }

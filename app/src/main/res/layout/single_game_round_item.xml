@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:id="@+id/singleGameItemBackground">
+    android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/NameTextInputLayoutStyle"

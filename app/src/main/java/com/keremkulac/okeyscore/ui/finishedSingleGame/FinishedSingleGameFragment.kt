@@ -52,7 +52,6 @@ class FinishedSingleGameFragment @Inject constructor(
             }else{
                 binding.recordNotFoundText.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
-
             }
         }
     }
@@ -65,7 +64,6 @@ class FinishedSingleGameFragment @Inject constructor(
             }else{
                 binding.recordNotFoundText.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
-
             }
         }
     }
@@ -88,7 +86,6 @@ class FinishedSingleGameFragment @Inject constructor(
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .show()
-
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)
@@ -115,7 +112,6 @@ class FinishedSingleGameFragment @Inject constructor(
             observeAllFinishedGame()
             false
         }
-
         binding.searchView.clearAnimation()
     }
 

@@ -60,7 +60,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private fun checkPlayerNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
-                requireContext().toast("Lütfen tüm oyuncu isimlerini giriniz.", R.drawable.ic_warning)
+                requireContext().toast(requireContext().getString(R.string.warning_enter_all_player_names), R.drawable.ic_warning)
             }else{
                 binding.player1NameEntryHint.visibility = View.GONE
                 binding.player2NameEntryHint.visibility = View.GONE
@@ -185,12 +185,12 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
    private fun saveGame(){
         binding.saveGame.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
-            alertDialogBuilder.setTitle("İşlem Onayı")
-            alertDialogBuilder.setMessage("Oyunu kayıt etmek istiyor musunuz?")
-            alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
+            alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
+            alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
+            alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
                 viewModel.insertSingleGame(allPlayerScoreEditTextList,playerNames(),findNavController(),requireContext())
             }
-            alertDialogBuilder.setNegativeButton("Hayır",null)
+            alertDialogBuilder.setNegativeButton(requireContext().getString(R.string.confirmation_no),null)
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }
