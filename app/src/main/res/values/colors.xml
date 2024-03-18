@@ -44,6 +44,5 @@
     <color name="circular_icon_background_color">#4CAF50</color>
     <color name="bottom_navigation_text_color">#000000</color>
     <color name="bottom_navigation_icon_color">#000000</color>
-
-
+    <color name="dialog_shadow_color">#666666</color>
 </resources>

@@ -1,9 +1,11 @@
 package com.keremkulac.okeyscore.ui.finishedPartnerGameDetail
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.model.Player
@@ -42,14 +44,16 @@ class FinishedPartnerGameDetailViewModel @Inject constructor(
         return players.sortedBy { it.totalScore.toInt() }
     }
 
-    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame) : String{
+    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame,context: Context) : String{
+        var scoreDifference = 0
         val result = if(finishedPartnerGame.team1!!.totalScore > finishedPartnerGame.team2!!.totalScore){
-                "${finishedPartnerGame.team2.name} ile ${finishedPartnerGame.team1.name} skor farkı " +
-                        " ${(finishedPartnerGame.team1.totalScore.toInt() - finishedPartnerGame.team2.totalScore.toInt())}"
+            scoreDifference =  finishedPartnerGame.team1.totalScore.toInt() - finishedPartnerGame.team2.totalScore.toInt()
+            context.getString(R.string.score_difference).format(finishedPartnerGame.team2.name,finishedPartnerGame.team1.name,scoreDifference)
             }else{
-                "${finishedPartnerGame.team1.name} ile ${finishedPartnerGame.team2.name} skor farkı " +
-                        " ${(finishedPartnerGame.team2.totalScore.toInt() - finishedPartnerGame.team1.totalScore.toInt())}"
-            }
+            scoreDifference =  finishedPartnerGame.team2.totalScore.toInt() - finishedPartnerGame.team1.totalScore.toInt()
+            context.getString(R.string.score_difference).format(finishedPartnerGame.team1.name,finishedPartnerGame.team2.name,scoreDifference)
+
+        }
         return result
     }
 }

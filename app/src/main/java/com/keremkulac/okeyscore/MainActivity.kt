@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val width = metrics.widthPixels
         val height = metrics.heightPixels
         if (width == 366 && height == 708) {
-            Toast.makeText(this, "Uygulama bu cihazda çalışmıyor.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, this.getString(R.string.error_not_work_this_device), Toast.LENGTH_SHORT).show()
             finish()
         }
     }

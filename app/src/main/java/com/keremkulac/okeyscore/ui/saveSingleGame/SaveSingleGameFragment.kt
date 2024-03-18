@@ -91,7 +91,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         checkRoundScores(newLine)
         binding.newRound.setOnClickListener {
             if (viewModel.checkList(newLine)){
-                requireContext().toast("Lütfen $lineCount. turdaki tüm alanları doldurun.", R.drawable.ic_warning)
+                requireContext().toast(requireContext().getString(R.string.warning_check_all_rounds).format(lineCount), R.drawable.ic_warning)
             }else{
                 lineCount++
                 newLine = createNewLine(inflater)
@@ -178,7 +178,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private fun setEditText(hintIds: List<Int>,parentLayout : View){
         for(id in hintIds){
             val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
-            textInputLayout.hint ="Tur $lineCount"
+            textInputLayout.hint =requireContext().getString(R.string.round_count).format(lineCount)
         }
     }
 

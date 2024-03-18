@@ -70,7 +70,7 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
 
     private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame){
         var isClicked = true
-        binding.scoreDifferencesTextView.text = viewModel.scoreDifferences(finishedPartnerGame)
+        binding.scoreDifferencesTextView.text = viewModel.scoreDifferences(finishedPartnerGame,requireContext())
         binding.showScoreDifferencesTextView.setOnClickListener {
             if(isClicked){
                 binding.scoreDifferencesTextView.visibility = View.VISIBLE

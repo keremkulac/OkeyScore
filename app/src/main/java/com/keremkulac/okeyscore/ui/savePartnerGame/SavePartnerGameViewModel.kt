@@ -33,7 +33,7 @@ class SavePartnerGameViewModel
         context: Context
     ){
         viewModelScope.launch {
-            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList)
+            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList,context)
             okeyScoreRepository.insertFinishedPartnerGame(finishedPartnerGame)
             navController.navigate(
                 SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment()
@@ -43,20 +43,21 @@ class SavePartnerGameViewModel
     }
 
    private  fun createFinishedPartnerGame(playerNames: List<EditText>,
-        allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>
+        allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
+                                          context: Context
     ): FinishedPartnerGame {
         val players = createPlayers(playerNames, allPlayerScoreEditTextList)
         return FinishedPartnerGame(
             0,
             players[0],
             players[1],
-            createInfo(players)
+            createInfo(players,context)
         )
     }
 
-     private fun createInfo(player: List<Player>): Info {
+     private fun createInfo(player: List<Player>,context: Context): Info {
         val minScorePlayer = player.minBy { it.totalScore.toInt() }
-        return Info("Kazanan takım: ${minScorePlayer.name}. Skor: ${minScorePlayer.totalScore} ", getCurrentDate())
+         return Info(context.getString(R.string.winning_team_info).format(minScorePlayer.name,minScorePlayer.totalScore), getCurrentDate())
     }
 
     fun setTotalScore(teamScoreList : List<EditText>,totalScoreTextView: TextView){

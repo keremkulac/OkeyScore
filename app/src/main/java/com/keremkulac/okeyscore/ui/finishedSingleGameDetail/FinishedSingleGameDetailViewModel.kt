@@ -1,9 +1,11 @@
 package com.keremkulac.okeyscore.ui.finishedSingleGameDetail
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Player
@@ -46,12 +48,13 @@ class FinishedSingleGameDetailViewModel
         return players.sortedBy { it.totalScore.toInt() }
     }
 
-    fun scoreDifferences(finishedSingleGame: FinishedSingleGame) : String {
+    fun scoreDifferences(finishedSingleGame: FinishedSingleGame,context: Context) : String {
         val minScorePlayer = sortByMin(finishedSingleGame)[0]
         var result = ""
         for(player in sortByMin(finishedSingleGame)){
             if(minScorePlayer.totalScore.toInt() != player.totalScore.toInt()){
-                result += "${minScorePlayer.name} ile ${player.name} skor farkı " +"${player.totalScore.toInt()-minScorePlayer.totalScore.toInt()}\n"
+                val scoreDifference =  player.totalScore.toInt() - minScorePlayer.totalScore.toInt()
+                result += context.getString(R.string.score_difference).format(minScorePlayer.name,player.name,scoreDifference)+"\n"
             }
         }
         return result

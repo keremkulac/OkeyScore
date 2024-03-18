@@ -31,7 +31,7 @@ class SaveSingleGameViewModel
         playerNames: List<EditText>,navController: NavController,
         context: Context){
         viewModelScope.launch {
-            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList)
+            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList,context)
             okeyScoreRepository.insertFinishedSingleGame(finishedSingleGame)
             navController.navigate(
                 SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment()
@@ -42,7 +42,8 @@ class SaveSingleGameViewModel
 
     private fun createFinishedSingleGame(
         playerNames: List<EditText>,
-        allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>
+        allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
+        context: Context
     ): FinishedSingleGame {
         val players = createPlayers(playerNames, allPlayerScoreEditTextList)
         return FinishedSingleGame(
@@ -51,7 +52,7 @@ class SaveSingleGameViewModel
             players[1],
             players[2],
             players[3],
-            createInfo(players)
+            createInfo(players,context)
         )
     }
    private fun createPlayerScoreList(playerScoreEditTextList: List<EditText>) : ArrayList<String>{
@@ -114,10 +115,10 @@ class SaveSingleGameViewModel
         }
     }
 
-    private fun createInfo(player: List<Player>): Info {
+    private fun createInfo(player: List<Player>,context: Context): Info {
 
         val minScorePlayer = player.minBy { it.totalScore.toInt() }
-        return Info("Kazanan oyuncu: ${minScorePlayer.name}. Skor: ${minScorePlayer.totalScore} ", getCurrentDate())
+        return Info(context.getString(R.string.winning_player_info).format(minScorePlayer.name,minScorePlayer.totalScore), getCurrentDate())
     }
     private fun getCurrentDate(): String {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")

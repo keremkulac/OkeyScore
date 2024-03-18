@@ -1,58 +1,64 @@
-<resources>
-    <string name="app_name">101 Okey Yazboz</string>
-    <string name="tag">Tag</string>
-    <string name="date">Tarih</string>
-    <string name="round_scores">Tur Skorları</string>
-    <string name="record_not_found">Kayıt oluşturmak için \"Yeni Kayıt\" butonuna tıklayınız</string>
-    <string name="save">Kaydet</string>
-    <string name="todo">TODO</string>
-    <string name="game_info">Oyun bilgi</string>
-    <string name="game_detail">Oyun detay</string>
-    <string name="detail">Detay</string>
-    <string name="enter_player1_name">1. oyuncu için isim giriniz</string>
-    <string name="enter_player2_name">2. oyuncu için isim giriniz</string>
-    <string name="enter_player3_name">3. oyuncu için isim giriniz</string>
-    <string name="enter_player4_name">4. oyuncu için isim giriniz</string>
-    <string name="new_round">Yeni Tur</string>
-    <string name="save_names">İsimleri Kaydet</string>
-    <string name="total_score">Toplam skor</string>
-    <string name="player">Player</string>
-    <string name="playerNamesAndScoresTitle">Oyuncu İsimleri ve Toplam Skorları</string>
-    <string name="teamNamesAndScoresTitle">Takım İsimleri ve Toplam Skorları</string>
-    <string name="total_score_text">Toplam skor: %1$s</string>
-    <string name="teamScoresTitle">Oyuncu Tur Skorları</string>
-    <string name="enter_team1_name">1. takım için isim giriniz</string>
-    <string name="enter_team2_name">2. takım için isim giriniz</string>
-    <string name="team_round_scores">Takım Tur Skorları</string>
-    <string name="teams">Takımlar</string>
-    <string name="players">Oyuncular</string>
-    <string name="partner_game">Eşli Oyun Kayıt</string>
-    <string name="single_game">Tekli Oyun Kayıt</string>
-    <string name="successful">Başarılı</string>
-    <string name="show_differences">Farkları gör</string>
-    <string-array name="tablayoutTitleArray">
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">101 Okey Yazboz</string>
+    <string name="tag" translatable="false">Tag</string>
+    <string name="date" tools:ignore="MissingTranslation">Tarih</string>
+    <string name="round_scores" tools:ignore="MissingTranslation">Tur Skorları</string>
+    <string name="record_not_found" tools:ignore="MissingTranslation">Kayıt oluşturmak için \"Yeni Kayıt\" butonuna tıklayınız</string>
+    <string name="save" tools:ignore="MissingTranslation">Kaydet</string>
+    <string name="todo" tools:ignore="MissingTranslation">TODO</string>
+    <string name="game_info" tools:ignore="MissingTranslation">Oyun bilgi</string>
+    <string name="game_detail" tools:ignore="MissingTranslation">Oyun detay</string>
+    <string name="detail" tools:ignore="MissingTranslation">Detay</string>
+    <string name="enter_player1_name" tools:ignore="MissingTranslation">1. oyuncu için isim giriniz</string>
+    <string name="enter_player2_name" tools:ignore="MissingTranslation">2. oyuncu için isim giriniz</string>
+    <string name="enter_player3_name" tools:ignore="MissingTranslation">3. oyuncu için isim giriniz</string>
+    <string name="enter_player4_name" tools:ignore="MissingTranslation">4. oyuncu için isim giriniz</string>
+    <string name="new_round" tools:ignore="MissingTranslation">Yeni Tur</string>
+    <string name="save_names" tools:ignore="MissingTranslation">İsimleri Kaydet</string>
+    <string name="total_score" tools:ignore="MissingTranslation">Toplam skor</string>
+    <string name="player" tools:ignore="MissingTranslation">Player</string>
+    <string name="playerNamesAndScoresTitle" tools:ignore="MissingTranslation">Oyuncu İsimleri ve Toplam Skorları</string>
+    <string name="teamNamesAndScoresTitle" tools:ignore="MissingTranslation">Takım İsimleri ve Toplam Skorları</string>
+    <string name="total_score_text" tools:ignore="MissingTranslation">Toplam skor: %1$s</string>
+    <string name="teamScoresTitle" tools:ignore="MissingTranslation">Oyuncu Tur Skorları</string>
+    <string name="enter_team1_name" tools:ignore="MissingTranslation">1. takım için isim giriniz</string>
+    <string name="enter_team2_name" tools:ignore="MissingTranslation">2. takım için isim giriniz</string>
+    <string name="team_round_scores" tools:ignore="MissingTranslation">Takım Tur Skorları</string>
+    <string name="teams" tools:ignore="MissingTranslation">Takımlar</string>
+    <string name="players" tools:ignore="MissingTranslation">Oyuncular</string>
+    <string name="partner_game" tools:ignore="MissingTranslation">Eşli Oyun Kayıt</string>
+    <string name="single_game" tools:ignore="MissingTranslation">Tekli Oyun Kayıt</string>
+    <string name="successful" tools:ignore="MissingTranslation">Başarılı</string>
+    <string name="show_differences" tools:ignore="MissingTranslation">Farkları gör</string>
+    <string-array name="tablayoutTitleArray" tools:ignore="MissingTranslation">
         <item>Tekli oyunlarım</item>
         <item>Eşli oyunlarım</item>
     </string-array>
-    <string name="new_game_record">Yeni Kayıt</string>
-    <string name="history">Geçmiş</string>
-    <string name="skip">Atla</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="dark_mode">Koyu mod</string>
-    <string name="settings">Ayarlar</string>
-    <string name="language">Dil</string>
-    <string name="select_language">Dil seçiniz</string>
-    <string name="turkish">Türkçe</string>
-    <string name="english">İngilizce</string>
-    <string name="search_team_hint">Aramak için bir tarih veya takım adı yazınız</string>
-    <string name="search_player_hint">Aramak için bir tarih veya oyuncu adı yazınız</string>
-    <string name="confirmation_title">İşlem Onayı</string>
-    <string name="confirmation_message">Oyunu kayıt etmek istiyor musunuz?</string>
-    <string name="confirmation_yes">Evet</string>
-    <string name="confirmation_no">Hayır</string>
-    <string name="warning_enter_all_player_names">Lütfen tüm oyuncu isimlerini giriniz.</string>
-    <string name="warning_enter_all_team_names">Lütfen tüm oyuncu isimlerini giriniz.</string>
-    <string name="registration_successful">Kayıt başarılı</string>
-
-
+    <string name="new_game_record" tools:ignore="MissingTranslation">Yeni Kayıt</string>
+    <string name="history" tools:ignore="MissingTranslation">Geçmiş</string>
+    <string name="skip" tools:ignore="MissingTranslation">Atla</string>
+    <string name="dark_mode" tools:ignore="MissingTranslation">Koyu mod</string>
+    <string name="settings" tools:ignore="MissingTranslation">Ayarlar</string>
+    <string name="language" tools:ignore="MissingTranslation">Dil</string>
+    <string name="select_language" tools:ignore="MissingTranslation">Dil seçiniz</string>
+    <string name="turkish" tools:ignore="MissingTranslation">Türkçe</string>
+    <string name="english" tools:ignore="MissingTranslation">İngilizce</string>
+    <string name="search_team_hint" tools:ignore="MissingTranslation">Aramak için bir tarih veya takım adı yazınız</string>
+    <string name="search_player_hint" tools:ignore="MissingTranslation">Aramak için bir tarih veya oyuncu adı yazınız</string>
+    <string name="confirmation_title" tools:ignore="MissingTranslation">İşlem Onayı</string>
+    <string name="confirmation_message" tools:ignore="MissingTranslation">Oyunu kayıt etmek istiyor musunuz?</string>
+    <string name="confirmation_yes" tools:ignore="MissingTranslation">Evet</string>
+    <string name="confirmation_no" tools:ignore="MissingTranslation">Hayır</string>
+    <string name="warning_check_all_rounds" tools:ignore="MissingTranslation">Lütfen %d. turdaki tüm alanları doldurun.</string>
+    <string name="warning_enter_all_player_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
+    <string name="warning_enter_all_team_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
+    <string name="registration_successful" tools:ignore="MissingTranslation">Kayıt başarılı</string>
+    <string name="round_count" tools:ignore="MissingTranslation">Tur %d</string>
+    <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı %d</string>
+    <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
+    <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>
+    <string name="hint_round_cont" tools:ignore="MissingTranslation">%d. tur</string>
+    <string name="winning_team_info" tools:ignore="MissingTranslation">Kazanan takım: %s. Skor: %s</string>
+    <string name="winning_player_info" tools:ignore="MissingTranslation">Kazanan oyuncu: %s. Skor: %s</string>
+    <string name="error_not_work_this_device" tools:ignore="MissingTranslation">Uygulama bu cihazda çalışmıyor.</string>
 </resources>

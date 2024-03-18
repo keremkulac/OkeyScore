@@ -8,7 +8,7 @@
     <string name="todo">TODO</string>
     <string name="game_info">Game info</string>
     <string name="game_detail">Game detail</string>
-    <string name="detail">Detay</string>
+    <string name="detail">Detail</string>
     <string name="enter_player1_name">Enter name for player 1</string>
     <string name="enter_player2_name">Enter name for player 2</string>
     <string name="enter_player3_name">Enter name for player 3</string>
@@ -37,7 +37,6 @@
     <string name="new_game_record">New Registration</string>
     <string name="history">History</string>
     <string name="skip">Skip</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="dark_mode">Dark mode</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
@@ -50,8 +49,16 @@
     <string name="confirmation_message">Do you want to record the game?</string>
     <string name="confirmation_yes">Yes</string>
     <string name="confirmation_no">No</string>
+    <string name="warning_check_all_rounds">Please %d. fill in all fields in the round.</string>
     <string name="warning_enter_all_player_names">Please enter all player names.</string>
     <string name="warning_enter_all_team_names">Please enter all team names.</string>
     <string name="registration_successful">Registration successful</string>
-
+    <string name="round_count">Round %d</string>
+    <string name="score_difference">%s and %s score difference %d</string>
+    <string name="deleted">Deleted</string>
+    <string name="take_it_back">Take it back</string>
+    <string name="hint_round_cont">%d. round</string>
+    <string name="winning_team_info">Winning team: %s. Score: %s</string>
+    <string name="winning_player_info">Winning player: %s. Score: %s</string>
+    <string name="error_not_work_this_device">The app does not work on this device.</string>
 </resources>

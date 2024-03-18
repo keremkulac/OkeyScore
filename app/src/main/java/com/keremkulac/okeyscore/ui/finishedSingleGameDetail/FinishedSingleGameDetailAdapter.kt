@@ -21,10 +21,10 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: FinishedSingleGameDetailAdapter.ViewHolder, position: Int) {
         finishedSingleGame?.let {
-            holder.player1ScoreHint.hint = ("${position+1}. tur ")
-            holder.player2ScoreHint.hint = ("${position+1}. tur ")
-            holder.player3ScoreHint.hint = ("${position+1}. tur ")
-            holder.player4ScoreHint.hint = ("${position+1}. tur ")
+            holder.player1ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
+            holder.player2ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
+            holder.player3ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
+            holder.player4ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
             holder.player1Score.setText(it.player1!!.allScores!![position])
             holder.player2Score.setText(it.player2!!.allScores!![position])
             holder.player3Score.setText(it.player3!!.allScores!![position])

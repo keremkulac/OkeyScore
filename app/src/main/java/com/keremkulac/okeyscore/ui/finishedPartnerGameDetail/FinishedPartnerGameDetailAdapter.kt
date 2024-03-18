@@ -22,8 +22,8 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         finishedPartnerGame?.let { finishedPartnerGame ->
-            holder.team1ScoreHint.hint = ("${position+1}. tur ")
-            holder.team2ScoreHint.hint = ("${position+1}. tur ")
+            holder.team1ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
+            holder.team2ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
             holder.team1Score.setText(finishedPartnerGame.team1!!.allScores!![position])
             holder.team2Score.setText(finishedPartnerGame.team2!!.allScores!![position])
             holder.team1Score.isFocusable = false
