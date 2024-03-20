@@ -18,21 +18,22 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FinishedSingleGameFragment @Inject constructor(
-    private val finishedSingleGameAdapter: FinishedSingleGameAdapter) : Fragment(R.layout.fragment_finished_single_game) {
+class FinishedSingleGameFragment () : Fragment(R.layout.fragment_finished_single_game) {
 
-    private lateinit var binding : FragmentFinishedSingleGameBinding
+    @Inject
+    lateinit var finishedSingleGameAdapter: FinishedSingleGameAdapter
     private val viewModel by viewModels<FinishedSingleGameViewModel>()
+    private lateinit var binding : FragmentFinishedSingleGameBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameBinding.bind(view)
-        setRecyclerView()
         observeAllFinishedGame()
+        setRecyclerView()
         clickFinishedGame()
-        search()
         deleteItemDatabase()
+        search()
     }
 
 

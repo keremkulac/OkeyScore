@@ -19,9 +19,10 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FinishedPartnerGameFragment @Inject constructor(
-    private val finishedPartnerGameAdapter: FinishedPartnerGameAdapter)  : Fragment(R.layout.fragment_finished_partner_game)  {
+class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_game)  {
 
+    @Inject
+    lateinit var finishedPartnerGameAdapter: FinishedPartnerGameAdapter
     private val viewModel by viewModels<FinishedPartnerGameViewModel>()
     private lateinit var binding : FragmentFinishedPartnerGameBinding
 

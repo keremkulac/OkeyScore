@@ -29,8 +29,8 @@ class FinishedGameViewFragment : Fragment() {
 
     private fun setViewPager(){
         adapter = ViewPagerAdapter(requireActivity().supportFragmentManager,lifecycle)
-        adapter.addFragment(FinishedSingleGameFragment(FinishedSingleGameAdapter()))
-        adapter.addFragment(FinishedPartnerGameFragment(FinishedPartnerGameAdapter()))
+        adapter.addFragment(FinishedSingleGameFragment())
+        adapter.addFragment(FinishedPartnerGameFragment())
         binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->

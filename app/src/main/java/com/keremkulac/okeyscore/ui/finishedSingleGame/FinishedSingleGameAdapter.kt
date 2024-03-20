@@ -12,7 +12,7 @@ import com.keremkulac.okeyscore.model.FinishedSingleGame
 import javax.inject.Inject
 
 
-class FinishedSingleGameAdapter @Inject constructor()  : RecyclerView.Adapter<FinishedSingleGameAdapter.FinishedGameViewHolder>() {
+class FinishedSingleGameAdapter : RecyclerView.Adapter<FinishedSingleGameAdapter.FinishedGameViewHolder>() {
 
     var clickListener: ((FinishedSingleGame) -> Unit)? = null
 

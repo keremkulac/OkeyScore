@@ -5,6 +5,8 @@ import android.content.Context
 import androidx.room.Room
 import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
 import com.keremkulac.okeyscore.data.local.OkeyScoreDatabase
+import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameAdapter
+import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameAdapter
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import dagger.Module
 import dagger.Provides
@@ -34,6 +36,18 @@ object NetworkModule {
         return okeyScoreDatabase.okeyScoreDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideFinishedSingleGameAdapter() : FinishedSingleGameAdapter{
+        return FinishedSingleGameAdapter()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFinishedPartnerGameAdapter() : FinishedPartnerGameAdapter{
+        return FinishedPartnerGameAdapter()
+    }
+
     @Module
     @InstallIn(SingletonComponent::class)
     object AppModule {
@@ -42,6 +56,8 @@ object NetworkModule {
             return SharedPrefHelper(context)
         }
     }
+
+
 
 
 }

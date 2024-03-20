@@ -13,16 +13,14 @@ import com.keremkulac.okeyscore.ui.finishedSingleGameDetail.FinishedSingleGameDe
 import javax.inject.Inject
 
 class DefaultFragmentFactory @Inject constructor(
-    private val finishedPartnerGameAdapter: FinishedPartnerGameAdapter,
     private val finishedPartnerGameDetailAdapter: FinishedPartnerGameDetailAdapter,
-    private val finishedSingleGameAdapter: FinishedSingleGameAdapter,
     private val finishedSingleGameDetailAdapter: FinishedSingleGameDetailAdapter
     ) : FragmentFactory() {
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment =
         when (loadFragmentClass(classLoader, className)) {
-            FinishedPartnerGameFragment::class.java -> FinishedPartnerGameFragment(finishedPartnerGameAdapter)
+            FinishedPartnerGameFragment::class.java -> FinishedPartnerGameFragment()
             FinishedPartnerGameDetailFragment::class.java -> FinishedPartnerGameDetailFragment(finishedPartnerGameDetailAdapter)
-            FinishedSingleGameFragment::class.java -> FinishedSingleGameFragment(finishedSingleGameAdapter)
+            FinishedSingleGameFragment::class.java -> FinishedSingleGameFragment()
             FinishedSingleGameDetailFragment::class.java -> FinishedSingleGameDetailFragment(finishedSingleGameDetailAdapter)
             else -> super.instantiate(classLoader, className)
         }
