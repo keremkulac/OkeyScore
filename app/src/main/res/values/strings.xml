@@ -54,7 +54,7 @@
     <string name="warning_enter_all_team_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
     <string name="registration_successful" tools:ignore="MissingTranslation">Kayıt başarılı</string>
     <string name="round_count" tools:ignore="MissingTranslation">Tur %d</string>
-    <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı %d</string>
+    <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
     <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
     <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>
     <string name="hint_round_cont" tools:ignore="MissingTranslation">%d. tur</string>

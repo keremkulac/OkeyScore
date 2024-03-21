@@ -54,7 +54,7 @@
     <string name="warning_enter_all_team_names">Please enter all team names.</string>
     <string name="registration_successful">Registration successful</string>
     <string name="round_count">Round %d</string>
-    <string name="score_difference">%s and %s score difference %d</string>
+    <string name="score_difference">%s and %s score difference: %d</string>
     <string name="deleted">Deleted</string>
     <string name="take_it_back">Take it back</string>
     <string name="hint_round_cont">%d. round</string>

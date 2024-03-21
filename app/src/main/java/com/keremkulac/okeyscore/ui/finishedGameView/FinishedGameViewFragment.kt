@@ -9,9 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedGameViewBinding
-import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameAdapter
 import com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameFragment
-import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameAdapter
 import com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment
 
 

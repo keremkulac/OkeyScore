@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedSingleGame
-import javax.inject.Inject
 
 
 class FinishedSingleGameAdapter : RecyclerView.Adapter<FinishedSingleGameAdapter.FinishedGameViewHolder>() {
