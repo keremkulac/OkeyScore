@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/savePartnerGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.savePartnerGame.SavePartnerGameFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.savePartnerGame.SavePartnerGameFragment"
         android:label="fragment_save_partner_game"
         tools:layout="@layout/fragment_save_partner_game" >
         <action
@@ -16,19 +16,19 @@
     </fragment>
     <fragment
         android:id="@+id/finishedPartnerGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedPartnerGame.FinishedPartnerGameFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.finishedPartnerGame.FinishedPartnerGameFragment"
         android:label="fragment_finished_partner_game"
         tools:layout="@layout/fragment_finished_partner_game" >
     </fragment>
     <fragment
         android:id="@+id/finishedSingleGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedSingleGame.FinishedSingleGameFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.finishedSingleGame.FinishedSingleGameFragment"
         android:label="fragment_finished_single_game"
         tools:layout="@layout/fragment_finished_single_game" >
     </fragment>
     <fragment
         android:id="@+id/finishedGameViewFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedGameView.FinishedGameViewFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragment"
         android:label="fragment_finished_game_view"
         tools:layout="@layout/fragment_finished_game_view" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/saveSingleGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.saveSingleGame.SaveSingleGameFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.saveSingleGame.SaveSingleGameFragment"
         android:label="fragment_save_single_game"
         tools:layout="@layout/fragment_save_single_game">
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishedPartnerGameDetailFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment"
         android:label="fragment_finished_partner_game_detail"
         tools:layout="@layout/fragment_finished_partner_game_detail" >
         <argument
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishedSingleGameDetailFragment"
-        android:name="com.keremkulac.okeyscore.ui.finishedSingleGameDetail.FinishedSingleGameDetailFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.finishedSingleGameDetail.FinishedSingleGameDetailFragment"
         android:label="fragment_finished_single_game_detail"
         tools:layout="@layout/fragment_finished_single_game_detail">
         <argument
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/chooseGameFragment"
-        android:name="com.keremkulac.okeyscore.ui.chooseGame.ChooseGameFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.chooseGame.ChooseGameFragment"
         android:label="fragment_choose_game"
         tools:layout="@layout/fragment_choose_game" >
         <action
@@ -116,7 +116,7 @@
         app:destination="@id/chooseGameFragment" />
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.keremkulac.okeyscore.ui.onboarding.OnboardingFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.onboarding.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -131,7 +131,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.keremkulac.okeyscore.ui.settings.SettingsFragment"
+        android:name="com.keremkulac.okeyscore.presentation.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
