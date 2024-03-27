@@ -5,13 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
+import com.keremkulac.okeyscore.domain.use_case.delete_finished_single_game.DeleteFinishedSingleGameUseCase
+import com.keremkulac.okeyscore.domain.use_case.get_all_finished_single_games.GetAllFinishedSingleGamesUseCase
+import com.keremkulac.okeyscore.domain.use_case.insert_finished_single_game.InsertFinishedSingleGameUseCase
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepositoryImp: OkeyScoreRepositoryImp) : ViewModel() {
+class FinishedSingleGameViewModel @Inject constructor(
+    private val getAllFinishedSingleGamesUseCase: GetAllFinishedSingleGamesUseCase,
+    private val deleteFinishedSingleGameUseCase: DeleteFinishedSingleGameUseCase,
+    private val insertFinishedSingleGameUseCase: InsertFinishedSingleGameUseCase
+) : ViewModel() {
     private val _allFinishedSingleGames = MutableLiveData<ArrayList<FinishedSingleGame>>()
     val allFinishedSingleGames: LiveData<ArrayList<FinishedSingleGame>>
         get() = _allFinishedSingleGames
@@ -25,13 +32,13 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepositoryImp
 
     private fun getAllFinishedSingleGame(){
         viewModelScope.launch {
-            _allFinishedSingleGames.postValue(ArrayList(okeyScoreRepositoryImp.getAllFinishedSingleGames()))
+            _allFinishedSingleGames.postValue(ArrayList(getAllFinishedSingleGamesUseCase.invoke()))
         }
     }
 
     fun deleteFinishedGame(finishedSingleGame : FinishedSingleGame){
         viewModelScope.launch {
-            okeyScoreRepositoryImp.deleteFinishedSingleGame(finishedSingleGame)
+            deleteFinishedSingleGameUseCase.invoke(finishedSingleGame)
         }
     }
 
@@ -55,7 +62,7 @@ class FinishedSingleGameViewModel @Inject constructor(val okeyScoreRepositoryImp
 
     fun saveSingleGame(finishedSingleGame: FinishedSingleGame){
         viewModelScope.launch {
-            okeyScoreRepositoryImp.insertFinishedSingleGame(finishedSingleGame)
+            insertFinishedSingleGameUseCase.invoke(finishedSingleGame)
         }
     }
 }

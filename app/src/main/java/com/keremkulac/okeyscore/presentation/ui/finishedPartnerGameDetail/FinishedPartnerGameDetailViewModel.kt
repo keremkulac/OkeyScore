@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
+import com.keremkulac.okeyscore.domain.use_case.get_finished_partner_game.GetFinishedPartnerGameUseCase
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FinishedPartnerGameDetailViewModel @Inject constructor(
-    private val okeyScoreRepositoryImp: OkeyScoreRepositoryImp) : ViewModel() {
+    private val finishedPartnerGameUseCase: GetFinishedPartnerGameUseCase) : ViewModel() {
 
     private val _finishedPartnerGame = MutableLiveData<FinishedPartnerGame?>()
     val finishedPartnerGameGame: LiveData<FinishedPartnerGame?>
@@ -23,7 +24,7 @@ class FinishedPartnerGameDetailViewModel @Inject constructor(
 
     fun getFinishedGame(id: Int){
         viewModelScope.launch {
-            _finishedPartnerGame.postValue(okeyScoreRepositoryImp.getFinishedPartnerGame(id))
+            _finishedPartnerGame.postValue(finishedPartnerGameUseCase.invoke(id))
         }
     }
 

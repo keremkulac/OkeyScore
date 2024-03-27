@@ -42,8 +42,8 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
     }
 
     private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
-    var finishedPartnerGameLists : ArrayList<FinishedPartnerGame>
-        get() = recyclerListDiffer.currentList.toMutableList() as ArrayList<FinishedPartnerGame>
+    var finishedPartnerGameLists : List<FinishedPartnerGame>
+        get() = recyclerListDiffer.currentList.toMutableList()
         set(value)  {
             recyclerListDiffer.submitList(value as List<FinishedPartnerGame?>?)
         }
@@ -59,7 +59,7 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
         }
     }
 
-    fun updateData(newList: ArrayList<FinishedPartnerGame>) {
+    fun updateData(newList: List<FinishedPartnerGame>) {
         finishedPartnerGameLists = newList
     }
 }
