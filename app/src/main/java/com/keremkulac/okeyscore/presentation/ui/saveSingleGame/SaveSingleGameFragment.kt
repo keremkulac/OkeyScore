@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -37,6 +38,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         saveGame()
         newRound(layoutInflater)
         goToChooseGameFragment()
+        penalty()
     }
 
     private fun playerNames(): List<EditText> {
@@ -79,6 +81,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 binding.scoreColumnDivider3.visibility = View.VISIBLE
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
+                binding.penalty.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
                 calculate()
                 setPlayerNames()
@@ -182,6 +185,30 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         }
     }
 
+    private fun penalty(){
+        binding.penalty.setOnClickListener{
+            val singlePlayerView = LayoutInflater.from(requireContext()).inflate(R.layout.single_players_add_penalty, null)
+            //val partnerPlayerView = LayoutInflater.from(context).inflate(R.layout.partner_players_add_penalty, null)
+            val penaltyView = LayoutInflater.from(requireContext()).inflate(R.layout.add_penalty,null)
+            setPlayerToBePenalized(singlePlayerView)
+            val firstDialog = AlertDialog.Builder(requireContext())
+                .setView(singlePlayerView)
+                .setTitle("Ceza eklenecek oyuncuyu seçiniz")
+                .setPositiveButton("İleri") { dialog, which ->
+                    val secondDialog = AlertDialog.Builder(requireContext())
+                        .setView(penaltyView)
+                        .setTitle("Cezayı belirleyin")
+                        .setPositiveButton("Tamam") { dialog, which ->
+
+
+                        }
+                        .create()
+                    secondDialog.show()
+                }
+                .create()
+            firstDialog.show()
+        }
+    }
    private fun saveGame(){
         binding.saveGame.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
@@ -194,6 +221,14 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }
+    }
+
+    private fun setPlayerToBePenalized(singlePlayerView: View){
+        singlePlayerView.findViewById<RadioButton>(R.id.player1).text = binding.player1NameEntry.text.toString()
+        singlePlayerView.findViewById<RadioButton>(R.id.player2).text = binding.player2NameEntry.text.toString()
+        singlePlayerView.findViewById<RadioButton>(R.id.player3).text = binding.player3NameEntry.text.toString()
+        singlePlayerView.findViewById<RadioButton>(R.id.player4).text = binding.player4NameEntry.text.toString()
+
     }
 
     private fun goToChooseGameFragment(){

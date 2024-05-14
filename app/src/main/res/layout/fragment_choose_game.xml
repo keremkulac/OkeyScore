@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-    tools:context=".ui.chooseGame.ChooseGameFragment">
+    tools:context=".presentation.ui.chooseGame.ChooseGameFragment">
 
     <ImageView
         android:layout_width="wrap_content"

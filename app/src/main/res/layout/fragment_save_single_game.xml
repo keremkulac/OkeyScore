@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="60dp"
     android:background="@color/main_background_color"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.finishedSingleGame.FinishedSingleGameFragment">
+    tools:context=".presentation.ui.saveSingleGame.SaveSingleGameFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -278,26 +277,41 @@
         <Button
             android:id="@+id/saveGame"
             style="@style/ButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:text="@string/save"
-            android:visibility="invisible"
             android:textAllCaps="false"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/newRound"
-            app:layout_constraintTop_toBottomOf="@id/scoreLayout" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newRound"/>
 
         <Button
             android:id="@+id/newRound"
             style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:text="@string/new_round"
+            android:textAllCaps="false"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/penalty"
+            app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
+
+        <Button
+            android:id="@+id/penalty"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:text="Ceza"
             android:visibility="invisible"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toStartOf="@+id/saveGame"
+            app:layout_constraintEnd_toStartOf="@+id/newRound"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>

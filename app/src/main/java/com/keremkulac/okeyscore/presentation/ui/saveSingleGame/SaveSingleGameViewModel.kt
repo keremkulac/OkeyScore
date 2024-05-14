@@ -97,7 +97,7 @@ class SaveSingleGameViewModel
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
             val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
-            val player = Player(0, playerName, playerScores, totalScore)
+            val player = Player(0, playerName, playerScores, totalScore, listOf())
             players.add(player)
         }
         return players

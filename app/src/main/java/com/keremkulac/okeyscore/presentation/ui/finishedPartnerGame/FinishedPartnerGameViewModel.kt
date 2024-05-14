@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
 import com.keremkulac.okeyscore.domain.use_case.delete_finished_partner_game.DeleteFinishedPartnerGameUseCase
 import com.keremkulac.okeyscore.domain.use_case.get_all_finished_partner_games.GetAllFinishedPartnerGamesUseCase
 import com.keremkulac.okeyscore.domain.use_case.insert_finished_partner_game.InsertFinishedPartnerGameUseCase
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
-import com.keremkulac.okeyscore.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

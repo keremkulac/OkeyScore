@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
 import com.keremkulac.okeyscore.domain.use_case.delete_finished_single_game.DeleteFinishedSingleGameUseCase
 import com.keremkulac.okeyscore.domain.use_case.get_all_finished_single_games.GetAllFinishedSingleGamesUseCase
 import com.keremkulac.okeyscore.domain.use_case.insert_finished_single_game.InsertFinishedSingleGameUseCase

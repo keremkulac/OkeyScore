@@ -29,7 +29,9 @@ object NetworkModule {
             appContext,
             OkeyScoreDatabase::class.java,
             "okeyScore.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
