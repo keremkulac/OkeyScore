@@ -5,5 +5,4 @@ data class Player(
     val name : String,
     val allScores : List<String?>?,
     val totalScore : String,
-    val penalties : List<Int?>
-)
+    val penalties : List<String?>?)

@@ -18,6 +18,11 @@ android {
         versionName "1.10"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "tr"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -37,6 +42,8 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
+
 }
 
 

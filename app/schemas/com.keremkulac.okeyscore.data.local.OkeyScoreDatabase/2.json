@@ -1,0 +1,258 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "470d2305652eefe41f9557615ac40a70",
+    "entities": [
+      {
+        "tableName": "finishedPartnerGame",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `team1id` INTEGER, `team1name` TEXT, `team1allScores` TEXT, `team1totalScore` TEXT, `team1penalties` TEXT, `team2id` INTEGER, `team2name` TEXT, `team2allScores` TEXT, `team2totalScore` TEXT, `team2penalties` TEXT, `gameInfogameInfo` TEXT NOT NULL, `gameInfodate` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "team1.id",
+            "columnName": "team1id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team1.name",
+            "columnName": "team1name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team1.allScores",
+            "columnName": "team1allScores",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team1.totalScore",
+            "columnName": "team1totalScore",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team1.penalties",
+            "columnName": "team1penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team2.id",
+            "columnName": "team2id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team2.name",
+            "columnName": "team2name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team2.allScores",
+            "columnName": "team2allScores",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team2.totalScore",
+            "columnName": "team2totalScore",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "team2.penalties",
+            "columnName": "team2penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gameInfo.gameInfo",
+            "columnName": "gameInfogameInfo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameInfo.date",
+            "columnName": "gameInfodate",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "finishedSingleGame",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player1id` INTEGER, `player1name` TEXT, `player1allScores` TEXT, `player1totalScore` TEXT, `player1penalties` TEXT, `player2id` INTEGER, `player2name` TEXT, `player2allScores` TEXT, `player2totalScore` TEXT, `player2penalties` TEXT, `player3id` INTEGER, `player3name` TEXT, `player3allScores` TEXT, `player3totalScore` TEXT, `player3penalties` TEXT, `player4id` INTEGER, `player4name` TEXT, `player4allScores` TEXT, `player4totalScore` TEXT, `player4penalties` TEXT, `gameInfogameInfo` TEXT NOT NULL, `gameInfodate` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "player1.id",
+            "columnName": "player1id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player1.name",
+            "columnName": "player1name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player1.allScores",
+            "columnName": "player1allScores",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player1.totalScore",
+            "columnName": "player1totalScore",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player1.penalties",
+            "columnName": "player1penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player2.id",
+            "columnName": "player2id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player2.name",
+            "columnName": "player2name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player2.allScores",
+            "columnName": "player2allScores",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player2.totalScore",
+            "columnName": "player2totalScore",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player2.penalties",
+            "columnName": "player2penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player3.id",
+            "columnName": "player3id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player3.name",
+            "columnName": "player3name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player3.allScores",
+            "columnName": "player3allScores",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player3.totalScore",
+            "columnName": "player3totalScore",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player3.penalties",
+            "columnName": "player3penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player4.id",
+            "columnName": "player4id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player4.name",
+            "columnName": "player4name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player4.allScores",
+            "columnName": "player4allScores",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player4.totalScore",
+            "columnName": "player4totalScore",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player4.penalties",
+            "columnName": "player4penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gameInfo.gameInfo",
+            "columnName": "gameInfogameInfo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameInfo.date",
+            "columnName": "gameInfodate",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '470d2305652eefe41f9557615ac40a70')"
+    ]
+  }
+}

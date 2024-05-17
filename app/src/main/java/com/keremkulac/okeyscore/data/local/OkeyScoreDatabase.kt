@@ -9,8 +9,12 @@ import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.util.IntegerListConverter
 import com.keremkulac.okeyscore.util.PlayerConverter
 
-@Database(entities = [FinishedPartnerGame::class,FinishedSingleGame::class], version = 2)
+@Database(
+    entities = [FinishedPartnerGame::class,FinishedSingleGame::class],
+    version = 2,
+    exportSchema = true)
 @TypeConverters(PlayerConverter::class,IntegerListConverter::class)
 abstract class OkeyScoreDatabase : RoomDatabase() {
     abstract fun okeyScoreDao(): OkeyScoreDao
+
 }

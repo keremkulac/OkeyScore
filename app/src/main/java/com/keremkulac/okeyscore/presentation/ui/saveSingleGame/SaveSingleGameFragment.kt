@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
+import com.keremkulac.okeyscore.data.local.Migration_1_to_2
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -199,7 +200,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                         .setView(penaltyView)
                         .setTitle("Cezayı belirleyin")
                         .setPositiveButton("Tamam") { dialog, which ->
-
 
                         }
                         .create()

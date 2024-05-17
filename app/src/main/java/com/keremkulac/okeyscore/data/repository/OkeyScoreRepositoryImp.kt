@@ -32,7 +32,7 @@ class OkeyScoreRepositoryImp @Inject constructor(private val okeyScoreDao: OkeyS
     }
 
     override suspend fun getFinishedSingleGame(id: Int): FinishedSingleGame {
-        return getFinishedSingleGame(id)
+        return okeyScoreDao.getFinishedSingleGameById(id)
     }
 
     override suspend fun deleteFinishedSingleGame(finishedSingleGame: FinishedSingleGame) {
