@@ -1,14 +1,11 @@
 package com.keremkulac.okeyscore.data.local
 
-import android.util.Log
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-class Migration_1_to_2 : Migration(1, 2) {
+class Migration : Migration(1, 2) {
 
     override fun migrate(db: SupportSQLiteDatabase) {
-        Log.d("TAGGGVERS",db.version.toString())
-
         if(db.version <2){
             db.execSQL("CREATE TABLE temp_finishedPartnerGame (" +
                     "id INTEGER PRIMARY KEY NOT NULL, " +
@@ -94,7 +91,6 @@ class Migration_1_to_2 : Migration(1, 2) {
                     "player2penalties TEXT, " +
                     "player3penalties TEXT, " +
                     "player4penalties TEXT " +
-
                     ")")
             db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player1penalties TEXT DEFAULT ''")
             db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player2penalties TEXT DEFAULT ''")
@@ -102,10 +98,6 @@ class Migration_1_to_2 : Migration(1, 2) {
             db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player4penalties TEXT DEFAULT ''")
             db.execSQL("INSERT INTO finishedSingleGame SELECT * FROM temp_finishedSingleGame")
             db.execSQL("DROP TABLE temp_finishedSingleGame")
-
-
         }
-
     }
-
 }

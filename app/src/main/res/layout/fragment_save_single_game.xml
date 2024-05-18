@@ -302,7 +302,7 @@
             android:id="@+id/penalty"
             style="@style/ButtonStyle"
             android:layout_width="0dp"
-            android:text="Ceza"
+            android:text="@string/penalty"
             android:visibility="invisible"
             android:textAllCaps="false"
             app:layout_constraintEnd_toStartOf="@+id/newRound"

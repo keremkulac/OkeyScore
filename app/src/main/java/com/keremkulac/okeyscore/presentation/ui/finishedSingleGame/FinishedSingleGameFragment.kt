@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FinishedSingleGameFragment () : Fragment(R.layout.fragment_finished_single_game) {
+class FinishedSingleGameFragment  : Fragment(R.layout.fragment_finished_single_game) {
 
     @Inject
     lateinit var finishedSingleGameAdapter: FinishedSingleGameAdapter

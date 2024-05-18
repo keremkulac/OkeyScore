@@ -6,7 +6,7 @@
 
     <RadioGroup
         android:layout_marginStart="16dp"
-        android:id="@+id/singlePlayers"
+        android:id="@+id/singlePlayersRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,21 +16,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player1"
-            android:text="Single Player 1"/>
+            android:hint="@string/single_player_1"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player2"
-            android:text="Single Player 2"/>
+            android:hint="@string/single_player_2"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player3"
-            android:text="Single Player 3"/>
+            android:hint="@string/single_player_3"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player4"
-            android:text="Single Player 4"/>
+            android:hint="@string/single_player_4"/>
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,4 +61,12 @@
     <string name="winning_team_info" tools:ignore="MissingTranslation">Kazanan takım: %s. Skor: %s</string>
     <string name="winning_player_info" tools:ignore="MissingTranslation">Kazanan oyuncu: %s. Skor: %s</string>
     <string name="error_not_work_this_device" tools:ignore="MissingTranslation">Uygulama bu cihazda çalışmıyor.</string>
+    <string name="enter_penalty" tools:ignore="MissingTranslation">Ceza giriniz</string>
+    <string name="penalty" tools:ignore="MissingTranslation">Ceza</string>
+    <string name="partner_player_1" tools:ignore="MissingTranslation">Partner player 1</string>
+    <string name="partner_player_2" tools:ignore="MissingTranslation">Partner player 2</string>
+    <string name="single_player_1" tools:ignore="MissingTranslation">Single Player 1</string>
+    <string name="single_player_2" tools:ignore="MissingTranslation">Single Player 2</string>
+    <string name="single_player_3" tools:ignore="MissingTranslation">Single Player 3</string>
+    <string name="single_player_4" tools:ignore="MissingTranslation">Single Player 4</string>
 </resources>

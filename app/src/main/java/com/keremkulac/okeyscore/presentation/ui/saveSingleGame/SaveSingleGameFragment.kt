@@ -10,13 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.data.local.Migration_1_to_2
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private var player3ScoreEditTextList = ArrayList<EditText>()
     private var player4ScoreEditTextList = ArrayList<EditText>()
     private var allPlayerScoreEditTextList = ArrayList<ArrayList<EditText>>()
+    private var allPlayerPenaltyTextViewList = ArrayList<TextView>()
+    private val penaltyHashMap = HashMap<String,TextView>()
     private var lineCount = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,6 +63,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         )
     }
 
+
+
     private fun checkPlayerNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
@@ -86,6 +91,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 binding.saveGame.isEnabled = false
                 calculate()
                 setPlayerNames()
+                createPenaltyHashMap(allPlayerPenaltyTextViewList)
             }
         }
     }
@@ -120,6 +126,11 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         if(lineCount % 2 != 0){
             includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
         }
+        allPlayerPenaltyTextViewList.add(includedLayout.findViewById(R.id.playerPenalty1))
+        allPlayerPenaltyTextViewList.add(includedLayout.findViewById(R.id.playerPenalty2))
+        allPlayerPenaltyTextViewList.add(includedLayout.findViewById(R.id.playerPenalty3))
+        allPlayerPenaltyTextViewList.add(includedLayout.findViewById(R.id.playerPenalty4))
+       // createPenaltyHashMap(allPlayerPenaltyTextViewList)
         createAllPlayerScoreEditTextList()
         val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
         val hintIds = listOf(R.id.player1ScoreHint, R.id.player2ScoreHint, R.id.player3ScoreHint, R.id.player4ScoreHint)
@@ -133,6 +144,11 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         return editTextList
     }
 
+    private fun createPenaltyHashMap(allPlayerPenaltyTextViewList : List<TextView>){
+        for((i, textView) in allPlayerPenaltyTextViewList.withIndex()){
+            penaltyHashMap[playerNames()[i].text.toString()] = textView
+        }
+    }
     private fun setPlayerNames(){
         for (i in playerNames().indices){
             val id= resources.getIdentifier("player${i+1}Name","id",requireContext().packageName)
@@ -146,6 +162,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         allPlayerScoreEditTextList.add(player3ScoreEditTextList)
         allPlayerScoreEditTextList.add(player4ScoreEditTextList)
     }
+
 
     private fun editTextWatcher(editText: EditText) : Boolean{
         var empty = false
@@ -189,8 +206,9 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private fun penalty(){
         binding.penalty.setOnClickListener{
             val singlePlayerView = LayoutInflater.from(requireContext()).inflate(R.layout.single_players_add_penalty, null)
-            //val partnerPlayerView = LayoutInflater.from(context).inflate(R.layout.partner_players_add_penalty, null)
             val penaltyView = LayoutInflater.from(requireContext()).inflate(R.layout.add_penalty,null)
+            val singlePlayersRadioGroup = singlePlayerView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
+            val givenPenalty = penaltyView.findViewById<EditText>(R.id.penalty)
             setPlayerToBePenalized(singlePlayerView)
             val firstDialog = AlertDialog.Builder(requireContext())
                 .setView(singlePlayerView)
@@ -199,8 +217,15 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                     val secondDialog = AlertDialog.Builder(requireContext())
                         .setView(penaltyView)
                         .setTitle("Cezayı belirleyin")
-                        .setPositiveButton("Tamam") { dialog, which ->
+                            .setPositiveButton("Onayla") { _, _ ->
 
+                            val checkedRadioButtonId = singlePlayersRadioGroup.checkedRadioButtonId
+                            val selectedRadioButton = singlePlayerView.findViewById<RadioButton>(checkedRadioButtonId)
+                            val selectedText = selectedRadioButton.text.toString()
+                            val textView = penaltyHashMap[selectedText]
+                            textView?.let {
+                                it.text = "Ceza: " + givenPenalty.text.toString()
+                            }
                         }
                         .create()
                     secondDialog.show()
@@ -228,7 +253,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         singlePlayerView.findViewById<RadioButton>(R.id.player2).text = binding.player2NameEntry.text.toString()
         singlePlayerView.findViewById<RadioButton>(R.id.player3).text = binding.player3NameEntry.text.toString()
         singlePlayerView.findViewById<RadioButton>(R.id.player4).text = binding.player4NameEntry.text.toString()
-
     }
 
     private fun goToChooseGameFragment(){

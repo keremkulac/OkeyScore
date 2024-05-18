@@ -17,11 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player1"
-            android:text="Partner player 1"/>
+            android:hint="@string/partner_player_1"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player2"
-            android:text="Partner player 2"/>
+            android:hint="@string/partner_player_2"/>
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

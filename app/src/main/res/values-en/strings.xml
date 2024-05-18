@@ -61,4 +61,12 @@
     <string name="winning_team_info">Winning team: %s. Score: %s</string>
     <string name="winning_player_info">Winning player: %s. Score: %s</string>
     <string name="error_not_work_this_device">The app does not work on this device.</string>
+    <string name="enter_penalty">Enter penalty</string>
+    <string name="penalty">Penalty</string>
+    <string name="partner_player_1">Partner player 1</string>
+    <string name="partner_player_2">Partner player 2</string>
+    <string name="single_player_1">Single Player 1</string>
+    <string name="single_player_2">Single Player 2</string>
+    <string name="single_player_3">Single Player 3</string>
+    <string name="single_player_4">Single Player 4</string>
 </resources>

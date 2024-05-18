@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-    tools:context=".ui.finishedGameView.FinishedGameViewFragment">
+    tools:context=".presentation.ui.finishedGameView.FinishedGameViewFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -3,7 +3,6 @@ package com.keremkulac.okeyscore.data.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.keremkulac.okeyscore.data.local.Migration_1_to_2
 import com.keremkulac.okeyscore.data.local.dao.OkeyScoreDao
 import com.keremkulac.okeyscore.data.local.OkeyScoreDatabase
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
@@ -31,11 +30,8 @@ object NetworkModule {
             OkeyScoreDatabase::class.java,
             "okeyScore.db"
         )
-            .addMigrations(Migration_1_to_2())
+            .addMigrations(com.keremkulac.okeyscore.data.local.Migration())
             .build()
-
-        //            .fallbackToDestructiveMigration()
-        //            .addMigrations(Migration_1_to_2())
     }
 
     @Provides
