@@ -3,6 +3,7 @@ package com.keremkulac.okeyscore.presentation.ui.saveSingleGame
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -28,10 +29,11 @@ class SaveSingleGameViewModel
 
     fun insertSingleGame(
         allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
-        playerNames: List<EditText>,navController: NavController,
+        allPlayerPenaltyTextViewList: List<List<TextView>>,
+        playerNames: List<EditText>, navController: NavController,
         context: Context){
         viewModelScope.launch {
-            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList,context)
+            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList,allPlayerPenaltyTextViewList,context)
             okeyScoreRepositoryImp.insertFinishedSingleGame(finishedSingleGame)
             navController.navigate(
                 SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment()
@@ -43,9 +45,10 @@ class SaveSingleGameViewModel
     private fun createFinishedSingleGame(
         playerNames: List<EditText>,
         allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
+        allPlayerPenaltyTextViewList : List<List<TextView>>,
         context: Context
     ): FinishedSingleGame {
-        val players = createPlayers(playerNames, allPlayerScoreEditTextList)
+        val players = createPlayers(playerNames, allPlayerScoreEditTextList,allPlayerPenaltyTextViewList)
         return FinishedSingleGame(
             0,
             players[0],
@@ -63,6 +66,17 @@ class SaveSingleGameViewModel
         return scoreList
     }
 
+    private fun createPlayerPenaltyList(playerPenalties: List<TextView>) : ArrayList<String>{
+        val penaltyList = ArrayList<String>()
+        for(playerPenaltiesTextView in playerPenalties){
+            if(playerPenaltiesTextView.text.toString() == ""){
+                penaltyList.add("")
+            }else{
+                penaltyList.add(playerPenaltiesTextView.text.split("Ceza: ")[1])
+            }
+        }
+        return penaltyList
+    }
     fun calculateTotalScore(teamScoreEditTextList: List<EditText>) : Int{
         var totalScore = 0
         for(teamScoreEditText in teamScoreEditTextList){
@@ -91,26 +105,38 @@ class SaveSingleGameViewModel
         return isEmpty
     }
 
-   private fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>): List<Player> {
+   private fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>): List<Player> {
         val players = mutableListOf<Player>()
         for (i in playerNames.indices) {
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
             val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
-            val player = Player(0, playerName, playerScores, totalScore, listOf())
+            val playerPenalties = createPlayerPenaltyList(playerPenaltyLists[i])
+            val player = Player(0, playerName, playerScores, totalScore, playerPenalties)
             players.add(player)
         }
         return players
     }
 
-    fun setTotalScore(playerScoreList : List<EditText>,totalScoreTextView: TextView){
-        for(scoreListItem in playerScoreList){
+    fun setTotalScore(playerScoreList : List<EditText>,totalScoreTextView: TextView,penaltyList: List<TextView>){
+
+        for((i, scoreListItem) in playerScoreList.withIndex()){
+
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
+                        totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
                 }
-                override fun afterTextChanged(s: Editable?) {}
+                override fun afterTextChanged(s: Editable?) {
+                    for (penaltyListItem in penaltyList){
+                        if(penaltyListItem.text !=""){
+                            val penalty = penaltyListItem.text.split("Ceza: ")[1]
+                            totalScoreTextView.text = "${calculateTotalScore(playerScoreList)+penalty.toInt()}"
+                        }else{
+                            totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
+                        }
+                    }
+                }
             })
         }
     }
