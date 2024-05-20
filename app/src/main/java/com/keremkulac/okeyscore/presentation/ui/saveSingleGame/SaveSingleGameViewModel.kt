@@ -3,7 +3,6 @@ package com.keremkulac.okeyscore.presentation.ui.saveSingleGame
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -28,7 +27,7 @@ class SaveSingleGameViewModel
 @Inject constructor(private val okeyScoreRepositoryImp: OkeyScoreRepositoryImp) : ViewModel() {
 
     fun insertSingleGame(
-        allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
+        allPlayerScoreEditTextList : List<List<EditText>>,
         allPlayerPenaltyTextViewList: List<List<TextView>>,
         playerNames: List<EditText>, navController: NavController,
         context: Context){
@@ -44,7 +43,7 @@ class SaveSingleGameViewModel
 
     private fun createFinishedSingleGame(
         playerNames: List<EditText>,
-        allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
+        allPlayerScoreEditTextList: List<List<EditText>>,
         allPlayerPenaltyTextViewList : List<List<TextView>>,
         context: Context
     ): FinishedSingleGame {
@@ -119,19 +118,18 @@ class SaveSingleGameViewModel
     }
 
     fun setTotalScore(playerScoreList : List<EditText>,totalScoreTextView: TextView,penaltyList: List<TextView>){
-
-        for((i, scoreListItem) in playerScoreList.withIndex()){
-
+        for (scoreListItem in  playerScoreList){
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
+                    totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
                 }
                 override fun afterTextChanged(s: Editable?) {
                     for (penaltyListItem in penaltyList){
                         if(penaltyListItem.text !=""){
                             val penalty = penaltyListItem.text.split("Ceza: ")[1]
-                            totalScoreTextView.text = "${calculateTotalScore(playerScoreList)+penalty.toInt()}"
+                            val total = calculateTotalScore(playerScoreList)+penalty.toInt()
+                            totalScoreTextView.text = total.toString()
                         }else{
                             totalScoreTextView.text = "${calculateTotalScore(playerScoreList)}"
                         }
@@ -139,6 +137,7 @@ class SaveSingleGameViewModel
                 }
             })
         }
+
     }
 
     private fun createInfo(player: List<Player>,context: Context): Info {
@@ -151,7 +150,7 @@ class SaveSingleGameViewModel
         return ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
     }
 
-    fun areAllEditTextsFilled(allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,saveGameButton : View): Boolean {
+    fun areAllEditTextsFilled(allPlayerScoreEditTextList: List<List<EditText>>,saveGameButton : View): Boolean {
         for (editTextList in allPlayerScoreEditTextList) {
             for (editText in editTextList) {
                 if (editText.text.isNullOrEmpty()) {

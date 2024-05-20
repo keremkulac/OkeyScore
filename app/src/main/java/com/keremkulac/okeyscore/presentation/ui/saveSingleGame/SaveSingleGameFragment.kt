@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
+import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -133,11 +134,11 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
         val editTextList = mutableListOf<EditText>()
         val textViewList = mutableListOf<TextView>()
-        editTextIds.forEachIndexed{index, id ->
+        for (id in editTextIds){
             val editText = includedLayout.findViewById<EditText>(id)
             editTextList.add(editText)
         }
-        penaltyTextViewIds.forEachIndexed{index, id ->
+        for(id in penaltyTextViewIds){
             val textView = includedLayout.findViewById<TextView>(id)
             textViewList.add(textView)
         }
@@ -183,7 +184,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         editText.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                empty = viewModel.areAllEditTextsFilled(allPlayerScoreEditTextList as ArrayList<ArrayList<EditText>>,binding.saveGame)
+                empty = viewModel.areAllEditTextsFilled(allPlayerScoreEditTextList as List<List<EditText>>,binding.saveGame)
             }
             override fun afterTextChanged(p0: Editable?) {
             }
@@ -198,8 +199,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
 
     private fun calculate(){
         var size = allPlayerScoreEditTextList.size
-        if(size > 4){
-            size = 4
+        if(size > SINGLE_PLAYER_SIZE){
+            size = SINGLE_PLAYER_SIZE
             for (i in 0 until size){
                 viewModel.setTotalScore(allPlayerScoreEditTextList[i],getAllPlayerTotalScoreEditTextList()[i],allPlayerPenaltyTextViewList[i])
             }
@@ -216,45 +217,38 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         }
     }
 
-    private fun penalty(){
-        binding.penalty.setOnClickListener{
-            val singlePlayerView = LayoutInflater.from(requireContext()).inflate(R.layout.single_players_add_penalty, null)
-            val penaltyView = LayoutInflater.from(requireContext()).inflate(R.layout.add_penalty,null)
-            val singlePlayersRadioGroup = singlePlayerView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
-            val givenPenalty = penaltyView.findViewById<EditText>(R.id.penalty)
-            setPlayerToBePenalized(singlePlayerView)
-            val firstDialog = AlertDialog.Builder(requireContext())
-                .setView(singlePlayerView)
-                .setTitle("Ceza eklenecek oyuncuyu seçiniz")
-                .setPositiveButton("İleri") { _, _ ->
-                    val secondDialog = AlertDialog.Builder(requireContext())
-                        .setView(penaltyView)
-                        .setTitle("Cezayı belirleyin")
-                            .setPositiveButton("Onayla") { _, _ ->
-                            val checkedRadioButtonId = singlePlayersRadioGroup.checkedRadioButtonId
-                            val selectedRadioButton = singlePlayerView.findViewById<RadioButton>(checkedRadioButtonId)
-                            val selectedText = selectedRadioButton.text.toString()
-                            val totalScoreTextView = totalScoreHasMap[selectedText]
-                            val totalScore = totalScoreTextView!!.text.toString().toInt()
-                            val textViewList = penaltyHashMap[selectedText]!!
-                            val lastTextView = textViewList.lastOrNull()
-                                lastTextView?.let {
-                                if (it.text == ""){
-                                    it.text = "Ceza: " + givenPenalty.text.toString()
-                                    totalScoreTextView.text = "${totalScore + givenPenalty.text.toString().toInt()}"
-                                }else{
-                                    val previouslyGivenPenalty = it.text.toString().split("Ceza: ")
-                                    val currentPenalty = previouslyGivenPenalty[1].toInt()+givenPenalty.text.toString().toInt()
-                                    it.text = "Ceza: " + currentPenalty.toString()
-                                    totalScoreTextView.text = "${totalScore + givenPenalty.text.toString().toInt()}"
-                                }
-                            }
-                        }
-                        .create()
-                    secondDialog.show()
+
+    private fun penalty() {
+        binding.penalty.setOnClickListener {
+            val rootNull = null
+            val inflater = LayoutInflater.from(requireContext())
+            val partnerAddPenaltyView = inflater.inflate(R.layout.single_players_add_penalty, rootNull)
+            val penaltyView = inflater.inflate(R.layout.add_penalty, rootNull)
+            val partnerPlayersRadioGroup = partnerAddPenaltyView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
+            val givenPenaltyEditText = penaltyView.findViewById<EditText>(R.id.penalty)
+            setPlayerToBePenalized(partnerAddPenaltyView)
+            val firstDialog = createAlertDialog(requireContext(), partnerAddPenaltyView, R.string.select_player_punish, requireContext().getString(R.string.forward)) {
+                val secondDialog = createAlertDialog(requireContext(), penaltyView, R.string.determine_punishment, requireContext().getString(R.string.confirm)) {
+                    val selectedText = partnerPlayersRadioGroup.findViewById<RadioButton>(partnerPlayersRadioGroup.checkedRadioButtonId).text.toString()
+                    val totalScoreTextView = totalScoreHasMap[selectedText]!!
+                    val penalty = givenPenaltyEditText.text.toString().toInt()
+                    updatePenaltyTextView(selectedText, penalty)
+                    val totalScore = totalScoreTextView.text.toString().toInt() + penalty
+                    totalScoreTextView.text = totalScore.toString()
                 }
-                .create()
+                secondDialog.show()
+            }
             firstDialog.show()
+        }
+    }
+
+
+    private fun updatePenaltyTextView(player: String, penalty: Int) {
+        val textViewList = penaltyHashMap[player]!!
+        val lastTextView = textViewList.lastOrNull()
+        lastTextView?.let {
+            val currentPenalty = if (it.text.isEmpty()) 0 else it.text.split("Ceza: ")[1].toInt()
+            it.text = requireContext().getString(R.string.penaltyText).format(currentPenalty + penalty)
         }
     }
    private fun saveGame(){
@@ -263,7 +257,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
             alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
             alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
-                viewModel.insertSingleGame(allPlayerScoreEditTextList as ArrayList<ArrayList<EditText>>,allPlayerPenaltyTextViewList as List<List<TextView>>,playerNames(),findNavController(),requireContext())
+                viewModel.insertSingleGame(allPlayerScoreEditTextList as List<List<EditText>>,allPlayerPenaltyTextViewList as List<List<TextView>>,playerNames(),findNavController(),requireContext())
             }
             alertDialogBuilder.setNegativeButton(requireContext().getString(R.string.confirmation_no),null)
             val alertDialog = alertDialogBuilder.create()

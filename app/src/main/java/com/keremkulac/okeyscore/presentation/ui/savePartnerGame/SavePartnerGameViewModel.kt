@@ -29,11 +29,12 @@ class SavePartnerGameViewModel
 
     fun insertFinishedGame(
         allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
+        allTeamPenaltyTextViewList : List<List<TextView>>,
         playerNames: List<EditText>,navController: NavController,
         context: Context
     ){
         viewModelScope.launch {
-            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList,context)
+            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList,context)
             okeyScoreRepositoryImp.insertFinishedPartnerGame(finishedPartnerGame)
             navController.navigate(
                 SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment()
@@ -44,9 +45,10 @@ class SavePartnerGameViewModel
 
    private  fun createFinishedPartnerGame(playerNames: List<EditText>,
         allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
-                                          context: Context
+        allTeamPenaltyTextViewList : List<List<TextView>>,
+        context: Context
     ): FinishedPartnerGame {
-        val players = createPlayers(playerNames, allPlayerScoreEditTextList)
+        val players = createPlayers(playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList)
         return FinishedPartnerGame(
             0,
             players[0],
@@ -60,14 +62,24 @@ class SavePartnerGameViewModel
          return Info(context.getString(R.string.winning_team_info).format(minScorePlayer.name,minScorePlayer.totalScore), getCurrentDate())
     }
 
-    fun setTotalScore(teamScoreList : List<EditText>,totalScoreTextView: TextView){
+    fun setTotalScore(teamScoreList : List<EditText>,totalScoreTextView: TextView,penaltyList: List<TextView>){
         for(scoreListItem in teamScoreList){
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     totalScoreTextView.text = "${calculateTotalScore(teamScoreList)}"
                 }
-                override fun afterTextChanged(s: Editable?) {}
+                override fun afterTextChanged(s: Editable?) {
+                    for (penaltyListItem in penaltyList){
+                        if(penaltyListItem.text !=""){
+                            val penalty = penaltyListItem.text.split("Ceza: ")[1]
+                            val total = calculateTotalScore(teamScoreList)+penalty.toInt()
+                            totalScoreTextView.text = total.toString()
+                        }else{
+                            totalScoreTextView.text = "${calculateTotalScore(teamScoreList)}"
+                        }
+                    }
+                }
             })
         }
     }
@@ -99,13 +111,26 @@ class SavePartnerGameViewModel
         return isEmpty
     }
 
-    private fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>): List<Player> {
+    private fun createPlayerPenaltyList(playerPenalties: List<TextView>) : ArrayList<String>{
+        val penaltyList = ArrayList<String>()
+        for(playerPenaltiesTextView in playerPenalties){
+            if(playerPenaltiesTextView.text.toString() == ""){
+                penaltyList.add("")
+            }else{
+                penaltyList.add(playerPenaltiesTextView.text.split("Ceza: ")[1])
+            }
+        }
+        return penaltyList
+    }
+
+    private fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>): List<Player> {
         val players = mutableListOf<Player>()
         for (i in playerNames.indices) {
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
             val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
-            val player = Player(0, playerName, playerScores, totalScore, listOf())
+            val playerPenalties = createPlayerPenaltyList(playerPenaltyLists[i])
+            val player = Player(0, playerName, playerScores, totalScore, playerPenalties)
             players.add(player)
         }
         return players

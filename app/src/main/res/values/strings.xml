@@ -69,4 +69,13 @@
     <string name="single_player_2" tools:ignore="MissingTranslation">Single Player 2</string>
     <string name="single_player_3" tools:ignore="MissingTranslation">Single Player 3</string>
     <string name="single_player_4" tools:ignore="MissingTranslation">Single Player 4</string>
+    <string name="penaltyText" tools:ignore="MissingTranslation">Ceza: %d</string>
+    <string name="confirm" tools:ignore="MissingTranslation">Onayla</string>
+    <string name="determine_punishment" tools:ignore="MissingTranslation">Cezayı belirleyin</string>
+    <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
+    <string name="select_team_punish" tools:ignore="MissingTranslation">Ceza eklenecek takımı seçiniz</string>
+    <string name="forward" tools:ignore="MissingTranslation">İleri</string>
+
+
+
 </resources>

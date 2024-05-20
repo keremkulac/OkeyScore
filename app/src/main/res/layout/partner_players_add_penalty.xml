@@ -7,7 +7,7 @@
 
     <RadioGroup
         android:layout_marginStart="16dp"
-        android:id="@+id/partnerPlayers"
+        android:id="@+id/partnerPlayersRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,12 +16,12 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/player1"
+            android:id="@+id/team1"
             android:hint="@string/partner_player_1"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/player2"
+            android:id="@+id/team2"
             android:hint="@string/partner_player_2"/>
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

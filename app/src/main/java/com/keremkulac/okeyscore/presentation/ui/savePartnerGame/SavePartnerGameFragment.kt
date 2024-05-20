@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,15 +19,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSavePartnerGameBinding
+import com.keremkulac.okeyscore.util.PARTNER_PLAYER_SIZE
+import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
+import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private val viewModel by viewModels<SavePartnerGameViewModel>()
     private lateinit var binding : FragmentSavePartnerGameBinding
-    private var team1ScoreEditTextList = ArrayList<EditText>()
-    private var team2ScoreEditTextList = ArrayList<EditText>()
-    private var allTeamScoreEditTextList = ArrayList<ArrayList<EditText>>()
+    private val allTeamScoreEditTextList: List<MutableList<EditText>> = List(SINGLE_PLAYER_SIZE) { mutableListOf() }
+    private val allTeamPenaltyTextViewList: List<MutableList<TextView>> = List(PARTNER_PLAYER_SIZE) { mutableListOf() }
+
+    private val penaltyHashMap = HashMap<String,List<TextView>>()
+    private val totalScoreHasMap = HashMap<String, TextView>()
     private var lineCount = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,6 +42,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         saveToRoomDb()
         newRound(layoutInflater)
         goToChooseGameFragment()
+        penalty()
     }
 
     private fun playerNames(): List<EditText> {
@@ -59,9 +68,12 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                 binding.roundScoreTitle.visibility = View.VISIBLE
                 binding.playerNameTitle.visibility = View.VISIBLE
                 binding.scoreColumnDivider.visibility = View.VISIBLE
+                binding.penalty.visibility = View.VISIBLE
                 binding.saveGame.isEnabled = false
                 calculate()
                 setPlayerNames()
+                createTotalScoreHashMap()
+                createPenaltyHashMap(allTeamPenaltyTextViewList as List<List<TextView>>)
             }
         }
     }
@@ -81,6 +93,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
 
     private fun newRound(inflater : LayoutInflater){
         var newLine = createNewLine(inflater)
+        createAllTeamScoreEditTextList(newLine)
         checkRoundScores(newLine)
         binding.newRound.setOnClickListener {
             if (viewModel.checkList(newLine)){
@@ -88,6 +101,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             }else{
                 lineCount++
                 newLine = createNewLine(inflater)
+                createAllTeamScoreEditTextList(newLine)
                 checkRoundScores(newLine)
                 calculate()
                 binding.saveGame.isEnabled = false
@@ -103,24 +117,36 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         if(lineCount % 2 != 0){
             includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
         }
-        createAllTeamScoreEditTextList()
-        val editTextIds = listOf(R.id.team1Score, R.id.team2Score)
         val hintIds = listOf(R.id.team1ScoreHint, R.id.team2ScoreHint)
+        val penaltyTextViewIds = listOf(R.id.team1Penalty,R.id.team2Penalty)
+        val editTextIds = listOf(R.id.team1Score, R.id.team2Score)
         val editTextList = mutableListOf<EditText>()
-        editTextIds.forEachIndexed{index, id ->
+        val textViewList = mutableListOf<TextView>()
+        for (id in editTextIds){
             val editText = includedLayout.findViewById<EditText>(id)
-            allTeamScoreEditTextList[index].add(editText)
             editTextList.add(editText)
         }
+        for(id in penaltyTextViewIds){
+            val textView = includedLayout.findViewById<TextView>(id)
+            textViewList.add(textView)
+        }
         setEditText(hintIds,includedLayout)
+        createAllTeamPenaltyTextViewList(textViewList)
         return editTextList
     }
 
-    private fun createAllTeamScoreEditTextList(){
-        allTeamScoreEditTextList.add(team1ScoreEditTextList)
-        allTeamScoreEditTextList.add(team2ScoreEditTextList)
+
+    private fun createAllTeamScoreEditTextList(list: List<EditText>){
+        for(i in list.indices){
+            allTeamScoreEditTextList[i].add(list[i])
+        }
     }
 
+    private fun createAllTeamPenaltyTextViewList(list: List<TextView>){
+        for(i in list.indices){
+            allTeamPenaltyTextViewList[i].add(list[i])
+        }
+    }
     private fun setEditText(hintIds: List<Int>,parentLayout : View){
         for(id in hintIds){
             val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
@@ -134,7 +160,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
             alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
             alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
-                viewModel.insertFinishedGame(allTeamScoreEditTextList,playerNames(),findNavController(),requireContext())
+                viewModel.insertFinishedGame(allTeamScoreEditTextList as ArrayList<ArrayList<EditText>>,allTeamPenaltyTextViewList as List<List<TextView>>,playerNames(),findNavController(),requireContext())
             }
             alertDialogBuilder.setNegativeButton(requireContext().getString(R.string.confirmation_no)) { _, _ -> }
             val alertDialog = alertDialogBuilder.create()
@@ -149,18 +175,29 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         )
     }
 
+    private fun createPenaltyHashMap(allTeamPenaltyTextViewList : List<List<TextView>>){
+        for((i, list) in allTeamPenaltyTextViewList.withIndex()){
+            penaltyHashMap[playerNames()[i].text.toString()] = list
+        }
+    }
+
+    private fun createTotalScoreHashMap(){
+        for((i, listItem) in getAllTeamTotalScoreEditTextList().withIndex()){
+            totalScoreHasMap[playerNames()[i].text.toString()] = listItem
+        }
+    }
 
     private fun calculate(){
 
         var size = allTeamScoreEditTextList.size
-        if(size > 2){
-            size = 2
+        if(size > PARTNER_PLAYER_SIZE){
+            size = PARTNER_PLAYER_SIZE
             for (i in 0 until size){
-                viewModel.setTotalScore(allTeamScoreEditTextList[i],getAllTeamTotalScoreEditTextList()[i])
+                viewModel.setTotalScore(allTeamScoreEditTextList[i],getAllTeamTotalScoreEditTextList()[i],allTeamPenaltyTextViewList[i])
             }
         }else{
             for (i in 0 until size){
-                viewModel.setTotalScore(allTeamScoreEditTextList[i],getAllTeamTotalScoreEditTextList()[i])
+                viewModel.setTotalScore(allTeamScoreEditTextList[i],getAllTeamTotalScoreEditTextList()[i],allTeamPenaltyTextViewList[i])
             }
         }
     }
@@ -171,7 +208,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                empty = viewModel.areAllEditTextsFilled(allTeamScoreEditTextList,binding.saveGame)
+                empty = viewModel.areAllEditTextsFilled(allTeamScoreEditTextList as ArrayList<ArrayList<EditText>>,binding.saveGame)
 
             }
             override fun afterTextChanged(p0: Editable?) {
@@ -183,6 +220,45 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             }
         }
         return empty
+    }
+
+    private fun penalty() {
+        binding.penalty.setOnClickListener {
+            val rootNull = null
+            val inflater = LayoutInflater.from(requireContext())
+            val partnerAddPenaltyView = inflater.inflate(R.layout.partner_players_add_penalty, rootNull)
+            val penaltyView = inflater.inflate(R.layout.add_penalty, rootNull)
+            val partnerPlayersRadioGroup = partnerAddPenaltyView.findViewById<RadioGroup>(R.id.partnerPlayersRadioGroup)
+            val givenPenaltyEditText = penaltyView.findViewById<EditText>(R.id.penalty)
+            setTeamToBePenalized(partnerAddPenaltyView)
+            val firstDialog = createAlertDialog(requireContext(),partnerAddPenaltyView, R.string.select_team_punish,requireContext().getString(R.string.forward)) {
+                    val secondDialog = createAlertDialog(requireContext(), penaltyView, R.string.determine_punishment, requireContext().getString(R.string.confirm)) {
+                    val selectedText = partnerPlayersRadioGroup.findViewById<RadioButton>(partnerPlayersRadioGroup.checkedRadioButtonId).text.toString()
+                    val totalScoreTextView = totalScoreHasMap[selectedText]!!
+                    val penalty = givenPenaltyEditText.text.toString().toInt()
+                    updatePenaltyTextView(selectedText, penalty)
+                    val totalScore = totalScoreTextView.text.toString().toInt() + penalty
+                    totalScoreTextView.text = totalScore.toString()
+                }
+                secondDialog.show()
+            }
+            firstDialog.show()
+        }
+    }
+
+
+    private fun updatePenaltyTextView(player: String, penalty: Int) {
+        val textViewList = penaltyHashMap[player]!!
+        val lastTextView = textViewList.lastOrNull()
+        lastTextView?.let {
+            val currentPenalty = if (it.text.isEmpty()) 0 else it.text.split("Ceza: ")[1].toInt()
+            it.text = requireContext().getString(R.string.penaltyText).format(currentPenalty + penalty)
+        }
+    }
+
+    private fun setTeamToBePenalized(singlePlayerView: View){
+        singlePlayerView.findViewById<RadioButton>(R.id.team1).text = binding.team1NameEntry.text.toString()
+        singlePlayerView.findViewById<RadioButton>(R.id.team2).text = binding.team2NameEntry.text.toString()
     }
 
     private fun goToChooseGameFragment(){
