@@ -64,35 +64,39 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     }
 
 
-
     private fun checkPlayerNames(){
         binding.confirmNames.setOnClickListener {
             if(viewModel.checkList(playerNames())){
                 requireContext().toast(requireContext().getString(R.string.warning_enter_all_player_names), R.drawable.ic_warning)
             }else{
-                binding.player1NameEntryHint.visibility = View.GONE
-                binding.player2NameEntryHint.visibility = View.GONE
-                binding.player3NameEntryHint.visibility = View.GONE
-                binding.player4NameEntryHint.visibility = View.GONE
-                binding.confirmNames.visibility = View.GONE
-                binding.newRound.visibility = View.VISIBLE
-                binding.saveGame.visibility = View.VISIBLE
-                binding.scoreLayout.visibility = View.VISIBLE
-                binding.player1Name.visibility = View.VISIBLE
-                binding.player2Name.visibility = View.VISIBLE
-                binding.player3Name.visibility = View.VISIBLE
-                binding.player4Name.visibility = View.VISIBLE
-                binding.scoreColumnDivider.visibility = View.VISIBLE
-                binding.scoreColumnDivider2.visibility = View.VISIBLE
-                binding.scoreColumnDivider3.visibility = View.VISIBLE
-                binding.roundScoreTitle.visibility = View.VISIBLE
-                binding.playerNameTitle.visibility = View.VISIBLE
-                binding.penalty.visibility = View.VISIBLE
-                binding.saveGame.isEnabled = false
-                calculate()
-                setPlayerNames()
-                createTotalScoreHashMap()
-                createPenaltyHashMap(allPlayerPenaltyTextViewList as List<List<TextView>>)
+
+                if(viewModel.sameNamesCheck(playerNames())){
+                    requireContext().toast(requireContext().getString(R.string.enter_different_names), R.drawable.ic_warning)
+                }else{
+                    binding.player1NameEntryHint.visibility = View.GONE
+                    binding.player2NameEntryHint.visibility = View.GONE
+                    binding.player3NameEntryHint.visibility = View.GONE
+                    binding.player4NameEntryHint.visibility = View.GONE
+                    binding.confirmNames.visibility = View.GONE
+                    binding.newRound.visibility = View.VISIBLE
+                    binding.saveGame.visibility = View.VISIBLE
+                    binding.scoreLayout.visibility = View.VISIBLE
+                    binding.player1Name.visibility = View.VISIBLE
+                    binding.player2Name.visibility = View.VISIBLE
+                    binding.player3Name.visibility = View.VISIBLE
+                    binding.player4Name.visibility = View.VISIBLE
+                    binding.scoreColumnDivider.visibility = View.VISIBLE
+                    binding.scoreColumnDivider2.visibility = View.VISIBLE
+                    binding.scoreColumnDivider3.visibility = View.VISIBLE
+                    binding.roundScoreTitle.visibility = View.VISIBLE
+                    binding.playerNameTitle.visibility = View.VISIBLE
+                    binding.penalty.visibility = View.VISIBLE
+                    binding.saveGame.isEnabled = false
+                    calculate()
+                    setPlayerNames()
+                    createTotalScoreHashMap()
+                    createPenaltyHashMap(allPlayerPenaltyTextViewList as List<List<TextView>>)
+                }
             }
         }
     }
@@ -202,11 +206,11 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         if(size > SINGLE_PLAYER_SIZE){
             size = SINGLE_PLAYER_SIZE
             for (i in 0 until size){
-                viewModel.setTotalScore(allPlayerScoreEditTextList[i],getAllPlayerTotalScoreEditTextList()[i],allPlayerPenaltyTextViewList[i])
+                viewModel.setTotalScore(requireContext(),allPlayerScoreEditTextList[i],getAllPlayerTotalScoreEditTextList()[i],allPlayerPenaltyTextViewList[i])
             }
         }else{
             for (i in 0 until size){
-                viewModel.setTotalScore(allPlayerScoreEditTextList[i],getAllPlayerTotalScoreEditTextList()[i],allPlayerPenaltyTextViewList[i])
+                viewModel.setTotalScore(requireContext(),allPlayerScoreEditTextList[i],getAllPlayerTotalScoreEditTextList()[i],allPlayerPenaltyTextViewList[i])
             }
         }
    }
@@ -247,8 +251,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         val textViewList = penaltyHashMap[player]!!
         val lastTextView = textViewList.lastOrNull()
         lastTextView?.let {
-            val currentPenalty = if (it.text.isEmpty()) 0 else it.text.split("Ceza: ")[1].toInt()
-            it.text = requireContext().getString(R.string.penaltyText).format(currentPenalty + penalty)
+            val currentPenalty = if (it.text.isEmpty()) 0 else it.text.split(requireContext().getString(R.string.penalty_text))[1].trimStart().toInt()
+            it.text = requireContext().getString(R.string.penalty_text_value).format(currentPenalty + penalty)
         }
     }
    private fun saveGame(){

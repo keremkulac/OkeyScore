@@ -48,7 +48,7 @@ class SavePartnerGameViewModel
         allTeamPenaltyTextViewList : List<List<TextView>>,
         context: Context
     ): FinishedPartnerGame {
-        val players = createPlayers(playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList)
+        val players = createPlayers(context,playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList)
         return FinishedPartnerGame(
             0,
             players[0],
@@ -62,24 +62,14 @@ class SavePartnerGameViewModel
          return Info(context.getString(R.string.winning_team_info).format(minScorePlayer.name,minScorePlayer.totalScore), getCurrentDate())
     }
 
-    fun setTotalScore(teamScoreList : List<EditText>,totalScoreTextView: TextView,penaltyList: List<TextView>){
+    fun setTotalScore(context: Context,teamScoreList : List<EditText>,totalScoreTextView: TextView,penaltyList: List<TextView>){
         for(scoreListItem in teamScoreList){
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    totalScoreTextView.text = "${calculateTotalScore(teamScoreList)}"
+                    totalScoreTextView.text = "${calculateTotalScore(teamScoreList)+calculatePenalties(context,penaltyList)}"
                 }
-                override fun afterTextChanged(s: Editable?) {
-                    for (penaltyListItem in penaltyList){
-                        if(penaltyListItem.text !=""){
-                            val penalty = penaltyListItem.text.split("Ceza: ")[1]
-                            val total = calculateTotalScore(teamScoreList)+penalty.toInt()
-                            totalScoreTextView.text = total.toString()
-                        }else{
-                            totalScoreTextView.text = "${calculateTotalScore(teamScoreList)}"
-                        }
-                    }
-                }
+                override fun afterTextChanged(s: Editable?) {}
             })
         }
     }
@@ -101,6 +91,16 @@ class SavePartnerGameViewModel
         return totalScore
     }
 
+    fun calculatePenalties(context: Context,penaltyList: List<TextView>) : Int{
+        var totalScore = 0
+        for(penaltyTextView in penaltyList){
+            val penaltyText = penaltyTextView.text
+            if(penaltyText != ""){
+                 totalScore+= totalScore + penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
+            }
+        }
+        return totalScore
+    }
     fun checkList(editTextList : List<EditText>) : Boolean{
         var isEmpty = false
         for (editText in editTextList) {
@@ -111,25 +111,38 @@ class SavePartnerGameViewModel
         return isEmpty
     }
 
-    private fun createPlayerPenaltyList(playerPenalties: List<TextView>) : ArrayList<String>{
+    fun sameNamesCheck(editTextList: List<EditText>): Boolean {
+        val seenTexts = mutableSetOf<String>()
+        for (editText in editTextList) {
+            val text = editText.text.toString()
+            if (text in seenTexts) {
+                return true
+            } else {
+                seenTexts.add(text)
+            }
+        }
+        return false
+    }
+
+    private fun createPlayerPenaltyList(context: Context,playerPenalties: List<TextView>) : ArrayList<String>{
         val penaltyList = ArrayList<String>()
         for(playerPenaltiesTextView in playerPenalties){
             if(playerPenaltiesTextView.text.toString() == ""){
                 penaltyList.add("")
             }else{
-                penaltyList.add(playerPenaltiesTextView.text.split("Ceza: ")[1])
+                penaltyList.add(playerPenaltiesTextView.text.split(context.getString(R.string.penalty_text))[1])
             }
         }
         return penaltyList
     }
 
-    private fun createPlayers(playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>): List<Player> {
+    private fun createPlayers(context: Context,playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>): List<Player> {
         val players = mutableListOf<Player>()
         for (i in playerNames.indices) {
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
             val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
-            val playerPenalties = createPlayerPenaltyList(playerPenaltyLists[i])
+            val playerPenalties = createPlayerPenaltyList(context,playerPenaltyLists[i])
             val player = Player(0, playerName, playerScores, totalScore, playerPenalties)
             players.add(player)
         }
@@ -148,7 +161,6 @@ class SavePartnerGameViewModel
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         return ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
     }
-
 
     fun areAllEditTextsFilled(allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,saveGameButton : View): Boolean {
         for (editTextList in allPlayerScoreEditTextList) {

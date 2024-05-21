@@ -52,6 +52,7 @@
     <string name="warning_check_all_rounds" tools:ignore="MissingTranslation">Lütfen %d. turdaki tüm alanları doldurun.</string>
     <string name="warning_enter_all_player_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
     <string name="warning_enter_all_team_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
+    <string name="enter_different_names" tools:ignore="MissingTranslation">Lütfen farklı isimler giriniz.</string>
     <string name="registration_successful" tools:ignore="MissingTranslation">Kayıt başarılı</string>
     <string name="round_count" tools:ignore="MissingTranslation">Tur %d</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
@@ -69,7 +70,9 @@
     <string name="single_player_2" tools:ignore="MissingTranslation">Single Player 2</string>
     <string name="single_player_3" tools:ignore="MissingTranslation">Single Player 3</string>
     <string name="single_player_4" tools:ignore="MissingTranslation">Single Player 4</string>
-    <string name="penaltyText" tools:ignore="MissingTranslation">Ceza: %d</string>
+    <string name="penalty_text" tools:ignore="MissingTranslation">Ceza: </string>
+    <string name="penalty_text_value" tools:ignore="MissingTranslation">Ceza: %d</string>
+
     <string name="confirm" tools:ignore="MissingTranslation">Onayla</string>
     <string name="determine_punishment" tools:ignore="MissingTranslation">Cezayı belirleyin</string>
     <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
