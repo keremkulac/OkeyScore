@@ -53,7 +53,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="#FF0000"/>
+            android:textColor="@color/penalty_text_color"/>
 
         <TextView
             android:id="@+id/team2Penalty"
@@ -63,8 +63,6 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="#FF0000"/>
-
-
+            android:textColor="@color/penalty_text_color"/>
     </LinearLayout>
 </LinearLayout>

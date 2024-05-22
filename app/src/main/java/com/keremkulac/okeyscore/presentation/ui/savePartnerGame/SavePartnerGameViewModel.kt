@@ -67,7 +67,8 @@ class SavePartnerGameViewModel
             scoreListItem.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    totalScoreTextView.text = "${calculateTotalScore(teamScoreList)+calculatePenalties(context,penaltyList)}"
+                    val total = calculateTotalScore(teamScoreList)+calculatePenalties(context,penaltyList)
+                    totalScoreTextView.text = total.toString()
                 }
                 override fun afterTextChanged(s: Editable?) {}
             })

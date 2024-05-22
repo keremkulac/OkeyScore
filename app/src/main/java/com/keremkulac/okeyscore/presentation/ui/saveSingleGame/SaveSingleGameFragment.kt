@@ -134,7 +134,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
         }
         val hintIds = listOf(R.id.player1ScoreHint, R.id.player2ScoreHint, R.id.player3ScoreHint, R.id.player4ScoreHint)
-        val penaltyTextViewIds = listOf(R.id.playerPenalty1,R.id.playerPenalty2,R.id.playerPenalty3,R.id.playerPenalty4)
+        val penaltyTextViewIds = listOf(R.id.player1Penalty,R.id.player2Penalty,R.id.player3Penalty,R.id.player4Penalty)
         val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
         val editTextList = mutableListOf<EditText>()
         val textViewList = mutableListOf<TextView>()

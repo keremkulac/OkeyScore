@@ -164,6 +164,7 @@
             android:id="@+id/detailLabel"
             style="@style/HeaderTextViewStyle"
             android:text="@string/detail"
+            android:layout_marginTop="8dp"
             app:drawableLeftCompat="@drawable/ic_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

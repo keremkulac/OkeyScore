@@ -72,7 +72,6 @@
     <string name="single_player_4" tools:ignore="MissingTranslation">Single Player 4</string>
     <string name="penalty_text" tools:ignore="MissingTranslation">Ceza: </string>
     <string name="penalty_text_value" tools:ignore="MissingTranslation">Ceza: %d</string>
-
     <string name="confirm" tools:ignore="MissingTranslation">Onayla</string>
     <string name="determine_punishment" tools:ignore="MissingTranslation">Cezayı belirleyin</string>
     <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
