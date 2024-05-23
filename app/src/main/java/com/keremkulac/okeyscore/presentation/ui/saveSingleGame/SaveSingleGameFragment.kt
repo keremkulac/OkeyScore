@@ -261,7 +261,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
             alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
             alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
-                viewModel.insertSingleGame(allPlayerScoreEditTextList as List<List<EditText>>,allPlayerPenaltyTextViewList as List<List<TextView>>,playerNames(),findNavController(),requireContext())
+                viewModel.insertSingleGame(allPlayerScoreEditTextList as List<List<EditText>>,allPlayerPenaltyTextViewList as List<List<TextView>>,playerNames(),totalScoreHasMap,findNavController(),requireContext())
             }
             alertDialogBuilder.setNegativeButton(requireContext().getString(R.string.confirmation_no),null)
             val alertDialog = alertDialogBuilder.create()

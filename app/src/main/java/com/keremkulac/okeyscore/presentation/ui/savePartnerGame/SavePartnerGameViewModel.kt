@@ -3,6 +3,7 @@ package com.keremkulac.okeyscore.presentation.ui.savePartnerGame
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -30,11 +31,13 @@ class SavePartnerGameViewModel
     fun insertFinishedGame(
         allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
         allTeamPenaltyTextViewList : List<List<TextView>>,
-        playerNames: List<EditText>,navController: NavController,
+        playerNames: List<EditText>,
+        totalScoreHasMap : HashMap<String,TextView>,
+        navController: NavController,
         context: Context
     ){
         viewModelScope.launch {
-            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList,context)
+            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList,totalScoreHasMap,context)
             okeyScoreRepositoryImp.insertFinishedPartnerGame(finishedPartnerGame)
             navController.navigate(
                 SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment()
@@ -44,11 +47,12 @@ class SavePartnerGameViewModel
     }
 
    private  fun createFinishedPartnerGame(playerNames: List<EditText>,
-        allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
-        allTeamPenaltyTextViewList : List<List<TextView>>,
-        context: Context
+                                          allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
+                                          allTeamPenaltyTextViewList : List<List<TextView>>,
+                                          totalScoreHasMap: HashMap<String, TextView>,
+                                          context: Context
     ): FinishedPartnerGame {
-        val players = createPlayers(context,playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList)
+        val players = createPlayers(context,playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList,totalScoreHasMap)
         return FinishedPartnerGame(
             0,
             players[0],
@@ -95,9 +99,13 @@ class SavePartnerGameViewModel
     fun calculatePenalties(context: Context,penaltyList: List<TextView>) : Int{
         var totalScore = 0
         for(penaltyTextView in penaltyList){
-            val penaltyText = penaltyTextView.text
+            val penaltyText = penaltyTextView.text.toString()
             if(penaltyText != ""){
-                 totalScore+= totalScore + penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
+                Log.d("TAG",penaltyText)
+
+                totalScore+= penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
+                Log.d("TAG1",totalScore.toString())
+
             }
         }
         return totalScore
@@ -131,18 +139,18 @@ class SavePartnerGameViewModel
             if(playerPenaltiesTextView.text.toString() == ""){
                 penaltyList.add("")
             }else{
-                penaltyList.add(playerPenaltiesTextView.text.split(context.getString(R.string.penalty_text))[1])
+                penaltyList.add(playerPenaltiesTextView.text.split(context.getString(R.string.penalty_text))[1].trim())
             }
         }
         return penaltyList
     }
 
-    private fun createPlayers(context: Context,playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>): List<Player> {
+    private fun createPlayers(context: Context,playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>,totalScoreHasMap: HashMap<String, TextView>): List<Player> {
         val players = mutableListOf<Player>()
         for (i in playerNames.indices) {
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
-            val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
+            val totalScore = totalScoreHasMap[playerName]!!.text.toString()
             val playerPenalties = createPlayerPenaltyList(context,playerPenaltyLists[i])
             val player = Player(0, playerName, playerScores, totalScore, playerPenalties)
             players.add(player)

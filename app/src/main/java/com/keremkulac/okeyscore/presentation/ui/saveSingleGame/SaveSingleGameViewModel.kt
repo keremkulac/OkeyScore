@@ -29,10 +29,12 @@ class SaveSingleGameViewModel
     fun insertSingleGame(
         allPlayerScoreEditTextList : List<List<EditText>>,
         allPlayerPenaltyTextViewList: List<List<TextView>>,
-        playerNames: List<EditText>, navController: NavController,
+        playerNames: List<EditText>,
+        totalScoreHasMap : HashMap<String,TextView>,
+        navController: NavController,
         context: Context){
         viewModelScope.launch {
-            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList,allPlayerPenaltyTextViewList,context)
+            val finishedSingleGame = createFinishedSingleGame(playerNames,allPlayerScoreEditTextList,allPlayerPenaltyTextViewList,totalScoreHasMap,context)
             okeyScoreRepositoryImp.insertFinishedSingleGame(finishedSingleGame)
             navController.navigate(
                 SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment()
@@ -45,9 +47,10 @@ class SaveSingleGameViewModel
         playerNames: List<EditText>,
         allPlayerScoreEditTextList: List<List<EditText>>,
         allPlayerPenaltyTextViewList : List<List<TextView>>,
+        totalScoreHasMap : HashMap<String,TextView>,
         context: Context
     ): FinishedSingleGame {
-        val players = createPlayers(context,playerNames, allPlayerScoreEditTextList,allPlayerPenaltyTextViewList)
+        val players = createPlayers(context,playerNames, allPlayerScoreEditTextList,allPlayerPenaltyTextViewList,totalScoreHasMap)
         return FinishedSingleGame(
             0,
             players[0],
@@ -71,7 +74,7 @@ class SaveSingleGameViewModel
             if(playerPenaltiesTextView.text.toString() == ""){
                 penaltyList.add("")
             }else{
-                penaltyList.add(playerPenaltiesTextView.text.split(context.getString(R.string.penalty_text))[1])
+                penaltyList.add(playerPenaltiesTextView.text.split(context.getString(R.string.penalty_text))[1].trim())
             }
         }
         return penaltyList
@@ -98,7 +101,7 @@ class SaveSingleGameViewModel
         for(penaltyTextView in penaltyList){
             val penaltyText = penaltyTextView.text
             if(penaltyText != ""){
-                totalScore+= totalScore + penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
+                totalScore+= penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
             }
         }
         return totalScore
@@ -126,12 +129,12 @@ class SaveSingleGameViewModel
         return false
     }
 
-   private fun createPlayers(context: Context,playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>): List<Player> {
+   private fun createPlayers(context: Context,playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>,totalScoreHasMap: HashMap<String, TextView>): List<Player> {
         val players = mutableListOf<Player>()
         for (i in playerNames.indices) {
             val playerName = playerNames[i].text.toString()
             val playerScores = createPlayerScoreList(playerScoreLists[i])
-            val totalScore = calculateTotalScore(playerScoreLists[i]).toString()
+            val totalScore = totalScoreHasMap[playerName]!!.text.toString()
             val playerPenalties = createPlayerPenaltyList(context,playerPenaltyLists[i])
             val player = Player(0, playerName, playerScores, totalScore, playerPenalties)
             players.add(player)

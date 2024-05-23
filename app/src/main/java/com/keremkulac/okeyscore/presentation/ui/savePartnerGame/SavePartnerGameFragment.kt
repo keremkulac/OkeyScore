@@ -163,7 +163,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
             alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
             alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
-                viewModel.insertFinishedGame(allTeamScoreEditTextList as ArrayList<ArrayList<EditText>>,allTeamPenaltyTextViewList as List<List<TextView>>,playerNames(),findNavController(),requireContext())
+                viewModel.insertFinishedGame(allTeamScoreEditTextList as ArrayList<ArrayList<EditText>>,allTeamPenaltyTextViewList as List<List<TextView>>,playerNames(),totalScoreHasMap,findNavController(),requireContext())
             }
             alertDialogBuilder.setNegativeButton(requireContext().getString(R.string.confirmation_no)) { _, _ -> }
             val alertDialog = alertDialogBuilder.create()
