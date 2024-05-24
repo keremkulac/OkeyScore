@@ -59,9 +59,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                 if(viewModel.sameNamesCheck(playerNames())){
                     requireContext().toast(requireContext().getString(R.string.enter_different_names), R.drawable.ic_warning)
                 }else{
-                    binding.team1NameEntryHint.visibility = View.GONE
-                    binding.team2NameEntryHint.visibility = View.GONE
-                    binding.confirmNames.visibility = View.GONE
+                    binding.cardView.visibility = View.GONE
                     binding.newRound.visibility = View.VISIBLE
                     binding.saveGame.visibility = View.VISIBLE
                     binding.team1Name.visibility = View.VISIBLE

@@ -73,11 +73,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 if(viewModel.sameNamesCheck(playerNames())){
                     requireContext().toast(requireContext().getString(R.string.enter_different_names), R.drawable.ic_warning)
                 }else{
-                    binding.player1NameEntryHint.visibility = View.GONE
-                    binding.player2NameEntryHint.visibility = View.GONE
-                    binding.player3NameEntryHint.visibility = View.GONE
-                    binding.player4NameEntryHint.visibility = View.GONE
-                    binding.confirmNames.visibility = View.GONE
+                    binding.cardView.visibility = View.GONE
                     binding.newRound.visibility = View.VISIBLE
                     binding.saveGame.visibility = View.VISIBLE
                     binding.scoreLayout.visibility = View.VISIBLE
