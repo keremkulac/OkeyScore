@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDivider
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
@@ -36,6 +37,9 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
                 holder.team1ScoreHint.setBackgroundColor(holder.team1Score.context.getColor(R.color.line_color_dark))
                 holder.team2ScoreHint.setBackgroundColor(holder.team2Score.context.getColor(R.color.line_color_dark))
             }
+            if (position == numberOfGames-1){
+                holder.divider.visibility = View.GONE
+            }
         }
     }
 
@@ -58,6 +62,7 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
         val team2Score : EditText = itemView.findViewById(R.id.team2Score)
         val team1Penalty : TextView = itemView.findViewById(R.id.team1Penalty)
         val team2Penalty : TextView = itemView.findViewById(R.id.team2Penalty)
+        val divider : MaterialDivider = itemView.findViewById(R.id.horizontalDivider)
     }
 
 }

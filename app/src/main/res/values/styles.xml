@@ -34,12 +34,12 @@
         <item name="android:backgroundTint">@color/main_background_color</item>
         <item name="android:padding">4dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidth">0.8dp</item>
+        <item name="boxStrokeColor">@color/text_input_layout_box_stroke_color</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusBottomEnd">16dp</item>
-        <item name="boxStrokeColor">@color/text_input_layout_box_stroke_color</item>
         <item name="counterEnabled">true</item>
         <item name="counterMaxLength">20</item>
         <item name="counterTextColor">@color/text_input_layout_counter_text_color</item>
@@ -48,7 +48,7 @@
 
     </style>
 
-    <style name="SingleGameTextInputEditTextStyle"  >
+    <style name="SingleGameTextInputEditTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
@@ -95,6 +95,7 @@
     <style name="HeaderTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginTop">4dp</item>
         <item name="android:textColor">@color/header_text_color</item>
         <item name="android:background">@color/header_background_color</item>
         <item name="android:drawablePadding">6dp</item>

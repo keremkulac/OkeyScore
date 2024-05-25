@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.divider.MaterialDivider
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
@@ -23,6 +24,7 @@ import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
 import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.ArrayList
 
 @AndroidEntryPoint
 class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
@@ -30,6 +32,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private lateinit var binding : FragmentSaveSingleGameBinding
     private val allPlayerScoreEditTextList: List<MutableList<EditText>> = List(SINGLE_PLAYER_SIZE) { mutableListOf() }
     private val allPlayerPenaltyTextViewList: List<MutableList<TextView>> = List(SINGLE_PLAYER_SIZE) { mutableListOf() }
+    private val dividerList : ArrayList<MaterialDivider> = ArrayList()
     private val penaltyHashMap = HashMap<String,List<TextView>>()
     private val totalScoreHasMap = HashMap<String,TextView>()
 
@@ -101,6 +104,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         var newLine = createNewLine(inflater)
         createAllPlayerScoreEditTextList(newLine)
         checkRoundScores(newLine)
+        checkDividerList()
         binding.newRound.setOnClickListener {
             if (viewModel.checkList(newLine)){
                 requireContext().toast(requireContext().getString(R.string.warning_check_all_rounds).format(lineCount), R.drawable.ic_warning)
@@ -110,6 +114,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 createAllPlayerScoreEditTextList(newLine)
                 checkRoundScores(newLine)
                 calculate()
+                checkDividerList()
                 binding.saveGame.isEnabled = false
             }
         }
@@ -142,6 +147,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             val textView = includedLayout.findViewById<TextView>(id)
             textViewList.add(textView)
         }
+        dividerList.add(includedLayout.findViewById(R.id.horizontalDivider))
         setEditText(hintIds,includedLayout)
         createAllPlayersPenaltyTextViewList(textViewList)
         return editTextList
@@ -214,6 +220,15 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         for(id in hintIds){
             val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
             textInputLayout.hint =requireContext().getString(R.string.round_count).format(lineCount)
+        }
+    }
+
+    private fun checkDividerList(){
+        if(lineCount == 1){
+            dividerList.last().visibility = View.GONE
+        }else{
+            dividerList.last().visibility = View.GONE
+            dividerList[dividerList.size-2].visibility = View.VISIBLE
         }
     }
 

@@ -65,4 +65,13 @@
             android:gravity="center"
             android:textColor="@color/penalty_text_color"/>
     </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/horizontalDivider"
+        style="@style/DividerStyle"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="4dp" />
 </LinearLayout>

@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.divider.MaterialDivider
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSavePartnerGameBinding
@@ -30,6 +31,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private lateinit var binding : FragmentSavePartnerGameBinding
     private val allTeamScoreEditTextList: List<MutableList<EditText>> = List(SINGLE_PLAYER_SIZE) { mutableListOf() }
     private val allTeamPenaltyTextViewList: List<MutableList<TextView>> = List(PARTNER_PLAYER_SIZE) { mutableListOf() }
+    private val dividerList : java.util.ArrayList<MaterialDivider> = java.util.ArrayList()
     private val penaltyHashMap = HashMap<String,List<TextView>>()
     private val totalScoreHasMap = HashMap<String, TextView>()
     private var lineCount = 1
@@ -97,6 +99,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         var newLine = createNewLine(inflater)
         createAllTeamScoreEditTextList(newLine)
         checkRoundScores(newLine)
+        checkDividerList()
         binding.newRound.setOnClickListener {
             if (viewModel.checkList(newLine)){
                 requireContext().toast(resources.getString(R.string.warning_check_all_rounds).format(lineCount), R.drawable.ic_warning)
@@ -105,6 +108,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                 newLine = createNewLine(inflater)
                 createAllTeamScoreEditTextList(newLine)
                 checkRoundScores(newLine)
+                checkDividerList()
                 calculate()
                 binding.saveGame.isEnabled = false
             }
@@ -132,6 +136,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             val textView = includedLayout.findViewById<TextView>(id)
             textViewList.add(textView)
         }
+        dividerList.add(includedLayout.findViewById(R.id.horizontalDivider))
         setEditText(hintIds,includedLayout)
         createAllTeamPenaltyTextViewList(textViewList)
         return editTextList
@@ -153,6 +158,15 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         for(id in hintIds){
             val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
             textInputLayout.hint =requireContext().getString(R.string.round_count).format(lineCount)
+        }
+    }
+
+    private fun checkDividerList(){
+        if(lineCount == 1){
+            dividerList.last().visibility = View.GONE
+        }else{
+            dividerList.last().visibility = View.GONE
+            dividerList[dividerList.size-2].visibility = View.VISIBLE
         }
     }
     private fun saveToRoomDb(){

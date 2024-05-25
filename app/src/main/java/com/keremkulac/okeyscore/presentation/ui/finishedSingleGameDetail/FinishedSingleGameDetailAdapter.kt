@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDivider
 import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedSingleGame
@@ -44,6 +45,9 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
             for (editText in listOf(holder.player1Score, holder.player2Score, holder.player3Score, holder.player4Score)) {
                 editText.isFocusable = false
             }
+            if (position == numberOfGames-1){
+                holder.divider.visibility = View.GONE
+            }
         }
     }
 
@@ -72,5 +76,6 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
         val playerPenalty2 : TextView = itemView.findViewById(R.id.player2Penalty)
         val playerPenalty3 : TextView = itemView.findViewById(R.id.player3Penalty)
         val playerPenalty4 : TextView = itemView.findViewById(R.id.player4Penalty)
+        val divider : MaterialDivider = itemView.findViewById(R.id.horizontalDivider)
     }
 }
