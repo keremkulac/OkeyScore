@@ -62,39 +62,26 @@
         <TextView
             android:id="@+id/team1Name"
             style="@style/NameTextViewStyle"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/teamNameDivider1"
             app:layout_constraintTop_toBottomOf="@+id/teamNames" />
 
-        <TextView
-            android:id="@+id/team1TotalScore"
-            style="@style/ScoreTextViewStyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team1Name" />
-
         <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team1TotalScore"
-            app:layout_constraintBottom_toTopOf="@id/team2Name"
-            style="@style/DividerStyle"/>
+            android:id="@+id/teamNameDivider1"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintStart_toEndOf="@+id/team1Name"
+            app:layout_constraintEnd_toStartOf="@id/team2Name"
+            app:layout_constraintTop_toBottomOf="@id/teamNames"/>
 
         <TextView
             android:id="@+id/team2Name"
             style="@style/NameTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        <TextView
-            android:id="@+id/team2TotalScore"
-            style="@style/ScoreTextViewStyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team2Name" />
-
+            app:layout_constraintStart_toEndOf="@id/teamNameDivider1"
+            app:layout_constraintTop_toBottomOf="@id/teamNames" />
 
         <TextView
             android:id="@+id/roundLabel"
@@ -102,8 +89,9 @@
             android:text="@string/round_scores"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team2TotalScore"
+            app:layout_constraintTop_toBottomOf="@+id/team1Name"
             app:drawableLeftCompat="@drawable/ic_scoreboard" />
+
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -114,16 +102,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/roundLabel" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/horizontalDivider"
+            style="@style/DividerStyle"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/roundRecyclerView"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/team1TotalScore"
+            style="@style/ScoreTextViewStyle"
+            app:layout_constraintBottom_toTopOf="@+id/detailLabel"
+            app:layout_constraintEnd_toStartOf="@id/teamTotalScoreDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalDivider" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/teamTotalScoreDivider"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintStart_toEndOf="@+id/team1TotalScore"
+            app:layout_constraintEnd_toStartOf="@id/team2TotalScore"
+            app:layout_constraintTop_toBottomOf="@id/horizontalDivider"/>
+
+        <TextView
+            android:id="@+id/team2TotalScore"
+            style="@style/ScoreTextViewStyle"
+            app:layout_constraintBottom_toTopOf="@+id/detailLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/teamTotalScoreDivider"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalDivider" />
 
         <TextView
             android:id="@+id/detailLabel"
             style="@style/HeaderTextViewStyle"
-            android:text="@string/detail"
             android:layout_marginTop="8dp"
+            android:text="@string/detail"
+            app:drawableLeftCompat="@drawable/ic_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/roundRecyclerView"
-            app:drawableLeftCompat="@drawable/ic_info" />
+            app:layout_constraintTop_toBottomOf="@+id/teamTotalScoreDivider" />
 
         <TextView
             android:id="@+id/gameDetail"

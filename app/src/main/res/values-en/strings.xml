@@ -19,7 +19,7 @@
     <string name="player">Player</string>
     <string name="playerNamesAndScoresTitle">Player Names and Total Scores</string>
     <string name="teamNamesAndScoresTitle">Team Names and Total Scores</string>
-    <string name="total_score_text">Total score: %1$s</string>
+    <string name="total_score_text">Total score\n %1$s</string>
     <string name="teamScoresTitle">Player Round Scores</string>
     <string name="enter_team1_name">Enter name for team 1</string>
     <string name="enter_team2_name">Enter name for team 2</string>
@@ -77,6 +77,7 @@
     <string name="select_team_punish" >Select the team to punish</string>
     <string name="select_player_punish">Determine the Punishment</string>
     <string name="forward">Forward</string>
+    <string name="total_scores">Total scores</string>
 
 
 </resources>

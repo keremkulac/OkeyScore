@@ -19,7 +19,7 @@
     <string name="player" tools:ignore="MissingTranslation">Player</string>
     <string name="playerNamesAndScoresTitle" tools:ignore="MissingTranslation">Oyuncu İsimleri ve Toplam Skorları</string>
     <string name="teamNamesAndScoresTitle" tools:ignore="MissingTranslation">Takım İsimleri ve Toplam Skorları</string>
-    <string name="total_score_text" tools:ignore="MissingTranslation">Toplam skor: %1$s</string>
+    <string name="total_score_text" tools:ignore="MissingTranslation">Toplam skor\n %1$s</string>
     <string name="teamScoresTitle" tools:ignore="MissingTranslation">Oyuncu Tur Skorları</string>
     <string name="enter_team1_name" tools:ignore="MissingTranslation">1. takım için isim giriniz</string>
     <string name="enter_team2_name" tools:ignore="MissingTranslation">2. takım için isim giriniz</string>
@@ -77,7 +77,7 @@
     <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
     <string name="select_team_punish" tools:ignore="MissingTranslation">Ceza eklenecek takımı seçiniz</string>
     <string name="forward" tools:ignore="MissingTranslation">İleri</string>
-
+    <string name="total_scores" tools:ignore="MissingTranslation">Toplam skorlar</string>
 
 
 </resources>

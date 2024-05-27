@@ -67,7 +67,7 @@
     </style>
 
     <style name="NameTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/player</item>
         <item name="android:textColor">@color/name_text_color</item>
@@ -78,24 +78,24 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:background">@color/line_color_dark</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="ScoreTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/total_score</item>
         <item name="android:textColor">@color/name_text_color</item>
-        <item name="android:paddingStart">13dp</item>
-        <item name="android:paddingEnd">16dp</item>
-        <item name="android:paddingBottom">8dp</item>
         <item name="android:textSize">14sp</item>
         <item name="android:background">@color/line_color_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
 
     </style>
     <style name="HeaderTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:textColor">@color/header_text_color</item>
         <item name="android:background">@color/header_background_color</item>
         <item name="android:drawablePadding">6dp</item>

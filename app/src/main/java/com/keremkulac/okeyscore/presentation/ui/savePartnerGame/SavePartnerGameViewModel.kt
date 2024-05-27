@@ -3,7 +3,6 @@ package com.keremkulac.okeyscore.presentation.ui.savePartnerGame
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -101,11 +100,7 @@ class SavePartnerGameViewModel
         for(penaltyTextView in penaltyList){
             val penaltyText = penaltyTextView.text.toString()
             if(penaltyText != ""){
-                Log.d("TAG",penaltyText)
-
                 totalScore+= penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
-                Log.d("TAG1",totalScore.toString())
-
             }
         }
         return totalScore
