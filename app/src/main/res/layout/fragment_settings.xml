@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background_color"
     tools:context=".presentation.ui.settings.SettingsFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -38,6 +37,14 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/horizontalDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +54,7 @@
         android:backgroundTint="@color/settings_card_background_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+        app:layout_constraintTop_toBottomOf="@+id/horizontalDivider">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -83,7 +90,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/dark_mode"
-                android:textColor="@color/dark_mode_text_color"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/view2"
@@ -142,7 +148,6 @@
                 android:layout_marginTop="32sp"
                 android:gravity="center_horizontal"
                 android:text="@string/language"
-                android:textColor="@color/language_text_color"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/view3"

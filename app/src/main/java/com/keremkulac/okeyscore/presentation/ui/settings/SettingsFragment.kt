@@ -3,12 +3,16 @@ package com.keremkulac.okeyscore.presentation.ui.settings
 import  android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.keremkulac.okeyscore.MainActivity
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSettingsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.keremkulac.okeyscore.util.LanguageDialog
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import com.keremkulac.okeyscore.util.translateEN
 import com.keremkulac.okeyscore.util.translateTR
@@ -48,27 +52,38 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun checkThemeSwitch(){
         binding.darkModeSwitch.setOnClickListener {
             viewModel.setNightModeSharedPreferencesValue(binding.darkModeSwitch.isChecked)
-            requireActivity().recreate()
+            recreate(requireActivity() as MainActivity)
         }
     }
 
     private fun selectLanguage(){
-        val dialog = LanguageDialog(requireActivity(),requireContext(),sharedPrefHelper)
+        val builder = AlertDialog.Builder(requireContext())
         binding.languageTextView.setOnClickListener {
-            dialog.setOnDismissListener{
-                if(dialog.getLanguage() != "" && dialog.getLanguage() != null){
-                    if(dialog.getLanguage() == "İngilizce" || dialog.getLanguage() == "English"){
-                        viewModel.setLanguageSharedPreferencesValue(translateEN(dialog.getLanguage().toString()))
-                        val locale = Locale("en", "EN")
-                       updateResources(requireActivity(),locale)
-                    }else{
-                        viewModel.setLanguageSharedPreferencesValue(translateTR(dialog.getLanguage().toString()))
-                        val defaultLocale = Locale.getDefault()
-                        updateResources(requireActivity(),defaultLocale)
-                    }
+            val inflater = requireActivity().layoutInflater
+            val view = inflater.inflate(R.layout.language_dialog, null)
+            val languages = arrayOf(requireContext().getString(R.string.turkish), requireContext().getString(R.string.english))
+            val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
+            val adapter = ArrayAdapter(requireActivity(),R.layout.dropdown_item, languages)
+            autoCompleteTextView.setAdapter(adapter)
+            builder.setView(view)
+            builder.setPositiveButton("Onayla") { _ , _ ->
+                val selectedLanguage = autoCompleteTextView.text.toString()
+                if(selectedLanguage == "İngilizce" || selectedLanguage == "English"){
+                    viewModel.setLanguageSharedPreferencesValue(translateEN(selectedLanguage))
+                    val locale = Locale("en", "EN")
+                    updateResources(requireActivity(),locale)
+                    recreate(requireActivity() as MainActivity)
+                }else{
+                    viewModel.setLanguageSharedPreferencesValue(translateTR(selectedLanguage))
+                    val defaultLocale = Locale.getDefault()
+                    updateResources(requireActivity(),defaultLocale)
+                    recreate(requireActivity() as MainActivity)
                 }
-                requireActivity().recreate()
             }
+            builder.setNegativeButton("İptal") { dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            val dialog = builder.create()
             dialog.show()
         }
     }

@@ -4,16 +4,11 @@
     <color name="white">#F6F6F8</color>
 
     <color name="primary_color">#23221F</color>
-    <color name="date_text_color">#45494A</color>
-    <color name="info_text_color">#45494A</color>
-    <color name="name_text_color">#292F33</color>
-    <color name="score_text_color">#292F33</color>
-    <color name="score_hint_text_color">#292F33</color>
     <color name="separator_color">#45494A</color>
     <color name="fab_icon_color">#FFFFFF</color>
     <color name="error_text_color">#292F33</color>
-    <color name="main_background_color">#F6F6F8</color>
     <color name="button_text_color">#F6F6F8</color>
+    <color name="searchview_background_color">#F6F6F8</color>
     <color name="icon_color">#646E72</color>
     <color name="searchview_text_color">#292F33</color>
     <color name="delete_color">#FF0000</color>
@@ -23,11 +18,7 @@
     <color name="toolbar_text_color">#292F33</color>
     <color name="cardview_background_color">#F6F6F8</color>
     <color name="cardview_shadow_color">#010101</color>
-    <color name="alert_dialog_button_text_color">#010101</color>
-    <color name="text_input_layout_text_color">#292F33</color>
-    <color name="text_input_layout_hint_color">#292F33</color>
     <color name="text_input_layout_box_stroke_color">#4CAF50</color>
-    <color name="text_input_layout_counter_text_color">#292F33</color>
     <color name="cursor_color">#4CAF50</color>
     <color name="tablayout_text_color">#292F33</color>
     <color name="back_icon_color">#23221F</color>
@@ -35,7 +26,6 @@
     <color name="searchview_border_color">#45494A</color>
     <color name="tab_indicator_color">#4CAF50</color>
     <color name="line_color_dark">#F6F6F8</color>
-    <color name="line_color_light">#F6F6F8</color>
     <color name="header_text_color">#F6F6F8</color>
     <color name="header_background_color">#45494A</color>
     <color name="score_differences_text_color">#646E72</color>
@@ -44,9 +34,6 @@
     <color name="circular_icon_background_color">#4CAF50</color>
     <color name="bottom_navigation_text_color">#010101</color>
     <color name="bottom_navigation_icon_color">#010101</color>
-    <color name="dialog_shadow_color">#666666</color>
-    <color name="dark_mode_text_color">#666666</color>
-    <color name="language_text_color">#666666</color>
     <color name="selected_language_text_color">#666666</color>
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>

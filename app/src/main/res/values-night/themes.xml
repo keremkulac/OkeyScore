@@ -1,6 +1,5 @@
 <resources >
     <style name="Theme.OkeyScore" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/status_bar_color</item>
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_color</item>
         <item name="android:colorPrimaryDark">@color/status_bar_color</item>

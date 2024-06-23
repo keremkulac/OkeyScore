@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/dialog_shadow_color">
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_language"
-        android:hint="@string/select_language"
-        app:hintTextAppearance="@style/HintTextAppearance"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:startIconDrawable="@drawable/ic_language"
+    android:hint="@string/select_language"
+    app:hintTextAppearance="@style/HintTextAppearance"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
         <AutoCompleteTextView
             android:textSize="20sp"
             android:id="@+id/autoCompleteTextView"
@@ -23,8 +18,7 @@
             android:inputType="none"
             android:hint="@string/turkish"
             android:text="@string/turkish"/>
-    </com.google.android.material.textfield.TextInputLayout>
+</com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 

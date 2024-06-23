@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background_color"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.ui.saveSingleGame.SaveSingleGameFragment">
 
@@ -42,6 +41,14 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/horizontalDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolBar"/>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
@@ -51,7 +58,7 @@
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar">
+            app:layout_constraintTop_toBottomOf="@+id/horizontalDivider">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

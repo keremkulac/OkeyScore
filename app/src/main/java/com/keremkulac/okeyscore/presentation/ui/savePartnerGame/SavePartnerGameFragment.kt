@@ -171,7 +171,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     }
     private fun saveToRoomDb(){
         binding.saveGame.setOnClickListener {
-            val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
+            val alertDialogBuilder = AlertDialog.Builder(requireContext())
             alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
             alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
             alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
@@ -273,6 +273,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         singlePlayerView.findViewById<RadioButton>(R.id.team1).text = binding.team1NameEntry.text.toString()
         singlePlayerView.findViewById<RadioButton>(R.id.team2).text = binding.team2NameEntry.text.toString()
     }
+
 
     private fun goToChooseGameFragment(){
         binding.goToChooseGameFragment.setOnClickListener {

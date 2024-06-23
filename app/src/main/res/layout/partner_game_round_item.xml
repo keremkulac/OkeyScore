@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/main_background_color">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,6 +71,6 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="0.3dp"
+        android:layout_height="1dp"
         android:layout_marginTop="4dp" />
 </LinearLayout>

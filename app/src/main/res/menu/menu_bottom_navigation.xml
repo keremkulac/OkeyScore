@@ -4,6 +4,7 @@
         android:id="@+id/menu_new_game"
         android:icon="@drawable/ic_add"
         android:title="@string/new_game_record" />
+
     <item
         android:id="@+id/menu_history"
         android:icon="@drawable/ic_history"

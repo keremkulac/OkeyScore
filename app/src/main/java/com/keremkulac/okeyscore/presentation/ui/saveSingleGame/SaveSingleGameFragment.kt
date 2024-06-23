@@ -268,7 +268,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     }
    private fun saveGame(){
         binding.saveGame.setOnClickListener {
-            val alertDialogBuilder = AlertDialog.Builder(requireContext(),R.style.AlertDialogStyle)
+            val alertDialogBuilder = AlertDialog.Builder(requireContext())
             alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
             alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
             alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->

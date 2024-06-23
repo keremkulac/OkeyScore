@@ -33,10 +33,6 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
             holder.team2Penalty.text = createPenaltiesString(finishedPartnerGame.team2.penalties!![position]!!,holder.itemView.context)
             holder.team1Score.isFocusable = false
             holder.team2Score.isFocusable = false
-            if(position % 2 == 0){
-                holder.team1ScoreHint.setBackgroundColor(holder.team1Score.context.getColor(R.color.line_color_dark))
-                holder.team2ScoreHint.setBackgroundColor(holder.team2Score.context.getColor(R.color.line_color_dark))
-            }
             if (position == numberOfGames-1){
                 holder.divider.visibility = View.GONE
             }

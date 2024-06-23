@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 
 fun updateResources(activity: Activity,locale: Locale) {
+    Locale.setDefault(locale)
     val resources = activity.resources
     val configuration = resources.configuration
     configuration.setLocale(locale)

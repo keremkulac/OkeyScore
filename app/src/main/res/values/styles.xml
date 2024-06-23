@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AlertDialogStyle" parent="ThemeOverlay.AppCompat.Dialog.Alert">
-        <item name="android:windowBackground">@color/main_background_color</item>
-        <item name="android:textColor">@color/delete_color</item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
-        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
-        <item name="android:textColorPrimary">@color/alert_dialog_button_text_color</item>
-    </style>
-
-    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/alert_dialog_button_text_color</item>
-    </style>
-
-    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/alert_dialog_button_text_color</item>
-    </style>
-
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:editTextColor">@color/searchview_text_color</item>
         <item name="android:textColorHint">@color/searchview_text_color</item>
@@ -24,14 +8,10 @@
         <item name="colorAccent">@color/searchview_text_color</item>
     </style>
 
-
     <style name="SingleGameTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:textColor">@color/text_input_layout_text_color</item>
-        <item name="android:textColorHint">@color/text_input_layout_hint_color</item>
-        <item name="android:backgroundTint">@color/main_background_color</item>
         <item name="android:padding">4dp</item>
         <item name="android:textStyle">bold</item>
         <item name="boxStrokeWidth">0.8dp</item>
@@ -42,18 +22,13 @@
         <item name="boxCornerRadiusBottomEnd">16dp</item>
         <item name="counterEnabled">true</item>
         <item name="counterMaxLength">20</item>
-        <item name="counterTextColor">@color/text_input_layout_counter_text_color</item>
         <item name="errorEnabled">true</item>
-        <item name="hintTextColor">@color/text_input_layout_hint_color</item>
-
     </style>
 
     <style name="SingleGameTextInputEditTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
-        <item name="android:textColor">@color/score_text_color</item>
-        <item name="android:textColorHint">@color/score_text_color</item>
         <item name="android:inputType">numberSigned</item>
     </style>
 
@@ -70,14 +45,12 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/player</item>
-        <item name="android:textColor">@color/name_text_color</item>
         <item name="android:paddingStart">13dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:background">@color/line_color_dark</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -85,16 +58,14 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/total_score</item>
-        <item name="android:textColor">@color/name_text_color</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:background">@color/line_color_light</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
-
     </style>
+
     <style name="HeaderTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:textColor">@color/header_text_color</item>
         <item name="android:background">@color/header_background_color</item>
@@ -108,10 +79,6 @@
     <style name="NameTextInputLayoutStyle" parent="Widget.AppCompat.EditText" >
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColorHint">@color/score_hint_text_color</item>
-        <item name="android:textColor">@color/score_hint_text_color</item>
-        <item name="android:textColorPrimary">@color/score_hint_text_color</item>
-        <item name="android:textColorPrimaryInverseDisableOnly">@color/score_hint_text_color</item>
         <item name="android:hint">Oyuncu</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">16sp</item>
@@ -119,13 +86,12 @@
         <item name="android:maxLength">4</item>
     </style>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/score_hint_text_color</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/settings_card_divider_color</color>
 
     <style name="ScoreTextInputEditTextStyle" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
-        <item name="android:textColor">@color/score_text_color</item>
         <item name="android:maxLength">4</item>
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>
@@ -133,11 +99,9 @@
         <item name="android:paddingTop">25dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:paddingBottom">-8dp</item>
-
     </style>
 
     <style name="DateTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/date_text_color</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/date</item>
@@ -166,7 +130,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/game_info</item>
-        <item name="android:textColor">@color/info_text_color</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">13sp</item>
         <item name="android:layout_marginTop">16dp</item>

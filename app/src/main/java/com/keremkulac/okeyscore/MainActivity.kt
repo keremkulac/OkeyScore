@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = findViewById(R.id.nav_host_fragment)
         checkDisplaySize()
         themeListener()
+        selectLanguage()
         bottomNavigation()
         checkOnboarding()
-        selectLanguage()
     }
 
 
@@ -55,6 +56,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bottomNavigation(){
+        for (item in bottomNavigationView.menu.children) {
+            if (item.itemId == R.id.menu_new_game){
+                item.setTitle(getString(R.string.new_game_record))
+            }
+            if (item.itemId == R.id.menu_history){
+                item.setTitle(getString(R.string.history))
+            }
+        }
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_new_game -> {
@@ -84,9 +93,11 @@ class MainActivity : AppCompatActivity() {
             if(it == "İngilizce" || it== "English"){
                 val locale = Locale("en", "EN")
                 updateResources(this,locale)
+                recreate()
             }else{
-                val defaultLocale = Locale.getDefault()
-                updateResources(this,defaultLocale)
+                val locale = Locale("tr", "TR")
+                updateResources(this,locale)
+                recreate()
             }
         }
     }
