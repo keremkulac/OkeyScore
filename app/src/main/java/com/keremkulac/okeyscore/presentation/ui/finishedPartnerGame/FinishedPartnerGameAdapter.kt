@@ -53,7 +53,8 @@ class FinishedPartnerGameAdapter @Inject constructor()  : RecyclerView.Adapter<F
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
         fun bind(finishedPartnerGame: FinishedPartnerGame?) {
             finishedPartnerGame?.let {
-                gameInfo.text = finishedPartnerGame.gameInfo.gameInfo
+                val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
+                gameInfo.text = itemView.context.getString(R.string.winning_team_info_text).format(infoItems[0],infoItems[1])
                 date.text = finishedPartnerGame.gameInfo.date
             }
         }

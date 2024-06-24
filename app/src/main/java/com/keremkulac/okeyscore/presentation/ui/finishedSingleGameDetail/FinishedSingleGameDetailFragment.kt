@@ -15,12 +15,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FinishedSingleGameDetailFragment @Inject constructor(
-    private val finishedSingleGameDetailAdapter: FinishedSingleGameDetailAdapter): Fragment(R.layout.fragment_finished_single_game_detail) {
+class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_single_game_detail) {
 
     private lateinit var binding : FragmentFinishedSingleGameDetailBinding
     private val viewModel by viewModels<FinishedSingleGameDetailViewModel>()
-
+    @Inject
+    lateinit var finishedSingleGameDetailAdapter: FinishedSingleGameDetailAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameDetailBinding.bind(view)
@@ -55,7 +55,8 @@ class FinishedSingleGameDetailFragment @Inject constructor(
             binding.player3TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player3.totalScore)
             binding.player4TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player4.totalScore)
             binding.gameDate.text = finishedSingleGame.gameInfo.date
-            binding.gameDetail.text = finishedSingleGame.gameInfo.gameInfo
+            val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
+            binding.gameDetail.text = requireContext().getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
             finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
             binding.roundRecyclerView.adapter = finishedSingleGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())

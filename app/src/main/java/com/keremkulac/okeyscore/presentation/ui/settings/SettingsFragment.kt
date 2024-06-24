@@ -29,7 +29,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private val viewModel by viewModels<SettingsViewModel>()
     private lateinit var binding : FragmentSettingsBinding
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSettingsBinding.bind(view)
@@ -66,7 +65,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             val adapter = ArrayAdapter(requireActivity(),R.layout.dropdown_item, languages)
             autoCompleteTextView.setAdapter(adapter)
             builder.setView(view)
-            builder.setPositiveButton("Onayla") { _ , _ ->
+            builder.setPositiveButton(requireContext().getString(R.string.confirm)) { _ , _ ->
                 val selectedLanguage = autoCompleteTextView.text.toString()
                 if(selectedLanguage == "İngilizce" || selectedLanguage == "English"){
                     viewModel.setLanguageSharedPreferencesValue(translateEN(selectedLanguage))
@@ -80,7 +79,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     recreate(requireActivity() as MainActivity)
                 }
             }
-            builder.setNegativeButton("İptal") { dialogInterface, _ ->
+            builder.setNegativeButton(requireContext().getString(R.string.cancel)) { dialogInterface, _ ->
                 dialogInterface.dismiss()
             }
             val dialog = builder.create()

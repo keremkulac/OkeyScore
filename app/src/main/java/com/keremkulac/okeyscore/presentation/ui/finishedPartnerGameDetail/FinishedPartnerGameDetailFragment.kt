@@ -16,12 +16,12 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FinishedPartnerGameDetailFragment @Inject constructor(
-    private val finishedPartnerGameDetailAdapter : FinishedPartnerGameDetailAdapter
-) : Fragment(R.layout.fragment_finished_partner_game_detail) {
+class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_partner_game_detail) {
 
     private lateinit var binding : FragmentFinishedPartnerGameDetailBinding
     private val viewModel by viewModels<FinishedPartnerGameDetailViewModel>()
+    @Inject
+    lateinit var finishedPartnerGameDetailAdapter : FinishedPartnerGameDetailAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,7 +60,8 @@ class FinishedPartnerGameDetailFragment @Inject constructor(
             binding.team1TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team1.totalScore)
             binding.team2TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team2.totalScore)
             binding.gameDate.text = finishedPartnerGame.gameInfo.date
-            binding.gameDetail.text = finishedPartnerGame.gameInfo.gameInfo
+            val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
+            binding.gameDetail.text = requireContext().getString(R.string.winning_team_info_text).format(infoItems[0],infoItems[1])
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
             binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())

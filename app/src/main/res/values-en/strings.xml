@@ -59,8 +59,10 @@
     <string name="deleted">Deleted</string>
     <string name="take_it_back">Take it back</string>
     <string name="hint_round_cont">%d. round</string>
-    <string name="winning_team_info">Winning team: %s. Score: %s</string>
-    <string name="winning_player_info">Winning player: %s. Score: %s</string>
+    <string name="winning_team_info_text">Winning team: %s. Score: %s</string>
+    <string name="winning_team_info">%s %s</string>
+    <string name="winning_player_info_text">Winning player: %s. Score: %s</string>
+    <string name="winning_player_info">%s %s</string>
     <string name="error_not_work_this_device">The app does not work on this device.</string>
     <string name="enter_penalty">Enter penalty</string>
     <string name="penalty">Penalty</string>
@@ -73,6 +75,7 @@
     <string name="penalty_text" >Penalty: </string>
     <string name="penalty_text_value" >Penalty: %d</string>
     <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
     <string name="determine_punishment">Select the player to punish</string>
     <string name="select_team_punish" >Select the team to punish</string>
     <string name="select_player_punish">Determine the Punishment</string>

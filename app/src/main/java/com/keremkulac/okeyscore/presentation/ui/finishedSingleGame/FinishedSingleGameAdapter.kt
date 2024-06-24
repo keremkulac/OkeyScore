@@ -54,7 +54,8 @@ class FinishedSingleGameAdapter : RecyclerView.Adapter<FinishedSingleGameAdapter
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
         fun bind(finishedSingleGame: FinishedSingleGame) {
-              gameInfo.text = finishedSingleGame.gameInfo.gameInfo
+            val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
+            gameInfo.text = itemView.context.getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
                 date.text = finishedSingleGame.gameInfo.date
         }
     }

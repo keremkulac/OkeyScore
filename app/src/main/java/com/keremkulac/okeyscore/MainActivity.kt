@@ -17,8 +17,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-
     @Inject
     lateinit var defaultFragmentFactory: DefaultFragmentFactory
     @Inject
@@ -28,17 +26,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        themeListener()
         supportFragmentManager.fragmentFactory = defaultFragmentFactory
         setContentView(R.layout.activity_main)
         bottomNavigationView = findViewById(R.id.bottomNavigation)
         navHostFragment = findViewById(R.id.nav_host_fragment)
         checkDisplaySize()
-        themeListener()
         selectLanguage()
         bottomNavigation()
         checkOnboarding()
     }
-
 
     private fun themeListener(){
         val isNightModeActive = sharedPrefHelper.getNightModeSharedPreferencesValue()
@@ -93,11 +90,9 @@ class MainActivity : AppCompatActivity() {
             if(it == "İngilizce" || it== "English"){
                 val locale = Locale("en", "EN")
                 updateResources(this,locale)
-                recreate()
             }else{
                 val locale = Locale("tr", "TR")
                 updateResources(this,locale)
-                recreate()
             }
         }
     }

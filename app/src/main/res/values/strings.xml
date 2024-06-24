@@ -59,8 +59,11 @@
     <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
     <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>
     <string name="hint_round_cont" tools:ignore="MissingTranslation">%d. tur</string>
-    <string name="winning_team_info" tools:ignore="MissingTranslation">Kazanan takım: %s. Skor: %s</string>
-    <string name="winning_player_info" tools:ignore="MissingTranslation">Kazanan oyuncu: %s. Skor: %s</string>
+    <string name="winning_team_info_text">Kazanan takım: %s. Skor: %s</string>
+    <string name="winning_team_info_total_score_text" tools:ignore="MissingTranslation">Kazanan takım: </string>
+    <string name="winning_team_info" tools:ignore="MissingTranslation">%s %s</string>
+    <string name="winning_player_info_text">Kazanan oyuncu: %s. Skor: %s</string>
+    <string name="winning_player_info" tools:ignore="MissingTranslation">%s %s</string>
     <string name="error_not_work_this_device" tools:ignore="MissingTranslation">Uygulama bu cihazda çalışmıyor.</string>
     <string name="enter_penalty" tools:ignore="MissingTranslation">Ceza giriniz</string>
     <string name="penalty" tools:ignore="MissingTranslation">Ceza</string>
@@ -73,6 +76,7 @@
     <string name="penalty_text" tools:ignore="MissingTranslation">Ceza: </string>
     <string name="penalty_text_value" tools:ignore="MissingTranslation">Ceza: %d</string>
     <string name="confirm" tools:ignore="MissingTranslation">Onayla</string>
+    <string name="cancel" tools:ignore="MissingTranslation">İptal</string>
     <string name="determine_punishment" tools:ignore="MissingTranslation">Cezayı belirleyin</string>
     <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
     <string name="select_team_punish" tools:ignore="MissingTranslation">Ceza eklenecek takımı seçiniz</string>
