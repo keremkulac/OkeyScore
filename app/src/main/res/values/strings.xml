@@ -62,7 +62,7 @@
     <string name="winning_team_info_text">Kazanan takım: %s. Skor: %s</string>
     <string name="winning_team_info_total_score_text" tools:ignore="MissingTranslation">Kazanan takım: </string>
     <string name="winning_team_info" tools:ignore="MissingTranslation">%s %s</string>
-    <string name="winning_player_info_text">Kazanan oyuncu: %s. Skor: %s</string>
+    <string name="winning_player_info_text">Kazanan oyuncu %s. Skor: %s</string>
     <string name="winning_player_info" tools:ignore="MissingTranslation">%s %s</string>
     <string name="error_not_work_this_device" tools:ignore="MissingTranslation">Uygulama bu cihazda çalışmıyor.</string>
     <string name="enter_penalty" tools:ignore="MissingTranslation">Ceza giriniz</string>

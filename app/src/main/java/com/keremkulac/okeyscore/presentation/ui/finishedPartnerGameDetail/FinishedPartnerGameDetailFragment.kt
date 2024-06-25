@@ -12,6 +12,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 
@@ -61,7 +62,13 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
             binding.team2TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team2.totalScore)
             binding.gameDate.text = finishedPartnerGame.gameInfo.date
             val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
-            binding.gameDetail.text = requireContext().getString(R.string.winning_team_info_text).format(infoItems[0],infoItems[1])
+            val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
+            val matcher = pattern.matcher(finishedPartnerGame.gameInfo.gameInfo)
+            if (matcher.find()) {
+                binding.gameDetail.text = requireContext().getString(R.string.winning_team_info_text).format(matcher.group(1),matcher.group(2))
+            }else{
+                binding.gameDetail.text = requireContext().getString(R.string.winning_team_info_text).format(infoItems[0],infoItems[1])
+            }
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
             binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())

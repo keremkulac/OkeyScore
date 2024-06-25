@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedSingleGame
+import java.util.regex.Pattern
 
 
 class FinishedSingleGameAdapter : RecyclerView.Adapter<FinishedSingleGameAdapter.FinishedGameViewHolder>() {
@@ -54,9 +55,15 @@ class FinishedSingleGameAdapter : RecyclerView.Adapter<FinishedSingleGameAdapter
         private val date =  itemView.findViewById<TextView>(R.id.gameDate)
 
         fun bind(finishedSingleGame: FinishedSingleGame) {
+            val pattern = Pattern.compile("Kazanan oyuncu: (.+?)\\. Skor: (\\d+)")
+            val matcher = pattern.matcher(finishedSingleGame.gameInfo.gameInfo)
             val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
-            gameInfo.text = itemView.context.getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
-                date.text = finishedSingleGame.gameInfo.date
+            if (matcher.find()) {
+                gameInfo.text = itemView.context.getString(R.string.winning_player_info_text).format(matcher.group(1),matcher.group(2))
+            }else{
+                gameInfo.text = itemView.context.getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
+            }
+            date.text = finishedSingleGame.gameInfo.date
         }
     }
 

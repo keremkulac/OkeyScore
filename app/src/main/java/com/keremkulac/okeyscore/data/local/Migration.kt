@@ -38,8 +38,8 @@ class Migration : Migration(1, 2) {
                     "team1penalties TEXT, " +
                     "team2penalties TEXT " +
                     ")")
-            db.execSQL("ALTER TABLE temp_finishedPartnerGame ADD COLUMN team1penalties TEXT DEFAULT ''")
-            db.execSQL("ALTER TABLE temp_finishedPartnerGame ADD COLUMN team2penalties TEXT DEFAULT ''")
+            db.execSQL("ALTER TABLE temp_finishedPartnerGame ADD COLUMN team1penalties TEXT DEFAULT '[]'")
+            db.execSQL("ALTER TABLE temp_finishedPartnerGame ADD COLUMN team2penalties TEXT DEFAULT '[]'")
             db.execSQL("INSERT INTO finishedPartnerGame SELECT * FROM temp_finishedPartnerGame")
             db.execSQL("DROP TABLE temp_finishedPartnerGame")
 
@@ -92,10 +92,10 @@ class Migration : Migration(1, 2) {
                     "player3penalties TEXT, " +
                     "player4penalties TEXT " +
                     ")")
-            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player1penalties TEXT DEFAULT ''")
-            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player2penalties TEXT DEFAULT ''")
-            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player3penalties TEXT DEFAULT ''")
-            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player4penalties TEXT DEFAULT ''")
+            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player1penalties TEXT DEFAULT '[]'")
+            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player2penalties TEXT DEFAULT '[]'")
+            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player3penalties TEXT DEFAULT '[]'")
+            db.execSQL("ALTER TABLE temp_finishedSingleGame ADD COLUMN player4penalties TEXT DEFAULT '[]'")
             db.execSQL("INSERT INTO finishedSingleGame SELECT * FROM temp_finishedSingleGame")
             db.execSQL("DROP TABLE temp_finishedSingleGame")
         }

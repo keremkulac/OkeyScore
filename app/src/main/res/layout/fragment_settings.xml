@@ -10,7 +10,6 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/toolbar_background_color"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
@@ -37,14 +36,6 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/horizontalDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolBar"/>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +45,7 @@
         android:backgroundTint="@color/settings_card_background_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalDivider">
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

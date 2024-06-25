@@ -1,6 +1,7 @@
 package com.keremkulac.okeyscore.presentation.ui.finishedSingleGameDetail
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,10 +33,29 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
             holder.player2Score.setText(it.player2!!.allScores!![position])
             holder.player3Score.setText(it.player3!!.allScores!![position])
             holder.player4Score.setText(it.player4!!.allScores!![position])
-            holder.playerPenalty1.text = createPenaltiesString(it.player1.penalties!![position]!!,holder.itemView.context)
-            holder.playerPenalty2.text = createPenaltiesString(it.player2.penalties!![position]!!,holder.itemView.context)
-            holder.playerPenalty3.text = createPenaltiesString(it.player3.penalties!![position]!!,holder.itemView.context)
-            holder.playerPenalty4.text = createPenaltiesString(it.player4.penalties!![position]!!,holder.itemView.context)
+            it.player1.penalties?.let {list->
+                if(list.isNotEmpty()){
+                    holder.playerPenalty1.text = createPenaltiesString(list[position],holder.itemView.context)
+                }
+            }
+            it.player2.penalties?.let {list->
+                if(list.isNotEmpty()){
+                    holder.playerPenalty2.text = createPenaltiesString(list[position],holder.itemView.context)
+                }
+            }
+            it.player3.penalties?.let {list->
+                if(list.isNotEmpty()){
+                    holder.playerPenalty3.text = createPenaltiesString(list[position],holder.itemView.context)
+                }
+            }
+            it.player4.penalties?.let {list->
+                if(list.isNotEmpty()){
+                    holder.playerPenalty4.text = createPenaltiesString(list[position],holder.itemView.context)
+                }
+            }
+
+
+
             for (editText in listOf(holder.player1Score, holder.player2Score, holder.player3Score, holder.player4Score)) {
                 editText.isFocusable = false
             }
@@ -49,9 +69,9 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
         return numberOfGames
     }
 
-    private fun createPenaltiesString(penalty : String,context: Context) : String{
+    private fun createPenaltiesString(penalty : String?,context: Context) : String{
         var penaltyText = ""
-        if(penalty != ""){
+        if(penalty != "" && penalty != null){
             penaltyText= context.getString(R.string.penalty_text_value).format(penalty.toInt())
         }
         return penaltyText

@@ -1,6 +1,7 @@
 package com.keremkulac.okeyscore.presentation.ui.finishedSingleGameDetail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
@@ -12,6 +13,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -46,9 +48,11 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
             binding.player4Name.text = finishedSingleGame.player4!!.name
             for(textView in createPlayerNameTextViewList()){
                 if(textView.text ==  viewModel.sortByMin(finishedSingleGame)[0].name){
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                        ContextCompat.getDrawable(requireContext(),R.drawable.ic_trophy),null)
+                    val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_trophy)
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null,null,drawable,null)
+                  //  drawable!!.setBounds(0,0,24,24)
                 }
+
             }
             binding.player1TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player1.totalScore)
             binding.player2TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player2.totalScore)
@@ -56,7 +60,13 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
             binding.player4TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player4.totalScore)
             binding.gameDate.text = finishedSingleGame.gameInfo.date
             val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
-            binding.gameDetail.text = requireContext().getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
+            val pattern = Pattern.compile("Kazanan oyuncu: (.+?)\\. Skor: (\\d+)")
+            val matcher = pattern.matcher(finishedSingleGame.gameInfo.gameInfo)
+            if (matcher.find()) {
+                binding.gameDetail.text = requireContext().getString(R.string.winning_player_info_text).format(matcher.group(1),matcher.group(2))
+            } else {
+                binding.gameDetail.text = requireContext().getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
+            }
             finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
             binding.roundRecyclerView.adapter = finishedSingleGameDetailAdapter
             binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())

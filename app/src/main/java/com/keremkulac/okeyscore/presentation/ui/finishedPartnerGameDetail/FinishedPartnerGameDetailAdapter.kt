@@ -24,13 +24,21 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        finishedPartnerGame?.let { finishedPartnerGame ->
+        finishedPartnerGame?.let {
             holder.team1ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
             holder.team2ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
-            holder.team1Score.setText(finishedPartnerGame.team1!!.allScores!![position])
-            holder.team2Score.setText(finishedPartnerGame.team2!!.allScores!![position])
-            holder.team1Penalty.text = createPenaltiesString(finishedPartnerGame.team1.penalties!![position]!!,holder.itemView.context)
-            holder.team2Penalty.text = createPenaltiesString(finishedPartnerGame.team2.penalties!![position]!!,holder.itemView.context)
+            holder.team1Score.setText(it.team1!!.allScores!![position])
+            holder.team2Score.setText(it.team2!!.allScores!![position])
+            it.team1.penalties?.let {list->
+                if (list.isNotEmpty()){
+                    holder.team1Penalty.text = createPenaltiesString(list[position]!!,holder.itemView.context)
+                }
+            }
+            it.team2.penalties?.let {list->
+                if (list.isNotEmpty()){
+                    holder.team2Penalty.text = createPenaltiesString(list[position]!!,holder.itemView.context)
+                }
+            }
             holder.team1Score.isFocusable = false
             holder.team2Score.isFocusable = false
             if (position == numberOfGames-1){
