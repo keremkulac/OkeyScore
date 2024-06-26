@@ -250,8 +250,12 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                     val totalScoreTextView = totalScoreHasMap[selectedText]!!
                     val penalty = givenPenaltyEditText.text.toString().toInt()
                     updatePenaltyTextView(selectedText, penalty)
-                    val totalScore = totalScoreTextView.text.toString().toInt() + penalty
-                    totalScoreTextView.text = totalScore.toString()
+                    if(totalScoreTextView.text.toString() == ""){
+                        totalScoreTextView.text = penalty.toString()
+                    }else{
+                        val totalScore = totalScoreTextView.text.toString().toInt() + penalty
+                        totalScoreTextView.text = totalScore.toString()
+                    }
                 }
                 secondDialog.show()
             }
