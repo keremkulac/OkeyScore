@@ -76,9 +76,8 @@
     <style name="NameTextInputLayoutStyle" parent="Widget.AppCompat.EditText" >
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:hint">Oyuncu</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:maxLength">4</item>
     </style>
@@ -92,7 +91,7 @@
         <item name="android:maxLength">4</item>
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">25dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:paddingBottom">-8dp</item>

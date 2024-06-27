@@ -99,7 +99,7 @@ class SaveSingleGameViewModel
     fun calculatePenalties(context: Context,penaltyList: List<TextView>) : Int{
         var totalScore = 0
         for(penaltyTextView in penaltyList){
-            val penaltyText = penaltyTextView.text
+            val penaltyText = penaltyTextView.text.toString()
             if(penaltyText != ""){
                 totalScore+= penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
             }

@@ -17,7 +17,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.divider.MaterialDivider
-import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSavePartnerGameBinding
 import com.keremkulac.okeyscore.util.PARTNER_PLAYER_SIZE
@@ -64,12 +63,10 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
                     binding.cardView.visibility = View.GONE
                     binding.newRound.visibility = View.VISIBLE
                     binding.saveGame.visibility = View.VISIBLE
-                    binding.team1Name.visibility = View.VISIBLE
-                    binding.team2Name.visibility = View.VISIBLE
                     binding.scoreLayout.visibility = View.VISIBLE
                     binding.roundScoreTitle.visibility = View.VISIBLE
-                    binding.playerNameTitle.visibility = View.VISIBLE
-                    binding.scoreColumnDivider.visibility = View.VISIBLE
+                    binding.teamNamesAndScoresLayout.visibility = View.VISIBLE
+                    binding.teamNamesTitle.visibility = View.VISIBLE
                     binding.penalty.visibility = View.VISIBLE
                     binding.saveGame.isEnabled = false
                     calculate()
@@ -85,7 +82,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private fun setPlayerNames(){
         for (i in playerNames().indices){
             val id= resources.getIdentifier("team${i+1}Name","id",requireContext().packageName)
-            requireActivity().findViewById<TextInputLayout>(id).hint = playerNames()[i].text.toString()
+            requireActivity().findViewById<TextView>(id).text = playerNames()[i].text.toString()
         }
     }
 
@@ -123,9 +120,10 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         if(lineCount % 2 != 0){
             includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
         }
-        val hintIds = listOf(R.id.team1ScoreHint, R.id.team2ScoreHint)
         val penaltyTextViewIds = listOf(R.id.team1Penalty,R.id.team2Penalty)
         val editTextIds = listOf(R.id.team1Score, R.id.team2Score)
+        val count = includedLayout.findViewById<TextView>(R.id.roundCount)
+        count.text = lineCount.toString()
         val editTextList = mutableListOf<EditText>()
         val textViewList = mutableListOf<TextView>()
         for (id in editTextIds){
@@ -137,7 +135,6 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
             textViewList.add(textView)
         }
         dividerList.add(includedLayout.findViewById(R.id.horizontalDivider))
-        setEditText(hintIds,includedLayout)
         createAllTeamPenaltyTextViewList(textViewList)
         return editTextList
     }
@@ -152,12 +149,6 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
     private fun createAllTeamPenaltyTextViewList(list: List<TextView>){
         for(i in list.indices){
             allTeamPenaltyTextViewList[i].add(list[i])
-        }
-    }
-    private fun setEditText(hintIds: List<Int>,parentLayout : View){
-        for(id in hintIds){
-            val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
-            textInputLayout.hint =requireContext().getString(R.string.round_count).format(lineCount)
         }
     }
 
@@ -183,7 +174,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         }
     }
 
-    private fun getAllTeamTotalScoreEditTextList(): List<EditText> {
+    private fun getAllTeamTotalScoreEditTextList(): List<TextView> {
         return listOf(
             binding.team1TotalScore,
             binding.team2TotalScore

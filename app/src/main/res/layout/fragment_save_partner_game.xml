@@ -103,78 +103,131 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/playerNameTitle"
+            android:id="@+id/teamNamesTitle"
             style="@style/HeaderTextViewStyle"
+            android:background="@drawable/header_layout"
             android:layout_marginTop="16dp"
-            android:visibility="invisible"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
             android:text="@string/teamNamesAndScoresTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
             app:drawableLeftCompat="@drawable/ic_partner" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/team1Name"
-            style="@style/NameTextInputLayoutStyle"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/teamNamesAndScoresLayout"
+            android:background="@drawable/score_layout"
+            android:visibility="gone"
             android:layout_marginStart="8dp"
-            android:visibility="invisible"
-            app:boxStrokeColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:layout_constraintEnd_toStartOf="@+id/scoreColumnDivider"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/team1TotalScore"
-                style="@style/ScoreTextInputEditTextStyle"
-                android:focusable="false" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/scoreColumnDivider"
-            style="@style/DividerStyle"
-            android:layout_width="0.3dp"
-            android:layout_height="30dp"
-            android:visibility="invisible"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@id/team2Name"
-            app:layout_constraintStart_toEndOf="@id/team1Name"
-            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/team2Name"
-            style="@style/NameTextInputLayoutStyle"
             android:layout_marginEnd="8dp"
-            app:boxStrokeWidth="0dp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/scoreColumnDivider"
-            app:layout_constraintTop_toBottomOf="@+id/playerNameTitle">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/teamNamesTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:id="@+id/roundCount"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/team1Name"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/team1Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/roundCount"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/verticalDivider1" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/verticalDivider1"
+                style="@style/DividerStyle"
+                android:layout_width="0.3dp"
+                android:layout_height="30dp"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/team2Name"
+                app:layout_constraintStart_toEndOf="@+id/team1Name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/team1TotalScore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:maxLength="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/verticalDivider1"
+                app:layout_constraintStart_toEndOf="@+id/roundCount"
+                app:layout_constraintTop_toBottomOf="@+id/team1Name" />
+
+            <TextView
+                android:id="@+id/team2Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/verticalDivider1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
                 android:id="@+id/team2TotalScore"
-                style="@style/ScoreTextInputEditTextStyle"
-                android:focusable="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/verticalDivider1"
+                app:layout_constraintTop_toBottomOf="@+id/team2Name" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/roundScoreTitle"
             style="@style/HeaderTextViewStyle"
             app:drawableLeftCompat="@drawable/ic_scoreboard"
+            android:background="@drawable/header_layout"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/team_round_scores"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/team2Name" />
+            app:layout_constraintTop_toBottomOf="@id/teamNamesAndScoresLayout" />
 
         <LinearLayout
             android:id="@+id/scoreLayout"
+            android:background="@drawable/score_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/roundScoreTitle">

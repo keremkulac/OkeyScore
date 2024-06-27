@@ -80,6 +80,8 @@
     <string name="select_team_punish" >Select the team to punish</string>
     <string name="select_player_punish">Determine the Punishment</string>
     <string name="forward">Forward</string>
+    <string name="game_detail_round_count">%d</string>
+    <string name="input_score_hint" >Score</string>
 
 
 </resources>

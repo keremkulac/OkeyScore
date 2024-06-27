@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDivider
-import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import javax.inject.Inject
@@ -24,10 +23,7 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: FinishedSingleGameDetailAdapter.ViewHolder, position: Int) {
         finishedSingleGame?.let {
-            holder.player1ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
-            holder.player2ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
-            holder.player3ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
-            holder.player4ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
+            holder.roundCount.text = holder.itemView.context.getString(R.string.game_detail_round_count).format(position+1)
             holder.player1Score.setText(it.player1!!.allScores!![position])
             holder.player2Score.setText(it.player2!!.allScores!![position])
             holder.player3Score.setText(it.player3!!.allScores!![position])
@@ -77,10 +73,7 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val player1ScoreHint : TextInputLayout = itemView.findViewById(R.id.player1ScoreHint)
-        val player2ScoreHint : TextInputLayout = itemView.findViewById(R.id.player2ScoreHint)
-        val player3ScoreHint : TextInputLayout = itemView.findViewById(R.id.player3ScoreHint)
-        val player4ScoreHint : TextInputLayout = itemView.findViewById(R.id.player4ScoreHint)
+        val roundCount : TextView = itemView.findViewById(R.id.roundCount)
         val player1Score : EditText = itemView.findViewById(R.id.player1Score)
         val player2Score : EditText = itemView.findViewById(R.id.player2Score)
         val player3Score : EditText = itemView.findViewById(R.id.player3Score)

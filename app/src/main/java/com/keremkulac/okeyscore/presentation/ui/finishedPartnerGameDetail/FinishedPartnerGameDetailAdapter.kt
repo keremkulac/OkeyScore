@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDivider
-import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import javax.inject.Inject
@@ -25,8 +24,7 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         finishedPartnerGame?.let {
-            holder.team1ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
-            holder.team2ScoreHint.hint = holder.itemView.context.getString(R.string.hint_round_cont).format(position+1)
+            holder.roundCount.text = holder.itemView.context.getString(R.string.game_detail_round_count).format(position+1)
             holder.team1Score.setText(it.team1!!.allScores!![position])
             holder.team2Score.setText(it.team2!!.allScores!![position])
             it.team1.penalties?.let {list->
@@ -60,8 +58,7 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val team1ScoreHint : TextInputLayout = itemView.findViewById(R.id.team1ScoreHint)
-        val team2ScoreHint : TextInputLayout = itemView.findViewById(R.id.team2ScoreHint)
+        val roundCount : TextView = itemView.findViewById(R.id.roundCount)
         val team1Score : EditText = itemView.findViewById(R.id.team1Score)
         val team2Score : EditText = itemView.findViewById(R.id.team2Score)
         val team1Penalty : TextView = itemView.findViewById(R.id.team1Penalty)

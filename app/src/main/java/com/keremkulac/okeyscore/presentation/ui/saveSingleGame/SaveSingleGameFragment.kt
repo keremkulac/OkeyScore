@@ -17,7 +17,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.divider.MaterialDivider
-import com.google.android.material.textfield.TextInputLayout
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
@@ -57,7 +56,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         )
     }
 
-    private fun getAllPlayerTotalScoreEditTextList(): List<EditText> {
+    private fun getAllPlayerTotalScoreEditTextList(): List<TextView> {
         return listOf(
             binding.player1TotalScore,
             binding.player2TotalScore,
@@ -79,14 +78,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                     binding.cardView.visibility = View.GONE
                     binding.newRound.visibility = View.VISIBLE
                     binding.saveGame.visibility = View.VISIBLE
+                    binding.playerNamesAndScoresLayout.visibility = View.VISIBLE
                     binding.scoreLayout.visibility = View.VISIBLE
-                    binding.player1Name.visibility = View.VISIBLE
-                    binding.player2Name.visibility = View.VISIBLE
-                    binding.player3Name.visibility = View.VISIBLE
-                    binding.player4Name.visibility = View.VISIBLE
-                    binding.scoreColumnDivider.visibility = View.VISIBLE
-                    binding.scoreColumnDivider2.visibility = View.VISIBLE
-                    binding.scoreColumnDivider3.visibility = View.VISIBLE
                     binding.roundScoreTitle.visibility = View.VISIBLE
                     binding.playerNameTitle.visibility = View.VISIBLE
                     binding.penalty.visibility = View.VISIBLE
@@ -134,9 +127,10 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         if(lineCount % 2 != 0){
             includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
         }
-        val hintIds = listOf(R.id.player1ScoreHint, R.id.player2ScoreHint, R.id.player3ScoreHint, R.id.player4ScoreHint)
         val penaltyTextViewIds = listOf(R.id.player1Penalty,R.id.player2Penalty,R.id.player3Penalty,R.id.player4Penalty)
         val editTextIds = listOf(R.id.player1Score, R.id.player2Score, R.id.player3Score, R.id.player4Score)
+        val count = includedLayout.findViewById<TextView>(R.id.roundCount)
+        count.text = lineCount.toString()
         val editTextList = mutableListOf<EditText>()
         val textViewList = mutableListOf<TextView>()
         for (id in editTextIds){
@@ -148,7 +142,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             textViewList.add(textView)
         }
         dividerList.add(includedLayout.findViewById(R.id.horizontalDivider))
-        setEditText(hintIds,includedLayout)
         createAllPlayersPenaltyTextViewList(textViewList)
         return editTextList
     }
@@ -168,7 +161,8 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private fun setPlayerNames(){
         for (i in playerNames().indices){
             val id= resources.getIdentifier("player${i+1}Name","id",requireContext().packageName)
-            requireActivity().findViewById<TextInputLayout>(id).hint = playerNames()[i].text.toString()
+            requireActivity().findViewById<TextView>(id).text = playerNames()[i].text.toString()
+
         }
     }
 
@@ -216,12 +210,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             }
         }
    }
-    private fun setEditText(hintIds: List<Int>,parentLayout : View){
-        for(id in hintIds){
-            val textInputLayout = parentLayout.findViewById<TextInputLayout>(id)
-            textInputLayout.hint =requireContext().getString(R.string.round_count).format(lineCount)
-        }
-    }
 
     private fun checkDividerList(){
         if(lineCount == 1){

@@ -1,119 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:paddingTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/roundCount"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/NameTextInputLayoutStyle"
-                    app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
-                    app:boxStrokeWidth="0dp"
-                    android:id="@+id/player1ScoreHint">
+            android:background="@drawable/round_count"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/player1Penalty"
+            app:layout_constraintEnd_toStartOf="@id/player1Score"
+            app:layout_constraintStart_toStartOf="parent" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player1Score"
-                            style="@style/ScoreTextInputEditTextStyle" />
-                </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/player1Score"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:hint="@string/input_score_hint"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/roundCount"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/player2Score"
+            android:inputType="numberSigned"
+            android:autofillHints="" />
 
-                <com.google.android.material.divider.MaterialDivider
-                    style="@style/DividerStyle"
-                    android:layout_width="0.3dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"/>
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/verticalDivider1"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/player1Score"
+            app:layout_constraintStart_toEndOf="@+id/player1Score"
+            app:layout_constraintEnd_toStartOf="@id/player2Score"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/NameTextInputLayoutStyle"
-                    app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
-                    app:boxStrokeWidth="0dp"
-                    android:id="@+id/player2ScoreHint">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player2Score"
-                            style="@style/ScoreTextInputEditTextStyle"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    style="@style/DividerStyle"
-                    android:layout_width="0.3dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/NameTextInputLayoutStyle"
-                    app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
-                    app:boxStrokeWidth="0dp"
-                    android:id="@+id/player3ScoreHint">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player3Score"
-                            style="@style/ScoreTextInputEditTextStyle"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    style="@style/DividerStyle"
-                    android:layout_width="0.3dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/NameTextInputLayoutStyle"
-                    app:boxStrokeColor="@color/text_input_layout_box_stroke_color"
-                    app:boxStrokeWidth="0dp"
-                    android:id="@+id/player4ScoreHint">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player4Score"
-                            style="@style/ScoreTextInputEditTextStyle"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/player1Penalty"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/player1Penalty"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/penalty_text_color"/>
+            android:gravity="center"
+            android:textColor="@color/penalty_text_color"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/horizontalDivider"
+            app:layout_constraintEnd_toStartOf="@+id/player2Penalty"
+            app:layout_constraintStart_toEndOf="@+id/roundCount"
+            app:layout_constraintTop_toBottomOf="@+id/player1Score" />
 
-                <TextView
-                    android:id="@+id/player2Penalty"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/penalty_text_color"/>
+        <EditText
+            android:id="@+id/player2Score"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:hint="@string/input_score_hint"
+            android:background="@null"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/player1Score"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/player3Score"
+            android:inputType="numberSigned"
+            android:autofillHints="" />
 
-                <TextView
-                    android:id="@+id/player3Penalty"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/penalty_text_color"/>
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/verticalDivider2"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/player2Score"
+            app:layout_constraintStart_toEndOf="@+id/player2Score"
+            app:layout_constraintEnd_toStartOf="@id/player3Score"/>
 
-                <TextView
-                    android:id="@+id/player4Penalty"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/penalty_text_color"/>
-        </LinearLayout>
+
+        <TextView
+            android:id="@+id/player2Penalty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/penalty_text_color"
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/player3Penalty"
+            app:layout_constraintStart_toEndOf="@+id/player1Penalty"
+            app:layout_constraintTop_toBottomOf="@+id/player2Score" />
+
+        <EditText
+            android:id="@+id/player3Score"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:hint="@string/input_score_hint"
+            android:background="@null"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            app:layout_constraintEnd_toStartOf="@+id/player4Score"
+            app:layout_constraintStart_toEndOf="@+id/player2Score"
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/verticalDivider3"
+            style="@style/DividerStyle"
+            android:layout_width="0.3dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/player3Score"
+            app:layout_constraintStart_toEndOf="@+id/player3Score"
+            app:layout_constraintEnd_toStartOf="@id/player4Score"/>
+        <TextView
+            android:id="@+id/player3Penalty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/penalty_text_color"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/player3Score"
+            app:layout_constraintStart_toEndOf="@+id/player2Penalty"
+            app:layout_constraintEnd_toStartOf="@+id/player4Penalty"/>
+
+        <EditText
+            android:id="@+id/player4Score"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:hint="@string/input_score_hint"
+            android:background="@null"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/player3Score"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="numberSigned"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/player4Penalty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/penalty_text_color"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/player4Score"
+            app:layout_constraintStart_toEndOf="@+id/player3Penalty"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/horizontalDivider"
@@ -121,8 +160,12 @@
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp" />
+            android:layout_height="0.3dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player4Penalty"/>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
