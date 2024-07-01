@@ -56,6 +56,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/total_score</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
     </style>
@@ -95,6 +96,26 @@
         <item name="android:paddingTop">25dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:paddingBottom">-8dp</item>
+    </style>
+
+    <style name="ScoreTexEditTextStyle" >
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberSigned</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/input_score_hint</item>
+    </style>
+
+    <style name="PenaltyTextViewStyle" >
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/penalty_text_color</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+
     </style>
 
     <style name="DateTextViewStyle" parent="Widget.AppCompat.TextView">

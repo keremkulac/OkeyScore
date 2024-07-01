@@ -61,6 +61,7 @@
         <TextView
             android:id="@+id/player1Name"
             style="@style/NameTextViewStyle"
+            android:layout_marginStart="30dp"
             app:layout_constraintEnd_toStartOf="@+id/playerNameDivider1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +151,7 @@
         <TextView
             android:id="@+id/player1TotalScore"
             style="@style/ScoreTextViewStyle"
+            android:layout_marginStart="30dp"
             app:layout_constraintBottom_toTopOf="@+id/detailLabel"
             app:layout_constraintEnd_toStartOf="@id/totalScoreDivider1"
             app:layout_constraintStart_toStartOf="parent"

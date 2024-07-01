@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="8dp"
@@ -8,33 +9,27 @@
 
     <TextView
         android:id="@+id/roundCount"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/round_count"
         android:gravity="center"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="8dp"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/team1Penalty"
+        app:layout_constraintBottom_toBottomOf="@+id/team1Score"
         app:layout_constraintEnd_toStartOf="@id/team1Score"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        style="@style/ScoreTexEditTextStyle"
         android:id="@+id/team1Score"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:hint="@string/input_score_hint"
-        android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/roundCount"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/team2Score"
-        android:inputType="numberSigned"
-        android:autofillHints="" />
+        android:autofillHints=""
+        tools:ignore="LabelFor" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/verticalDivider1"
@@ -42,59 +37,43 @@
         android:layout_width="0.3dp"
         android:layout_height="30dp"
         android:layout_gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/team1Score"
         app:layout_constraintEnd_toStartOf="@id/team2Score"
         app:layout_constraintStart_toEndOf="@+id/team1Score"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        style="@style/PenaltyTextViewStyle"
         android:id="@+id/team1Penalty"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/penalty_text_color"
-        android:textSize="12sp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/horizontalDivider"
         app:layout_constraintEnd_toStartOf="@+id/team2Penalty"
         app:layout_constraintStart_toEndOf="@+id/roundCount"
         app:layout_constraintTop_toBottomOf="@+id/team1Score" />
 
     <EditText
+        style="@style/ScoreTexEditTextStyle"
         android:id="@+id/team2Score"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:hint="@string/input_score_hint"
-        android:background="@null"
-        android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/team1Score"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:inputType="numberSigned"
-        android:autofillHints="" />
+        android:autofillHints=""
+        tools:ignore="LabelFor" />
 
     <TextView
+        style="@style/PenaltyTextViewStyle"
         android:id="@+id/team2Penalty"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/penalty_text_color"
-        android:textSize="12sp"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/team1Penalty"
         app:layout_constraintTop_toBottomOf="@+id/team2Score" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/horizontalDivider"
-        style="@style/DividerStyle"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:layout_width="wrap_content"
         android:layout_height="0.3dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team2Penalty"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

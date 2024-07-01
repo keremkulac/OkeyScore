@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -117,9 +116,6 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game)  {
         val parentLayout = binding.scoreLayout
         val includedLayout = inflater.inflate(R.layout.partner_game_round_item, nullParent)
         parentLayout.addView(includedLayout)
-        if(lineCount % 2 != 0){
-            includedLayout.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.line_color_dark))
-        }
         val penaltyTextViewIds = listOf(R.id.team1Penalty,R.id.team2Penalty)
         val editTextIds = listOf(R.id.team1Score, R.id.team2Score)
         val count = includedLayout.findViewById<TextView>(R.id.roundCount)

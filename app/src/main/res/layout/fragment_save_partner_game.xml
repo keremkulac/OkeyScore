@@ -151,6 +151,7 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/roundCount"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/verticalDivider1" />
@@ -187,6 +188,7 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/verticalDivider1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
