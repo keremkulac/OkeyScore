@@ -19,7 +19,7 @@
     <string name="player" tools:ignore="MissingTranslation">Player</string>
     <string name="playerNamesAndScoresTitle" tools:ignore="MissingTranslation">Oyuncu İsimleri ve Toplam Skorları</string>
     <string name="teamNamesAndScoresTitle" tools:ignore="MissingTranslation">Takım İsimleri ve Toplam Skorları</string>
-    <string name="total_score_text" tools:ignore="MissingTranslation">Toplam skor\n %1$s</string>
+    <string name="total_score_text" tools:ignore="MissingTranslation">%1$s</string>
     <string name="teamScoresTitle" tools:ignore="MissingTranslation">Oyuncu Tur Skorları</string>
     <string name="enter_team1_name" tools:ignore="MissingTranslation">1. takım için isim giriniz</string>
     <string name="enter_team2_name" tools:ignore="MissingTranslation">2. takım için isim giriniz</string>
@@ -83,6 +83,7 @@
     <string name="forward" tools:ignore="MissingTranslation">İleri</string>
     <string name="game_detail_round_count" tools:ignore="MissingTranslation">%d</string>
     <string name="input_score_hint" tools:ignore="MissingTranslation">Skor</string>
+    <string name="total_score_view_text" tools:ignore="MissingTranslation">TS</string>
 
 
 </resources>

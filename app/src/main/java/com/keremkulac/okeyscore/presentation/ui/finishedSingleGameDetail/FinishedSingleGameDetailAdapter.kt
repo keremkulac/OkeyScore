@@ -48,9 +48,6 @@ class FinishedSingleGameDetailAdapter @Inject constructor() : RecyclerView.Adapt
                     holder.playerPenalty4.text = createPenaltiesString(list[position],holder.itemView.context)
                 }
             }
-
-
-
             for (editText in listOf(holder.player1Score, holder.player2Score, holder.player3Score, holder.player4Score)) {
                 editText.isFocusable = false
             }

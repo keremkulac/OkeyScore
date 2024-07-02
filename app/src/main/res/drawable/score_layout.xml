@@ -6,5 +6,5 @@
         android:bottomRightRadius="20dp"/>
     <stroke
         android:width="0.3dp"
-        android:color="#2B2D30" />
+        android:color="@color/score_layout_border_color" />
 </shape>

@@ -36,4 +36,6 @@
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>
     <color name="penalty_text_color">#FF0000</color>
+    <color name="score_layout_border_color">#D7D7D7</color>
+
 </resources>

@@ -59,6 +59,8 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
     </style>
 
     <style name="HeaderTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -102,6 +104,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:background">@null</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberSigned</item>
         <item name="android:gravity">center</item>

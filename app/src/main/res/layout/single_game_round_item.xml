@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <TextView
@@ -23,12 +22,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            style="@style/ScoreTexEditTextStyle"
             android:id="@+id/player1Score"
+            style="@style/ScoreTexEditTextStyle"
+            android:autofillHints=""
+            app:layout_constraintEnd_toStartOf="@id/player2Score"
             app:layout_constraintStart_toEndOf="@+id/roundCount"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/player2Score"
-            android:autofillHints=""
             tools:ignore="LabelFor" />
 
         <com.google.android.material.divider.MaterialDivider
