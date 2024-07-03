@@ -1,5 +1,6 @@
 package com.keremkulac.okeyscore
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,6 +9,10 @@ import androidx.core.view.children
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import com.keremkulac.okeyscore.util.updateResources
 import com.keremkulac.okeyscore.util.updateTheme
@@ -23,9 +28,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var sharedPrefHelper: SharedPrefHelper
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navHostFragment : FragmentContainerView
+    private lateinit var appUpdateManager: AppUpdateManager
+    private val requestCode = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkUpdate()
         themeListener()
         supportFragmentManager.fragmentFactory = defaultFragmentFactory
         setContentView(R.layout.activity_main)
@@ -93,6 +101,30 @@ class MainActivity : AppCompatActivity() {
             }else{
                 val locale = Locale("tr", "TR")
                 updateResources(this,locale)
+            }
+        }
+    }
+
+    private fun checkUpdate(){
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    requestCode
+                )
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == this.requestCode) {
+            if (resultCode != RESULT_OK) {
+                Toast.makeText(this, this.resources.getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -9,10 +9,9 @@
     <color name="button_text_color">#000000</color>
     <color name="icon_color">#646E72</color>
     <color name="searchview_text_color">#F6F6F8</color>
-    <color name="delete_color">#FF0000</color>
+    <color name="delete_color">#CA4F4F</color>
     <color name="snackbar_background_color">#4CAF50</color>
     <color name="snackbar_text_color">#F6F6F8</color>
-    <color name="toolbar_background_color">#121212</color>
     <color name="cardview_background_color">#1E1F22</color>
     <color name="cardview_shadow_color">#F6F6F8</color>
     <color name="toolbar_text_color">#F6F6F8</color>
@@ -23,7 +22,6 @@
     <color name="divider_color">#45494A</color>
     <color name="tab_indicator_color">#4CAF50</color>
     <color name="searchview_border_color">#45494A</color>
-    <color name="line_color_dark">#010101</color>
     <color name="header_text_color">#F6F6F8</color>
     <color name="header_background_color">#1E1F22</color>
     <color name="onboarding_indicator_color">#4CAF50</color>
@@ -34,8 +32,10 @@
     <color name="selected_language_text_color">#F6F6F8</color>
     <color name="settings_card_background_color">#1E1F22</color>
     <color name="settings_card_divider_color">#F6F6F8</color>
-    <color name="penalty_text_color">#FF0000</color>
+    <color name="penalty_text_color">#CA4F4F</color>
     <color name="score_layout_border_color">#2B2D30</color>
+    <color name="game_winner_indicator_color">#4CAF50</color>
+    <color name="default_game_winner_indicator_color">#CA4F4F</color>
 
 </resources>
 

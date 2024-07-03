@@ -47,11 +47,13 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
             binding.player4Name.text = finishedSingleGame.player4!!.name
             for(textView in createPlayerNameTextViewList()){
                 if(textView.text ==  viewModel.sortByMin(finishedSingleGame)[0].name){
-                    val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_trophy)
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null,null,drawable,null)
-                  //  drawable!!.setBounds(0,0,24,24)
+                    when (textView.text) {
+                        binding.player1Name.text.toString() -> binding.player1Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
+                        binding.player2Name.text.toString() -> binding.player2Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
+                        binding.player3Name.text.toString() -> binding.player3Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
+                        binding.player4Name.text.toString() -> binding.player4Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
+                    }
                 }
-
             }
             binding.player1TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player1.totalScore)
             binding.player2TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player2.totalScore)

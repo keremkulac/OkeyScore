@@ -54,11 +54,9 @@
     <string name="warning_enter_all_team_names">Please enter all team names.</string>
     <string name="enter_different_names">Please enter different names.</string>
     <string name="registration_successful">Registration successful</string>
-    <string name="round_count">Round %d</string>
     <string name="score_difference">%s and %s score difference: %d</string>
     <string name="deleted">Deleted</string>
     <string name="take_it_back">Take it back</string>
-    <string name="hint_round_cont">%d. round</string>
     <string name="winning_team_info_text">Winning team: %s. Score: %s</string>
     <string name="winning_team_info">%s %s</string>
     <string name="winning_player_info_text">Winning player: %s. Score: %s</string>
@@ -82,6 +80,5 @@
     <string name="forward">Forward</string>
     <string name="game_detail_round_count">%d</string>
     <string name="input_score_hint" >Score</string>
-
-
+    <string name="update_failed">Update failed!</string>
 </resources>

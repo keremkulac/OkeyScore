@@ -54,13 +54,10 @@
     <string name="warning_enter_all_team_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
     <string name="enter_different_names" tools:ignore="MissingTranslation">Lütfen farklı isimler giriniz.</string>
     <string name="registration_successful" tools:ignore="MissingTranslation">Kayıt başarılı</string>
-    <string name="round_count" tools:ignore="MissingTranslation">Tur %d</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
     <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
     <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>
-    <string name="hint_round_cont" tools:ignore="MissingTranslation">%d. tur</string>
     <string name="winning_team_info_text" tools:ignore="MissingTranslation">Kazanan takım: %s. Skor: %s</string>
-    <string name="winning_team_info_total_score_text" tools:ignore="MissingTranslation">Kazanan takım: </string>
     <string name="winning_team_info" tools:ignore="MissingTranslation">%s %s</string>
     <string name="winning_player_info_text" tools:ignore="MissingTranslation">Kazanan oyuncu %s. Skor: %s</string>
     <string name="winning_player_info" tools:ignore="MissingTranslation">%s %s</string>
@@ -84,6 +81,5 @@
     <string name="game_detail_round_count" tools:ignore="MissingTranslation">%d</string>
     <string name="input_score_hint" tools:ignore="MissingTranslation">Skor</string>
     <string name="total_score_view_text" tools:ignore="MissingTranslation">TS</string>
-
-
+    <string name="update_failed" tools:ignore="MissingTranslation">Güncelleme başarısız!</string>
 </resources>

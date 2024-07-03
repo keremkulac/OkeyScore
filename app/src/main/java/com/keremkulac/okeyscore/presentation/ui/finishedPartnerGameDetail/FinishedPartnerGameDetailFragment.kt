@@ -56,7 +56,10 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
             binding.team2Name.text = (finishedPartnerGame.team2!!.name)
             for (textView in createTeamNameTextViewList()){
                 if(textView.text == viewModel.sortByMin(finishedPartnerGame)[0].name){
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(requireContext(),R.drawable.ic_trophy),null)
+                    when (textView.text) {
+                        binding.team1Name.text.toString() -> binding.team1Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
+                        binding.team2Name.text.toString() -> binding.team2Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
+                    }
                 }
             binding.team1TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team1.totalScore)
             binding.team2TotalScore.text = getString(R.string.total_score_text,finishedPartnerGame.team2.totalScore)

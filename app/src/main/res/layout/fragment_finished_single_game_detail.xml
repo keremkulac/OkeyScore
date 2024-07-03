@@ -81,15 +81,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:id="@+id/player1Indicator"
+                style="@style/GameWinnerIndicatorStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/player1Name"
+                app:layout_constraintStart_toStartOf="@+id/player1Name" />
+
+            <View
+                android:id="@+id/player2Indicator"
+                style="@style/GameWinnerIndicatorStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/player2Name"
+                app:layout_constraintStart_toEndOf="@+id/player1Name" />
+
+            <View
+                android:id="@+id/player3Indicator"
+                style="@style/GameWinnerIndicatorStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/player3Name"
+                app:layout_constraintStart_toEndOf="@+id/player2Name" />
+
+            <View
+                android:id="@+id/player4Indicator"
+                style="@style/GameWinnerIndicatorStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/player3Name" />
+
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/playerNameDivider1"
                 style="@style/DividerStyle"
                 android:layout_width="0.3dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@+id/player1Name"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/player2Name"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toEndOf="@+id/player1Name"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/player2Name"
@@ -105,9 +134,10 @@
                 android:layout_width="0.3dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@+id/player2Name"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/player3Name"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toEndOf="@+id/player2Name"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -124,9 +154,10 @@
                 android:layout_width="0.3dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@+id/player3Name"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/player4Name"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toEndOf="@+id/player3Name"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/player4Name"
