@@ -227,20 +227,23 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             val givenPenaltyEditText = penaltyView.findViewById<EditText>(R.id.penalty)
             setPlayerToBePenalized(partnerAddPenaltyView)
             val firstDialog = createAlertDialog(requireContext(), partnerAddPenaltyView, R.string.select_player_punish, requireContext().getString(R.string.forward)) {
-                val secondDialog = createAlertDialog(requireContext(), penaltyView, R.string.determine_punishment, requireContext().getString(R.string.confirm)) {
-                    val selectedText = partnerPlayersRadioGroup.findViewById<RadioButton>(partnerPlayersRadioGroup.checkedRadioButtonId).text.toString()
-                    val totalScoreTextView = totalScoreHasMap[selectedText]!!
-                    val penalty = givenPenaltyEditText.text.toString().toInt()
-                    updatePenaltyTextView(selectedText, penalty)
-                    if(totalScoreTextView.text.toString() == ""){
-                        totalScoreTextView.text = penalty.toString()
-                    }else{
-                        val totalScore = totalScoreTextView.text.toString().toInt() + penalty
-                        totalScoreTextView.text = totalScore.toString()
+                val selectedText = partnerPlayersRadioGroup.findViewById<RadioButton>(partnerPlayersRadioGroup.checkedRadioButtonId)?.text?.toString()
+                if (selectedText.isNullOrEmpty()){
+                    requireContext().toast(requireContext().getString(R.string.warning_select_player_penalised),R.drawable.ic_warning)
+                }else{
+                    val secondDialog = createAlertDialog(requireContext(), penaltyView, R.string.determine_punishment, requireContext().getString(R.string.confirm)) {
+                        val totalScoreTextView = totalScoreHasMap[selectedText]!!
+                        val penalty = givenPenaltyEditText.text.toString().toInt()
+                        updatePenaltyTextView(selectedText, penalty)
+                        if(totalScoreTextView.text.toString() == ""){
+                            totalScoreTextView.text = penalty.toString()
+                        }else{
+                            val totalScore = totalScoreTextView.text.toString().toInt() + penalty
+                            totalScoreTextView.text = totalScore.toString()
+                        }
                     }
-
+                    secondDialog.show()
                 }
-                secondDialog.show()
             }
             firstDialog.show()
         }

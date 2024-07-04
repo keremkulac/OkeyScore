@@ -16,7 +16,6 @@
         android:theme="@style/Theme.OkeyScore"
         tools:targetApi="31">
         <activity
-            android:resizeableActivity="false"
             android:name=".MainActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize">

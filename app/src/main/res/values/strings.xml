@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">101 Okey Yazboz</string>
     <string name="tag" translatable="false">Tag</string>
     <string name="date" tools:ignore="MissingTranslation">Tarih</string>
-    <string name="round_scores" tools:ignore="MissingTranslation">Tur Skorları</string>
+    <string name="round_scores" tools:ignore="MissingTranslation">Tur skorları</string>
     <string name="record_not_found" tools:ignore="MissingTranslation">Kayıt oluşturmak için \"Yeni Kayıt\" butonuna tıklayınız</string>
     <string name="save" tools:ignore="MissingTranslation">Kaydet</string>
     <string name="todo" tools:ignore="MissingTranslation">TODO</string>
@@ -52,6 +52,7 @@
     <string name="warning_check_all_rounds" tools:ignore="MissingTranslation">Lütfen %d. turdaki tüm alanları doldurun.</string>
     <string name="warning_enter_all_player_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
     <string name="warning_enter_all_team_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
+    <string name="warning_select_player_penalised" tools:ignore="MissingTranslation">Lütfen ceza eklenecek oyuncuyu seçiniz.</string>
     <string name="enter_different_names" tools:ignore="MissingTranslation">Lütfen farklı isimler giriniz.</string>
     <string name="registration_successful" tools:ignore="MissingTranslation">Kayıt başarılı</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
@@ -82,4 +83,5 @@
     <string name="input_score_hint" tools:ignore="MissingTranslation">Skor</string>
     <string name="total_score_view_text" tools:ignore="MissingTranslation">TS</string>
     <string name="update_failed" tools:ignore="MissingTranslation">Güncelleme başarısız!</string>
+    <string name="total_score_label_text" tools:ignore="MissingTranslation">Toplam skorlar</string>
 </resources>

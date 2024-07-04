@@ -1,8 +1,6 @@
 <resources>
-    <string name="app_name">101 Okey Yazboz</string>
-    <string name="tag">Tag</string>
     <string name="date">Date</string>
-    <string name="round_scores">Round Scores</string>
+    <string name="round_scores">Round scores</string>
     <string name="record_not_found">Click on \"New Registration\" button to create a record</string>
     <string name="save">Save</string>
     <string name="todo">TODO</string>
@@ -52,6 +50,7 @@
     <string name="warning_check_all_rounds">Please %d. fill in all fields in the round.</string>
     <string name="warning_enter_all_player_names">Please enter all player names.</string>
     <string name="warning_enter_all_team_names">Please enter all team names.</string>
+    <string name="warning_select_player_penalised" >Please select the player to be penalised.</string>
     <string name="enter_different_names">Please enter different names.</string>
     <string name="registration_successful">Registration successful</string>
     <string name="score_difference">%s and %s score difference: %d</string>
@@ -81,4 +80,6 @@
     <string name="game_detail_round_count">%d</string>
     <string name="input_score_hint" >Score</string>
     <string name="update_failed">Update failed!</string>
+    <string name="total_score_label_text">Total scores</string>
+
 </resources>
