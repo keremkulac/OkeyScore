@@ -30,6 +30,7 @@
     <color name="circular_icon_background_color">#4CAF50</color>
     <color name="bottom_navigation_text_color">#010101</color>
     <color name="bottom_navigation_icon_color">#010101</color>
+    <color name="bottom_navigation_background_color">#F0F0F3</color>
     <color name="selected_language_text_color">#666666</color>
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>

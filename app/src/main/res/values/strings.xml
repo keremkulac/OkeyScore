@@ -34,7 +34,7 @@
         <item>Tekli oyunlarım</item>
         <item>Eşli oyunlarım</item>
     </string-array>
-    <string name="new_game_record" tools:ignore="MissingTranslation">Yeni Kayıt</string>
+    <string name="home" tools:ignore="MissingTranslation">Ana sayfa</string>
     <string name="history" tools:ignore="MissingTranslation">Geçmiş</string>
     <string name="skip" tools:ignore="MissingTranslation">Atla</string>
     <string name="dark_mode" tools:ignore="MissingTranslation">Koyu mod</string>

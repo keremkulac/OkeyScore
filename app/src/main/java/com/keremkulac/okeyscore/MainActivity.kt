@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun bottomNavigation(){
         for (item in bottomNavigationView.menu.children) {
             if (item.itemId == R.id.menu_new_game){
-                item.setTitle(getString(R.string.new_game_record))
+                item.setTitle(getString(R.string.home))
             }
             if (item.itemId == R.id.menu_history){
                 item.setTitle(getString(R.string.history))
