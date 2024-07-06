@@ -1,7 +1,7 @@
 <resources>
     <string name="date">Date</string>
     <string name="round_scores">Round scores</string>
-    <string name="record_not_found">Click on \"New Registration\" button to create a record</string>
+    <string name="record_not_found">Click on \"Home\" button to create a record</string>
     <string name="save">Save</string>
     <string name="todo">TODO</string>
     <string name="game_info">Game info</string>

@@ -14,8 +14,8 @@ android {
         applicationId 'com.keremkulac.okeyscore'
         minSdk 26
         targetSdk 34
-        versionCode 13
-        versionName "1.11"
+        versionCode 16
+        versionName "1.14"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "tr"
         javaCompileOptions {
@@ -83,6 +83,6 @@ dependencies {
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
     implementation 'at.blogc:expandabletextview:1.0.5'
     implementation("com.tbuonomo:dotsindicator:5.0")
-    implementation 'com.google.android.play:core:1.10.3'
-
+    implementation 'com.google.android.play:review:2.0.1'
+    implementation 'com.google.android.play:app-update:2.1.0'
 }

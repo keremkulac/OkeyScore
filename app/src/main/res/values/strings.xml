@@ -3,7 +3,7 @@
     <string name="tag" translatable="false">Tag</string>
     <string name="date" tools:ignore="MissingTranslation">Tarih</string>
     <string name="round_scores" tools:ignore="MissingTranslation">Tur skorları</string>
-    <string name="record_not_found" tools:ignore="MissingTranslation">Kayıt oluşturmak için \"Yeni Kayıt\" butonuna tıklayınız</string>
+    <string name="record_not_found" tools:ignore="MissingTranslation">Kayıt oluşturmak için \"Ana sayfa\" butonuna tıklayınız</string>
     <string name="save" tools:ignore="MissingTranslation">Kaydet</string>
     <string name="todo" tools:ignore="MissingTranslation">TODO</string>
     <string name="game_info" tools:ignore="MissingTranslation">Oyun bilgi</string>

@@ -5,7 +5,6 @@
 
     <color name="primary_color">#23221F</color>
     <color name="separator_color">#45494A</color>
-    <color name="fab_icon_color">#FFFFFF</color>
     <color name="button_text_color">#F6F6F8</color>
     <color name="icon_color">#646E72</color>
     <color name="searchview_text_color">#292F33</color>
@@ -31,7 +30,6 @@
     <color name="bottom_navigation_text_color">#010101</color>
     <color name="bottom_navigation_icon_color">#010101</color>
     <color name="bottom_navigation_background_color">#F0F0F3</color>
-    <color name="selected_language_text_color">#666666</color>
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>
     <color name="penalty_text_color">#CA4F4F</color>

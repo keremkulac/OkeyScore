@@ -238,7 +238,7 @@
                 android:gravity="center"
                 android:text="@string/total_score_view_text"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/player1TotalScore"
                 app:layout_constraintStart_toStartOf="parent"
