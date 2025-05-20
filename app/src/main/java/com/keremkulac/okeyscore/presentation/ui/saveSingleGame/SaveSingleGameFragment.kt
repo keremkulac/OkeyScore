@@ -12,12 +12,14 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.divider.MaterialDivider
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
+import com.keremkulac.okeyscore.util.CustomDialog
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
 import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.toast
@@ -39,6 +41,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSaveSingleGameBinding.bind(view)
+        handleOnBackPressed()
         checkPlayerNames()
         saveGame()
         newRound(layoutInflater)
@@ -284,4 +287,25 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
             findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
         }
     }
+
+    private fun handleOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    CustomDialog.showConfirmationDialog(
+                        requireContext(),
+                        "Kaydetmeden çıkmak üzeresiniz",
+                        "Kaydetmeden çıkmak istiyor musunuz? Yaptığınız değişiklikler kaybolacak",
+                        "Kaydetmeden çık",
+                        "Vazgeç",
+                        onPositiveClick = {
+                            findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
+                        }
+                    )
+                }
+            }
+        )
+    }
+
 }
