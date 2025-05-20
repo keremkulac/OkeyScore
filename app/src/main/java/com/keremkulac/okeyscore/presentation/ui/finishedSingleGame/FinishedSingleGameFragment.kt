@@ -18,17 +18,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FinishedSingleGameFragment  : Fragment(R.layout.fragment_finished_single_game) {
+class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_game) {
 
     @Inject
     lateinit var finishedSingleGameAdapter: FinishedSingleGameAdapter
     private val viewModel by viewModels<FinishedSingleGameViewModel>()
-    private lateinit var binding : FragmentFinishedSingleGameBinding
+    private lateinit var binding: FragmentFinishedSingleGameBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameBinding.bind(view)
+        createSingleGame()
         observeAllFinishedGame()
         setRecyclerView()
         clickFinishedGame()
@@ -37,51 +38,57 @@ class FinishedSingleGameFragment  : Fragment(R.layout.fragment_finished_single_g
     }
 
 
-    private fun setRecyclerView(){
-        binding.finishedGameRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    private fun setRecyclerView() {
+        binding.finishedGameRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.finishedGameRecyclerView.setHasFixedSize(false)
     }
 
-    private fun observeAllFinishedGame(){
-        viewModel.allFinishedSingleGames.observe(viewLifecycleOwner){ finishedSingleList->
-            if(finishedSingleList.isNotEmpty()){
-                binding.recordNotFoundText.visibility = View.GONE
+    private fun observeAllFinishedGame() {
+        viewModel.allFinishedSingleGames.observe(viewLifecycleOwner) { finishedSingleList ->
+            if (finishedSingleList.isNotEmpty()) {
+                binding.createSingleGame.visibility = View.GONE
                 binding.recordNotFoundImage.visibility = View.GONE
                 finishedSingleGameAdapter.finishedSingleGameLists = ArrayList(finishedSingleList)
-                binding.finishedGameRecyclerView.adapter =  finishedSingleGameAdapter
+                binding.finishedGameRecyclerView.adapter = finishedSingleGameAdapter
 
-            }else{
-                binding.recordNotFoundText.visibility = View.VISIBLE
+            } else {
+                binding.createSingleGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun observeFilteredList(){
-        viewModel.filteredList.observe(viewLifecycleOwner){filteredList->
-            if(filteredList.isNotEmpty()){
-                binding.recordNotFoundText.visibility = View.GONE
+    private fun observeFilteredList() {
+        viewModel.filteredList.observe(viewLifecycleOwner) { filteredList ->
+            if (filteredList.isNotEmpty()) {
+                binding.createSingleGame.visibility = View.GONE
                 binding.recordNotFoundImage.visibility = View.GONE
-            }else{
-                binding.recordNotFoundText.visibility = View.VISIBLE
+            } else {
+                binding.createSingleGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun deleteItemDatabase(){
-        val swipeGesture = object  : SwipeGesture(requireContext()){
+    private fun deleteItemDatabase() {
+        val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.absoluteAdapterPosition
                 val itemToDelete = finishedSingleGameAdapter.finishedSingleGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
-                val action = FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("single")
+                val action =
+                    FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("single")
                 findNavController().navigate(action)
-                Snackbar.make(binding.root,requireContext().getString(R.string.deleted),Snackbar.LENGTH_LONG)
+                Snackbar.make(
+                    binding.root,
+                    requireContext().getString(R.string.deleted),
+                    Snackbar.LENGTH_LONG
+                )
                     .setAction(requireContext().getString(R.string.take_it_back)) {
-                    viewModel.saveSingleGame(itemToDelete)
-                    findNavController().navigate(action)
-                }
+                        viewModel.saveSingleGame(itemToDelete)
+                        findNavController().navigate(action)
+                    }
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_color))
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_color))
                     .setActionTextColor(requireContext().getColor(R.color.snackbar_text_color))
@@ -93,15 +100,16 @@ class FinishedSingleGameFragment  : Fragment(R.layout.fragment_finished_single_g
     }
 
 
-    private fun search(){
+    private fun search() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.search(newText,finishedSingleGameAdapter)
+                viewModel.search(newText, finishedSingleGameAdapter)
                 observeFilteredList()
-                if(newText.isNullOrEmpty()){
+                if (newText.isNullOrEmpty()) {
                     observeAllFinishedGame()
                 }
                 return true
@@ -115,11 +123,19 @@ class FinishedSingleGameFragment  : Fragment(R.layout.fragment_finished_single_g
         binding.searchView.clearAnimation()
     }
 
-    private fun clickFinishedGame(){
-        finishedSingleGameAdapter.clickListener={
+    private fun clickFinishedGame() {
+        finishedSingleGameAdapter.clickListener = {
             findNavController().navigate(
-                FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedSingleGameDetailFragment(it.id)
+                FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToFinishedSingleGameDetailFragment(
+                    it.id
+                )
             )
+        }
+    }
+
+    private fun createSingleGame() {
+        binding.createSingleGame.setOnClickListener {
+            findNavController().navigate(FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentToSaveSingleGameFragment())
         }
     }
 
