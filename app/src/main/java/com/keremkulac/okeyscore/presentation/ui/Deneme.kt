@@ -1,10 +1,8 @@
 package com.keremkulac.okeyscore.presentation.ui
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +12,17 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentDenemeBinding
-import com.keremkulac.okeyscore.presentation.ui.saveSingleGame.SaveSingleGameViewModel
+import com.keremkulac.okeyscore.model.FinishedSingleGame
+import com.keremkulac.okeyscore.model.Info
+import com.keremkulac.okeyscore.model.Player
+import com.keremkulac.okeyscore.presentation.ui.saveSingleGame.SaveSingleGameFragmentDirections
+import com.keremkulac.okeyscore.util.CustomDialog
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
 import com.keremkulac.okeyscore.util.createAlertDialog
@@ -38,7 +42,8 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
     private var playerScoresTextView = mutableListOf<TextView>()
     private val allPlayerPenaltyTextViewList: List<MutableList<TextView>> =
         List(SINGLE_PLAYER_SIZE) { mutableListOf() }
-    private val allPlayerScoreEditTextList : List<MutableList<EditText>> = List(SINGLE_PLAYER_SIZE) { mutableListOf() }
+    private val allPlayerScoreEditTextList: List<MutableList<EditText>> =
+        List(SINGLE_PLAYER_SIZE) { mutableListOf() }
     val totalScores = mutableListOf(0, 0, 0, 0)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,13 +51,13 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
         binding = FragmentDenemeBinding.bind(view)
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
-        createPlayerNames()
         createPlayerScores()
-        createNewLine(layoutInflater)
         clickTotalScoresContainer()
         penalty()
-        createPenaltyHashMap()
-        saveGame()
+        confirmNames()
+        saveFinishedGame()
+        observeValidation()
+        handleOnBackPressed()
     }
 
     private fun createNewLine(inflater: LayoutInflater) {
@@ -61,6 +66,7 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
         setupScoreEditTexts(includedLayout)
         addPenaltyTextViews(includedLayout)
         addScoreEditTexts(includedLayout)
+        setupPlayerNames(includedLayout)
         binding.scoreLayout.addView(includedLayout)
         lineCount++
     }
@@ -98,13 +104,13 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
     }
 
     private fun setupScoreEditTexts(includedLayout: View) {
-        val etList = listOf<EditText>(
-            includedLayout.findViewById(R.id.etPlayer1Score),
-            includedLayout.findViewById(R.id.etPlayer2Score),
-            includedLayout.findViewById(R.id.etPlayer3Score),
-            includedLayout.findViewById(R.id.etPlayer4Score)
+        val playerScoreList = listOf<EditText>(
+            includedLayout.findViewById(R.id.player1Score),
+            includedLayout.findViewById(R.id.player2Score),
+            includedLayout.findViewById(R.id.player3Score),
+            includedLayout.findViewById(R.id.player4Score)
         )
-        etList.forEachIndexed { index, editText ->
+        playerScoreList.forEachIndexed { index, editText ->
             editText.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {}
                 override fun beforeTextChanged(
@@ -123,27 +129,70 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
         }
     }
 
+    private fun setupPlayerNames(includedLayout: View) {
+        val playerNameList = listOf<TextView>(
+            includedLayout.findViewById(R.id.player1Name),
+            includedLayout.findViewById(R.id.player2Name),
+            includedLayout.findViewById(R.id.player3Name),
+            includedLayout.findViewById(R.id.player4Name)
+        )
+        playerNameList.forEachIndexed { index, textView ->
+            textView.text = playerNames[index]
+        }
+    }
+
+    private fun setupTotalScorePlayerNames() {
+        val playerNameList = listOf(
+            binding.totalScorePlayer1Name,
+            binding.totalScorePlayer2Name,
+            binding.totalScorePlayer3Name,
+            binding.totalScorePlayer4Name,
+        )
+        playerNameList.forEachIndexed { index, textView ->
+            textView.text = playerNames[index]
+        }
+    }
+
+    private fun confirmNames() {
+        binding.confirmNames.setOnClickListener {
+            createPlayerNames()
+            if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
+                createPenaltyHashMap()
+                binding.playerNameEntryCardView.visibility = View.GONE
+                binding.totalScoresCardView.visibility = View.VISIBLE
+                binding.title.visibility = View.VISIBLE
+                binding.scoreLayout.visibility = View.VISIBLE
+                binding.newRound.visibility = View.VISIBLE
+                binding.penalty.visibility = View.VISIBLE
+                binding.saveScores.visibility = View.VISIBLE
+                createNewLine(layoutInflater)
+                setupTotalScorePlayerNames()
+            }
+        }
+    }
+
     private fun addPenaltyTextViews(includedLayout: View) {
         val penaltyTextViewIds = listOf(
-            R.id.etPlayer1Penalty,
-            R.id.etPlayer2Penalty,
-            R.id.etPlayer3Penalty,
-            R.id.etPlayer4Penalty
+            R.id.player1Penalty,
+            R.id.player2Penalty,
+            R.id.player3Penalty,
+            R.id.player4Penalty
         )
         val textViewList = penaltyTextViewIds.map { includedLayout.findViewById<TextView>(it) }
         createAllPlayersPenaltyTextViewList(textViewList)
     }
 
-    private fun addScoreEditTexts(includedLayout: View){
+    private fun addScoreEditTexts(includedLayout: View) {
         val scoreIdList = listOf(
-            R.id.etPlayer1Score,
-            R.id.etPlayer2Score,
-            R.id.etPlayer3Score,
-            R.id.etPlayer4Score
+            R.id.player1Score,
+            R.id.player2Score,
+            R.id.player3Score,
+            R.id.player4Score
         )
         val editTextList = scoreIdList.map { includedLayout.findViewById<EditText>(it) }
         createAllPlayersScoreEditTextList(editTextList)
     }
+
     private fun updateTotalScoreUI() {
         totalScores.forEachIndexed { i, score ->
             playerScoresTextView[i].text = score.toString()
@@ -152,16 +201,16 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
 
     private fun calculateTotalScoreForPlayer(playerIndex: Int): Int {
         val scoreIdList = listOf(
-            R.id.etPlayer1Score,
-            R.id.etPlayer2Score,
-            R.id.etPlayer3Score,
-            R.id.etPlayer4Score
+            R.id.player1Score,
+            R.id.player2Score,
+            R.id.player3Score,
+            R.id.player4Score
         )
         val penaltyIdList = listOf(
-            R.id.etPlayer1Penalty,
-            R.id.etPlayer2Penalty,
-            R.id.etPlayer3Penalty,
-            R.id.etPlayer4Penalty
+            R.id.player1Penalty,
+            R.id.player2Penalty,
+            R.id.player3Penalty,
+            R.id.player4Penalty
         )
         var totalScore = 0
         val scoreEditTextId = scoreIdList.getOrNull(playerIndex) ?: return 0
@@ -230,7 +279,6 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
                     ) {
                         val totalScoreTextView = createTotalScoresTextView()[selectedText]
                         val penalty = givenPenaltyEditText.text.toString().toInt()
-                        updatePenaltyTextView(selectedText, penalty)
                         if (totalScoreTextView!!.text.toString() == "") {
                             totalScoreTextView.text = penalty.toString()
                             totalScoreTextView.visibility = View.VISIBLE
@@ -239,6 +287,7 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
                             totalScoreTextView.text = totalScore.toString()
                             totalScoreTextView.visibility = View.VISIBLE
                         }
+                        updatePenaltyTextView(selectedText, penalty)
                     }
                     secondDialog.show()
                 }
@@ -255,27 +304,27 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
         }
     }
 
-    private fun createAllPlayersScoreEditTextList(list: List<EditText>){
-        for (i in list.indices){
-
+    private fun createAllPlayersScoreEditTextList(list: List<EditText>) {
+        for (i in list.indices) {
+            allPlayerScoreEditTextList[i].add(list[i])
         }
     }
 
     private fun createPlayerNames() {
         playerNames = mutableListOf(
-            binding.etPlayer1Name.text.trim().toString(),
-            binding.etPlayer2Name.text.trim().toString(),
-            binding.etPlayer3Name.text.trim().toString(),
-            binding.etPlayer4Name.text.trim().toString()
+            binding.player1NameEntry.text?.trim().toString(),
+            binding.player2NameEntry.text?.trim().toString(),
+            binding.player3NameEntry.text?.trim().toString(),
+            binding.player4NameEntry.text?.trim().toString(),
         )
     }
 
     private fun createPlayerScores() {
         playerScoresTextView = mutableListOf(
-            binding.etPlayer1TotalScore,
-            binding.etPlayer2TotalScore,
-            binding.etPlayer3TotalScore,
-            binding.etPlayer4TotalScore
+            binding.player1TotalScore,
+            binding.player2TotalScore,
+            binding.player3TotalScore,
+            binding.player4TotalScore
         )
     }
 
@@ -296,7 +345,7 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
 
         lastTextView.text = requireContext().getString(R.string.penalty_text_value)
             .format(currentPenalty + penalty)
-
+        totalScores[playerIndex] = calculateTotalScoreForPlayer(playerIndex)
         updateTotalScoreUI()
     }
 
@@ -307,28 +356,64 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
         singlePlayerView.findViewById<RadioButton>(R.id.player4).text = playerNames[3]
     }
 
-    private fun saveGame() {
+    private fun saveFinishedGame() {
         binding.saveScores.setOnClickListener {
-            val alertDialogBuilder = AlertDialog.Builder(requireContext())
-            alertDialogBuilder.setTitle(requireContext().getString(R.string.confirmation_title))
-            alertDialogBuilder.setMessage(requireContext().getString(R.string.confirmation_message))
-            alertDialogBuilder.setPositiveButton(requireContext().getString(R.string.confirmation_yes)) { _, _ ->
-                viewModel.insertSingleGame(
-                    allPlayerScoreEditTextList as List<List<EditText>>,
-                    allPlayerPenaltyTextViewList as List<List<TextView>>,
-                    playerNames,
-                    createTotalScoresTextView(),
-                    findNavController(),
-                    requireContext()
+
+            val players = (0 until 4).map { index ->
+                val name = playerNames[index]
+                val totalScore = totalScores[index].toString()
+                val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
+                val penalties = allPlayerPenaltyTextViewList[index].map {
+                    it.text.toString()
+                        .split(requireContext().getString(R.string.penalty_text))
+                        .getOrNull(1)?.trim() ?: "0"
+                }
+                Player(
+                    id = index,
+                    name = name,
+                    allScores = scores,
+                    totalScore = totalScore,
+                    penalties = penalties
                 )
             }
-            alertDialogBuilder.setNegativeButton(
-                requireContext().getString(R.string.confirmation_no),
-                null
+
+            val finishedGame = FinishedSingleGame(
+                id = 0,
+                player1 = players.getOrNull(0),
+                player2 = players.getOrNull(1),
+                player3 = players.getOrNull(2),
+                player4 = players.getOrNull(3),
+                gameInfo = viewModel.createInfo(players, requireContext())
             )
-            val alertDialog = alertDialogBuilder.create()
-            alertDialog.show()
+            viewModel.saveFinishedGame(finishedGame)
         }
+
+    }
+
+    private fun observeValidation() {
+        viewModel.validationMessage.observe(viewLifecycleOwner) { message ->
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    CustomDialog.showConfirmationDialog(
+                        requireContext(),
+                        "Kaydetmeden çıkmak üzeresiniz",
+                        "Kaydetmeden çıkmak istiyor musunuz? Yaptığınız değişiklikler kaybolacak",
+                        "Kaydetmeden çık",
+                        "Vazgeç",
+                        onPositiveClick = {
+                            findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
+                        }
+                    )
+                }
+            }
+        )
     }
 
 }

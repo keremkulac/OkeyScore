@@ -82,4 +82,7 @@
     <string name="update_failed">Update failed!</string>
     <string name="total_score_label_text">Total scores</string>
 
+    <string name="validation_message_fill_all_player_names">Please fill in all usernames</string>
+    <string name="validation_message_check_same_player_names">Please check the names, they cannot be the same name</string>
+
 </resources>

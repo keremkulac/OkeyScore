@@ -14,10 +14,103 @@
         android:padding="16dp">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/playerNameEntryCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/cardview_background_color"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/player1NameEntryHint"
+                    style="@style/SingleGameTextInputLayoutStyle"
+                    android:hint="@string/enter_player1_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/player1NameEntry"
+                        style="@style/SingleGameTextInputEditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="21" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/player2NameEntryHint"
+                    style="@style/SingleGameTextInputLayoutStyle"
+                    android:hint="@string/enter_player2_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/player1NameEntryHint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/player2NameEntry"
+                        style="@style/SingleGameTextInputEditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="21" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/player3NameEntryHint"
+                    style="@style/SingleGameTextInputLayoutStyle"
+                    android:hint="@string/enter_player3_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/player2NameEntryHint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/player3NameEntry"
+                        style="@style/SingleGameTextInputEditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="21" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/player4NameEntryHint"
+                    style="@style/SingleGameTextInputLayoutStyle"
+                    android:hint="@string/enter_player4_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/player3NameEntryHint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/player4NameEntry"
+                        style="@style/SingleGameTextInputEditTextStyle"
+                        android:inputType="text"
+                        android:maxLength="21" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/confirmNames"
+                    style="@style/ButtonStyle"
+                    android:layout_width="match_parent"
+                    android:text="@string/save_names"
+                    android:textAllCaps="false"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/player4NameEntryHint" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/totalScoresCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="10dp"
+            android:visibility="gone"
             app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +159,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/etPlayer1Name"
+                            android:id="@+id/totalScorePlayer1Name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -76,7 +169,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/etPlayer1TotalScore"
+                            android:id="@+id/player1TotalScore"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -92,7 +185,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/etPlayer2Name"
+                            android:id="@+id/totalScorePlayer2Name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -102,7 +195,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/etPlayer2TotalScore"
+                            android:id="@+id/player2TotalScore"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -118,7 +211,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/etPlayer3Name"
+                            android:id="@+id/totalScorePlayer3Name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -128,7 +221,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/etPlayer3TotalScore"
+                            android:id="@+id/player3TotalScore"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -144,7 +237,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/etPlayer4Name"
+                            android:id="@+id/totalScorePlayer4Name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -154,7 +247,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/etPlayer4TotalScore"
+                            android:id="@+id/player4TotalScore"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -175,6 +268,7 @@
             android:text="Okey Skor Girişi"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/totalScoresCardView" />
@@ -188,6 +282,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title">
@@ -200,6 +295,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Yeni tur"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/penalty"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
@@ -212,6 +308,7 @@
             android:layout_marginTop="16dp"
             android:text="Ceza"
             android:textColor="@android:color/white"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/newRound"
             app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
@@ -221,6 +318,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kaydet"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newRound" />
