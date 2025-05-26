@@ -49,23 +49,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_expand"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <LinearLayout
             android:id="@+id/scoreContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:visibility="visible">
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -81,18 +88,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:inputType="textPersonName"
-                        android:text="Oyuncu 1"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Oyuncu 1" />
 
                     <EditText
                         android:id="@+id/player1Score"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Skor"
-                        android:inputType="number" />
+                        android:background="@null"
+                        android:hint="@string/input_score_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="numberSigned" />
 
                 </LinearLayout>
 
@@ -101,15 +109,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="Ceza: 101"
                     android:textColor="#D32F2F"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:text="Ceza: 101" />
 
             </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -125,17 +138,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:inputType="textPersonName"
-                        android:text="Oyuncu 2"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Oyuncu 2" />
 
                     <EditText
                         android:id="@+id/player2Score"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Skor"
+                        android:background="@null"
+                        android:hint="@string/input_score_hint"
+                        android:importantForAutofill="no"
                         android:inputType="number" />
 
                 </LinearLayout>
@@ -145,15 +159,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="Ceza: 101"
                     android:textColor="#D32F2F"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:text="Ceza: 101" />
 
             </LinearLayout>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -169,17 +189,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:inputType="textPersonName"
-                        android:text="Oyuncu 3"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Oyuncu 3" />
 
                     <EditText
                         android:id="@+id/player3Score"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Skor"
+                        android:background="@null"
+                        android:hint="@string/input_score_hint"
+                        android:importantForAutofill="no"
                         android:inputType="number" />
 
                 </LinearLayout>
@@ -189,15 +210,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="Ceza: 101"
                     android:textColor="#D32F2F"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:text="Ceza: 101" />
 
             </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -213,17 +239,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:inputType="textPersonName"
-                        android:text="Oyuncu 4"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Oyuncu 4" />
 
                     <EditText
                         android:id="@+id/player4Score"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Skor"
+                        android:background="@null"
+                        android:hint="@string/input_score_hint"
+                        android:importantForAutofill="no"
                         android:inputType="number" />
 
                 </LinearLayout>
@@ -233,15 +260,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="Ceza: 101"
                     android:textColor="#D32F2F"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:text="Ceza: 101" />
 
             </LinearLayout>
 
-
         </LinearLayout>
-
 
     </LinearLayout>
 

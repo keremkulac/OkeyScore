@@ -47,6 +47,10 @@
     <string name="confirmation_message">Do you want to record the game?</string>
     <string name="confirmation_yes">Yes</string>
     <string name="confirmation_no">No</string>
+    <string name="exit_confirmation_title" >You are about to exit without saving</string>
+    <string name="exit_confirmation_message">Do you want to exit without saving? Your changes will be lost</string>
+    <string name="exit_confirmation_yes">Exit without saving</string>
+    <string name="exit_confirmation_no">Cancel</string>
     <string name="warning_check_all_rounds">Please %d. fill in all fields in the round.</string>
     <string name="warning_enter_all_player_names">Please enter all player names.</string>
     <string name="warning_enter_all_team_names">Please enter all team names.</string>
@@ -84,5 +88,7 @@
 
     <string name="validation_message_fill_all_player_names">Please fill in all usernames</string>
     <string name="validation_message_check_same_player_names">Please check the names, they cannot be the same name</string>
+    <string name="round_count">Round %d</string>
+    <string name="default_total_score_value">0</string>
 
 </resources>
