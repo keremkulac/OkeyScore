@@ -11,13 +11,12 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/playerNameEntryCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:backgroundTint="@color/cardview_background_color"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +113,7 @@
             app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/playerNameEntryCardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -270,17 +269,13 @@
             android:id="@+id/scoreLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:orientation="vertical"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title">
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <Button
             android:id="@+id/newRound"

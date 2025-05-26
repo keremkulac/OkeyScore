@@ -8,7 +8,7 @@
     android:layout_marginTop="16dp"
     android:layout_marginBottom="16dp"
     android:elevation="10dp"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="16dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title">
@@ -17,9 +17,9 @@
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_border"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -28,16 +28,20 @@
             android:id="@+id/roundLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@drawable/header_layout_2"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/roundCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="Tur 1"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_expand"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,13 +61,59 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <LinearLayout
             android:id="@+id/scoreContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="16dp"
             android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/player1Name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Oyuncu 1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/player1Score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_score_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="numberSigned"
+                        android:maxLength="4" />
+
+                    <TextView
+                        android:id="@+id/player1Penalty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#D32F2F"
+                        android:visibility="visible"
+                        tools:text="Ceza: 101" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -70,199 +121,150 @@
                 android:layout_marginTop="8dp" />
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/player1Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Oyuncu 1" />
-
-                    <EditText
-                        android:id="@+id/player1Score"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:hint="@string/input_score_hint"
-                        android:importantForAutofill="no"
-                        android:inputType="numberSigned" />
-
-                </LinearLayout>
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/player1Penalty"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/player2Name"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textColor="#D32F2F"
-                    android:visibility="visible"
-                    tools:text="Ceza: 101" />
-
-            </LinearLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                    android:layout_gravity="top"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Oyuncu 1" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/player2Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Oyuncu 2" />
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/player2Score"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@null"
                         android:hint="@string/input_score_hint"
                         android:importantForAutofill="no"
-                        android:inputType="number" />
+                        android:inputType="numberSigned"
+                        android:maxLength="4" />
+
+                    <TextView
+                        android:id="@+id/player2Penalty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#D32F2F"
+                        android:visibility="visible"
+                        tools:text="Ceza: 101" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/player2Penalty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textColor="#D32F2F"
-                    android:visibility="visible"
-                    tools:text="Ceza: 101" />
 
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="1dp" />
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp" />
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/player3Name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Oyuncu 1" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/player3Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Oyuncu 3" />
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/player3Score"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@null"
                         android:hint="@string/input_score_hint"
                         android:importantForAutofill="no"
-                        android:inputType="number" />
+                        android:inputType="numberSigned"
+                        android:maxLength="4" />
+
+                    <TextView
+                        android:id="@+id/player3Penalty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#D32F2F"
+                        android:visibility="visible"
+                        tools:text="Ceza: 101" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/player3Penalty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textColor="#D32F2F"
-                    android:visibility="visible"
-                    tools:text="Ceza: 101" />
 
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="1dp" />
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp" />
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/player4Name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Oyuncu 1" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/player4Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Oyuncu 4" />
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/player4Score"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@null"
                         android:hint="@string/input_score_hint"
                         android:importantForAutofill="no"
-                        android:inputType="number" />
+                        android:inputType="numberSigned"
+                        android:maxLength="4" />
+
+                    <TextView
+                        android:id="@+id/player4Penalty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#D32F2F"
+                        android:visibility="visible"
+                        tools:text="Ceza: 101" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/player4Penalty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textColor="#D32F2F"
-                    android:visibility="visible"
-                    tools:text="Ceza: 101" />
 
             </LinearLayout>
 
