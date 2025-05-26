@@ -9,6 +9,7 @@ import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
 import com.keremkulac.okeyscore.domain.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.presentation.ui.finishedPartnerGame.FinishedPartnerGameAdapter
 import com.keremkulac.okeyscore.presentation.ui.finishedSingleGame.FinishedSingleGameAdapter
+import com.keremkulac.okeyscore.util.InputValidation
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import dagger.Module
 import dagger.Provides
@@ -66,5 +67,16 @@ object NetworkModule {
         }
     }
 
+    @Provides
+    @Singleton
+    fun provideContext(@ApplicationContext context: Context): Context {
+        return context
+    }
+
+    @Provides
+    @Singleton
+    fun provideInputValidation(context: Context): InputValidation {
+        return InputValidation(context)
+    }
 
 }

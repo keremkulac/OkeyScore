@@ -1,24 +1,17 @@
 package com.keremkulac.okeyscore.presentation.ui
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Info
 import com.keremkulac.okeyscore.model.Player
-import com.keremkulac.okeyscore.presentation.ui.saveSingleGame.SaveSingleGameFragmentDirections
 import com.keremkulac.okeyscore.util.InputValidation
-import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.ZoneId
@@ -42,7 +35,6 @@ class DenemeViewModel @Inject constructor(
         }
     }
 
-
     fun checkPlayerNames(playerNames: List<String>): Boolean {
         return inputValidation.isAllUsernamesFilled(playerNames) { message ->
             _validationMessage.value = message
@@ -51,6 +43,12 @@ class DenemeViewModel @Inject constructor(
 
     fun sameNamesCheck(playerNames: List<String>): Boolean {
         return inputValidation.checkSamePlayerNames(playerNames) { message ->
+            _validationMessage.value = message
+        }
+    }
+
+    fun checkAllRoundScoreFilled(roundScores: List<EditText>,lineCount : Int): Boolean {
+        return inputValidation.isAllRoundFieldsFilled(roundScores,lineCount) { message ->
             _validationMessage.value = message
         }
     }
@@ -69,20 +67,4 @@ class DenemeViewModel @Inject constructor(
         return ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
     }
 
-    fun areAllEditTextsFilled(
-        allPlayerScoreEditTextList: List<List<EditText>>,
-        saveGameButton: View
-    ): Boolean {
-        for (editTextList in allPlayerScoreEditTextList) {
-            for (editText in editTextList) {
-                if (editText.text.isNullOrEmpty()) {
-                    saveGameButton.isEnabled = false
-                    return true
-                } else {
-                    saveGameButton.isEnabled = true
-                }
-            }
-        }
-        return false
-    }
 }

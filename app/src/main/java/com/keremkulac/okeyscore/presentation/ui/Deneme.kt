@@ -14,12 +14,12 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentDenemeBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
-import com.keremkulac.okeyscore.model.Info
 import com.keremkulac.okeyscore.model.Player
 import com.keremkulac.okeyscore.presentation.ui.saveSingleGame.SaveSingleGameFragmentDirections
 import com.keremkulac.okeyscore.util.CustomDialog
@@ -85,19 +85,21 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
 
     private fun setupExpandableLayout(includedLayout: View) {
         val scoreContainer = includedLayout.findViewById<LinearLayout>(R.id.scoreContainer)
-        val mainLayout = includedLayout.findViewById<LinearLayout>(R.id.mainLayout)
+        val roundLayout = includedLayout.findViewById<ConstraintLayout>(R.id.roundLayout)
         val icon = includedLayout.findViewById<ImageView>(R.id.icon)
         val count = includedLayout.findViewById<TextView>(R.id.roundCount)
-
         expandableLayoutManager.toggleLayout(scoreContainer, icon)
-        count.text = "Tur $lineCount"
-
-        mainLayout.setOnClickListener {
+        count.text = requireContext().getString(R.string.round_count).format(lineCount)
+        roundLayout.setOnClickListener {
             expandableLayoutManager.toggleLayout(scoreContainer, icon)
         }
-
-        if (lineCount == 1) {
-            binding.newRound.setOnClickListener {
+        binding.newRound.setOnClickListener {
+            if (viewModel.checkAllRoundScoreFilled(
+                    allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
+                    lineCount - 1
+                )
+            ) {
+                expandableLayoutManager.expandLayout(scoreContainer, icon)
                 createNewLine(LayoutInflater.from(requireContext()))
             }
         }
@@ -154,19 +156,21 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
     }
 
     private fun confirmNames() {
-        binding.confirmNames.setOnClickListener {
-            createPlayerNames()
-            if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
-                createPenaltyHashMap()
-                binding.playerNameEntryCardView.visibility = View.GONE
-                binding.totalScoresCardView.visibility = View.VISIBLE
-                binding.title.visibility = View.VISIBLE
-                binding.scoreLayout.visibility = View.VISIBLE
-                binding.newRound.visibility = View.VISIBLE
-                binding.penalty.visibility = View.VISIBLE
-                binding.saveScores.visibility = View.VISIBLE
-                createNewLine(layoutInflater)
-                setupTotalScorePlayerNames()
+        binding.apply {
+            confirmNames.setOnClickListener {
+                createPlayerNames()
+                if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
+                    createPenaltyHashMap()
+                    playerNameEntryCardView.visibility = View.GONE
+                    totalScoresCardView.visibility = View.VISIBLE
+                    title.visibility = View.VISIBLE
+                    scoreLayout.visibility = View.VISIBLE
+                    newRound.visibility = View.VISIBLE
+                    penalty.visibility = View.VISIBLE
+                    saveScores.visibility = View.VISIBLE
+                    createNewLine(layoutInflater)
+                    setupTotalScorePlayerNames()
+                }
             }
         }
     }
@@ -215,7 +219,6 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
         var totalScore = 0
         val scoreEditTextId = scoreIdList.getOrNull(playerIndex) ?: return 0
         val penaltyTextViewId = penaltyIdList.getOrNull(playerIndex) ?: return 0
-
         for (i in 0 until binding.scoreLayout.childCount) {
             val card = binding.scoreLayout.getChildAt(i)
             val editText = card.findViewById<EditText>(scoreEditTextId)
@@ -293,9 +296,7 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
                 }
             }
             firstDialog.show()
-
         }
-
     }
 
     private fun createAllPlayersPenaltyTextViewList(list: List<TextView>) {
@@ -358,36 +359,42 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
 
     private fun saveFinishedGame() {
         binding.saveScores.setOnClickListener {
-
-            val players = (0 until 4).map { index ->
-                val name = playerNames[index]
-                val totalScore = totalScores[index].toString()
-                val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
-                val penalties = allPlayerPenaltyTextViewList[index].map {
-                    it.text.toString()
-                        .split(requireContext().getString(R.string.penalty_text))
-                        .getOrNull(1)?.trim() ?: "0"
+            CustomDialog.showConfirmationDialog(
+                requireContext(),
+                requireContext().getString(R.string.confirmation_title),
+                requireContext().getString(R.string.confirmation_message),
+                requireContext().getString(R.string.confirmation_yes),
+                requireContext().getString(R.string.confirmation_no)
+            ) {
+                val players = (0 until 4).map { index ->
+                    val name = playerNames[index]
+                    val totalScore = totalScores[index].toString()
+                    val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
+                    val penalties = allPlayerPenaltyTextViewList[index].map {
+                        it.text.toString()
+                            .split(requireContext().getString(R.string.penalty_text))
+                            .getOrNull(1)?.trim() ?: "0"
+                    }
+                    Player(
+                        id = index,
+                        name = name,
+                        allScores = scores,
+                        totalScore = totalScore,
+                        penalties = penalties
+                    )
                 }
-                Player(
-                    id = index,
-                    name = name,
-                    allScores = scores,
-                    totalScore = totalScore,
-                    penalties = penalties
+                val finishedGame = FinishedSingleGame(
+                    id = 0,
+                    player1 = players.getOrNull(0),
+                    player2 = players.getOrNull(1),
+                    player3 = players.getOrNull(2),
+                    player4 = players.getOrNull(3),
+                    gameInfo = viewModel.createInfo(players, requireContext())
                 )
+                viewModel.saveFinishedGame(finishedGame)
             }
 
-            val finishedGame = FinishedSingleGame(
-                id = 0,
-                player1 = players.getOrNull(0),
-                player2 = players.getOrNull(1),
-                player3 = players.getOrNull(2),
-                player4 = players.getOrNull(3),
-                gameInfo = viewModel.createInfo(players, requireContext())
-            )
-            viewModel.saveFinishedGame(finishedGame)
         }
-
     }
 
     private fun observeValidation() {
@@ -403,10 +410,10 @@ class Deneme : Fragment(R.layout.fragment_deneme) {
                 override fun handleOnBackPressed() {
                     CustomDialog.showConfirmationDialog(
                         requireContext(),
-                        "Kaydetmeden çıkmak üzeresiniz",
-                        "Kaydetmeden çıkmak istiyor musunuz? Yaptığınız değişiklikler kaybolacak",
-                        "Kaydetmeden çık",
-                        "Vazgeç",
+                        requireContext().getString(R.string.exit_confirmation_title),
+                        requireContext().getString(R.string.exit_confirmation_message),
+                        requireContext().getString(R.string.exit_confirmation_yes),
+                        requireContext().getString(R.string.exit_confirmation_no),
                         onPositiveClick = {
                             findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
                         }

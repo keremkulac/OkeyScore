@@ -1,6 +1,7 @@
 package com.keremkulac.okeyscore.util
 
 import android.content.Context
+import android.widget.EditText
 import com.keremkulac.okeyscore.R
 import javax.inject.Inject
 
@@ -26,6 +27,22 @@ class InputValidation @Inject constructor(private val context: Context) {
         if (hasDuplicates) {
             validationMessage(context.getString(R.string.validation_message_check_same_player_names))
             return false
+        }
+        return true
+    }
+
+    fun isAllRoundFieldsFilled(
+        roundScores: List<EditText>,
+        lineCount: Int,
+        validationMessage: (String) -> Unit
+    ): Boolean {
+        for (editText in roundScores) {
+            if (editText.text.toString().trim().isEmpty()) {
+                validationMessage(
+                    context.getString(R.string.warning_check_all_rounds).format(lineCount)
+                )
+                return false
+            }
         }
         return true
     }
