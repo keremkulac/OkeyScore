@@ -24,3 +24,7 @@ fun Context.toast(message: String,iconID : Int) {
         show()
     }
 }
+
+fun Context.dpToPx(dp: Int): Int {
+    return (dp * resources.displayMetrics.density + 0.5f).toInt()
+}

@@ -94,4 +94,10 @@
     <string name="validation_message_check_same_player_names">Lütfen isimleri kontrol ediniz, aynı isim olamaz</string>
     <string name="round_count">Tur %d</string>
     <string name="default_total_score_value">0</string>
+    <string name="player1_title">Oyuncu 1</string>
+    <string name="score_title">Skor</string>
+    <string name="player2_title">Oyuncu 2</string>
+    <string name="player3_title">Oyuncu 3</string>
+    <string name="player4_title">Oyuncu 4</string>
+    <string name="score_entry_title">Skor Girişi</string>
 </resources>

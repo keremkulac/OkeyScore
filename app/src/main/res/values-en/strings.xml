@@ -90,5 +90,10 @@
     <string name="validation_message_check_same_player_names">Please check the names, they cannot be the same name</string>
     <string name="round_count">Round %d</string>
     <string name="default_total_score_value">0</string>
-
+    <string name="player1_title">Player 1</string>
+    <string name="score_title">Score</string>
+    <string name="player2_title">Player 2</string>
+    <string name="player3_title">Player 3</string>
+    <string name="player4_title">Player 4</string>
+    <string name="score_entry_title">Score Entry</string>
 </resources>
