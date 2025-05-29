@@ -32,6 +32,7 @@ object NetworkModule {
             "okeyScore.db"
         )
             .addMigrations(com.keremkulac.okeyscore.data.local.Migration())
+            .addMigrations(com.keremkulac.okeyscore.data.local.Migration2To3())
             .build()
     }
 
