@@ -7,7 +7,9 @@
     tools:context=".presentation.ui.Deneme2">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/main_card"
+        android:id="@+id/mainScoreBoardCardView"
+        android:layout_margin="8dp"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         app:cardBackgroundColor="@android:color/white"
@@ -30,15 +32,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cardView4"
+                app:layout_constraintEnd_toStartOf="@+id/mainRoundCardView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/team1"
+                    android:id="@+id/team1Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Takım 1"
+                    tools:text="Takım 1"
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -46,14 +48,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="367"
+                    tools:text="367"
+                    android:id="@+id/team1TotalScore"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView4"
+                android:id="@+id/mainRoundCardView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -68,7 +71,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="1"
+                    tools:text="1"
+                    android:id="@+id/mainLineCount"
                     android:textSize="48sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -79,14 +83,14 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cardView4"
+                app:layout_constraintStart_toEndOf="@+id/mainRoundCardView"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/team2"
+                    android:id="@+id/team2Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Takım 2"
+                    tools:text="Takım 2"
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -94,7 +98,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="367"
+                    tools:text="367"
+                    android:id="@+id/team2TotalScore"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -112,11 +117,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:elevation="10dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_card">
+        app:layout_constraintTop_toBottomOf="@+id/mainScoreBoardCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -390,14 +395,76 @@
             android:padding="8dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/teamNamesCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_background_color"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/team1NameEntryHint"
+                        style="@style/SingleGameTextInputLayoutStyle"
+                        android:hint="@string/enter_team1_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/team1NameEntry"
+                            style="@style/SingleGameTextInputEditTextStyle"
+                            android:inputType="text"
+                            android:maxLength="21" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/team2NameEntryHint"
+                        style="@style/SingleGameTextInputLayoutStyle"
+                        android:hint="@string/enter_team2_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/team1NameEntryHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/team2NameEntry"
+                            style="@style/SingleGameTextInputEditTextStyle"
+                            android:inputType="text"
+                            android:maxLength="21" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/confirmTeamNames"
+                        style="@style/ButtonStyle"
+                        android:layout_width="match_parent"
+                        android:backgroundTint="@color/cursor_color"
+                        android:text="@string/save_names"
+                        android:textAllCaps="false"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/team2NameEntryHint" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/playerNameEntryCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/cardview_background_color"
                 app:cardCornerRadius="20dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/teamNamesCardView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -487,7 +554,7 @@
                 android:text="@string/score_entry_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/playerNameEntryCardView" />
@@ -497,7 +564,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title" />
@@ -508,7 +575,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/new_round"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toStartOf="@+id/penalty"
                 app:layout_constraintStart_toStartOf="parent"
@@ -522,7 +589,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/penalty"
                 android:textColor="@android:color/white"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/newRound"
@@ -533,7 +600,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
