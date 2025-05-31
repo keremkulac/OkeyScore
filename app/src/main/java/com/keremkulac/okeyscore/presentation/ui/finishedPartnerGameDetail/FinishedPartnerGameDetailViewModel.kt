@@ -6,9 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.R
-import com.keremkulac.okeyscore.domain.use_case.get_finished_partner_game.GetFinishedPartnerGameUseCase
+import com.keremkulac.okeyscore.domain.use_case.get_finished_single_game.GetFinishedPartnerGameUseCase
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
-import com.keremkulac.okeyscore.model.Player
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,26 +28,20 @@ class FinishedPartnerGameDetailViewModel @Inject constructor(
 
     fun findNumberOfGames(finishedPartnerGame: FinishedPartnerGame) : Int{
         var numberOfGames = 0
-        for(i in 0 until  finishedPartnerGame.team1!!.allScores!!.size){
-            if (finishedPartnerGame.team1.allScores!![i]!! != "" && finishedPartnerGame.team2!!.allScores!![i]!! != "") {
+        for(i in 0 until  finishedPartnerGame.team1Player1!!.allScores!!.size){
+            if (finishedPartnerGame.team1Player1.allScores!![i]!! != "" && finishedPartnerGame.team2Player1!!.allScores!![i]!! != "") {
                 numberOfGames++
             }
         }
         return numberOfGames
     }
 
-    fun sortByMin(finishedPartnerGame: FinishedPartnerGame) : List<Player>{
-        val players = listOf(
-            finishedPartnerGame.team1!!,
-            finishedPartnerGame.team2!!)
-        return players.sortedBy { it.totalScore.toInt() }
-    }
 
     fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame,context: Context) : String{
-        val result = if(finishedPartnerGame.team1!!.totalScore > finishedPartnerGame.team2!!.totalScore){
-            context.getString(R.string.score_difference).format(finishedPartnerGame.team2.name,finishedPartnerGame.team1.name,finishedPartnerGame.team1.totalScore.toInt() - finishedPartnerGame.team2.totalScore.toInt())
+        val result = if(finishedPartnerGame.team1Player1!!.totalScore > finishedPartnerGame.team2Player1!!.totalScore){
+            context.getString(R.string.score_difference).format(finishedPartnerGame.team2Player1.name,finishedPartnerGame.team1Player1.name,finishedPartnerGame.team1Player1.totalScore.toInt() - finishedPartnerGame.team2Player1.totalScore.toInt())
             }else{
-            context.getString(R.string.score_difference).format(finishedPartnerGame.team1.name,finishedPartnerGame.team2.name,finishedPartnerGame.team2.totalScore.toInt() - finishedPartnerGame.team1.totalScore.toInt())
+            context.getString(R.string.score_difference).format(finishedPartnerGame.team1Player1.name,finishedPartnerGame.team2Player1.name,finishedPartnerGame.team2Player1.totalScore.toInt() - finishedPartnerGame.team1Player1.totalScore.toInt())
         }
         return result
     }
