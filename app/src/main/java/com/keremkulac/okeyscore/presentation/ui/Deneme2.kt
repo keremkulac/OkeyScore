@@ -57,7 +57,7 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
         createPlayerScores()
         clickTotalScoresContainer()
         penalty()
-        confirmTeamNames()
+        confirmTeam1Names()
         saveFinishedGame()
         observeValidation()
         handleOnBackPressed()
@@ -104,7 +104,7 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
             ) {
                 expandableLayoutManager.expandLayout(scoreContainer, icon)
                 createNewLine(LayoutInflater.from(requireContext()))
-                binding.mainLineCount.text = (lineCount-1).toString()
+                binding.mainLineCount.text = (lineCount - 1).toString()
             }
         }
     }
@@ -164,13 +164,14 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
         }
     }
 
-    private fun confirmNames() {
+    private fun confirmTeam2Names() {
         binding.apply {
-            confirmNames.setOnClickListener {
-                createPlayerNames()
+            confirmTeam2Names.setOnClickListener {
                 if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
+                    createTeamNames()
+                    createPlayerNames()
                     createPenaltyHashMap()
-                    playerNameEntryCardView.visibility = View.GONE
+                    team2EntryCardView.visibility = View.GONE
                     totalScoresCardView.visibility = View.VISIBLE
                     title.visibility = View.VISIBLE
                     scoreLayout.visibility = View.VISIBLE
@@ -184,16 +185,20 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
                 }
             }
         }
+
     }
 
-    private fun confirmTeamNames() {
-        binding.confirmTeamNames.setOnClickListener {
-            createTeamNames()
-            if (viewModel.checkTeamNames(teamNames)) {
-                confirmNames()
-                setupTeamNames()
-                binding.playerNameEntryCardView.visibility = View.VISIBLE
-                binding.teamNamesCardView.visibility = View.GONE
+    private fun confirmTeam1Names() {
+        binding.confirmTeam1Names.setOnClickListener {
+            if (viewModel.checkTeamAndPlayerNames(
+                    binding.team1NameEntry.text.toString(),
+                    binding.team1Player1NameEntry.text.toString(),
+                    binding.team1Player2NameEntry.text.toString()
+                )
+            ) {
+                confirmTeam2Names()
+                binding.team2EntryCardView.visibility = View.VISIBLE
+                binding.team1EntryCardView.visibility = View.GONE
             }
         }
     }
@@ -338,10 +343,10 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
 
     private fun createPlayerNames() {
         playerNames = mutableListOf(
-            binding.player1NameEntry.text?.trim().toString(),
-            binding.player2NameEntry.text?.trim().toString(),
-            binding.player3NameEntry.text?.trim().toString(),
-            binding.player4NameEntry.text?.trim().toString(),
+            binding.team1Player1NameEntry.text?.trim().toString(),
+            binding.team1Player2NameEntry.text?.trim().toString(),
+            binding.team2Player1NameEntry.text?.trim().toString(),
+            binding.team2Player2NameEntry.text?.trim().toString(),
         )
     }
 
@@ -350,6 +355,7 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
             binding.team1NameEntry.text?.trim().toString(),
             binding.team2NameEntry.text?.trim().toString(),
         )
+        setupTeamNames()
     }
 
     private fun createPlayerScores() {
@@ -362,8 +368,10 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
     }
 
     private fun createTeamTotalScores() {
-        val team1Score = binding.player1TotalScore.text.toString().toInt() + binding.player2TotalScore.text.toString().toInt()
-        val team2Score = binding.player3TotalScore.text.toString().toInt() + binding.player4TotalScore.text.toString().toInt()
+        val team1Score = binding.player1TotalScore.text.toString()
+            .toInt() + binding.player2TotalScore.text.toString().toInt()
+        val team2Score = binding.player3TotalScore.text.toString()
+            .toInt() + binding.player4TotalScore.text.toString().toInt()
         binding.team1TotalScore.text = team1Score.toString()
         binding.team2TotalScore.text = team2Score.toString()
     }
@@ -432,7 +440,7 @@ class Deneme2 : Fragment(R.layout.fragment_deneme2) {
                     team1Player2 = players.getOrNull(1),
                     team2Player1 = players.getOrNull(2),
                     team2Player2 = players.getOrNull(3),
-                    gameInfo = viewModel.createInfo(players, requireContext())
+                    gameInfo = viewModel.createInfo(players, teamNames, requireContext())
                 )
                 viewModel.savePartnerGame(finishedPartnerGame)
             }

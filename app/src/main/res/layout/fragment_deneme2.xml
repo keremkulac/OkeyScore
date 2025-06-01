@@ -14,7 +14,7 @@
         android:layout_height="100dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="60dp"
-        app:cardElevation="12dp"
+        app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -395,7 +395,8 @@
             android:padding="8dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/teamNamesCardView"
+                android:layout_margin="8dp"
+                android:id="@+id/team1EntryCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/settings_card_background_color"
@@ -404,7 +405,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp">
@@ -424,12 +426,75 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/team1Player1NameEntryHint"
+                        style="@style/SingleGameTextInputLayoutStyle"
+                        android:hint="@string/enter_player1_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/team1Player1NameEntry"
+                            style="@style/SingleGameTextInputEditTextStyle"
+                            android:inputType="text"
+                            android:maxLength="21" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/team1Player2NameEntryHint"
+                        style="@style/SingleGameTextInputLayoutStyle"
+                        android:hint="@string/enter_player2_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/player1NameEntryHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/team1Player2NameEntry"
+                            style="@style/SingleGameTextInputEditTextStyle"
+                            android:inputType="text"
+                            android:maxLength="21" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <Button
+                        android:id="@+id/confirmTeam1Names"
+                        style="@style/ButtonStyle"
+                        android:layout_width="match_parent"
+                        android:backgroundTint="@color/cursor_color"
+                        android:text="Takım 1 kayıt"
+                        android:textAllCaps="false"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/team2NameEntryHint" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_margin="8dp"
+                android:id="@+id/team2EntryCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_background_color"
+                app:cardCornerRadius="20dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/team1EntryCardView">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/team2NameEntryHint"
                         style="@style/SingleGameTextInputLayoutStyle"
                         android:hint="@string/enter_team2_name"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/team1NameEntryHint">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/team2NameEntry"
@@ -438,55 +503,22 @@
                             android:maxLength="21" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <Button
-                        android:id="@+id/confirmTeamNames"
-                        style="@style/ButtonStyle"
-                        android:layout_width="match_parent"
-                        android:backgroundTint="@color/cursor_color"
-                        android:text="@string/save_names"
-                        android:textAllCaps="false"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/team2NameEntryHint" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/playerNameEntryCardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/cardview_background_color"
-                app:cardCornerRadius="20dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/teamNamesCardView">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp">
-
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player1NameEntryHint"
+                        android:id="@+id/team2Player1NameEntryHint"
                         style="@style/SingleGameTextInputLayoutStyle"
                         android:hint="@string/enter_player1_name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player1NameEntry"
+                            android:id="@+id/team2Player1NameEntry"
                             style="@style/SingleGameTextInputEditTextStyle"
                             android:inputType="text"
                             android:maxLength="21" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player2NameEntryHint"
+                        android:id="@+id/team2Player2NameEntryHint"
                         style="@style/SingleGameTextInputLayoutStyle"
                         android:hint="@string/enter_player2_name"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -494,56 +526,26 @@
                         app:layout_constraintTop_toBottomOf="@id/player1NameEntryHint">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player2NameEntry"
+                            android:id="@+id/team2Player2NameEntry"
                             style="@style/SingleGameTextInputEditTextStyle"
                             android:inputType="text"
                             android:maxLength="21" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player3NameEntryHint"
-                        style="@style/SingleGameTextInputLayoutStyle"
-                        android:hint="@string/enter_player3_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/player2NameEntryHint">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player3NameEntry"
-                            style="@style/SingleGameTextInputEditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="21" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player4NameEntryHint"
-                        style="@style/SingleGameTextInputLayoutStyle"
-                        android:hint="@string/enter_player4_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/player3NameEntryHint">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player4NameEntry"
-                            style="@style/SingleGameTextInputEditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="21" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/confirmNames"
+                    <Button
+                        android:id="@+id/confirmTeam2Names"
+                        style="@style/ButtonStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/save_names"
+                        android:backgroundTint="@color/cursor_color"
+                        android:text="Takım 2 kayıt"
                         android:textAllCaps="false"
                         android:visibility="visible"
-                        app:cornerRadius="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/player4NameEntryHint" />
+                        app:layout_constraintTop_toBottomOf="@+id/team2NameEntryHint" />
+                </LinearLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -557,7 +559,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/playerNameEntryCardView" />
+                app:layout_constraintTop_toBottomOf="@+id/team2EntryCardView" />
 
             <LinearLayout
                 android:id="@+id/scoreLayout"

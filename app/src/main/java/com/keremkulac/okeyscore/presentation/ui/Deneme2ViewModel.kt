@@ -42,31 +42,49 @@ class Deneme2ViewModel @Inject constructor(
         }
     }
 
-    fun checkTeamNames(teamNames: List<String>): Boolean {
-        return inputValidation.isAllUsernamesFilled(teamNames) { message ->
-            _validationMessage.value = message
-        }
-    }
-
     fun sameNamesCheck(playerNames: List<String>): Boolean {
         return inputValidation.checkSamePlayerNames(playerNames) { message ->
             _validationMessage.value = message
         }
     }
 
-    fun checkAllRoundScoreFilled(roundScores: List<EditText>,lineCount : Int): Boolean {
-        return inputValidation.isAllRoundFieldsFilled(roundScores,lineCount) { message ->
+    fun checkAllRoundScoreFilled(roundScores: List<EditText>, lineCount: Int): Boolean {
+        return inputValidation.isAllRoundFieldsFilled(roundScores, lineCount) { message ->
             _validationMessage.value = message
         }
     }
 
-    fun createInfo(player: List<Player>, context: Context): Info {
+    fun checkTeamAndPlayerNames(
+        teamName: String,
+        player1Name: String,
+        player2Name: String
+    ): Boolean {
+        return inputValidation.teamAndPlayerNamesValidation(
+            teamName,
+            player1Name,
+            player2Name
+        ) { message ->
+            _validationMessage.value = message
+        }
+    }
 
-        val minScorePlayer = player.minBy { it.totalScore.toInt() }
-        return Info(
-            context.getString(R.string.winning_player_info)
-                .format(minScorePlayer.name, minScorePlayer.totalScore), getCurrentDate()
-        )
+    fun createInfo(players: List<Player>, teamNames: List<String>, context: Context): Info {
+
+        val team1Score = players[0].totalScore + players[1].totalScore
+        val team2Score = players[2].totalScore + players[3].totalScore
+        var infoText = ""
+        val (winningTeamName, winningScore) = when {
+            team1Score > team2Score -> teamNames[0] to team1Score
+            team1Score < team2Score -> teamNames[1] to team2Score
+            else -> null to null
+        }
+
+        if (winningTeamName != null && winningScore != null) {
+            infoText =
+                context.getString(R.string.winning_team_info).format(winningTeamName, winningScore)
+        }
+
+        return Info(infoText, getCurrentDate())
     }
 
     private fun getCurrentDate(): String {

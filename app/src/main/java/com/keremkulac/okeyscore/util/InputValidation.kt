@@ -18,6 +18,17 @@ class InputValidation @Inject constructor(private val context: Context) {
         return allFilled
     }
 
+    fun isAllTeamNamesFilled(
+        teamNames: List<String>,
+        validationMessage: (String) -> Unit
+    ): Boolean {
+        val allFilled = teamNames.all { it.isNotBlank() }
+        if (!allFilled) {
+            validationMessage(context.getString(R.string.validation_message_fill_all_player_names))
+        }
+        return allFilled
+    }
+
     fun checkSamePlayerNames(
         playerNames: List<String>,
         validationMessage: (String) -> Unit
@@ -46,6 +57,39 @@ class InputValidation @Inject constructor(private val context: Context) {
         }
         return true
     }
+
+    fun teamAndPlayerNamesValidation(
+        teamName: String,
+        player1Name: String,
+        player2Name: String,
+        validationMessage: (String) -> Unit
+    ): Boolean {
+
+        when {
+            teamName.trim().isEmpty() -> {
+                validationMessage("Takım adı boş olamaz!")
+                return false
+            }
+            player1Name.trim().isEmpty() -> {
+                validationMessage("1. Oyuncu adı boş olamaz!")
+                return false
+            }
+            player2Name.trim().isEmpty() -> {
+                validationMessage("2. Oyuncu adı boş olamaz!")
+                return false
+            }
+            player1Name.trim().equals(player2Name.trim(), ignoreCase = true) -> {
+                validationMessage("Oyuncuların isimleri aynı olamaz!")
+                return false
+            }
+            else -> {
+                validationMessage("Takım bilgileri geçerli!")
+                return true
+            }
+        }
+    }
+
+
 }
 
 
