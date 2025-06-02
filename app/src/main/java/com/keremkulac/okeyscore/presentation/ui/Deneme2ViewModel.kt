@@ -70,12 +70,12 @@ class Deneme2ViewModel @Inject constructor(
 
     fun createInfo(players: List<Player>, teamNames: List<String>, context: Context): Info {
 
-        val team1Score = players[0].totalScore + players[1].totalScore
-        val team2Score = players[2].totalScore + players[3].totalScore
+        val team1Score = players[0].totalScore.toInt() + players[1].totalScore.toInt()
+        val team2Score = players[2].totalScore.toInt() + players[3].totalScore.toInt()
         var infoText = ""
         val (winningTeamName, winningScore) = when {
-            team1Score > team2Score -> teamNames[0] to team1Score
-            team1Score < team2Score -> teamNames[1] to team2Score
+            team1Score < team2Score -> teamNames[0] to team1Score
+            team1Score > team2Score -> teamNames[1] to team2Score
             else -> null to null
         }
 
