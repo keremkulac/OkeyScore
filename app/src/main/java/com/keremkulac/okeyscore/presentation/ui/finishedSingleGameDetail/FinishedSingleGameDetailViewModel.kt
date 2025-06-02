@@ -41,7 +41,7 @@ class FinishedSingleGameDetailViewModel
     }
 
 
-     fun sortByMin(finishedSingleGame: FinishedSingleGame) : List<Player>{
+    private fun sortByMin(finishedSingleGame: FinishedSingleGame) : List<Player>{
         val players = listOf(
             finishedSingleGame.player1!!,
             finishedSingleGame.player2!!,

@@ -3,7 +3,6 @@ package com.keremkulac.okeyscore.presentation.ui.finishedSingleGameDetail
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
+import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -20,13 +20,16 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
 
     private lateinit var binding : FragmentFinishedSingleGameDetailBinding
     private val viewModel by viewModels<FinishedSingleGameDetailViewModel>()
+    private lateinit var expandableLayoutManager : ExpandableLayoutManager
     @Inject
     lateinit var finishedSingleGameDetailAdapter: FinishedSingleGameDetailAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameDetailBinding.bind(view)
+        expandableLayoutManager = ExpandableLayoutManager()
         getAndSetFinishedGame()
         goToFinishedGameViewFragment()
+        totalScoresCardViewToggle()
     }
 
     private fun goToFinishedGameViewFragment(){
@@ -36,43 +39,43 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
         }
     }
 
-    private fun createPlayerNameTextViewList() : List<TextView>{
-        return listOf(binding.player1Name,binding.player2Name,binding.player3Name,binding.player4Name)
-    }
 
-    private fun setRecyclerView(finishedSingleGame: FinishedSingleGame){
-            binding.player1Name.text = finishedSingleGame.player1!!.name
-            binding.player2Name.text = finishedSingleGame.player2!!.name
-            binding.player3Name.text = finishedSingleGame.player3!!.name
-            binding.player4Name.text = finishedSingleGame.player4!!.name
-            for(textView in createPlayerNameTextViewList()){
-                if(textView.text ==  viewModel.sortByMin(finishedSingleGame)[0].name){
-                    when (textView.text) {
-                        binding.player1Name.text.toString() -> binding.player1Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
-                        binding.player2Name.text.toString() -> binding.player2Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
-                        binding.player3Name.text.toString() -> binding.player3Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
-                        binding.player4Name.text.toString() -> binding.player4Indicator.setBackgroundColor(requireContext().getColor(R.color.game_winner_indicator_color))
-                    }
-                }
+    private fun setRecyclerView(finishedSingleGame: FinishedSingleGame) {
+        binding.apply {
+            player1TotalScore.text = finishedSingleGame.player1?.totalScore ?: ""
+            finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
+            roundRecyclerView.adapter = finishedSingleGameDetailAdapter
+            roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            finishedSingleGameDetailAdapter.clickListener = { scoreContainer, icon ->
+                expandableLayoutManager.toggleLayout(scoreContainer, icon)
             }
-            binding.player1TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player1.totalScore)
-            binding.player2TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player2.totalScore)
-            binding.player3TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player3.totalScore)
-            binding.player4TotalScore.text = getString(R.string.total_score_text,finishedSingleGame.player4.totalScore)
-            binding.gameDate.text = finishedSingleGame.gameInfo.date
+            totalScorePlayer1Name.text = finishedSingleGame.player1?.name ?: ""
+            totalScorePlayer2Name.text = finishedSingleGame.player2?.name ?: ""
+            totalScorePlayer3Name.text = finishedSingleGame.player3?.name ?: ""
+            totalScorePlayer4Name.text = finishedSingleGame.player4?.name ?: ""
+            player1TotalScore.text = finishedSingleGame.player1?.totalScore ?: "0"
+            player2TotalScore.text = finishedSingleGame.player2?.totalScore ?: "0"
+            player3TotalScore.text = finishedSingleGame.player3?.totalScore ?: "0"
+            player4TotalScore.text = finishedSingleGame.player4?.totalScore ?: "0"
+
+            setScoreDifferences(finishedSingleGame)
+            gameDate.text = finishedSingleGame.gameInfo.date
             val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
-            val pattern = Pattern.compile("Kazanan oyuncu: (.+?)\\. Skor: (\\d+)")
+            val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
             val matcher = pattern.matcher(finishedSingleGame.gameInfo.gameInfo)
             if (matcher.find()) {
-                binding.gameDetail.text = requireContext().getString(R.string.winning_player_info_text).format(matcher.group(1),matcher.group(2))
+                gameDetail.text =
+                    requireContext().getString(R.string.winning_team_info_text)
+                        .format(matcher.group(1), matcher.group(2))
             } else {
-                binding.gameDetail.text = requireContext().getString(R.string.winning_player_info_text).format(infoItems[0],infoItems[1])
+                gameDetail.text =
+                    requireContext().getString(R.string.winning_team_info_text)
+                        .format(infoItems[0], infoItems[1])
             }
-            finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
-            binding.roundRecyclerView.adapter = finishedSingleGameDetailAdapter
-            binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            setScoreDifferences(finishedSingleGame)
+        }
+
     }
+
 
     private fun getAndSetFinishedGame(){
         viewModel.getFinishedSingleGame(requireArguments().getInt("finishedGameID"))
@@ -99,6 +102,16 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
                     ContextCompat.getDrawable(requireContext(),R.drawable.ic_show_detail),null)
                 isClicked = true
             }
+        }
+    }
+
+    private fun totalScoresCardViewToggle() {
+        val totalScoresExpandableLayoutManager = ExpandableLayoutManager()
+        binding.totalScoresCardView.setOnClickListener {
+            totalScoresExpandableLayoutManager.toggleLayout(
+                binding.totalScoreContainer,
+                binding.totalScoresIcon
+            )
         }
     }
 
