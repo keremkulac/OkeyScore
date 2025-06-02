@@ -1,56 +1,51 @@
 package com.keremkulac.okeyscore.presentation.ui.finishedPartnerGameDetail
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.divider.MaterialDivider
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import javax.inject.Inject
 
-class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapter<FinishedPartnerGameDetailAdapter.ViewHolder>() {
+class FinishedPartnerGameDetailAdapter @Inject constructor() :
+    RecyclerView.Adapter<FinishedPartnerGameDetailAdapter.ViewHolder>() {
 
-    var finishedPartnerGame : FinishedPartnerGame? = null
-    var numberOfGames =0
+    var finishedPartnerGame: FinishedPartnerGame? = null
+    var clickListener: ((LinearLayout,ImageView) -> Unit)? = null
+    var numberOfGames = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.partner_game_round_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.score_layout, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         finishedPartnerGame?.let {
-            holder.roundCount.text = holder.itemView.context.getString(R.string.game_detail_round_count).format(position+1)
-            holder.team1Score.setText(it.team1!!.allScores!![position])
-            holder.team2Score.setText(it.team2!!.allScores!![position])
-            it.team1.penalties?.let {list->
-                if (list.isNotEmpty()){
-                    holder.team1Penalty.text = createPenaltiesString(list[position]!!,holder.itemView.context)
-                }
+            holder.player1Name.text = it.team1Player1?.name ?: ""
+            holder.player2Name.text = it.team1Player2?.name ?: ""
+            holder.player3Name.text = it.team2Player1?.name ?: ""
+            holder.player4Name.text = it.team2Player2?.name ?: ""
+            holder.player1Score.text = it.team1Player1?.allScores?.getOrNull(position)?.toString() ?: "0"
+            holder.player2Score.text = it.team1Player2?.allScores?.getOrNull(position)?.toString() ?: "0"
+            holder.player3Score.text = it.team2Player1?.allScores?.getOrNull(position)?.toString() ?: "0"
+            holder.player4Score.text = it.team2Player2?.allScores?.getOrNull(position)?.toString() ?: "0"
+            holder.player1Penalty.text = it.team1Player1?.penalties?.getOrNull(position)?.toString() ?: "0"
+            holder.player2Penalty.text = it.team1Player2?.penalties?.getOrNull(position)?.toString() ?: "0"
+            holder.player3Penalty.text = it.team2Player1?.penalties?.getOrNull(position)?.toString() ?: "0"
+            holder.player4Penalty.text = it.team2Player2?.penalties?.getOrNull(position)?.toString() ?: "0"
+            holder.roundLayout.setOnClickListener {
+                clickListener?.invoke(holder.scoreContainer,holder.icon)
             }
-            it.team2.penalties?.let {list->
-                if (list.isNotEmpty()){
-                    holder.team2Penalty.text = createPenaltiesString(list[position]!!,holder.itemView.context)
-                }
-            }
-            holder.team1Score.isFocusable = false
-            holder.team2Score.isFocusable = false
-            if (position == numberOfGames-1){
-                holder.divider.visibility = View.GONE
-            }
+            holder.scoreContainer.visibility = View.GONE
+            holder.roundCount.text = holder.itemView.context.getString(R.string.round_count).format(position+1)
         }
-    }
 
-    private fun createPenaltiesString(penalty : String,context: Context) : String{
-        var penaltyText = ""
-        if(penalty != ""){
-            penaltyText= context.getString(R.string.penalty_text_value).format(penalty.toInt())
-        }
-        return penaltyText
     }
 
     override fun getItemCount(): Int {
@@ -58,12 +53,22 @@ class FinishedPartnerGameDetailAdapter @Inject constructor(): RecyclerView.Adapt
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val roundCount : TextView = itemView.findViewById(R.id.roundCount)
-        val team1Score : EditText = itemView.findViewById(R.id.team1Score)
-        val team2Score : EditText = itemView.findViewById(R.id.team2Score)
-        val team1Penalty : TextView = itemView.findViewById(R.id.team1Penalty)
-        val team2Penalty : TextView = itemView.findViewById(R.id.team2Penalty)
-        val divider : MaterialDivider = itemView.findViewById(R.id.horizontalDivider)
+            val player1Name: TextView = itemView.findViewById(R.id.player1Name)
+            val player2Name: TextView = itemView.findViewById(R.id.player2Name)
+            val player3Name: TextView = itemView.findViewById(R.id.player3Name)
+            val player4Name: TextView = itemView.findViewById(R.id.player4Name)
+            val player1Score: TextView = itemView.findViewById(R.id.player1Score)
+            val player2Score: TextView = itemView.findViewById(R.id.player2Score)
+            val player3Score: TextView = itemView.findViewById(R.id.player3Score)
+            val player4Score: TextView = itemView.findViewById(R.id.player4Score)
+            val player1Penalty: TextView = itemView.findViewById(R.id.player1Penalty)
+            val player2Penalty: TextView = itemView.findViewById(R.id.player2Penalty)
+            val player3Penalty: TextView = itemView.findViewById(R.id.player3Penalty)
+            val player4Penalty: TextView = itemView.findViewById(R.id.player4Penalty)
+            val roundLayout : ConstraintLayout = itemView.findViewById(R.id.roundLayout)
+            val scoreContainer : LinearLayout = itemView.findViewById(R.id.scoreContainer)
+            val icon : ImageView = itemView.findViewById(R.id.icon)
+            val roundCount : TextView = itemView.findViewById(R.id.roundCount)
     }
 
 }

@@ -32,6 +32,7 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
         expandableLayoutManager = ExpandableLayoutManager()
         goToFinishedGameViewFragment()
         getAndSetFinishedGames()
+        totalScoresCardViewToggle()
     }
 
     private fun goToFinishedGameViewFragment() {
@@ -50,46 +51,47 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
             it?.let {
                 setRecyclerView(it)
                 finishedPartnerGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
-                binding.mainRoundCount.text = viewModel.findNumberOfGames(it).toString()
-
             }
         }
     }
 
 
     private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame) {
-        binding.team1Name.text = (finishedPartnerGame.team1Name)
-        binding.team2Name.text = (finishedPartnerGame.team2Name)
-        binding.team1TotalScore.text = finishedPartnerGame.team1TotalScore.toString()
-        binding.team2TotalScore.text = finishedPartnerGame.team2TotalScore.toString()
-        finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
-        binding.roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
-        binding.roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        finishedPartnerGameDetailAdapter.clickListener = { scoreContainer, icon ->
-            expandableLayoutManager.toggleLayout(scoreContainer, icon)
+        binding.apply {
+            team1Name.text = (finishedPartnerGame.team1Name)
+            team2Name.text = (finishedPartnerGame.team2Name)
+            team1TotalScore.text = finishedPartnerGame.team1TotalScore.toString()
+            team2TotalScore.text = finishedPartnerGame.team2TotalScore.toString()
+            finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
+            roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
+            roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            finishedPartnerGameDetailAdapter.clickListener = { scoreContainer, icon ->
+                expandableLayoutManager.toggleLayout(scoreContainer, icon)
+            }
+            totalScorePlayer1Name.text = finishedPartnerGame.team1Player1?.name ?: ""
+            totalScorePlayer2Name.text = finishedPartnerGame.team1Player2?.name ?: ""
+            totalScorePlayer3Name.text = finishedPartnerGame.team2Player1?.name ?: ""
+            totalScorePlayer4Name.text = finishedPartnerGame.team2Player2?.name ?: ""
+            player1TotalScore.text = finishedPartnerGame.team1Player1?.totalScore ?: "0"
+            player2TotalScore.text = finishedPartnerGame.team1Player2?.totalScore ?: "0"
+            player3TotalScore.text = finishedPartnerGame.team2Player1?.totalScore ?: "0"
+            player4TotalScore.text = finishedPartnerGame.team2Player2?.totalScore ?: "0"
+            setScoreDifferences(finishedPartnerGame)
+            gameDate.text = finishedPartnerGame.gameInfo.date
+            val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
+            val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
+            val matcher = pattern.matcher(finishedPartnerGame.gameInfo.gameInfo)
+            if (matcher.find()) {
+                gameDetail.text =
+                    requireContext().getString(R.string.winning_team_info_text)
+                        .format(matcher.group(1), matcher.group(2))
+            } else {
+                gameDetail.text =
+                    requireContext().getString(R.string.winning_team_info_text)
+                        .format(infoItems[0], infoItems[1])
+            }
         }
-        binding.totalScorePlayer1Name.text = finishedPartnerGame.team1Player1?.name ?: ""
-        binding.totalScorePlayer2Name.text = finishedPartnerGame.team1Player2?.name ?: ""
-        binding.totalScorePlayer3Name.text = finishedPartnerGame.team2Player1?.name ?: ""
-        binding.totalScorePlayer4Name.text = finishedPartnerGame.team2Player2?.name ?: ""
-        binding.player1TotalScore.text = finishedPartnerGame.team1Player1?.totalScore ?: "0"
-        binding.player2TotalScore.text = finishedPartnerGame.team1Player2?.totalScore ?: "0"
-        binding.player3TotalScore.text = finishedPartnerGame.team2Player1?.totalScore ?: "0"
-        binding.player4TotalScore.text = finishedPartnerGame.team2Player2?.totalScore ?: "0"
-        setScoreDifferences(finishedPartnerGame)
-        binding.gameDate.text = finishedPartnerGame.gameInfo.date
-        val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
-        val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
-        val matcher = pattern.matcher(finishedPartnerGame.gameInfo.gameInfo)
-        if (matcher.find()) {
-            binding.gameDetail.text =
-                requireContext().getString(R.string.winning_team_info_text)
-                    .format(matcher.group(1), matcher.group(2))
-        } else {
-            binding.gameDetail.text =
-                requireContext().getString(R.string.winning_team_info_text)
-                    .format(infoItems[0], infoItems[1])
-        }
+
     }
 
     private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame) {
@@ -113,5 +115,16 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
                 isClicked = true
             }
         }
+    }
+
+    private fun totalScoresCardViewToggle() {
+        val totalScoresExpandableLayoutManager = ExpandableLayoutManager()
+        binding.totalScoresCardView.setOnClickListener {
+            totalScoresExpandableLayoutManager.toggleLayout(
+                binding.totalScoreContainer,
+                binding.totalScoresIcon
+            )
+        }
+
     }
 }

@@ -14,21 +14,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FinishedPartnerGameDetailViewModel @Inject constructor(
-    private val finishedPartnerGameUseCase: GetFinishedPartnerGameUseCase) : ViewModel() {
+    private val finishedPartnerGameUseCase: GetFinishedPartnerGameUseCase
+) : ViewModel() {
 
     private val _finishedPartnerGame = MutableLiveData<FinishedPartnerGame?>()
     val finishedPartnerGameGame: LiveData<FinishedPartnerGame?>
         get() = _finishedPartnerGame
 
-    fun getFinishedGame(id: Int){
+    fun getFinishedGame(id: Int) {
         viewModelScope.launch {
             _finishedPartnerGame.postValue(finishedPartnerGameUseCase.invoke(id))
         }
     }
 
-    fun findNumberOfGames(finishedPartnerGame: FinishedPartnerGame) : Int{
+    fun findNumberOfGames(finishedPartnerGame: FinishedPartnerGame): Int {
         var numberOfGames = 0
-        for(i in 0 until  finishedPartnerGame.team1Player1!!.allScores!!.size){
+        for (i in 0 until finishedPartnerGame.team1Player1!!.allScores!!.size) {
             if (finishedPartnerGame.team1Player1.allScores!![i]!! != "" && finishedPartnerGame.team2Player1!!.allScores!![i]!! != "") {
                 numberOfGames++
             }
@@ -37,12 +38,21 @@ class FinishedPartnerGameDetailViewModel @Inject constructor(
     }
 
 
-    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame,context: Context) : String{
-        val result = if(finishedPartnerGame.team1Player1!!.totalScore > finishedPartnerGame.team2Player1!!.totalScore){
-            context.getString(R.string.score_difference).format(finishedPartnerGame.team2Player1.name,finishedPartnerGame.team1Player1.name,finishedPartnerGame.team1Player1.totalScore.toInt() - finishedPartnerGame.team2Player1.totalScore.toInt())
-            }else{
-            context.getString(R.string.score_difference).format(finishedPartnerGame.team1Player1.name,finishedPartnerGame.team2Player1.name,finishedPartnerGame.team2Player1.totalScore.toInt() - finishedPartnerGame.team1Player1.totalScore.toInt())
-        }
+    fun scoreDifferences(finishedPartnerGame: FinishedPartnerGame, context: Context): String {
+        val result =
+            if (finishedPartnerGame.team1TotalScore > finishedPartnerGame.team2TotalScore) {
+                context.getString(R.string.score_difference).format(
+                    finishedPartnerGame.team1Name,
+                    finishedPartnerGame.team2Name,
+                    finishedPartnerGame.team1TotalScore - finishedPartnerGame.team2TotalScore
+                )
+            } else {
+                context.getString(R.string.score_difference).format(
+                    finishedPartnerGame.team2Name,
+                    finishedPartnerGame.team1Name,
+                    finishedPartnerGame.team2TotalScore - finishedPartnerGame.team1TotalScore
+                )
+            }
         return result
     }
 }
