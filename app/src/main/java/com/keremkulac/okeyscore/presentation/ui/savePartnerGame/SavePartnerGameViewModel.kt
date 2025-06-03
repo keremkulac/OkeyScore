@@ -1,20 +1,17 @@
 package com.keremkulac.okeyscore.presentation.ui.savePartnerGame
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
 import android.widget.EditText
-import android.widget.TextView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.model.Info
 import com.keremkulac.okeyscore.model.Player
-import com.keremkulac.okeyscore.util.toast
+import com.keremkulac.okeyscore.util.InputValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.ZoneId
@@ -24,141 +21,70 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavePartnerGameViewModel
-@Inject constructor(private val okeyScoreRepositoryImp: OkeyScoreRepositoryImp) : ViewModel(){
+@Inject constructor(
+    private val okeyScoreRepositoryImp: OkeyScoreRepositoryImp,
+    private val inputValidation: InputValidation
+) :
+    ViewModel() {
 
+    private val _validationMessage = MutableLiveData<String>()
+    val validationMessage: LiveData<String> get() = _validationMessage
 
-    fun insertFinishedGame(
-        allPlayerScoreEditTextList : ArrayList<ArrayList<EditText>>,
-        allTeamPenaltyTextViewList : List<List<TextView>>,
-        playerNames: List<EditText>,
-        totalScoreHasMap : HashMap<String,TextView>,
-        navController: NavController,
-        context: Context
-    ){
+    fun savePartnerGame(finishedPartnerGame: FinishedPartnerGame) {
         viewModelScope.launch {
-            val finishedPartnerGame = createFinishedPartnerGame(playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList,totalScoreHasMap,context)
             okeyScoreRepositoryImp.insertFinishedPartnerGame(finishedPartnerGame)
-            navController.navigate(
-                SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment()
-            )
-            context.toast(context.getString(R.string.registration_successful), R.drawable.ic_successful)
         }
     }
 
-   private  fun createFinishedPartnerGame(playerNames: List<EditText>,
-                                          allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,
-                                          allTeamPenaltyTextViewList : List<List<TextView>>,
-                                          totalScoreHasMap: HashMap<String, TextView>,
-                                          context: Context
-    ): FinishedPartnerGame {
-        val players = createPlayers(context,playerNames, allPlayerScoreEditTextList,allTeamPenaltyTextViewList,totalScoreHasMap)
-        return FinishedPartnerGame(
-            0,
-            players[0],
-            players[1],
-            createInfo(players,context)
-        )
-    }
-
-     private fun createInfo(player: List<Player>,context: Context): Info {
-        val minScorePlayer = player.minBy { it.totalScore.toInt() }
-         return Info(context.getString(R.string.winning_team_info).format(minScorePlayer.name,minScorePlayer.totalScore), getCurrentDate())
-    }
-
-    fun setTotalScore(context: Context,teamScoreList : List<EditText>,totalScoreTextView: TextView,penaltyList: List<TextView>){
-        for(scoreListItem in teamScoreList){
-            scoreListItem.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val total = calculateTotalScore(teamScoreList)+calculatePenalties(context,penaltyList)
-                    totalScoreTextView.text = total.toString()
-                }
-                override fun afterTextChanged(s: Editable?) {}
-            })
+    fun checkPlayerNames(playerNames: List<String>): Boolean {
+        return inputValidation.isAllUsernamesFilled(playerNames) { message ->
+            _validationMessage.value = message
         }
     }
 
-    fun calculateTotalScore(teamScoreEditTextList: List<EditText>) : Int{
-        var totalScore = 0
-        for(teamScoreEditText in teamScoreEditTextList){
-            if(teamScoreEditText.text.toString() != ""){
-                if(teamScoreEditText.text.contains("-")){
-                    if(teamScoreEditText.text.count() > 1){
-                        val score = teamScoreEditText.text.toString().split("-")
-                        totalScore -= score[1].toInt()
-                    }
-                }else{
-                    totalScore += teamScoreEditText.text.toString().toInt()
-                }
-            }
+    fun sameNamesCheck(playerNames: List<String>): Boolean {
+        return inputValidation.checkSamePlayerNames(playerNames) { message ->
+            _validationMessage.value = message
         }
-        return totalScore
     }
 
-    fun calculatePenalties(context: Context,penaltyList: List<TextView>) : Int{
-        var totalScore = 0
-        for(penaltyTextView in penaltyList){
-            val penaltyText = penaltyTextView.text.toString()
-            if(penaltyText != ""){
-                totalScore+= penaltyText.split(context.getString(R.string.penalty_text))[1].trimStart().toInt()
-            }
+    fun checkAllRoundScoreFilled(roundScores: List<EditText>, lineCount: Int): Boolean {
+        return inputValidation.isAllRoundFieldsFilled(roundScores, lineCount) { message ->
+            _validationMessage.value = message
         }
-        return totalScore
-    }
-    fun checkList(editTextList : List<EditText>) : Boolean{
-        var isEmpty = false
-        for (editText in editTextList) {
-            if (editText.text.toString().isEmpty()) {
-                isEmpty = true
-            }
-        }
-        return isEmpty
     }
 
-    fun sameNamesCheck(editTextList: List<EditText>): Boolean {
-        val seenTexts = mutableSetOf<String>()
-        for (editText in editTextList) {
-            val text = editText.text.toString()
-            if (text in seenTexts) {
-                return true
-            } else {
-                seenTexts.add(text)
-            }
+    fun checkTeamAndPlayerNames(
+        teamName: String,
+        player1Name: String,
+        player2Name: String
+    ): Boolean {
+        return inputValidation.teamAndPlayerNamesValidation(
+            teamName,
+            player1Name,
+            player2Name
+        ) { message ->
+            _validationMessage.value = message
         }
-        return false
     }
 
-    private fun createPlayerPenaltyList(context: Context,playerPenalties: List<TextView>) : ArrayList<String>{
-        val penaltyList = ArrayList<String>()
-        for(playerPenaltiesTextView in playerPenalties){
-            if(playerPenaltiesTextView.text.toString() == ""){
-                penaltyList.add("")
-            }else{
-                penaltyList.add(playerPenaltiesTextView.text.split(context.getString(R.string.penalty_text))[1].trim())
-            }
-        }
-        return penaltyList
-    }
+    fun createInfo(players: List<Player>, teamNames: List<String>, context: Context): Info {
 
-    private fun createPlayers(context: Context,playerNames: List<EditText>, playerScoreLists: List<List<EditText>>,playerPenaltyLists : List<List<TextView>>,totalScoreHasMap: HashMap<String, TextView>): List<Player> {
-        val players = mutableListOf<Player>()
-        for (i in playerNames.indices) {
-            val playerName = playerNames[i].text.toString()
-            val playerScores = createPlayerScoreList(playerScoreLists[i])
-            val totalScore = totalScoreHasMap[playerName]!!.text.toString()
-            val playerPenalties = createPlayerPenaltyList(context,playerPenaltyLists[i])
-            val player = Player(0, playerName, playerScores, totalScore, playerPenalties)
-            players.add(player)
+        val team1Score = players[0].totalScore.toInt() + players[1].totalScore.toInt()
+        val team2Score = players[2].totalScore.toInt() + players[3].totalScore.toInt()
+        var infoText = ""
+        val (winningTeamName, winningScore) = when {
+            team1Score < team2Score -> teamNames[0] to team1Score
+            team1Score > team2Score -> teamNames[1] to team2Score
+            else -> null to null
         }
-        return players
-    }
 
-    private fun createPlayerScoreList(playerScoreEditTextList: List<EditText>) : ArrayList<String>{
-        val scoreList = ArrayList<String>()
-        for(playerScoreEditText in playerScoreEditTextList){
-            scoreList.add(playerScoreEditText.text.toString())
+        if (winningTeamName != null && winningScore != null) {
+            infoText =
+                context.getString(R.string.winning_team_info).format(winningTeamName, winningScore)
         }
-        return scoreList
+
+        return Info(infoText, getCurrentDate())
     }
 
     private fun getCurrentDate(): String {
@@ -166,17 +92,4 @@ class SavePartnerGameViewModel
         return ZonedDateTime.now(ZoneId.of("Asia/Istanbul")).toLocalDateTime().format(formatter)
     }
 
-    fun areAllEditTextsFilled(allPlayerScoreEditTextList: ArrayList<ArrayList<EditText>>,saveGameButton : View): Boolean {
-        for (editTextList in allPlayerScoreEditTextList) {
-            for (editText in editTextList) {
-                if (editText.text.isNullOrEmpty()) {
-                    saveGameButton.isEnabled = false
-                    return true
-                }else{
-                    saveGameButton.isEnabled = true
-                }
-            }
-        }
-        return false
-    }
 }

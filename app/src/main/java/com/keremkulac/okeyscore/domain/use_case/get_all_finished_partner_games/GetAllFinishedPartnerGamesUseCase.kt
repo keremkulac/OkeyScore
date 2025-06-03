@@ -1,4 +1,4 @@
-package com.keremkulac.okeyscore.domain.use_case.get_all_finished_partner_games
+package com.keremkulac.okeyscore.domain.use_case.get_all_finished_single_games
 
 import com.keremkulac.okeyscore.domain.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.model.FinishedPartnerGame

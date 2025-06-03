@@ -29,6 +29,7 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameBinding.bind(view)
+        observeAllFinishedGame()
         createSingleGame()
         observeAllFinishedGame()
         setRecyclerView()
@@ -56,6 +57,7 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
                 binding.createSingleGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
             }
+
         }
     }
 

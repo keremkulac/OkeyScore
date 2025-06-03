@@ -88,16 +88,15 @@
     <string name="total_score_view_text" tools:ignore="MissingTranslation">TS</string>
     <string name="update_failed" tools:ignore="MissingTranslation">Güncelleme başarısız!</string>
     <string name="total_score_label_text" tools:ignore="MissingTranslation">Toplam skorlar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    
-    <string name="validation_message_fill_all_player_names">Lütfen tüm kullanıcı adlarını doldurun</string>
-    <string name="validation_message_check_same_player_names">Lütfen isimleri kontrol ediniz, aynı isim olamaz</string>
-    <string name="round_count">Tur %d</string>
-    <string name="default_total_score_value">0</string>
-    <string name="player1_title">Oyuncu 1</string>
-    <string name="score_title">Skor</string>
-    <string name="player2_title">Oyuncu 2</string>
-    <string name="player3_title">Oyuncu 3</string>
-    <string name="player4_title">Oyuncu 4</string>
-    <string name="score_entry_title">Skor Girişi</string>
+
+    <string name="validation_message_fill_all_player_names" tools:ignore="MissingTranslation">Lütfen tüm kullanıcı adlarını doldurun</string>
+    <string name="validation_message_check_same_player_names" tools:ignore="MissingTranslation">Lütfen isimleri kontrol ediniz, aynı isim olamaz</string>
+    <string name="round_count" tools:ignore="MissingTranslation">Tur %d</string>
+    <string name="default_total_score_value" tools:ignore="MissingTranslation">0</string>
+    <string name="player1_title" tools:ignore="MissingTranslation">Oyuncu 1</string>
+    <string name="score_title" tools:ignore="MissingTranslation">Skor</string>
+    <string name="player2_title" tools:ignore="MissingTranslation">Oyuncu 2</string>
+    <string name="player3_title" tools:ignore="MissingTranslation">Oyuncu 3</string>
+    <string name="player4_title" tools:ignore="MissingTranslation">Oyuncu 4</string>
+    <string name="score_entry_title" tools:ignore="MissingTranslation">Skor Girişi</string>
 </resources>

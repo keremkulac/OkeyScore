@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.domain.use_case.delete_finished_partner_game.DeleteFinishedPartnerGameUseCase
-import com.keremkulac.okeyscore.domain.use_case.get_all_finished_partner_games.GetAllFinishedPartnerGamesUseCase
-import com.keremkulac.okeyscore.domain.use_case.insert_finished_partner_game.InsertFinishedPartnerGameUseCase
+import com.keremkulac.okeyscore.domain.use_case.get_all_finished_single_games.GetAllFinishedPartnerGamesUseCase
+import com.keremkulac.okeyscore.domain.use_case.insert_finished_single_game.InsertFinishedPartnerGameUseCase
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ class FinishedPartnerGameViewModel
             _allFinishedGamesPartnerGame.value?.let { adapter.updateData(it) }
         } else {
             val filteredList = _allFinishedGamesPartnerGame.value?.filter { finishedPartnerGame ->
-                finishedPartnerGame.team1!!.name.lowercase().contains(query) || finishedPartnerGame.team2!!.name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
+                finishedPartnerGame.team1Name.lowercase().contains(query) || finishedPartnerGame.team2Name.lowercase().contains(query) || finishedPartnerGame.gameInfo.date.lowercase().contains(query)
             }
             _filteredList.postValue(filteredList?.let { ArrayList(it) })
             filteredList?.let { ArrayList(it) }?.let { adapter.updateData(it) }

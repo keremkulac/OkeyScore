@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
-import android.widget.TextView
 import com.keremkulac.okeyscore.R
 
 
@@ -32,15 +31,8 @@ class ExpandableLayoutManager {
         toggleIcon.setImageDrawable(layout.context.getDrawable(R.drawable.ic_expand))
     }
 
-    fun changeToggleText(textView: TextView, openText: String, closeText: String) {
-        if (isExpanded) {
-            textView.text = closeText
-        } else {
-            textView.text = openText
-        }
-    }
 
-    fun animateLayoutExpand(layout: View) {
+    private fun animateLayoutExpand(layout: View) {
         layout.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         val targetHeight = layout.measuredHeight
 

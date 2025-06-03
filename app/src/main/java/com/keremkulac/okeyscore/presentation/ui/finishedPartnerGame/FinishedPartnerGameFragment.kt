@@ -29,12 +29,14 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedPartnerGameBinding.bind(view)
+        observeAllFinishedGame()
         createPartnerGame()
         observeAllFinishedGame()
         setRecyclerView()
         deleteItemDatabase()
         clickFinishedGame()
         search()
+
     }
 
     private fun setRecyclerView() {
@@ -54,6 +56,7 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
                 binding.createPartnerGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
             }
+
         }
     }
 
