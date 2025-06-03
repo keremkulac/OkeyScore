@@ -32,7 +32,6 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
         expandableLayoutManager = ExpandableLayoutManager()
         goToFinishedGameViewFragment()
         getAndSetFinishedGames()
-        totalScoresCardViewToggle()
     }
 
     private fun goToFinishedGameViewFragment() {
@@ -117,14 +116,4 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
         }
     }
 
-    private fun totalScoresCardViewToggle() {
-        val totalScoresExpandableLayoutManager = ExpandableLayoutManager()
-        binding.totalScoresCardView.setOnClickListener {
-            totalScoresExpandableLayoutManager.toggleLayout(
-                binding.totalScoreContainer,
-                binding.totalScoresIcon
-            )
-        }
-
-    }
 }

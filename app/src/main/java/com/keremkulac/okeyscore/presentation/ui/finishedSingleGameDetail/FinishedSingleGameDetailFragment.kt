@@ -29,7 +29,6 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
         expandableLayoutManager = ExpandableLayoutManager()
         getAndSetFinishedGame()
         goToFinishedGameViewFragment()
-        totalScoresCardViewToggle()
     }
 
     private fun goToFinishedGameViewFragment(){
@@ -42,7 +41,6 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
 
     private fun setRecyclerView(finishedSingleGame: FinishedSingleGame) {
         binding.apply {
-            player1TotalScore.text = finishedSingleGame.player1?.totalScore ?: ""
             finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
             roundRecyclerView.adapter = finishedSingleGameDetailAdapter
             roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -105,14 +103,5 @@ class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_sin
         }
     }
 
-    private fun totalScoresCardViewToggle() {
-        val totalScoresExpandableLayoutManager = ExpandableLayoutManager()
-        binding.totalScoresCardView.setOnClickListener {
-            totalScoresExpandableLayoutManager.toggleLayout(
-                binding.totalScoreContainer,
-                binding.totalScoresIcon
-            )
-        }
-    }
 
 }
