@@ -10,12 +10,13 @@ import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.core.content.edit
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
 
     private lateinit var binding : FragmentOnboardingBinding
-    private val viewModel by viewModels<OnboardingViewModel>()
+    private val viewModel: OnboardingViewModel by viewModels()
     private lateinit var sharedPreferences : SharedPreferences
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,14 +32,14 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         viewModel.isOnboarding.observe(viewLifecycleOwner){
             if (it) {
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToChooseGameFragment())
-                sharedPreferences.edit().putBoolean("isOnboardingCompleted",true ).apply()
+                sharedPreferences.edit { putBoolean("isOnboardingCompleted", true) }
             }
         }
     }
 
     private fun skipOnboarding(adapter: OnboardingAdapter){
         adapter.clickListener={
-            sharedPreferences.edit().putBoolean("isOnboardingCompleted",true ).apply()
+            sharedPreferences.edit { putBoolean("isOnboardingCompleted", true) }
             findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToChooseGameFragment())
         }
     }

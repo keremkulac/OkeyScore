@@ -32,11 +32,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
     private lateinit var binding: FragmentSavePartnerGameBinding
+    private val viewModel: SavePartnerGameViewModel by viewModels()
     private var lineCount = 1
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
     private lateinit var expandableLayoutManager2: ExpandableLayoutManager
     private val penaltyHashMap = HashMap<String, List<TextView>>()
-    private val viewModel by viewModels<SavePartnerGameViewModel>()
     private var playerNames = mutableListOf<String>()
     private var teamNames = mutableListOf<String>()
     private var playerScoresTextView = mutableListOf<TextView>()
@@ -163,7 +163,12 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
     private fun confirmTeam2Names() {
         binding.apply {
             confirmTeam2Names.setOnClickListener {
-                if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
+                if (viewModel.checkTeamAndPlayerNames(
+                        binding.team2NameEntry.text.toString(),
+                        binding.team2Player1NameEntry.text.toString(),
+                        binding.team2Player2NameEntry.text.toString()
+                    ) && viewModel.sameNamesCheck(playerNames)
+                ) {
                     createTeamNames()
                     createPlayerNames()
                     createPenaltyHashMap()

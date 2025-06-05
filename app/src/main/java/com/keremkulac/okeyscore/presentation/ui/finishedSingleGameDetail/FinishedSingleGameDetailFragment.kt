@@ -19,7 +19,7 @@ import javax.inject.Inject
 class FinishedSingleGameDetailFragment : Fragment(R.layout.fragment_finished_single_game_detail) {
 
     private lateinit var binding : FragmentFinishedSingleGameDetailBinding
-    private val viewModel by viewModels<FinishedSingleGameDetailViewModel>()
+    private val viewModel: FinishedSingleGameDetailViewModel by viewModels()
     private lateinit var expandableLayoutManager : ExpandableLayoutManager
     @Inject
     lateinit var finishedSingleGameDetailAdapter: FinishedSingleGameDetailAdapter

@@ -18,11 +18,8 @@
     <color name="cursor_color">#4CAF50</color>
     <color name="tablayout_text_color">#292F33</color>
     <color name="back_icon_color">#23221F</color>
-    <color name="divider_color">#45494A</color>
     <color name="searchview_border_color">#45494A</color>
     <color name="tab_indicator_color">#4CAF50</color>
-    <color name="header_text_color">#F6F6F8</color>
-    <color name="header_background_color">#45494A</color>
     <color name="score_differences_text_color">#646E72</color>
     <color name="onboarding_indicator_color">#4CAF50</color>
     <color name="logo_text_color">#23221F</color>
@@ -33,8 +30,5 @@
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>
     <color name="penalty_text_color">#CA4F4F</color>
-    <color name="score_layout_border_color">#D7D7D7</color>
-    <color name="game_winner_indicator_color">#4CAF50</color>
-    <color name="default_game_winner_indicator_color">#CA4F4F</color>
 
 </resources>

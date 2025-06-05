@@ -32,11 +32,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
     private lateinit var binding: FragmentSaveSingleGameBinding
+    private val viewModel: SaveSingleGameViewModel by viewModels()
     private var lineCount = 1
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
     private lateinit var expandableLayoutManager2: ExpandableLayoutManager
     private val penaltyHashMap = HashMap<String, List<TextView>>()
-    private val viewModel by viewModels<SaveSingleGameViewModel>()
     private var playerNames = mutableListOf<String>()
     private var playerScoresTextView = mutableListOf<TextView>()
     private val allPlayerPenaltyTextViewList: List<MutableList<TextView>> =

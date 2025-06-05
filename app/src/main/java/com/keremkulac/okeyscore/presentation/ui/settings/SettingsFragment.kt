@@ -26,7 +26,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     @Inject
     lateinit var sharedPrefHelper: SharedPrefHelper
-    private val viewModel by viewModels<SettingsViewModel>()
+    private val viewModel: SettingsViewModel by viewModels()
     private lateinit var binding : FragmentSettingsBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

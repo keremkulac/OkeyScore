@@ -48,7 +48,7 @@
         android:layout_margin="8dp"
         android:paddingHorizontal="32dp"
         android:background="@drawable/custom_button"
-        android:text="Tekli oyun oluştur"
+        android:text="@string/create_single_game_button_text"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

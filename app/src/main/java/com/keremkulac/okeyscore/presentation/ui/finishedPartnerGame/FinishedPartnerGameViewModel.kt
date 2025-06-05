@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keremkulac.okeyscore.domain.use_case.delete_finished_partner_game.DeleteFinishedPartnerGameUseCase
-import com.keremkulac.okeyscore.domain.use_case.get_all_finished_single_games.GetAllFinishedPartnerGamesUseCase
-import com.keremkulac.okeyscore.domain.use_case.insert_finished_single_game.InsertFinishedPartnerGameUseCase
+import com.keremkulac.okeyscore.domain.use_case.get_all_finished_partner_games.GetAllFinishedPartnerGamesUseCase
+import com.keremkulac.okeyscore.domain.use_case.insert_finished_partner_game.InsertFinishedPartnerGameUseCase
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,7 +17,8 @@ class FinishedPartnerGameViewModel
 @Inject constructor(
     private val getAllFinishedPartnerGamesUseCase: GetAllFinishedPartnerGamesUseCase,
     private val deleteFinishedPartnerGameUseCase: DeleteFinishedPartnerGameUseCase,
-    private val insertFinishedPartnerGameUseCase: InsertFinishedPartnerGameUseCase) : ViewModel() {
+    private val insertFinishedPartnerGameUseCase: InsertFinishedPartnerGameUseCase
+) : ViewModel() {
     private val _allFinishedGamesPartnerGame = MutableLiveData<List<FinishedPartnerGame>>()
     val finishedPartnerGame: LiveData<List<FinishedPartnerGame>>
         get() = _allFinishedGamesPartnerGame

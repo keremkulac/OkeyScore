@@ -36,12 +36,6 @@ class SavePartnerGameViewModel
         }
     }
 
-    fun checkPlayerNames(playerNames: List<String>): Boolean {
-        return inputValidation.isAllUsernamesFilled(playerNames) { message ->
-            _validationMessage.value = message
-        }
-    }
-
     fun sameNamesCheck(playerNames: List<String>): Boolean {
         return inputValidation.checkSamePlayerNames(playerNames) { message ->
             _validationMessage.value = message

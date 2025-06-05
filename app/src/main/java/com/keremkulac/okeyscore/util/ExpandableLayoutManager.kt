@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import com.keremkulac.okeyscore.R
 
 
@@ -17,18 +18,18 @@ class ExpandableLayoutManager {
         if (isExpanded) {
             animateLayoutCollapse(layout)
             isExpanded = false
-            toggleIcon.setImageDrawable(layout.context.getDrawable(R.drawable.ic_expand))
+            toggleIcon.setImageDrawable(ContextCompat.getDrawable(layout.context, R.drawable.ic_expand))
         } else {
             animateLayoutExpand(layout)
             isExpanded = true
-            toggleIcon.setImageDrawable(layout.context.getDrawable(R.drawable.ic_collapse))
+            toggleIcon.setImageDrawable(ContextCompat.getDrawable(layout.context, R.drawable.ic_collapse))
         }
     }
 
     fun expandLayout(layout: View,toggleIcon: ImageView){
         animateLayoutCollapse(layout)
         isExpanded = false
-        toggleIcon.setImageDrawable(layout.context.getDrawable(R.drawable.ic_expand))
+        toggleIcon.setImageDrawable(ContextCompat.getDrawable(layout.context, R.drawable.ic_expand))
     }
 
 

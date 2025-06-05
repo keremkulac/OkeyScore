@@ -22,7 +22,7 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
 
     @Inject
     lateinit var finishedSingleGameAdapter: FinishedSingleGameAdapter
-    private val viewModel by viewModels<FinishedSingleGameViewModel>()
+    private val viewModel: FinishedSingleGameViewModel by viewModels()
     private lateinit var binding: FragmentFinishedSingleGameBinding
 
 

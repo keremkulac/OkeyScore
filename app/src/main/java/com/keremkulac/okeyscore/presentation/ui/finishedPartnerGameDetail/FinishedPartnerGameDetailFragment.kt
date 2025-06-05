@@ -20,8 +20,7 @@ import javax.inject.Inject
 class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_partner_game_detail) {
 
     private lateinit var binding: FragmentFinishedPartnerGameDetailBinding
-    private val viewModel by viewModels<FinishedPartnerGameDetailViewModel>()
-
+    private val viewModel: FinishedPartnerGameDetailViewModel by viewModels()
     @Inject
     lateinit var finishedPartnerGameDetailAdapter: FinishedPartnerGameDetailAdapter
     private lateinit var expandableLayoutManager: ExpandableLayoutManager

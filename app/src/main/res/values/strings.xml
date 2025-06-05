@@ -2,30 +2,18 @@
     <string name="app_name" translatable="false">101 Okey Yazboz</string>
     <string name="tag" translatable="false">Tag</string>
     <string name="date" tools:ignore="MissingTranslation">Tarih</string>
-    <string name="round_scores" tools:ignore="MissingTranslation">Tur skorları</string>
-    <string name="record_not_found" tools:ignore="MissingTranslation">Kayıt oluşturmak için \"Ana sayfa\" butonuna tıklayınız</string>
     <string name="save" tools:ignore="MissingTranslation">Kaydet</string>
     <string name="todo" tools:ignore="MissingTranslation">TODO</string>
     <string name="game_info" tools:ignore="MissingTranslation">Oyun bilgi</string>
     <string name="game_detail" tools:ignore="MissingTranslation">Oyun detay</string>
-    <string name="detail" tools:ignore="MissingTranslation">Detay</string>
     <string name="enter_player1_name" tools:ignore="MissingTranslation">1. oyuncu için isim giriniz</string>
     <string name="enter_player2_name" tools:ignore="MissingTranslation">2. oyuncu için isim giriniz</string>
     <string name="enter_player3_name" tools:ignore="MissingTranslation">3. oyuncu için isim giriniz</string>
     <string name="enter_player4_name" tools:ignore="MissingTranslation">4. oyuncu için isim giriniz</string>
     <string name="new_round" tools:ignore="MissingTranslation">Yeni Tur</string>
     <string name="save_names" tools:ignore="MissingTranslation">İsimleri Kaydet</string>
-    <string name="total_score" tools:ignore="MissingTranslation">Toplam skor</string>
-    <string name="player" tools:ignore="MissingTranslation">Player</string>
-    <string name="playerNamesAndScoresTitle" tools:ignore="MissingTranslation">Oyuncu İsimleri ve Toplam Skorları</string>
-    <string name="teamNamesAndScoresTitle" tools:ignore="MissingTranslation">Takım İsimleri ve Toplam Skorları</string>
-    <string name="total_score_text" tools:ignore="MissingTranslation">%1$s</string>
-    <string name="teamScoresTitle" tools:ignore="MissingTranslation">Oyuncu Tur Skorları</string>
     <string name="enter_team1_name" tools:ignore="MissingTranslation">1. takım için isim giriniz</string>
     <string name="enter_team2_name" tools:ignore="MissingTranslation">2. takım için isim giriniz</string>
-    <string name="team_round_scores" tools:ignore="MissingTranslation">Takım Tur Skorları</string>
-    <string name="teams" tools:ignore="MissingTranslation">Takımlar</string>
-    <string name="players" tools:ignore="MissingTranslation">Oyuncular</string>
     <string name="partner_game" tools:ignore="MissingTranslation">Eşli Oyun Kayıt</string>
     <string name="single_game" tools:ignore="MissingTranslation">Tekli Oyun Kayıt</string>
     <string name="successful" tools:ignore="MissingTranslation">Başarılı</string>
@@ -54,11 +42,11 @@
     <string name="exit_confirmation_yes" tools:ignore="MissingTranslation">Kaydetmeden çık"</string>
     <string name="exit_confirmation_no" tools:ignore="MissingTranslation">Vazgeç</string>
     <string name="warning_check_all_rounds" tools:ignore="MissingTranslation">Lütfen %d. turdaki tüm alanları doldurun.</string>
-    <string name="warning_enter_all_player_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
-    <string name="warning_enter_all_team_names" tools:ignore="MissingTranslation">Lütfen tüm oyuncu isimlerini giriniz.</string>
     <string name="warning_select_player_penalised" tools:ignore="MissingTranslation">Lütfen ceza eklenecek oyuncuyu seçiniz.</string>
-    <string name="enter_different_names" tools:ignore="MissingTranslation">Lütfen farklı isimler giriniz.</string>
-    <string name="registration_successful" tools:ignore="MissingTranslation">Kayıt başarılı</string>
+    <string name="warning_check_team_names" tools:ignore="MissingTranslation">Takım adı boş olamaz!</string>
+    <string name="warning_same_players_names" tools:ignore="MissingTranslation">Players names cannot be the same!</string>
+    <string name="warning_check_team_player_1_name" tools:ignore="MissingTranslation">1. Oyuncu adı boş olamaz!</string>
+    <string name="warning_check_team_player_2_name" tools:ignore="MissingTranslation">2. Oyuncu adı boş olamaz!</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
     <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
     <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>
@@ -69,8 +57,6 @@
     <string name="error_not_work_this_device" tools:ignore="MissingTranslation">Uygulama bu cihazda çalışmıyor.</string>
     <string name="enter_penalty" tools:ignore="MissingTranslation">Ceza giriniz</string>
     <string name="penalty" tools:ignore="MissingTranslation">Ceza</string>
-    <string name="partner_player_1" tools:ignore="MissingTranslation">Partner player 1</string>
-    <string name="partner_player_2" tools:ignore="MissingTranslation">Partner player 2</string>
     <string name="single_player_1" tools:ignore="MissingTranslation">Single Player 1</string>
     <string name="single_player_2" tools:ignore="MissingTranslation">Single Player 2</string>
     <string name="single_player_3" tools:ignore="MissingTranslation">Single Player 3</string>
@@ -81,13 +67,9 @@
     <string name="cancel" tools:ignore="MissingTranslation">İptal</string>
     <string name="determine_punishment" tools:ignore="MissingTranslation">Cezayı belirleyin</string>
     <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
-    <string name="select_team_punish" tools:ignore="MissingTranslation">Ceza eklenecek takımı seçiniz</string>
     <string name="forward" tools:ignore="MissingTranslation">İleri</string>
-    <string name="game_detail_round_count" tools:ignore="MissingTranslation">%d</string>
     <string name="input_score_hint" tools:ignore="MissingTranslation">Skor</string>
-    <string name="total_score_view_text" tools:ignore="MissingTranslation">TS</string>
     <string name="update_failed" tools:ignore="MissingTranslation">Güncelleme başarısız!</string>
-    <string name="total_score_label_text" tools:ignore="MissingTranslation">Toplam skorlar</string>
 
     <string name="validation_message_fill_all_player_names" tools:ignore="MissingTranslation">Lütfen tüm kullanıcı adlarını doldurun</string>
     <string name="validation_message_check_same_player_names" tools:ignore="MissingTranslation">Lütfen isimleri kontrol ediniz, aynı isim olamaz</string>
@@ -99,4 +81,10 @@
     <string name="player3_title" tools:ignore="MissingTranslation">Oyuncu 3</string>
     <string name="player4_title" tools:ignore="MissingTranslation">Oyuncu 4</string>
     <string name="score_entry_title" tools:ignore="MissingTranslation">Skor Girişi</string>
+    <string name="create_partner_game_button_text" tools:ignore="MissingTranslation">Eşli oyun oluştur</string>
+    <string name="create_single_game_button_text" tools:ignore="MissingTranslation">Tekli oyun oluştur</string>
+    <string name="total_score_table_text" tools:ignore="MissingTranslation">Toplam skor tablosu</string>
+    <string name="team_1_names_save_button_text" tools:ignore="MissingTranslation">Takım 1 kayıt</string>
+    <string name="team_2_names_save_button_text" tools:ignore="MissingTranslation">Takım 2 kayıt</string>
+    <string name="round_1_text" tools:ignore="MissingTranslation">Tur 1</string>
 </resources>

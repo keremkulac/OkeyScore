@@ -29,7 +29,7 @@
                 android:id="@+id/totalScoresTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toplam skor tablosu"
+                android:text="@string/total_score_table_text"
                 android:textColor="#4CAF50"
                 android:textSize="18sp"
                 android:textStyle="bold"

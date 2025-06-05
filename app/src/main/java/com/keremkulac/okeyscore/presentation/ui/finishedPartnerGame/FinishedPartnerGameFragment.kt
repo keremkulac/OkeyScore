@@ -23,7 +23,7 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
 
     @Inject
     lateinit var finishedPartnerGameAdapter: FinishedPartnerGameAdapter
-    private val viewModel by viewModels<FinishedPartnerGameViewModel>()
+    private val viewModel: FinishedPartnerGameViewModel by viewModels()
     private lateinit var binding: FragmentFinishedPartnerGameBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

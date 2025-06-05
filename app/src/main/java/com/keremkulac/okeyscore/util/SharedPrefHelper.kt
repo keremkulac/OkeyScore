@@ -2,6 +2,7 @@ package com.keremkulac.okeyscore.util
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import androidx.core.content.edit
 
 class SharedPrefHelper(context: Context) {
    private var onboardingSharedPreferences = context.getSharedPreferences("isOnboardingCompleted", MODE_PRIVATE)
@@ -13,7 +14,7 @@ class SharedPrefHelper(context: Context) {
     }
 
     fun setOnBoardingSharedPreferencesValue(value: Boolean) {
-        onboardingSharedPreferences.edit().putBoolean("isOnboardingCompleted", value).apply()
+        onboardingSharedPreferences.edit { putBoolean("isOnboardingCompleted", value) }
     }
 
     fun getNightModeSharedPreferencesValue(): Boolean {
@@ -21,7 +22,7 @@ class SharedPrefHelper(context: Context) {
     }
 
     fun setNightModeSharedPreferencesValue(value: Boolean) {
-        nightModeSharedPreferences.edit().putBoolean("isNightModeActive", value).apply()
+        nightModeSharedPreferences.edit { putBoolean("isNightModeActive", value) }
     }
 
     fun getLanguageSharedPreferencesValue(): String? {
@@ -29,6 +30,6 @@ class SharedPrefHelper(context: Context) {
     }
 
     fun setLanguageSharedPreferencesValue(value: String) {
-        languageSharedPreferences.edit().putString("selectedLanguage", value).apply()
+        languageSharedPreferences.edit { putString("selectedLanguage", value) }
     }
 }
