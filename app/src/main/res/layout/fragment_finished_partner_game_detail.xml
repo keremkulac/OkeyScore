@@ -14,6 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <View
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@drawable/header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
@@ -44,177 +53,13 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/playerTotalScoreCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teamTotalScoreBoardCardView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                    android:id="@+id/player1Layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toStartOf="@+id/player2Layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_player" />
-
-                    <TextView
-                        android:id="@+id/totalScorePlayer1Name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        tools:text="Player 1" />
-
-                    <TextView
-                        android:id="@+id/player1TotalScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#4CAF50"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="490" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/player2Layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toStartOf="@+id/player3Layout"
-                    app:layout_constraintStart_toEndOf="@+id/player1Layout"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_player" />
-
-                    <TextView
-                        android:id="@+id/totalScorePlayer2Name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        tools:text="Player 2" />
-
-                    <TextView
-                        android:id="@+id/player2TotalScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#4CAF50"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="385" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/player3Layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toStartOf="@+id/player4Layout"
-                    app:layout_constraintStart_toEndOf="@+id/player2Layout"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_player" />
-
-                    <TextView
-                        android:id="@+id/totalScorePlayer3Name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        tools:text="Player 3" />
-
-                    <TextView
-                        android:id="@+id/player3TotalScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#4CAF50"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="420" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/player4Layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/player3Layout"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_player" />
-
-                    <TextView
-                        android:id="@+id/totalScorePlayer4Name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        tools:text="Player 4" />
-
-                    <TextView
-                        android:id="@+id/player4TotalScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#4CAF50"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="412" />
-                </LinearLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/teamTotalScoreBoardCardView"
+            android:id="@+id/teamScoreCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
@@ -222,89 +67,296 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
-                    android:id="@+id/team1Layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toStartOf="@+id/team2Layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/team1MainLayout"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/team1NameMainLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Team 1" />
 
                     <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:id="@+id/team1MainIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_team_1" />
+                        android:src="@drawable/ic_expand"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/team1Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="12dp">
 
                     <TextView
                         android:id="@+id/team1Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
                         android:textColor="#000"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="Team 1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/player1Layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_player" />
+
+                            <TextView
+                                android:id="@+id/totalScorePlayer1Name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                tools:text="Player 1" />
+
+                            <TextView
+                                android:id="@+id/player1TotalScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#4CAF50"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="490" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/player2Layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_player" />
+
+                            <TextView
+                                android:id="@+id/totalScorePlayer2Name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                tools:text="Player 2" />
+
+                            <TextView
+                                android:id="@+id/player2TotalScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#4CAF50"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="385" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/team1TotalScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingTop="8dp"
                         android:textColor="#4CAF50"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        tools:text="490" />
+                        tools:text="Toplam: 875" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/team2Layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/team1Layout"
-                    app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/team2MainLayout"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/team2NameMainLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Team 1" />
 
                     <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:id="@+id/team2MainIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_team_1" />
+                        android:src="@drawable/ic_expand"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/team2Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp">
 
                     <TextView
                         android:id="@+id/team2Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
                         android:textColor="#000"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        tools:text="Team 1" />
+                        tools:text="Team 2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <!-- Player 3 -->
+                        <LinearLayout
+                            android:id="@+id/player3Layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_player" />
+
+                            <TextView
+                                android:id="@+id/totalScorePlayer3Name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                tools:text="Player 3" />
+
+                            <TextView
+                                android:id="@+id/player3TotalScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#4CAF50"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="420" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/player4Layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_player" />
+
+                            <TextView
+                                android:id="@+id/totalScorePlayer4Name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                tools:text="Player 4" />
+
+                            <TextView
+                                android:id="@+id/player4TotalScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#4CAF50"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="412" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/team2TotalScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingTop="8dp"
                         android:textColor="#4CAF50"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        tools:text="490" />
+                        tools:text="Toplam: 832" />
                 </LinearLayout>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
+
 
         <LinearLayout
             android:id="@+id/scoreLayout"
@@ -314,7 +366,7 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/playerTotalScoreCardView">
+            app:layout_constraintTop_toBottomOf="@id/teamScoreCardView">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/roundRecyclerView"
