@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
-import androidx.fragment.app.FragmentContainerView
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var sharedPrefHelper: SharedPrefHelper
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var navHostFragment : FragmentContainerView
     private lateinit var appUpdateManager: AppUpdateManager
+    private lateinit var navController: NavController
     private val requestCode = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.fragmentFactory = defaultFragmentFactory
         setContentView(R.layout.activity_main)
         bottomNavigationView = findViewById(R.id.bottomNavigation)
-        navHostFragment = findViewById(R.id.nav_host_fragment)
         checkDisplaySize()
         selectLanguage()
         bottomNavigation()
         checkOnboarding()
+        getStatusBarColorForDestination()
     }
 
     private fun themeListener(){
@@ -60,7 +60,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getStatusBarColorForDestination(){
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id){
+                R.id.finishedSingleGameDetailFragment -> {
+                    window.statusBarColor = getColor(R.color.fragment_status_bar_color)
+                }
+                R.id.finishedPartnerGameDetailFragment -> {
+                    window.statusBarColor = getColor(R.color.fragment_status_bar_color)
+                }
+                else -> {
+                    window.statusBarColor = getColor(R.color.status_bar_color)
+                }
+            }
+        }
+    }
+
     private fun bottomNavigation(){
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        navController.setGraph(R.navigation.nav_graph)
+
         for (item in bottomNavigationView.menu.children) {
             if (item.itemId == R.id.menu_new_game){
                 item.setTitle(getString(R.string.home))
@@ -72,10 +92,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_new_game -> {
-                    navHostFragment.findNavController().navigate(MainActivityDirections.actionMainActivityToChooseGameFragment())
+                    navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToChooseGameFragment())
                 }
                 R.id.menu_history -> {
-                    navHostFragment.findNavController().navigate(MainActivityDirections.actionMainActivityToFinishedGameViewFragment("single"))
+                    navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToFinishedGameViewFragment("single"))
                 }
             }
             true
