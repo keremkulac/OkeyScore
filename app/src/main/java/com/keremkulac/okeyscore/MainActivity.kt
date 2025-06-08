@@ -24,6 +24,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var defaultFragmentFactory: DefaultFragmentFactory
+
     @Inject
     lateinit var sharedPrefHelper: SharedPrefHelper
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -45,47 +46,60 @@ class MainActivity : AppCompatActivity() {
         getStatusBarColorForDestination()
     }
 
-    private fun themeListener(){
+    private fun themeListener() {
         val isNightModeActive = sharedPrefHelper.getNightModeSharedPreferencesValue()
         updateTheme(isNightModeActive)
     }
 
-    private fun checkDisplaySize(){
+    private fun checkDisplaySize() {
         val metrics = resources.displayMetrics
         val width = metrics.widthPixels
         val height = metrics.heightPixels
         if (width == 366 && height == 708) {
-            Toast.makeText(this, this.getString(R.string.error_not_work_this_device), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                this.getString(R.string.error_not_work_this_device),
+                Toast.LENGTH_SHORT
+            ).show()
             finish()
         }
     }
 
-    private fun getStatusBarColorForDestination(){
+    private fun getStatusBarColorForDestination() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            when(destination.id){
+            when (destination.id) {
                 R.id.finishedSingleGameDetailFragment -> {
                     window.statusBarColor = getColor(R.color.fragment_status_bar_color)
+                    bottomNavigationView.visibility = View.GONE
                 }
+
                 R.id.finishedPartnerGameDetailFragment -> {
                     window.statusBarColor = getColor(R.color.fragment_status_bar_color)
+                    bottomNavigationView.visibility = View.GONE
                 }
+
+                R.id.savePartnerGameFragment -> bottomNavigationView.visibility = View.GONE
+                R.id.saveSingleGameFragment -> bottomNavigationView.visibility = View.GONE
+
                 else -> {
                     window.statusBarColor = getColor(R.color.status_bar_color)
+                    bottomNavigationView.visibility = View.VISIBLE
                 }
             }
         }
     }
 
-    private fun bottomNavigation(){
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    private fun bottomNavigation() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         navController.setGraph(R.navigation.nav_graph)
 
         for (item in bottomNavigationView.menu.children) {
-            if (item.itemId == R.id.menu_new_game){
+            if (item.itemId == R.id.menu_new_game) {
                 item.setTitle(getString(R.string.home))
             }
-            if (item.itemId == R.id.menu_history){
+            if (item.itemId == R.id.menu_history) {
                 item.setTitle(getString(R.string.history))
             }
         }
@@ -94,42 +108,48 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_new_game -> {
                     navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToChooseGameFragment())
                 }
+
                 R.id.menu_history -> {
-                    navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToFinishedGameViewFragment("single"))
+                    navHostFragment.navController.navigate(
+                        MainActivityDirections.actionMainActivityToFinishedGameViewFragment(
+                            "single"
+                        )
+                    )
                 }
             }
             true
         }
     }
 
-    private fun checkOnboarding(){
+    private fun checkOnboarding() {
         val isOnboardingCompleted = sharedPrefHelper.getOnBoardingSharedPreferencesValue()
         sharedPrefHelper.setOnBoardingSharedPreferencesValue(isOnboardingCompleted)
-        if(isOnboardingCompleted){
+        if (isOnboardingCompleted) {
             bottomNavigationView.visibility = View.VISIBLE
-        }else{
+        } else {
             bottomNavigationView.visibility = View.GONE
         }
     }
 
-    private fun selectLanguage(){
+    private fun selectLanguage() {
         val selectedLanguage = sharedPrefHelper.getLanguageSharedPreferencesValue()
         selectedLanguage?.let {
-            if(it == "İngilizce" || it== "English"){
+            if (it == "İngilizce" || it == "English") {
                 val locale = Locale("en", "EN")
-                updateResources(this,locale)
-            }else{
+                updateResources(this, locale)
+            } else {
                 val locale = Locale("tr", "TR")
-                updateResources(this,locale)
+                updateResources(this, locale)
             }
         }
     }
 
-    private fun checkUpdate(){
+    private fun checkUpdate() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
         appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
                 appUpdateManager.startUpdateFlowForResult(
                     appUpdateInfo,
                     AppUpdateType.IMMEDIATE,
@@ -144,7 +164,11 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == this.requestCode) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(this, this.resources.getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    this.resources.getString(R.string.update_failed),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
