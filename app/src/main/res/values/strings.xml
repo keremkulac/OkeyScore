@@ -87,4 +87,5 @@
     <string name="team_1_names_save_button_text" tools:ignore="MissingTranslation">Takım 1 kayıt</string>
     <string name="team_2_names_save_button_text" tools:ignore="MissingTranslation">Takım 2 kayıt</string>
     <string name="round_1_text" tools:ignore="MissingTranslation">Tur 1</string>
+    <string name="team_total_score_text" tools:ignore="MissingTranslation">Toplam: %d</string>
 </resources>

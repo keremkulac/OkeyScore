@@ -51,7 +51,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
         createPlayerScores()
-        clickTotalScoresContainer()
         penalty()
         confirmNames()
         saveFinishedGame()
@@ -161,7 +160,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
                     createPenaltyHashMap()
                     playerNameEntryCardView.visibility = View.GONE
-                    totalScoresCardView.visibility = View.VISIBLE
+                    playerTotalScoreCardView.visibility = View.VISIBLE
                     title.visibility = View.VISIBLE
                     scoreLayout.visibility = View.VISIBLE
                     newRound.visibility = View.VISIBLE
@@ -231,14 +230,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         return totalScore
     }
 
-    private fun clickTotalScoresContainer() {
-        binding.totalScoresCardView.setOnClickListener {
-            expandableLayoutManager2.toggleLayout(
-                binding.totalScoreContainer,
-                binding.totalScoresIcon
-            )
-        }
-    }
 
     private fun createTotalScoresTextView(): HashMap<String, TextView> {
         val hashMap = HashMap<String, TextView>()

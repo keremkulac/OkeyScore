@@ -21,6 +21,7 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
 
     private lateinit var binding: FragmentFinishedPartnerGameDetailBinding
     private val viewModel: FinishedPartnerGameDetailViewModel by viewModels()
+
     @Inject
     lateinit var finishedPartnerGameDetailAdapter: FinishedPartnerGameDetailAdapter
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
@@ -60,8 +61,8 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
         binding.apply {
             team1Name.text = (finishedPartnerGame.team1Name)
             team2Name.text = (finishedPartnerGame.team2Name)
-            team1TotalScore.text = finishedPartnerGame.team1TotalScore.toString()
-            team2TotalScore.text = finishedPartnerGame.team2TotalScore.toString()
+            team1TotalScore.text = getString(R.string.team_total_score_text).format( finishedPartnerGame.team1TotalScore)
+            team2TotalScore.text = getString(R.string.team_total_score_text).format( finishedPartnerGame.team2TotalScore)
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
             roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
             roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -76,8 +77,6 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
             player2TotalScore.text = finishedPartnerGame.team1Player2?.totalScore ?: "0"
             player3TotalScore.text = finishedPartnerGame.team2Player1?.totalScore ?: "0"
             player4TotalScore.text = finishedPartnerGame.team2Player2?.totalScore ?: "0"
-            team1NameMainLayout.text = finishedPartnerGame.team1Name
-            team2NameMainLayout.text = finishedPartnerGame.team2Name
             setScoreDifferences(finishedPartnerGame)
             gameDate.text = finishedPartnerGame.gameInfo.date
             val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
@@ -119,17 +118,17 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
         }
     }
 
-    private fun clickTeam1Layout(){
+    private fun clickTeam1Layout() {
         val expandableLayoutManager = ExpandableLayoutManager()
-        binding.team1MainLayout.setOnClickListener{
-            expandableLayoutManager.toggleLayout(binding.team1Layout,binding.team1MainIcon)
+        binding.team1MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(binding.team1Layout, binding.team1MainIcon)
         }
     }
 
-    private fun clickTeam2Layout(){
+    private fun clickTeam2Layout() {
         val expandableLayoutManager = ExpandableLayoutManager()
-        binding.team2MainLayout.setOnClickListener{
-            expandableLayoutManager.toggleLayout(binding.team2Layout,binding.team2MainIcon)
+        binding.team2MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(binding.team2Layout, binding.team2MainIcon)
         }
     }
 

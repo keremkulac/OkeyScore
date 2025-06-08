@@ -52,7 +52,8 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
         createPlayerScores()
-        clickTotalScoresContainer()
+        clickTeam1Layout()
+        clickTeam2Layout()
         penalty()
         confirmTeam1Names()
         saveFinishedGame()
@@ -173,13 +174,12 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
                     createPlayerNames()
                     createPenaltyHashMap()
                     team2EntryCardView.visibility = View.GONE
-                    totalScoresCardView.visibility = View.VISIBLE
+                    teamScoreCardView.visibility = View.VISIBLE
                     title.visibility = View.VISIBLE
                     scoreLayout.visibility = View.VISIBLE
                     newRound.visibility = View.VISIBLE
                     penalty.visibility = View.VISIBLE
                     saveScores.visibility = View.VISIBLE
-                    mainScoreBoardCardView.visibility = View.VISIBLE
                     createNewLine(layoutInflater)
                     setupTotalScorePlayerNames()
                 }
@@ -262,12 +262,17 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
         return totalScore
     }
 
-    private fun clickTotalScoresContainer() {
-        binding.totalScoresCardView.setOnClickListener {
-            expandableLayoutManager2.toggleLayout(
-                binding.totalScoreContainer,
-                binding.totalScoresIcon
-            )
+    private fun clickTeam1Layout() {
+        val expandableLayoutManager = ExpandableLayoutManager()
+        binding.team1MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(binding.team1Layout, binding.team1MainIcon)
+        }
+    }
+
+    private fun clickTeam2Layout() {
+        val expandableLayoutManager = ExpandableLayoutManager()
+        binding.team2MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(binding.team2Layout, binding.team2MainIcon)
         }
     }
 
@@ -372,8 +377,8 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
             .toInt() + binding.player2TotalScore.text.toString().toInt()
         val team2Score = binding.player3TotalScore.text.toString()
             .toInt() + binding.player4TotalScore.text.toString().toInt()
-        binding.team1TotalScore.text = team1Score.toString()
-        binding.team2TotalScore.text = team2Score.toString()
+        binding.team1TotalScore.text = getString(R.string.team_total_score_text).format(team1Score)
+        binding.team2TotalScore.text = getString(R.string.team_total_score_text).format(team2Score)
     }
 
     private fun createPenaltyHashMap() {
@@ -434,8 +439,8 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
                     id = 0,
                     team1Name = binding.team1Name.text.toString(),
                     team2Name = binding.team2Name.text.toString(),
-                    team1TotalScore = binding.team1TotalScore.text.toString().toInt(),
-                    team2TotalScore = binding.team2TotalScore.text.toString().toInt(),
+                    team1TotalScore = binding.team1TotalScore.text.toString().split(" ")[1].toInt(),
+                    team2TotalScore = binding.team2TotalScore.text.toString().split(" ")[1].toInt(),
                     team1Player1 = players.getOrNull(0),
                     team1Player2 = players.getOrNull(1),
                     team2Player1 = players.getOrNull(2),
