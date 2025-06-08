@@ -31,12 +31,14 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginTop="25dp"
-            app:cardBackgroundColor="@android:color/white"
+            android:outlineSpotShadowColor="@color/cardview_shadow_color"
+            app:cardBackgroundColor="@color/cardview_background_color"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar">
+            app:layout_constraintTop_toBottomOf="@+id/toolBar"
+            tools:targetApi="28">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -66,7 +68,6 @@
                         android:id="@+id/totalScorePlayer1Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         tools:text="Player 1" />
@@ -103,7 +104,6 @@
                         android:id="@+id/totalScorePlayer2Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         tools:text="Player 2" />
@@ -141,7 +141,6 @@
                         android:id="@+id/totalScorePlayer3Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         tools:text="Player 3" />
@@ -179,7 +178,6 @@
                         android:id="@+id/totalScorePlayer4Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         tools:text="Player 1" />
@@ -209,6 +207,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:layout_marginStart="8dp"
                     android:id="@+id/goToFinishedGameViewFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -235,6 +234,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/playerTotalScoreCardView">
@@ -255,10 +255,13 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp"
+            android:outlineSpotShadowColor="@color/cardview_shadow_color"
+            app:cardBackgroundColor="@color/cardview_background_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scoreLayout">
+            app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
+            tools:targetApi="28">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/detailLayout"

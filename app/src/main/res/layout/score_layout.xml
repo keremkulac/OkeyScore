@@ -12,8 +12,11 @@
         app:cardElevation="2dp"
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/cardview_background_color"
+        android:outlineSpotShadowColor="@color/cardview_shadow_color"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="28">
 
         <LinearLayout
             android:id="@+id/mainLayout"

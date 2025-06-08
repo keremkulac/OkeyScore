@@ -51,7 +51,6 @@
                     android:id="@+id/totalScorePlayer1Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Player 1" />
@@ -88,7 +87,6 @@
                     android:id="@+id/totalScorePlayer2Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Player 2" />
@@ -126,7 +124,6 @@
                     android:id="@+id/totalScorePlayer3Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Player 3" />
@@ -164,7 +161,6 @@
                     android:id="@+id/totalScorePlayer4Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Player 1" />
@@ -330,7 +326,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/penalty"
-                android:textColor="@android:color/white"
                 android:visibility="gone"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
