@@ -7,7 +7,7 @@
     <color name="primary_color">#23221F</color>
     <color name="separator_color">#45494A</color>
     <color name="button_text_color">#F6F6F8</color>
-    <color name="icon_color">#646E72</color>
+    <color name="icon_color">#455A64</color>
     <color name="searchview_text_color">#292F33</color>
     <color name="delete_color">#CA4F4F</color>
     <color name="snackbar_background_color">#4CAF50</color>
@@ -31,5 +31,7 @@
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>
     <color name="penalty_text_color">#CA4F4F</color>
-
+    <color name="single_game_cardview_background_color">#FFCDD2</color>
+    <color name="partner_game_cardview_background_color">#BBDEFB</color>
+    <color name="setting_cardview_background_color">#B0BEC5</color>
 </resources>

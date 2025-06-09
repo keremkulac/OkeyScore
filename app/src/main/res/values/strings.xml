@@ -11,11 +11,11 @@
     <string name="enter_player3_name" tools:ignore="MissingTranslation">3. oyuncu için isim giriniz</string>
     <string name="enter_player4_name" tools:ignore="MissingTranslation">4. oyuncu için isim giriniz</string>
     <string name="new_round" tools:ignore="MissingTranslation">Yeni Tur</string>
-    <string name="save_names" tools:ignore="MissingTranslation">İsimleri Kaydet</string>
+    <string name="save_names" tools:ignore="MissingTranslation">İsimleri kaydet</string>
     <string name="enter_team1_name" tools:ignore="MissingTranslation">1. takım için isim giriniz</string>
     <string name="enter_team2_name" tools:ignore="MissingTranslation">2. takım için isim giriniz</string>
-    <string name="partner_game" tools:ignore="MissingTranslation">Eşli Oyun Kayıt</string>
-    <string name="single_game" tools:ignore="MissingTranslation">Tekli Oyun Kayıt</string>
+    <string name="partner_game" tools:ignore="MissingTranslation">Eşli oyun</string>
+    <string name="single_game" tools:ignore="MissingTranslation">Tekli oyun</string>
     <string name="successful" tools:ignore="MissingTranslation">Başarılı</string>
     <string name="show_differences" tools:ignore="MissingTranslation">Farkları gör</string>
     <string-array name="tablayoutTitleArray" tools:ignore="MissingTranslation">
@@ -88,4 +88,6 @@
     <string name="team_2_names_save_button_text" tools:ignore="MissingTranslation">Takım 2 kayıt</string>
     <string name="round_1_text" tools:ignore="MissingTranslation">Tur 1</string>
     <string name="team_total_score_text" tools:ignore="MissingTranslation">Toplam: %d</string>
+    <string name="player_scores_title" tools:ignore="MissingTranslation">Oyuncu Skorları</string>
+    <string name="team_scores_title" tools:ignore="MissingTranslation">Takım Skorları</string>
 </resources>

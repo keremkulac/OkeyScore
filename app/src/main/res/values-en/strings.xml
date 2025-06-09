@@ -8,12 +8,12 @@
     <string name="enter_player2_name">Enter name for player 2</string>
     <string name="enter_player3_name">Enter name for player 3</string>
     <string name="enter_player4_name">Enter name for player 4</string>
-    <string name="new_round">New Round</string>
-    <string name="save_names">Save Names</string>
+    <string name="new_round">New round</string>
+    <string name="save_names">Save names</string>
     <string name="enter_team1_name">Enter name for team 1</string>
     <string name="enter_team2_name">Enter name for team 2</string>
-    <string name="partner_game">Partner Game Registration</string>
-    <string name="single_game">Single Game Registration</string>
+    <string name="partner_game">Partner game</string>
+    <string name="single_game">Single game</string>
     <string name="successful">Successful</string>
     <string name="show_differences">Show differences</string>
     <string-array name="tablayoutTitleArray">
@@ -88,5 +88,7 @@
     <string name="team_2_names_save_button_text">Team 2 registration</string>
     <string name="round_1_text">Round 1</string>
     <string name="team_total_score_text">Total: %d</string>
+    <string name="player_scores_title">Player Scores</string>
+    <string name="team_scores_title">Team Scores</string>
 
 </resources>
