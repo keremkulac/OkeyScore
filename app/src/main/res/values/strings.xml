@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">101 Okey Yazboz</string>
     <string name="tag" translatable="false">Tag</string>
     <string name="date" tools:ignore="MissingTranslation">Tarih</string>
-    <string name="save" tools:ignore="MissingTranslation">Kaydet</string>
+    <string name="save" tools:ignore="MissingTranslation">Oyunu kaydet</string>
     <string name="todo" tools:ignore="MissingTranslation">TODO</string>
     <string name="game_info" tools:ignore="MissingTranslation">Oyun bilgi</string>
     <string name="game_detail" tools:ignore="MissingTranslation">Oyun detay</string>
@@ -84,8 +84,8 @@
     <string name="create_partner_game_button_text" tools:ignore="MissingTranslation">Eşli oyun oluştur</string>
     <string name="create_single_game_button_text" tools:ignore="MissingTranslation">Tekli oyun oluştur</string>
     <string name="total_score_table_text" tools:ignore="MissingTranslation">Toplam skor tablosu</string>
-    <string name="team_1_names_save_button_text" tools:ignore="MissingTranslation">Takım 1 kayıt</string>
-    <string name="team_2_names_save_button_text" tools:ignore="MissingTranslation">Takım 2 kayıt</string>
+    <string name="team_1_names_save_button_text" tools:ignore="MissingTranslation">1. takım kayıt</string>
+    <string name="team_2_names_save_button_text" tools:ignore="MissingTranslation">2. takım kayıt</string>
     <string name="round_1_text" tools:ignore="MissingTranslation">Tur 1</string>
     <string name="team_total_score_text" tools:ignore="MissingTranslation">Toplam: %d</string>
     <string name="player_scores_title" tools:ignore="MissingTranslation">Oyuncu Skorları</string>

@@ -7,20 +7,126 @@
     tools:context=".presentation.ui.saveSingleGame.SaveSingleGameFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/playerTotalScoreCardView"
+        android:id="@+id/playerNameEntryCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="25dp"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
         app:cardBackgroundColor="@color/cardview_background_color"
         app:cardCornerRadius="20dp"
-        app:cardElevation="2dp"
-        android:visibility="gone"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="28">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/player1NameEntryHint"
+                style="@style/SingleGameTextInputLayoutStyle"
+                android:hint="@string/enter_player1_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/player1NameEntry"
+                    style="@style/SingleGameTextInputEditTextStyle"
+                    android:inputType="text"
+                    android:maxLength="21" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/player2NameEntryHint"
+                style="@style/SingleGameTextInputLayoutStyle"
+                android:hint="@string/enter_player2_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player1NameEntryHint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/player2NameEntry"
+                    style="@style/SingleGameTextInputEditTextStyle"
+                    android:inputType="text"
+                    android:maxLength="21" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/player3NameEntryHint"
+                style="@style/SingleGameTextInputLayoutStyle"
+                android:hint="@string/enter_player3_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player2NameEntryHint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/player3NameEntry"
+                    style="@style/SingleGameTextInputEditTextStyle"
+                    android:inputType="text"
+                    android:maxLength="21" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/player4NameEntryHint"
+                style="@style/SingleGameTextInputLayoutStyle"
+                android:hint="@string/enter_player4_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player3NameEntryHint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/player4NameEntry"
+                    style="@style/SingleGameTextInputEditTextStyle"
+                    android:inputType="text"
+                    android:maxLength="21" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/confirmNames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save_names"
+                android:textAllCaps="false"
+                android:visibility="visible"
+                app:cornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/player4NameEntryHint" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/playerScoresTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/player_scores_title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerNameEntryCardView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/playerTotalScoreCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:outlineSpotShadowColor="@color/cardview_shadow_color"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/cardview_background_color"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerScoresTitle"
         tools:targetApi="28">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,10 +165,10 @@
                     android:id="@+id/player1TotalScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/default_total_score_value"
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="490" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,10 +201,10 @@
                     android:id="@+id/player2TotalScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/default_total_score_value"
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="490" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -132,10 +238,10 @@
                     android:id="@+id/player3TotalScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/default_total_score_value"
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="490" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -169,10 +275,10 @@
                     android:id="@+id/player4TotalScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/default_total_score_value"
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="490" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
@@ -183,165 +289,178 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:id="@+id/scrollView"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerTotalScoreCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/playerNameEntryCardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/cardview_background_color"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player1NameEntryHint"
-                        style="@style/SingleGameTextInputLayoutStyle"
-                        android:hint="@string/enter_player1_name"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player1NameEntry"
-                            style="@style/SingleGameTextInputEditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="21" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player2NameEntryHint"
-                        style="@style/SingleGameTextInputLayoutStyle"
-                        android:hint="@string/enter_player2_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/player1NameEntryHint">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player2NameEntry"
-                            style="@style/SingleGameTextInputEditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="21" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player3NameEntryHint"
-                        style="@style/SingleGameTextInputLayoutStyle"
-                        android:hint="@string/enter_player3_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/player2NameEntryHint">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player3NameEntry"
-                            style="@style/SingleGameTextInputEditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="21" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/player4NameEntryHint"
-                        style="@style/SingleGameTextInputLayoutStyle"
-                        android:hint="@string/enter_player4_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/player3NameEntryHint">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/player4NameEntry"
-                            style="@style/SingleGameTextInputEditTextStyle"
-                            android:inputType="text"
-                            android:maxLength="21" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/confirmNames"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/save_names"
-                        android:textAllCaps="false"
-                        android:visibility="visible"
-                        app:cornerRadius="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/player4NameEntryHint" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/scoreEntryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/score_entry_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/playerNameEntryCardView" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <LinearLayout
                 android:id="@+id/scoreLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+                app:layout_constraintTop_toBottomOf="@id/scoreEntryTitle" />
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.cardview.widget.CardView
                 android:id="@+id/newRound"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/new_round"
-                android:visibility="gone"
-                app:cornerRadius="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:outlineSpotShadowColor="@color/cardview_shadow_color"
+                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:layout_constraintEnd_toStartOf="@+id/penalty"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
+                tools:targetApi="28">
 
-            <com.google.android.material.button.MaterialButton
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icon1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/header_icon_style"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/new_round"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/icon1"
+                        app:layout_constraintStart_toStartOf="@id/icon1"
+                        app:layout_constraintTop_toBottomOf="@+id/icon1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/penalty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/penalty"
-                android:visibility="gone"
-                app:cornerRadius="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:outlineSpotShadowColor="@color/cardview_shadow_color"
+                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/newRound"
-                app:layout_constraintTop_toBottomOf="@+id/scoreLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
+                tools:targetApi="28">
 
-            <com.google.android.material.button.MaterialButton
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icon2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/header_icon_style"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_penalty"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/penalty"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/icon2"
+                        app:layout_constraintStart_toStartOf="@id/icon2"
+                        app:layout_constraintTop_toBottomOf="@+id/icon2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/saveScores"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/save"
-                android:visibility="gone"
-                app:cornerRadius="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:outlineSpotShadowColor="@color/cardview_shadow_color"
+                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newRound" />
+                app:layout_constraintTop_toBottomOf="@+id/newRound"
+                tools:targetApi="28">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icon3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/header_icon_style"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_save"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/save"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/icon3"
+                        app:layout_constraintStart_toStartOf="@id/icon3"
+                        app:layout_constraintTop_toBottomOf="@+id/icon3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

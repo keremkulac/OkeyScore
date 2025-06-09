@@ -160,12 +160,9 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
                 if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
                     createPenaltyHashMap()
                     playerNameEntryCardView.visibility = View.GONE
+                    playerScoresTitle.visibility = View.VISIBLE
                     playerTotalScoreCardView.visibility = View.VISIBLE
-                    title.visibility = View.VISIBLE
-                    scoreLayout.visibility = View.VISIBLE
-                    newRound.visibility = View.VISIBLE
-                    penalty.visibility = View.VISIBLE
-                    saveScores.visibility = View.VISIBLE
+                    scrollView.visibility = View.VISIBLE
                     createNewLine(layoutInflater)
                     setupTotalScorePlayerNames()
                 }
@@ -349,41 +346,47 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
 
     private fun saveFinishedGame() {
         binding.saveScores.setOnClickListener {
-            CustomDialog.showConfirmationDialog(
-                requireContext(),
-                requireContext().getString(R.string.confirmation_title),
-                requireContext().getString(R.string.confirmation_message),
-                requireContext().getString(R.string.confirmation_yes),
-                requireContext().getString(R.string.confirmation_no)
-            ) {
-                val players = (0 until 4).map { index ->
-                    val name = playerNames[index]
-                    val totalScore = totalScores[index].toString()
-                    val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
-                    val penalties = allPlayerPenaltyTextViewList[index].map {
-                        it.text.toString()
-                            .split(requireContext().getString(R.string.penalty_text))
-                            .getOrNull(1)?.trim() ?: "0"
-                    }
-                    Player(
-                        id = index,
-                        name = name,
-                        allScores = scores,
-                        totalScore = totalScore,
-                        penalties = penalties
-                    )
-                }
-                val finishedGame = FinishedSingleGame(
-                    id = 0,
-                    player1 = players.getOrNull(0),
-                    player2 = players.getOrNull(1),
-                    player3 = players.getOrNull(2),
-                    player4 = players.getOrNull(3),
-                    gameInfo = viewModel.createInfo(players, requireContext())
+            if (viewModel.checkAllRoundScoreFilled(
+                    allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
+                    lineCount - 1
                 )
-                viewModel.saveFinishedGame(finishedGame)
+            ) {
+                CustomDialog.showConfirmationDialog(
+                    requireContext(),
+                    requireContext().getString(R.string.confirmation_title),
+                    requireContext().getString(R.string.confirmation_message),
+                    requireContext().getString(R.string.confirmation_yes),
+                    requireContext().getString(R.string.confirmation_no)
+                ) {
+                    val players = (0 until 4).map { index ->
+                        val name = playerNames[index]
+                        val totalScore = totalScores[index].toString()
+                        val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
+                        val penalties = allPlayerPenaltyTextViewList[index].map {
+                            it.text.toString()
+                                .split(requireContext().getString(R.string.penalty_text))
+                                .getOrNull(1)?.trim() ?: "0"
+                        }
+                        Player(
+                            id = index,
+                            name = name,
+                            allScores = scores,
+                            totalScore = totalScore,
+                            penalties = penalties
+                        )
+                    }
+                    val finishedGame = FinishedSingleGame(
+                        id = 0,
+                        player1 = players.getOrNull(0),
+                        player2 = players.getOrNull(1),
+                        player3 = players.getOrNull(2),
+                        player4 = players.getOrNull(3),
+                        gameInfo = viewModel.createInfo(players, requireContext())
+                    )
+                    viewModel.saveFinishedGame(finishedGame)
+                    findNavController().navigate(SaveSingleGameFragmentDirections.actionSaveSingleGameFragmentToChooseGameFragment())
+                }
             }
-
         }
     }
 

@@ -175,17 +175,13 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
                     createPenaltyHashMap()
                     team2EntryCardView.visibility = View.GONE
                     teamScoreCardView.visibility = View.VISIBLE
-                    title.visibility = View.VISIBLE
-                    scoreLayout.visibility = View.VISIBLE
-                    newRound.visibility = View.VISIBLE
-                    penalty.visibility = View.VISIBLE
-                    saveScores.visibility = View.VISIBLE
+                    scoreEntryTitle.visibility = View.VISIBLE
+                    scrollView.visibility = View.VISIBLE
                     createNewLine(layoutInflater)
                     setupTotalScorePlayerNames()
                 }
             }
         }
-
     }
 
     private fun confirmTeam1Names() {
@@ -411,45 +407,53 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
 
     private fun saveFinishedGame() {
         binding.saveScores.setOnClickListener {
-            CustomDialog.showConfirmationDialog(
-                requireContext(),
-                requireContext().getString(R.string.confirmation_title),
-                requireContext().getString(R.string.confirmation_message),
-                requireContext().getString(R.string.confirmation_yes),
-                requireContext().getString(R.string.confirmation_no)
-            ) {
-                val players = (0 until 4).map { index ->
-                    val name = playerNames[index]
-                    val totalScore = totalScores[index].toString()
-                    val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
-                    val penalties = allPlayerPenaltyTextViewList[index].map {
-                        it.text.toString()
-                            .split(requireContext().getString(R.string.penalty_text))
-                            .getOrNull(1)?.trim() ?: "0"
-                    }
-                    Player(
-                        id = index,
-                        name = name,
-                        allScores = scores,
-                        totalScore = totalScore,
-                        penalties = penalties
-                    )
-                }
-                val finishedPartnerGame = FinishedPartnerGame(
-                    id = 0,
-                    team1Name = binding.team1Name.text.toString(),
-                    team2Name = binding.team2Name.text.toString(),
-                    team1TotalScore = binding.team1TotalScore.text.toString().split(" ")[1].toInt(),
-                    team2TotalScore = binding.team2TotalScore.text.toString().split(" ")[1].toInt(),
-                    team1Player1 = players.getOrNull(0),
-                    team1Player2 = players.getOrNull(1),
-                    team2Player1 = players.getOrNull(2),
-                    team2Player2 = players.getOrNull(3),
-                    gameInfo = viewModel.createInfo(players, teamNames, requireContext())
+            if (viewModel.checkAllRoundScoreFilled(
+                    allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
+                    lineCount - 1
                 )
-                viewModel.savePartnerGame(finishedPartnerGame)
+            ) {
+                CustomDialog.showConfirmationDialog(
+                    requireContext(),
+                    requireContext().getString(R.string.confirmation_title),
+                    requireContext().getString(R.string.confirmation_message),
+                    requireContext().getString(R.string.confirmation_yes),
+                    requireContext().getString(R.string.confirmation_no)
+                ) {
+                    val players = (0 until 4).map { index ->
+                        val name = playerNames[index]
+                        val totalScore = totalScores[index].toString()
+                        val scores = allPlayerScoreEditTextList[index].map { it.text.toString() }
+                        val penalties = allPlayerPenaltyTextViewList[index].map {
+                            it.text.toString()
+                                .split(requireContext().getString(R.string.penalty_text))
+                                .getOrNull(1)?.trim() ?: "0"
+                        }
+                        Player(
+                            id = index,
+                            name = name,
+                            allScores = scores,
+                            totalScore = totalScore,
+                            penalties = penalties
+                        )
+                    }
+                    val finishedPartnerGame = FinishedPartnerGame(
+                        id = 0,
+                        team1Name = binding.team1Name.text.toString(),
+                        team2Name = binding.team2Name.text.toString(),
+                        team1TotalScore = binding.team1TotalScore.text.toString()
+                            .split(" ")[1].toInt(),
+                        team2TotalScore = binding.team2TotalScore.text.toString()
+                            .split(" ")[1].toInt(),
+                        team1Player1 = players.getOrNull(0),
+                        team1Player2 = players.getOrNull(1),
+                        team2Player1 = players.getOrNull(2),
+                        team2Player2 = players.getOrNull(3),
+                        gameInfo = viewModel.createInfo(players, teamNames, requireContext())
+                    )
+                    viewModel.savePartnerGame(finishedPartnerGame)
+                    findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
+                }
             }
-
         }
     }
 
