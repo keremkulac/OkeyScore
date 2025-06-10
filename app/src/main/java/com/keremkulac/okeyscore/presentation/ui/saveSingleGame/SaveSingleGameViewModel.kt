@@ -35,20 +35,32 @@ class SaveSingleGameViewModel @Inject constructor(
         }
     }
 
-    fun checkPlayerNames(playerNames: List<String>): Boolean {
-        return inputValidation.isAllUsernamesFilled(playerNames) { message ->
+    fun checkPlayerNames(
+        playerNames: List<String>,
+        errorMessage: String,
+    ): Boolean {
+        return inputValidation.isAllUsernamesFilled(playerNames, errorMessage) { message ->
             _validationMessage.value = message
         }
     }
 
-    fun sameNamesCheck(playerNames: List<String>): Boolean {
-        return inputValidation.checkSamePlayerNames(playerNames) { message ->
+    fun sameNamesCheck(
+        playerNames: List<String>,
+        errorMessage: String
+    ): Boolean {
+        return inputValidation.checkSamePlayerNames(playerNames, errorMessage) { message ->
             _validationMessage.value = message
         }
     }
 
-    fun checkAllRoundScoreFilled(roundScores: List<EditText>, lineCount: Int): Boolean {
-        return inputValidation.isAllRoundFieldsFilled(roundScores, lineCount) { message ->
+    fun checkAllRoundScoreFilled(
+        roundScores: List<EditText>,
+        errorMessageTemplate: String
+    ): Boolean {
+        return inputValidation.isAllRoundFieldsFilled(
+            roundScores,
+            errorMessageTemplate
+        ) { message ->
             _validationMessage.value = message
         }
     }

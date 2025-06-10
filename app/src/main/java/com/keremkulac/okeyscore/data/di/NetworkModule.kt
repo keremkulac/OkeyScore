@@ -74,10 +74,4 @@ object NetworkModule {
         return context
     }
 
-    @Provides
-    @Singleton
-    fun provideInputValidation(context: Context): InputValidation {
-        return InputValidation(context)
-    }
-
 }

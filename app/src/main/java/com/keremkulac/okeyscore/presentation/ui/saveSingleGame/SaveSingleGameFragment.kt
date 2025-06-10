@@ -94,7 +94,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         binding.newRound.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
-                    lineCount - 1
+                    getString(R.string.warning_check_all_rounds).format(lineCount-1)
                 )
             ) {
                 expandableLayoutManager.expandLayout(scoreContainer, icon)
@@ -157,7 +157,14 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         binding.apply {
             confirmNames.setOnClickListener {
                 createPlayerNames()
-                if (viewModel.checkPlayerNames(playerNames) && viewModel.sameNamesCheck(playerNames)) {
+                if (viewModel.checkPlayerNames(
+                        playerNames,
+                        getString(R.string.validation_message_fill_all_player_names)
+                    ) && viewModel.sameNamesCheck(
+                        playerNames,
+                        getString(R.string.validation_message_check_same_player_names)
+                    )
+                ) {
                     createPenaltyHashMap()
                     playerNameEntryCardView.visibility = View.GONE
                     playerScoresTitle.visibility = View.VISIBLE
@@ -348,7 +355,7 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
         binding.saveScores.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
-                    lineCount - 1
+                    getString(R.string.warning_check_all_rounds).format(lineCount-1)
                 )
             ) {
                 CustomDialog.showConfirmationDialog(

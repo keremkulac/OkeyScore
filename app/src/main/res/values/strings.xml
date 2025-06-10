@@ -44,7 +44,7 @@
     <string name="warning_check_all_rounds" tools:ignore="MissingTranslation">Lütfen %d. turdaki tüm alanları doldurun.</string>
     <string name="warning_select_player_penalised" tools:ignore="MissingTranslation">Lütfen ceza eklenecek oyuncuyu seçiniz.</string>
     <string name="warning_check_team_names" tools:ignore="MissingTranslation">Takım adı boş olamaz!</string>
-    <string name="warning_same_players_names" tools:ignore="MissingTranslation">Players names cannot be the same!</string>
+    <string name="warning_same_players_names" tools:ignore="MissingTranslation">Oyuncu isimleri aynı olamaz, lütfen kontrol ediniz!</string>
     <string name="warning_check_team_player_1_name" tools:ignore="MissingTranslation">1. Oyuncu adı boş olamaz!</string>
     <string name="warning_check_team_player_2_name" tools:ignore="MissingTranslation">2. Oyuncu adı boş olamaz!</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>

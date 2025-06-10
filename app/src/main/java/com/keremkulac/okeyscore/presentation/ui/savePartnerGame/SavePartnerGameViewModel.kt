@@ -36,14 +36,23 @@ class SavePartnerGameViewModel
         }
     }
 
-    fun sameNamesCheck(playerNames: List<String>): Boolean {
-        return inputValidation.checkSamePlayerNames(playerNames) { message ->
+    fun sameNamesCheck(
+        playerNames: List<String>,
+        errorMessage: String
+    ): Boolean {
+        return inputValidation.checkSamePlayerNames(playerNames, errorMessage) { message ->
             _validationMessage.value = message
         }
     }
 
-    fun checkAllRoundScoreFilled(roundScores: List<EditText>, lineCount: Int): Boolean {
-        return inputValidation.isAllRoundFieldsFilled(roundScores, lineCount) { message ->
+    fun checkAllRoundScoreFilled(
+        roundScores: List<EditText>,
+        errorMessageTemplate: String
+    ): Boolean {
+        return inputValidation.isAllRoundFieldsFilled(
+            roundScores,
+            errorMessageTemplate
+        ) { message ->
             _validationMessage.value = message
         }
     }
@@ -51,13 +60,20 @@ class SavePartnerGameViewModel
     fun checkTeamAndPlayerNames(
         teamName: String,
         player1Name: String,
-        player2Name: String
+        player2Name: String,
+        errorTeamName: String,
+        errorPlayer1Name: String,
+        errorPlayer2Name: String,
+        errorSameNames: String,
     ): Boolean {
         return inputValidation.teamAndPlayerNamesValidation(
             teamName,
             player1Name,
-            player2Name
-        ) { message ->
+            player2Name,
+            errorTeamName,
+            errorPlayer1Name,
+            errorPlayer2Name,
+            errorSameNames) { message ->
             _validationMessage.value = message
         }
     }

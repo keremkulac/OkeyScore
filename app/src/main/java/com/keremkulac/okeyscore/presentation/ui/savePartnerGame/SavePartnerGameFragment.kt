@@ -97,7 +97,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
         binding.newRound.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
-                    lineCount - 1
+                    getString(R.string.warning_check_all_rounds).format(lineCount-1)
                 )
             ) {
                 expandableLayoutManager.expandLayout(scoreContainer, icon)
@@ -167,8 +167,15 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
                 if (viewModel.checkTeamAndPlayerNames(
                         binding.team2NameEntry.text.toString(),
                         binding.team2Player1NameEntry.text.toString(),
-                        binding.team2Player2NameEntry.text.toString()
-                    ) && viewModel.sameNamesCheck(playerNames)
+                        binding.team2Player2NameEntry.text.toString(),
+                        getString(R.string.warning_check_team_names),
+                        getString(R.string.warning_check_team_player_1_name),
+                        getString(R.string.warning_check_team_player_2_name),
+                        getString(R.string.warning_same_players_names)
+                    ) && viewModel.sameNamesCheck(
+                        playerNames,
+                        getString(R.string.validation_message_check_same_player_names)
+                    )
                 ) {
                     createTeamNames()
                     createPlayerNames()
@@ -189,7 +196,11 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
             if (viewModel.checkTeamAndPlayerNames(
                     binding.team1NameEntry.text.toString(),
                     binding.team1Player1NameEntry.text.toString(),
-                    binding.team1Player2NameEntry.text.toString()
+                    binding.team1Player2NameEntry.text.toString(),
+                    getString(R.string.warning_check_team_names),
+                    getString(R.string.warning_check_team_player_1_name),
+                    getString(R.string.warning_check_team_player_2_name),
+                    getString(R.string.warning_same_players_names)
                 )
             ) {
                 confirmTeam2Names()
@@ -409,7 +420,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
         binding.saveScores.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
-                    lineCount - 1
+                    getString(R.string.warning_check_all_rounds).format(lineCount - 1)
                 )
             ) {
                 CustomDialog.showConfirmationDialog(
