@@ -74,21 +74,15 @@
     <string name="validation_message_check_same_player_names">Please check the names, they cannot be the same name</string>
     <string name="round_count">Round %d</string>
     <string name="default_total_score_value">0</string>
-    <string name="player1_title">Player 1</string>
-    <string name="score_title">Score</string>
-    <string name="player2_title">Player 2</string>
-    <string name="player3_title">Player 3</string>
-    <string name="player4_title">Player 4</string>
     <string name="score_entry_title">Score Entry</string>
 
     <string name="create_partner_game_button_text">Create a partner game</string>
     <string name="create_single_game_button_text">Create a single game</string>
-    <string name="total_score_table_text">Total score table</string>
     <string name="team_1_names_save_button_text">1st team registration</string>
     <string name="team_2_names_save_button_text">2nd team registration</string>
     <string name="round_1_text">Round 1</string>
     <string name="team_total_score_text">Total: %d</string>
     <string name="player_scores_title">Player Scores</string>
     <string name="team_scores_title">Team Scores</string>
-
+    <string name="splash_logo_text">Loading%s</string>
 </resources>

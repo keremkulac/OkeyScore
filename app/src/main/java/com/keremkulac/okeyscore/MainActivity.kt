@@ -78,6 +78,10 @@ class MainActivity : AppCompatActivity() {
                     bottomNavigationView.visibility = View.GONE
                 }
 
+                R.id.splashFragment -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
+
                 R.id.savePartnerGameFragment -> bottomNavigationView.visibility = View.GONE
                 R.id.saveSingleGameFragment -> bottomNavigationView.visibility = View.GONE
 
