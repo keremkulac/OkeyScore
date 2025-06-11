@@ -96,7 +96,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun goToChooseGameFragment(){
-        binding.goToChooseGameFragment.setOnClickListener{
+        binding.toolbar.setNavigationOnClickListener{
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToChooseGameFragment())
         }
     }

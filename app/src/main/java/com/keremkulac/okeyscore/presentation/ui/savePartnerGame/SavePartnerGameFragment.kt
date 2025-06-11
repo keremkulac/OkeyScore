@@ -59,6 +59,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
         saveFinishedGame()
         observeValidation()
         handleOnBackPressed()
+        toolbarBackButtonClick()
     }
 
     private fun createNewLine(inflater: LayoutInflater) {
@@ -97,7 +98,7 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
         binding.newRound.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
-                    getString(R.string.warning_check_all_rounds).format(lineCount-1)
+                    getString(R.string.warning_check_all_rounds).format(lineCount - 1)
                 )
             ) {
                 expandableLayoutManager.expandLayout(scoreContainer, icon)
@@ -479,19 +480,28 @@ class SavePartnerGameFragment : Fragment(R.layout.fragment_save_partner_game) {
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    CustomDialog.showConfirmationDialog(
-                        requireContext(),
-                        requireContext().getString(R.string.exit_confirmation_title),
-                        requireContext().getString(R.string.exit_confirmation_message),
-                        requireContext().getString(R.string.exit_confirmation_yes),
-                        requireContext().getString(R.string.exit_confirmation_no),
-                        onPositiveClick = {
-                            findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
-                        }
-                    )
+                    backChooseGameFragment()
                 }
             }
         )
     }
 
+    private fun backChooseGameFragment() {
+        CustomDialog.showConfirmationDialog(
+            requireContext(),
+            requireContext().getString(R.string.exit_confirmation_title),
+            requireContext().getString(R.string.exit_confirmation_message),
+            requireContext().getString(R.string.exit_confirmation_yes),
+            requireContext().getString(R.string.exit_confirmation_no),
+            onPositiveClick = {
+                findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
+            }
+        )
+    }
+
+    private fun toolbarBackButtonClick() {
+        binding.toolbar.setNavigationOnClickListener {
+            backChooseGameFragment()
+        }
+    }
 }

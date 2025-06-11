@@ -6,17 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.saveSingleGame.SaveSingleGameFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/single_game" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/playerNameEntryCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="visible"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
         app:cardBackgroundColor="@color/cardview_background_color"
         app:cardCornerRadius="20dp"
-        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:targetApi="28">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,19 +110,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/playerScoresTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/player_scores_title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerNameEntryCardView" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/playerTotalScoreCardView"
         android:layout_width="match_parent"
@@ -126,7 +124,7 @@
         app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerScoresTitle"
+        app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="28">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,16 +133,29 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
+            <TextView
+                android:id="@+id/playerScoresTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_scores_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:id="@+id/player1Layout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@+id/player2Layout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerScoresTitle"
                 tools:layout_editor_absoluteY="84dp">
 
                 <ImageView
@@ -180,8 +191,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@+id/player3Layout"
                 app:layout_constraintStart_toEndOf="@+id/player1Layout"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteY="84dp">
+                app:layout_constraintTop_toTopOf="@+id/player1Layout">
 
                 <ImageView
                     android:layout_width="48dp"
@@ -217,8 +227,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@+id/player4Layout"
                 app:layout_constraintStart_toEndOf="@+id/player2Layout"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteY="84dp">
+                app:layout_constraintTop_toTopOf="@+id/player1Layout">
 
                 <ImageView
                     android:layout_width="48dp"
@@ -254,8 +263,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/player3Layout"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteY="84dp">
+                app:layout_constraintTop_toTopOf="@+id/player1Layout">
 
                 <ImageView
                     android:layout_width="48dp"
@@ -286,10 +294,10 @@
     </androidx.cardview.widget.CardView>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:id="@+id/scrollView"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -311,7 +319,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/scoreLayout"
@@ -341,10 +349,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="8dp">
 
                     <ImageView
-                        android:id="@+id/icon1"
+                        android:id="@+id/newRoundIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/header_icon_style"
@@ -357,13 +365,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/new_round"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/icon1"
-                        app:layout_constraintStart_toStartOf="@id/icon1"
-                        app:layout_constraintTop_toBottomOf="@+id/icon1" />
+                        app:layout_constraintEnd_toEndOf="@+id/newRoundIcon"
+                        app:layout_constraintStart_toStartOf="@id/newRoundIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/newRoundIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -387,15 +395,16 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="8dp">
 
                     <ImageView
-                        android:id="@+id/icon2"
+                        android:id="@+id/penaltyIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/ic_penalty"
+                        android:padding="3dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -403,13 +412,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/penalty"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/icon2"
-                        app:layout_constraintStart_toStartOf="@id/icon2"
-                        app:layout_constraintTop_toBottomOf="@+id/icon2" />
+                        app:layout_constraintEnd_toEndOf="@+id/penaltyIcon"
+                        app:layout_constraintStart_toStartOf="@id/penaltyIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/penaltyIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -435,10 +444,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="8dp">
 
                     <ImageView
-                        android:id="@+id/icon3"
+                        android:id="@+id/saveScoresIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/header_icon_style"
@@ -451,13 +460,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/save"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/icon3"
-                        app:layout_constraintStart_toStartOf="@id/icon3"
-                        app:layout_constraintTop_toBottomOf="@+id/icon3" />
+                        app:layout_constraintEnd_toEndOf="@+id/saveScoresIcon"
+                        app:layout_constraintStart_toStartOf="@id/saveScoresIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/saveScoresIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
