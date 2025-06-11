@@ -31,9 +31,9 @@
     <color name="settings_card_background_color">#F0F0F3</color>
     <color name="settings_card_divider_color">#666666</color>
     <color name="penalty_text_color">#CA4F4F</color>
-    <color name="single_game_cardview_background_color">#FFCDD2</color>
-    <color name="partner_game_cardview_background_color">#BBDEFB</color>
-    <color name="setting_cardview_background_color">#B0BEC5</color>
+    <color name="single_game_cardview_background_color">#FF5252</color>
+    <color name="partner_game_cardview_background_color">#448AFF</color>
+    <color name="setting_cardview_background_color">#90A4AE</color>
     <color name="shimmer_color">#C2C2C2</color>
 
 </resources>

@@ -2,7 +2,7 @@
 <resources>
     <color name="status_bar_color">#121212</color>
     <color name="fragment_status_bar_color">#C7E2B5</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#F6F6F8</color>
 
     <color name="primary_color">#F6F6F8</color>
     <color name="separator_color">#F6F6F8</color>
@@ -30,8 +30,8 @@
     <color name="settings_card_background_color">#1E1F22</color>
     <color name="settings_card_divider_color">#F6F6F8</color>
     <color name="penalty_text_color">#CA4F4F</color>
-    <color name="single_game_cardview_background_color">#EF9A9A</color>
-    <color name="partner_game_cardview_background_color">#90CAF9</color>
+    <color name="single_game_cardview_background_color">#FF5252</color>
+    <color name="partner_game_cardview_background_color">#448AFF</color>
     <color name="setting_cardview_background_color">#90A4AE</color>
     <color name="shimmer_color">#C2C2C2</color>
 
