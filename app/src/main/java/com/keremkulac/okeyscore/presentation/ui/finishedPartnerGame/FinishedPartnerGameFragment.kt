@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragmentDirections
 import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -27,8 +30,10 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
     private lateinit var binding: FragmentFinishedPartnerGameBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedPartnerGameBinding.bind(view)
+        setShimmer()
         observeAllFinishedGame()
         createPartnerGame()
         observeAllFinishedGame()
@@ -37,6 +42,15 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
         clickFinishedGame()
         search()
 
+    }
+
+    private fun setShimmer(){
+        binding.shimmerLayout.startShimmer()
+        lifecycleScope.launch {
+            delay(2000)
+            binding.shimmerLayout.stopShimmer()
+            binding.shimmerLayout.visibility = View.GONE
+        }
     }
 
     private fun setRecyclerView() {
@@ -56,7 +70,6 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
                 binding.createPartnerGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
             }
-
         }
     }
 

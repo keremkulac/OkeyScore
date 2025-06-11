@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragmentDirections
 import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -29,6 +32,7 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameBinding.bind(view)
+        setShimmer()
         observeAllFinishedGame()
         createSingleGame()
         observeAllFinishedGame()
@@ -38,6 +42,14 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
         search()
     }
 
+    private fun setShimmer(){
+        binding.shimmerLayout.startShimmer()
+        lifecycleScope.launch {
+            delay(2000)
+            binding.shimmerLayout.stopShimmer()
+            binding.shimmerLayout.visibility = View.GONE
+        }
+    }
 
     private fun setRecyclerView() {
         binding.finishedGameRecyclerView.layoutManager =

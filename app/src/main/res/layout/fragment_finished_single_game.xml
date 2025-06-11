@@ -22,6 +22,35 @@
         app:searchIcon="@drawable/ic_search"
         app:theme="@style/SearchViewStyle" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.32"
+        app:shimmer_duration="3000"
+        app:shimmer_intensity="0.7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_finished_game_item" />
+
+            <include layout="@layout/shimmer_finished_game_item" />
+
+            <include layout="@layout/shimmer_finished_game_item" />
+
+            <include layout="@layout/shimmer_finished_game_item" />
+
+            <include layout="@layout/shimmer_finished_game_item" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -30,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/shimmerLayout"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -46,10 +75,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:paddingHorizontal="32dp"
         android:background="@drawable/custom_button"
+        android:paddingHorizontal="32dp"
         android:text="@string/create_single_game_button_text"
         android:textAllCaps="false"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recordNotFoundImage" />
@@ -61,6 +91,7 @@
         android:layout_margin="8dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/illustration_no_data"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
