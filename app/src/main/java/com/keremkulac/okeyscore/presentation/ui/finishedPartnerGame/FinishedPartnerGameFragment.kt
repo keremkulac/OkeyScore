@@ -33,7 +33,6 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
 
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedPartnerGameBinding.bind(view)
-        setShimmer()
         observeAllFinishedGame()
         createPartnerGame()
         observeAllFinishedGame()
@@ -62,6 +61,7 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
     private fun observeAllFinishedGame() {
         viewModel.finishedPartnerGame.observe(viewLifecycleOwner) { finishedList ->
             if (finishedList.isNotEmpty()) {
+                setShimmer()
                 binding.createPartnerGame.visibility = View.GONE
                 binding.recordNotFoundImage.visibility = View.GONE
                 finishedPartnerGameAdapter.finishedPartnerGameLists = ArrayList(finishedList)
@@ -69,6 +69,7 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
             } else {
                 binding.createPartnerGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
+                binding.shimmerLayout.visibility = View.GONE
             }
         }
     }

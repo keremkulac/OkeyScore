@@ -32,7 +32,6 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFinishedSingleGameBinding.bind(view)
-        setShimmer()
         observeAllFinishedGame()
         createSingleGame()
         observeAllFinishedGame()
@@ -60,6 +59,7 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
     private fun observeAllFinishedGame() {
         viewModel.allFinishedSingleGames.observe(viewLifecycleOwner) { finishedSingleList ->
             if (finishedSingleList.isNotEmpty()) {
+                setShimmer()
                 binding.createSingleGame.visibility = View.GONE
                 binding.recordNotFoundImage.visibility = View.GONE
                 finishedSingleGameAdapter.finishedSingleGameLists = ArrayList(finishedSingleList)
@@ -68,8 +68,8 @@ class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_ga
             } else {
                 binding.createSingleGame.visibility = View.VISIBLE
                 binding.recordNotFoundImage.visibility = View.VISIBLE
+                binding.shimmerLayout.visibility = View.GONE
             }
-
         }
     }
 
