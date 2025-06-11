@@ -2,26 +2,24 @@ package com.keremkulac.okeyscore.presentation.ui.onboarding
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.content.edit
+import com.keremkulac.okeyscore.util.BaseFragment
 
 @AndroidEntryPoint
-class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
+class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>(
+    FragmentOnboardingBinding::inflate) {
 
-    private lateinit var binding : FragmentOnboardingBinding
     private val viewModel: OnboardingViewModel by viewModels()
     private lateinit var sharedPreferences : SharedPreferences
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentOnboardingBinding.bind(view)
         sharedPreferences = requireActivity().getSharedPreferences("isOnboardingCompleted", AppCompatActivity.MODE_PRIVATE)
         checkIsOnboardingCompleted()
         setOnboardingAdapter()

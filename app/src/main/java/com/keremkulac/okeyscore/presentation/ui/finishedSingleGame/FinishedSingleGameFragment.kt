@@ -1,7 +1,6 @@
 package com.keremkulac.okeyscore.presentation.ui.finishedSingleGame
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -14,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragmentDirections
+import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -21,17 +21,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FinishedSingleGameFragment : Fragment(R.layout.fragment_finished_single_game) {
+class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBinding>(
+    FragmentFinishedSingleGameBinding::inflate) {
 
     @Inject
     lateinit var finishedSingleGameAdapter: FinishedSingleGameAdapter
     private val viewModel: FinishedSingleGameViewModel by viewModels()
-    private lateinit var binding: FragmentFinishedSingleGameBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFinishedSingleGameBinding.bind(view)
         observeAllFinishedGame()
         createSingleGame()
         observeAllFinishedGame()

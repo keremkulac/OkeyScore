@@ -3,7 +3,6 @@ package com.keremkulac.okeyscore.presentation.ui.saveSingleGame
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
@@ -21,6 +20,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Player
+import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.CustomDialog
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
@@ -30,8 +30,8 @@ import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
-    private lateinit var binding: FragmentSaveSingleGameBinding
+class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
+    FragmentSaveSingleGameBinding::inflate){
     private val viewModel: SaveSingleGameViewModel by viewModels()
     private var lineCount = 1
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
@@ -47,7 +47,6 @@ class SaveSingleGameFragment : Fragment(R.layout.fragment_save_single_game) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSaveSingleGameBinding.bind(view)
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
         createPlayerScores()

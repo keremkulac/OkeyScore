@@ -1,7 +1,6 @@
 package com.keremkulac.okeyscore.presentation.ui.settings
 
 import  android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -12,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.MainActivity
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSettingsBinding
+import com.keremkulac.okeyscore.util.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import com.keremkulac.okeyscore.util.translateEN
@@ -22,16 +22,15 @@ import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SettingsFragment : Fragment(R.layout.fragment_settings) {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
+    FragmentSettingsBinding::inflate) {
 
     @Inject
     lateinit var sharedPrefHelper: SharedPrefHelper
     private val viewModel: SettingsViewModel by viewModels()
-    private lateinit var binding : FragmentSettingsBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSettingsBinding.bind(view)
         checkNightMode()
         checkThemeSwitch()
         selectLanguage()

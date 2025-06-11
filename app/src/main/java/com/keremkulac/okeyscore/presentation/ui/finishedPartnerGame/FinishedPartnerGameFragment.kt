@@ -3,7 +3,6 @@ package com.keremkulac.okeyscore.presentation.ui.finishedPartnerGame
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragmentDirections
+import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -22,17 +22,15 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_game) {
+class FinishedPartnerGameFragment :
+    BaseFragment<FragmentFinishedPartnerGameBinding>(FragmentFinishedPartnerGameBinding::inflate) {
 
     @Inject
     lateinit var finishedPartnerGameAdapter: FinishedPartnerGameAdapter
     private val viewModel: FinishedPartnerGameViewModel by viewModels()
-    private lateinit var binding: FragmentFinishedPartnerGameBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFinishedPartnerGameBinding.bind(view)
         observeAllFinishedGame()
         createPartnerGame()
         observeAllFinishedGame()
@@ -40,10 +38,9 @@ class FinishedPartnerGameFragment : Fragment(R.layout.fragment_finished_partner_
         deleteItemDatabase()
         clickFinishedGame()
         search()
-
     }
 
-    private fun setShimmer(){
+    private fun setShimmer() {
         binding.shimmerLayout.startShimmer()
         lifecycleScope.launch {
             delay(2000)

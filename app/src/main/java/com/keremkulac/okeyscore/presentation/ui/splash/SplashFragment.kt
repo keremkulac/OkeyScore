@@ -2,7 +2,6 @@ package com.keremkulac.okeyscore.presentation.ui.splash
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.animation.BounceInterpolator
 import android.view.animation.OvershootInterpolator
@@ -10,16 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSplashBinding
+import com.keremkulac.okeyscore.util.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SplashFragment : Fragment(R.layout.fragment_splash) {
-    private lateinit var binding: FragmentSplashBinding
+class SplashFragment : BaseFragment<FragmentSplashBinding>(
+    FragmentSplashBinding::inflate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSplashBinding.bind(view)
         startAnimations()
         scheduleNavigation()
     }
@@ -74,7 +73,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private fun animateLoadingDots() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             var dotCount = 0
             while (true) {
                 val dots = ".".repeat(dotCount % 4)

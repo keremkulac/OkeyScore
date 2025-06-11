@@ -3,13 +3,13 @@ package com.keremkulac.okeyscore.presentation.ui.finishedPartnerGameDetail
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
+import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
@@ -17,9 +17,9 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_partner_game_detail) {
+class FinishedPartnerGameDetailFragment
+    : BaseFragment<FragmentFinishedPartnerGameDetailBinding>(FragmentFinishedPartnerGameDetailBinding::inflate) {
 
-    private lateinit var binding: FragmentFinishedPartnerGameDetailBinding
     private val viewModel: FinishedPartnerGameDetailViewModel by viewModels()
 
     @Inject
@@ -28,7 +28,6 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFinishedPartnerGameDetailBinding.bind(view)
         expandableLayoutManager = ExpandableLayoutManager()
         goToFinishedGameViewFragment()
         getAndSetFinishedGames()
@@ -56,13 +55,14 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
         }
     }
 
-
     private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame) {
         binding.apply {
             team1Name.text = (finishedPartnerGame.team1Name)
             team2Name.text = (finishedPartnerGame.team2Name)
-            team1TotalScore.text = getString(R.string.team_total_score_text).format( finishedPartnerGame.team1TotalScore)
-            team2TotalScore.text = getString(R.string.team_total_score_text).format( finishedPartnerGame.team2TotalScore)
+            team1TotalScore.text =
+                getString(R.string.team_total_score_text).format(finishedPartnerGame.team1TotalScore)
+            team2TotalScore.text =
+                getString(R.string.team_total_score_text).format(finishedPartnerGame.team2TotalScore)
             finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
             roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
             roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -84,15 +84,14 @@ class FinishedPartnerGameDetailFragment : Fragment(R.layout.fragment_finished_pa
             val matcher = pattern.matcher(finishedPartnerGame.gameInfo.gameInfo)
             if (matcher.find()) {
                 gameDetail.text =
-                    requireContext().getString(R.string.winning_team_info_text)
+                    requireContext().getString(R.string.winning_team_info_text2)
                         .format(matcher.group(1), matcher.group(2))
             } else {
                 gameDetail.text =
-                    requireContext().getString(R.string.winning_team_info_text)
+                    requireContext().getString(R.string.winning_team_info_text2)
                         .format(infoItems[0], infoItems[1])
             }
         }
-
     }
 
     private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame) {
