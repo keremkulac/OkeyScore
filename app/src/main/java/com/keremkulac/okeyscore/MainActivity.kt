@@ -106,6 +106,9 @@ class MainActivity : AppCompatActivity() {
             if (item.itemId == R.id.menu_history) {
                 item.setTitle(getString(R.string.history))
             }
+            if (item.itemId == R.id.menu_settings){
+                item.setTitle(getString(R.string.settings))
+            }
         }
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -119,6 +122,9 @@ class MainActivity : AppCompatActivity() {
                             "single"
                         )
                     )
+                }
+                R.id.menu_settings -> {
+                    navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToSettingsFragment())
                 }
             }
             true

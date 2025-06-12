@@ -114,6 +114,9 @@
     <action
         android:id="@+id/action_mainActivity_to_chooseGameFragment"
         app:destination="@id/chooseGameFragment" />
+    <action
+        android:id="@+id/action_mainActivity_to_settingsFragment"
+        app:destination="@id/settingsFragment" />
     <fragment
         android:id="@+id/onboardingFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.onboarding.OnboardingFragment"
