@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import com.keremkulac.okeyscore.R
 
 fun Context.toast(message: String,iconID : Int) {
@@ -27,4 +29,10 @@ fun Context.toast(message: String,iconID : Int) {
 
 fun Context.dpToPx(dp: Int): Int {
     return (dp * resources.displayMetrics.density + 0.5f).toInt()
+}
+
+fun Fragment.observeValidationMessage(validationMessage: LiveData<String>) {
+    validationMessage.observe(viewLifecycleOwner) { message ->
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
 }

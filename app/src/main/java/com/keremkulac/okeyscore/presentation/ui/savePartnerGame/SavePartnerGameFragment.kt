@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
@@ -26,6 +25,7 @@ import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
 import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.dpToPx
+import com.keremkulac.okeyscore.util.observeValidationMessage
 import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,7 +56,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         penalty()
         confirmTeam1Names()
         saveFinishedGame()
-        observeValidation()
+        observeValidationMessage(viewModel.validationMessage)
         handleOnBackPressed()
         toolbarBackButtonClick()
     }
@@ -465,12 +465,6 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
                     findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
                 }
             }
-        }
-    }
-
-    private fun observeValidation() {
-        viewModel.validationMessage.observe(viewLifecycleOwner) { message ->
-            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 

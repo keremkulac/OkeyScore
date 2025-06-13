@@ -2,7 +2,6 @@ package com.keremkulac.okeyscore.presentation.ui.chooseGame
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -11,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentChooseGameBinding
 import com.keremkulac.okeyscore.util.BaseFragment
+import com.keremkulac.okeyscore.util.observeValidationMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +24,7 @@ class ChooseGameFragment :
         setBottomNavigationVisible()
         setupClickListeners()
         onBackPressCancel()
-        observeValidation()
+        observeValidationMessage(viewModel.validationMessage)
     }
 
 
@@ -104,12 +104,6 @@ class ChooseGameFragment :
     private fun setBottomNavigationVisible() {
         val bottomNavigation = requireActivity().findViewById<View>(R.id.bottomNavigation)
         bottomNavigation.visibility = View.VISIBLE
-    }
-
-    private fun observeValidation() {
-        viewModel.validationMessage.observe(viewLifecycleOwner) { message ->
-            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-        }
     }
 
 }
