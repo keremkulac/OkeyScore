@@ -75,4 +75,16 @@ class InputValidation @Inject constructor() {
             else -> return true
         }
     }
+
+    fun checkSelectedGame(
+        selectedGame: String,
+        errorMessage: String,
+        validationMessage: (String) -> Unit
+    ): Boolean {
+        if (selectedGame.isEmpty()) {
+            validationMessage(errorMessage)
+            return false
+        }
+        return true
+    }
 }
