@@ -12,12 +12,17 @@ class SettingsViewModel @Inject constructor(private val sharedPrefHelper: Shared
     private val _isNightModeActive = MutableLiveData<Boolean?>()
     val isNightModeActive: LiveData<Boolean?> get() = _isNightModeActive
 
-    private val _selectedLanguage = MutableLiveData<String?>()
-    val selectedLanguage: LiveData<String?> get() = _selectedLanguage
+    private val _selectedLanguageCode = MutableLiveData<String?>()
+    val selectedLanguageCode: LiveData<String?> get() = _selectedLanguageCode
+
+
+    private val _selectedLanguageName = MutableLiveData<String?>()
+    val selectedLanguageName: LiveData<String?> get() = _selectedLanguageName
 
     init {
         getNightModeSharedPreferencesValue()
-        getLanguageSharedPreferencesValue()
+        getLanguageCodeSharedPreferencesValue()
+        getLanguageNameSharedPreferencesValue()
     }
 
     fun getNightModeSharedPreferencesValue() {
@@ -29,14 +34,22 @@ class SettingsViewModel @Inject constructor(private val sharedPrefHelper: Shared
         _isNightModeActive.value = value
     }
 
-    private fun getLanguageSharedPreferencesValue() {
-        _selectedLanguage.value = sharedPrefHelper.getLanguageSharedPreferencesValue()
+    private fun getLanguageCodeSharedPreferencesValue() {
+        _selectedLanguageCode.value = sharedPrefHelper.getLanguageCodeSharedPreferencesValue()
     }
 
-    fun setLanguageSharedPreferencesValue(value: String) {
-        sharedPrefHelper.setLanguageSharedPreferencesValue(value)
-        _selectedLanguage.value = value
+    fun setLanguageCodeSharedPreferencesValue(value: String) {
+        sharedPrefHelper.setLanguageCodeSharedPreferencesValue(value)
+        _selectedLanguageCode.value = value
     }
 
+    private fun getLanguageNameSharedPreferencesValue() {
+        _selectedLanguageName.value = sharedPrefHelper.getLanguageNameSharedPreferencesValue()
+    }
+
+    fun setLanguageNameSharedPreferencesValue(value: String) {
+        sharedPrefHelper.setLanguageNameSharedPreferencesValue(value)
+        _selectedLanguageName.value = value
+    }
 
 }

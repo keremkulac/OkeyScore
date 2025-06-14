@@ -2,18 +2,16 @@ package com.keremkulac.okeyscore.presentation.ui.settings
 
 import  android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.keremkulac.okeyscore.MainActivity
-import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSettingsBinding
 import com.keremkulac.okeyscore.util.BaseFragment
+import com.keremkulac.okeyscore.util.LanguageSelectionDialog
 import dagger.hilt.android.AndroidEntryPoint
 import com.keremkulac.okeyscore.util.SharedPrefHelper
+import com.keremkulac.okeyscore.util.TR_CODE
 import com.keremkulac.okeyscore.util.translateEN
 import com.keremkulac.okeyscore.util.translateTR
 import com.keremkulac.okeyscore.util.updateResources
@@ -23,23 +21,27 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
-    FragmentSettingsBinding::inflate) {
+    FragmentSettingsBinding::inflate
+) {
 
     @Inject
     lateinit var sharedPrefHelper: SharedPrefHelper
     private val viewModel: SettingsViewModel by viewModels()
+    private var currentLanguageCode = ""
+    private var currentLanguageName = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkNightMode()
         checkThemeSwitch()
+        getCurrentLanguage()
         selectLanguage()
         goToChooseGameFragment()
-        setLanguage()
+        setLanguageText()
     }
 
-    private fun checkNightMode(){
-        viewModel.isNightModeActive.observe(viewLifecycleOwner){isNightModeActive->
+    private fun checkNightMode() {
+        viewModel.isNightModeActive.observe(viewLifecycleOwner) { isNightModeActive ->
             isNightModeActive?.let {
                 updateTheme(it)
                 binding.darkModeSwitch.isChecked = it
@@ -47,55 +49,51 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
         }
     }
 
-    private fun checkThemeSwitch(){
+    private fun checkThemeSwitch() {
         binding.darkModeSwitch.setOnClickListener {
             viewModel.setNightModeSharedPreferencesValue(binding.darkModeSwitch.isChecked)
             recreate(requireActivity() as MainActivity)
         }
     }
 
-    private fun selectLanguage(){
-        val builder = AlertDialog.Builder(requireContext())
+    private fun selectLanguage() {
         binding.languageTextView.setOnClickListener {
-            val inflater = requireActivity().layoutInflater
-            val view = inflater.inflate(R.layout.language_dialog, null)
-            val languages = arrayOf(requireContext().getString(R.string.turkish), requireContext().getString(R.string.english))
-            val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
-            val adapter = ArrayAdapter(requireActivity(),R.layout.dropdown_item, languages)
-            autoCompleteTextView.setAdapter(adapter)
-            builder.setView(view)
-            builder.setPositiveButton(requireContext().getString(R.string.confirm)) { _ , _ ->
-                val selectedLanguage = autoCompleteTextView.text.toString()
-                if(selectedLanguage == "İngilizce" || selectedLanguage == "English"){
-                    viewModel.setLanguageSharedPreferencesValue(translateEN(selectedLanguage))
-                    val locale = Locale("en", "EN")
-                    updateResources(requireActivity(),locale)
-                    recreate(requireActivity() as MainActivity)
-                }else{
-                    viewModel.setLanguageSharedPreferencesValue(translateTR(selectedLanguage))
-                    val defaultLocale = Locale.getDefault()
-                    updateResources(requireActivity(),defaultLocale)
+            val dialog =
+                LanguageSelectionDialog(requireContext(), currentLanguageCode) { selectedLanguage ->
+                    currentLanguageCode = selectedLanguage.code
+                    currentLanguageName = selectedLanguage.name
+                    binding.languageTextView.text = getTranslatedCurrentLanguage()
+                    viewModel.setLanguageCodeSharedPreferencesValue(selectedLanguage.code)
+                    viewModel.setLanguageNameSharedPreferencesValue(getTranslatedCurrentLanguage())
+                    updateResources(requireActivity(), Locale(selectedLanguage.code))
                     recreate(requireActivity() as MainActivity)
                 }
-            }
-            builder.setNegativeButton(requireContext().getString(R.string.cancel)) { dialogInterface, _ ->
-                dialogInterface.dismiss()
-            }
-            val dialog = builder.create()
+
             dialog.show()
         }
     }
 
-    private fun setLanguage() {
-        viewModel.selectedLanguage.observe(viewLifecycleOwner) { selectedLanguage ->
-            selectedLanguage?.let {
-                binding.languageTextView.text = it
-            }
+    private fun setLanguageText() {
+        viewModel.selectedLanguageName.observe(viewLifecycleOwner) { selectedLanguageName ->
+            binding.languageTextView.text = selectedLanguageName
         }
     }
 
-    private fun goToChooseGameFragment(){
-        binding.toolbar.setNavigationOnClickListener{
+    private fun getCurrentLanguage(){
+        viewModel.selectedLanguageCode.observe(viewLifecycleOwner){currentLanguageCode->
+            this.currentLanguageCode = currentLanguageCode!!
+        }
+    }
+
+    private fun getTranslatedCurrentLanguage() : String{
+        if (currentLanguageCode == TR_CODE){
+            return translateTR(currentLanguageName)
+        }
+        return translateEN(currentLanguageName)
+    }
+
+    private fun goToChooseGameFragment() {
+        binding.toolbar.setNavigationOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToChooseGameFragment())
         }
     }

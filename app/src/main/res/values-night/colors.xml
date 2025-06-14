@@ -14,7 +14,6 @@
     <color name="snackbar_text_color">#F6F6F8</color>
     <color name="cardview_background_color">#1E1F22</color>
     <color name="cardview_shadow_color">#F6F6F8</color>
-    <color name="toolbar_text_color">#F6F6F8</color>
     <color name="text_input_layout_box_stroke_color">#4CAF50</color>
     <color name="cursor_color">#4CAF50</color>
     <color name="tablayout_text_color">#F6F6F8</color>
@@ -30,8 +29,10 @@
     <color name="settings_card_background_color">#1E1F22</color>
     <color name="settings_card_divider_color">#F6F6F8</color>
     <color name="penalty_text_color">#CA4F4F</color>
-    <color name="single_game_cardview_background_color">#E53E3E</color>
-    <color name="partner_game_cardview_background_color">#3182CE</color>
+    <color name="single_game_cardview_background_color">#E8F4F8</color>
+    <color name="partner_game_cardview_background_color">#F0E8FF</color>
+    <color name="single_game_cardview_indicator_color">#B2DFDB</color>
+    <color name="partner_game_cardview_indicator_color">#E1BEE7</color>
     <color name="setting_cardview_background_color">#757575</color>
     <color name="shimmer_color">#C2C2C2</color>
 
