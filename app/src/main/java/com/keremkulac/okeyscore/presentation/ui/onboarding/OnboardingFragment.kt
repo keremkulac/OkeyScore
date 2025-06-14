@@ -10,6 +10,7 @@ import com.keremkulac.okeyscore.databinding.FragmentOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.content.edit
 import com.keremkulac.okeyscore.util.BaseFragment
+import com.keremkulac.okeyscore.util.IS_ONBORDING_COMPLATED
 
 @AndroidEntryPoint
 class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>(
@@ -20,7 +21,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireActivity().getSharedPreferences("isOnboardingCompleted", AppCompatActivity.MODE_PRIVATE)
+        sharedPreferences = requireActivity().getSharedPreferences(IS_ONBORDING_COMPLATED, AppCompatActivity.MODE_PRIVATE)
         checkIsOnboardingCompleted()
         setOnboardingAdapter()
         viewModel.checkIsOnboardingCompleted(sharedPreferences)
@@ -30,14 +31,14 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>(
         viewModel.isOnboarding.observe(viewLifecycleOwner){
             if (it) {
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToChooseGameFragment())
-                sharedPreferences.edit { putBoolean("isOnboardingCompleted", true) }
+                sharedPreferences.edit { putBoolean(IS_ONBORDING_COMPLATED, true) }
             }
         }
     }
 
     private fun skipOnboarding(adapter: OnboardingAdapter){
         adapter.clickListener={
-            sharedPreferences.edit { putBoolean("isOnboardingCompleted", true) }
+            sharedPreferences.edit { putBoolean(IS_ONBORDING_COMPLATED, true) }
             findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToChooseGameFragment())
         }
     }

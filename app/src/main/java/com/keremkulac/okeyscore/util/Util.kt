@@ -25,8 +25,8 @@ fun updateTheme(isNightModeActive : Boolean){
 
 fun translateTR(language : String) : String {
     val languageToShow = when (language) {
-        "Türkçe" -> "Turkish"
-        "Turkish" -> "Türkçe"
+        TURKISH_TR -> TURKISH_EN
+        TURKISH_EN -> TURKISH_TR
         else ->language
     }
     return languageToShow
@@ -34,8 +34,8 @@ fun translateTR(language : String) : String {
 
 fun translateEN(language : String) : String {
     val languageToShow = when (language) {
-        "English" -> "İngilizce"
-        "İngilizce" -> "English"
+        ENGLISH_EN -> ENGLISH_TR
+        ENGLISH_TR -> ENGLISH_EN
         else ->language
     }
     return languageToShow

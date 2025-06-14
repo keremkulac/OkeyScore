@@ -11,6 +11,8 @@ import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameDetailBin
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
 import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
+import com.keremkulac.okeyscore.util.FINISHED_GAME_ID
+import com.keremkulac.okeyscore.util.GAME_TYPE_PARTNER
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -39,14 +41,14 @@ class FinishedPartnerGameDetailFragment
         binding.goToFinishedGameViewFragment.setOnClickListener {
             val action =
                 FinishedPartnerGameDetailFragmentDirections.actionFinishedPartnerGameDetailFragmentToFinishedGameViewFragment(
-                    "partner"
+                    GAME_TYPE_PARTNER
                 )
             findNavController().navigate(action)
         }
     }
 
     private fun getAndSetFinishedGames() {
-        viewModel.getFinishedGame(requireArguments().getInt("finishedGameID"))
+        viewModel.getFinishedGame(requireArguments().getInt(FINISHED_GAME_ID))
         viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner) {
             it?.let {
                 setRecyclerView(it)

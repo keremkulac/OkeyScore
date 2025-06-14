@@ -9,6 +9,7 @@ import com.keremkulac.okeyscore.databinding.FragmentFinishedGameViewBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedPartnerGame.FinishedPartnerGameFragment
 import com.keremkulac.okeyscore.presentation.ui.finishedSingleGame.FinishedSingleGameFragment
 import com.keremkulac.okeyscore.util.BaseFragment
+import com.keremkulac.okeyscore.util.GAME_TYPE_SINGLE
 
 class FinishedGameViewFragment :
     BaseFragment<FragmentFinishedGameViewBinding>(FragmentFinishedGameViewBinding::inflate) {
@@ -35,7 +36,7 @@ class FinishedGameViewFragment :
     private fun setViewPagerPage() {
         val argument = requireArguments().getString("gameType")
         if (argument != null) {
-            if (argument == "single") {
+            if (argument == GAME_TYPE_SINGLE) {
                 binding.viewPager.setCurrentItem(0, true)
 
             } else {

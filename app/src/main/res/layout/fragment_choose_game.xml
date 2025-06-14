@@ -42,7 +42,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#E8F4F8"
+                app:cardBackgroundColor="@color/single_game_cardview_background_color"
                 app:cardCornerRadius="24dp">
 
                 <LinearLayout
@@ -87,7 +87,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#F0E8FF"
+                app:cardBackgroundColor="@color/partner_game_cardview_background_color"
                 app:cardCornerRadius="24dp">
 
                 <LinearLayout

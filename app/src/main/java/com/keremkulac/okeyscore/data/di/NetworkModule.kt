@@ -9,7 +9,6 @@ import com.keremkulac.okeyscore.data.repository.OkeyScoreRepositoryImp
 import com.keremkulac.okeyscore.domain.repository.OkeyScoreRepository
 import com.keremkulac.okeyscore.presentation.ui.finishedPartnerGame.FinishedPartnerGameAdapter
 import com.keremkulac.okeyscore.presentation.ui.finishedSingleGame.FinishedSingleGameAdapter
-import com.keremkulac.okeyscore.util.InputValidation
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import dagger.Module
 import dagger.Provides

@@ -11,6 +11,8 @@ import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameDetailBind
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
+import com.keremkulac.okeyscore.util.FINISHED_GAME_ID
+import com.keremkulac.okeyscore.util.GAME_TYPE_SINGLE
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -35,7 +37,7 @@ class FinishedSingleGameDetailFragment :
         binding.goToFinishedGameViewFragment.setOnClickListener {
             val action =
                 FinishedSingleGameDetailFragmentDirections.actionFinishedSingleGameDetailFragmentToFinishedGameViewFragment(
-                    "single"
+                    GAME_TYPE_SINGLE
                 )
             findNavController().navigate(action)
         }
@@ -75,7 +77,7 @@ class FinishedSingleGameDetailFragment :
     }
 
     private fun getAndSetFinishedGame() {
-        viewModel.getFinishedSingleGame(requireArguments().getInt("finishedGameID"))
+        viewModel.getFinishedSingleGame(requireArguments().getInt(FINISHED_GAME_ID))
         viewModel.finishedSingleGame.observe(viewLifecycleOwner) {
             it?.let {
                 setRecyclerView(it)

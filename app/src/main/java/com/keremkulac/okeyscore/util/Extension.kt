@@ -33,6 +33,6 @@ fun Context.dpToPx(dp: Int): Int {
 
 fun Fragment.observeValidationMessage(validationMessage: LiveData<String>) {
     validationMessage.observe(viewLifecycleOwner) { message ->
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        requireContext().toast(message,R.drawable.ic_warning)
     }
 }

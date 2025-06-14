@@ -29,8 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
             android:layout_marginTop="25dp"
+            android:layout_marginEnd="24dp"
             android:outlineSpotShadowColor="@color/cardview_shadow_color"
             app:cardBackgroundColor="@color/cardview_background_color"
             app:cardCornerRadius="20dp"
@@ -207,12 +207,13 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_marginStart="8dp"
                     android:id="@+id/goToFinishedGameViewFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:contentDescription="@string/tag"
-                    android:src="@drawable/ic_back" />
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -227,14 +228,15 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-
         <LinearLayout
             android:id="@+id/scoreLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical"
             android:visibility="visible"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/playerTotalScoreCardView">
@@ -252,11 +254,14 @@
             android:id="@+id/infoCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:outlineSpotShadowColor="@color/cardview_shadow_color"
             app:cardBackgroundColor="@color/cardview_background_color"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

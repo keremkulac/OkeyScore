@@ -47,6 +47,7 @@
     <string name="warning_same_players_names" tools:ignore="MissingTranslation">Oyuncu isimleri aynı olamaz, lütfen kontrol ediniz!</string>
     <string name="warning_check_team_player_1_name" tools:ignore="MissingTranslation">1. Oyuncu adı boş olamaz!</string>
     <string name="warning_check_team_player_2_name" tools:ignore="MissingTranslation">2. Oyuncu adı boş olamaz!</string>
+    <string name="warning_check_selected_game" tools:ignore="MissingTranslation">Lütfen oyun türü seçiniz!</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
     <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
     <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>
@@ -87,4 +88,6 @@
     <string name="player_scores_title" tools:ignore="MissingTranslation">Oyuncu Skorları</string>
     <string name="team_scores_title" tools:ignore="MissingTranslation">Takım Skorları</string>
     <string name="splash_logo_text" tools:ignore="MissingTranslation">Yükleniyor%s</string>
+    <string name="choose_game_enter_text" tools:ignore="MissingTranslation" >Devam et</string>
+    <string name="language_dialog_search_text" tools:ignore="MissingTranslation">Ara</string>
 </resources>

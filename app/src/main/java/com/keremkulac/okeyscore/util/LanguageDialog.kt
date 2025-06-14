@@ -19,8 +19,8 @@ class LanguageSelectionDialog(
     private val onLanguageSelected: (Language) -> Unit
 ) : Dialog(context) {
 
-    private lateinit var etSearch: EditText
-    private lateinit var rvLanguages: RecyclerView
+    private lateinit var search: EditText
+    private lateinit var languagesRecyclerView: RecyclerView
     private lateinit var languageAdapter: LanguageAdapter
 
     private val languages = listOf(
@@ -45,8 +45,8 @@ class LanguageSelectionDialog(
     }
 
     private fun initViews() {
-        etSearch = findViewById(R.id.etSearch)
-        rvLanguages = findViewById(R.id.rvLanguages)
+        search = findViewById(R.id.search)
+        languagesRecyclerView = findViewById(R.id.languagesRecyclerView)
     }
 
     private fun setupRecyclerView() {
@@ -55,14 +55,14 @@ class LanguageSelectionDialog(
             dismiss()
         }
 
-        rvLanguages.apply {
+        languagesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = languageAdapter
         }
     }
 
     private fun setupSearch() {
-        etSearch.addTextChangedListener(object : TextWatcher {
+        search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

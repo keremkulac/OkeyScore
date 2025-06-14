@@ -41,11 +41,11 @@
     <string name="exit_confirmation_no">Cancel</string>
     <string name="warning_check_all_rounds">Please %d. fill in all fields in the round.</string>
     <string name="warning_select_player_penalised">Please select the player to be penalised.</string>
-
     <string name="warning_check_team_names">Team name cannot be empty!</string>
     <string name="warning_check_team_player_1_name">1. Player name cannot be empty!</string>
     <string name="warning_check_team_player_2_name">2. Player name cannot be empty!</string>
     <string name="warning_same_players_names">Players names cannot be the same!</string>
+    <string name="warning_check_selected_game">Please select a game type!</string>
     <string name="score_difference">%s and %s score difference: %d</string>
     <string name="deleted">Deleted</string>
     <string name="take_it_back">Take it back</string>
@@ -87,4 +87,6 @@
     <string name="player_scores_title">Player Scores</string>
     <string name="team_scores_title">Team Scores</string>
     <string name="splash_logo_text">Loading%s</string>
+    <string name="choose_game_enter_text">Let\'s start</string>
+    <string name="language_dialog_search_text">Search</string>
 </resources>

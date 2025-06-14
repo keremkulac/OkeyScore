@@ -14,6 +14,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragmentDirections
 import com.keremkulac.okeyscore.util.BaseFragment
+import com.keremkulac.okeyscore.util.GAME_TYPE_PARTNER
 import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -113,7 +114,9 @@ class FinishedPartnerGameFragment :
                 val itemToDelete = finishedPartnerGameAdapter.finishedPartnerGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
                 val action =
-                    FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("partner")
+                    FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf(
+                        GAME_TYPE_PARTNER
+                    )
                 findNavController().navigate(action)
                 Snackbar.make(
                     binding.root,

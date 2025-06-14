@@ -13,6 +13,7 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.keremkulac.okeyscore.util.GAME_TYPE_SINGLE
 import com.keremkulac.okeyscore.util.SharedPrefHelper
 import com.keremkulac.okeyscore.util.updateResources
 import com.keremkulac.okeyscore.util.updateTheme
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.savePartnerGameFragment -> bottomNavigationView.visibility = View.GONE
                 R.id.saveSingleGameFragment -> bottomNavigationView.visibility = View.GONE
-
+                R.id.onboardingFragment -> bottomNavigationView.visibility = View.GONE
                 else -> {
                     window.statusBarColor = getColor(R.color.status_bar_color)
                     bottomNavigationView.visibility = View.VISIBLE
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             if (item.itemId == R.id.menu_history) {
                 item.setTitle(getString(R.string.history))
             }
-            if (item.itemId == R.id.menu_settings){
+            if (item.itemId == R.id.menu_settings) {
                 item.setTitle(getString(R.string.settings))
             }
         }
@@ -119,10 +120,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_history -> {
                     navHostFragment.navController.navigate(
                         MainActivityDirections.actionMainActivityToFinishedGameViewFragment(
-                            "single"
+                            GAME_TYPE_SINGLE
                         )
                     )
                 }
+
                 R.id.menu_settings -> {
                     navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToSettingsFragment())
                 }
@@ -142,16 +144,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectLanguage() {
-        val selectedLanguage = sharedPrefHelper.getLanguageSharedPreferencesValue()
-        selectedLanguage?.let {
-            if (it == "İngilizce" || it == "English") {
-                val locale = Locale("en", "EN")
-                updateResources(this, locale)
-            } else {
-                val locale = Locale("tr", "TR")
-                updateResources(this, locale)
-            }
-        }
+        val selectedLanguage = sharedPrefHelper.getLanguageCodeSharedPreferencesValue()
+        updateResources(this, Locale(selectedLanguage))
     }
 
     private fun checkUpdate() {

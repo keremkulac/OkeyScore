@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
+import com.keremkulac.okeyscore.util.TR_CODE
+import java.util.Locale
 
 
 data class Language(
@@ -48,19 +50,22 @@ class LanguageAdapter(
 
             language.isSelected = true
             onLanguageSelected(language)
+            notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int = filteredLanguages.size
 
     fun filter(query: String) {
+        val localeTR = Locale(TR_CODE)
         filteredLanguages = if (query.isEmpty()) {
             languages.toMutableList()
         } else {
             languages.filter {
-                it.name.lowercase().contains(query.lowercase())
+                it.name.lowercase(localeTR).contains(query.lowercase(localeTR))
             }.toMutableList()
         }
+        notifyDataSetChanged()
     }
 
     fun updateSelection(selectedLanguageCode: String) {
@@ -70,6 +75,7 @@ class LanguageAdapter(
         filteredLanguages.forEach {
             it.isSelected = it.code == selectedLanguageCode
         }
+        notifyDataSetChanged()
     }
 }
 

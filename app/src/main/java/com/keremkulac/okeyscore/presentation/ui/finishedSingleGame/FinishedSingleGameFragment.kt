@@ -14,6 +14,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameBinding
 import com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragmentDirections
 import com.keremkulac.okeyscore.util.BaseFragment
+import com.keremkulac.okeyscore.util.GAME_TYPE_SINGLE
 import com.keremkulac.okeyscore.util.SwipeGesture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -22,7 +23,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBinding>(
-    FragmentFinishedSingleGameBinding::inflate) {
+    FragmentFinishedSingleGameBinding::inflate
+) {
 
     @Inject
     lateinit var finishedSingleGameAdapter: FinishedSingleGameAdapter
@@ -40,7 +42,7 @@ class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBindin
         search()
     }
 
-    private fun setShimmer(){
+    private fun setShimmer() {
         binding.shimmerLayout.startShimmer()
         lifecycleScope.launch {
             delay(2000)
@@ -91,7 +93,9 @@ class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBindin
                 val itemToDelete = finishedSingleGameAdapter.finishedSingleGameLists[position]
                 viewModel.deleteFinishedGame(itemToDelete)
                 val action =
-                    FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf("single")
+                    FinishedGameViewFragmentDirections.actionFinishedGameViewFragmentSelf(
+                        GAME_TYPE_SINGLE
+                    )
                 findNavController().navigate(action)
                 Snackbar.make(
                     binding.root,
