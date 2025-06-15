@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="2dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="16dp"
         android:layout_margin="8dp"
         app:cardBackgroundColor="@color/cardview_background_color"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"

@@ -73,7 +73,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
     }
 
     private fun inflateScoreLayout(inflater: LayoutInflater): View {
-        val includedLayout = inflater.inflate(R.layout.score_layout, null)
+        val includedLayout = inflater.inflate(R.layout.score_layout,null )
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT

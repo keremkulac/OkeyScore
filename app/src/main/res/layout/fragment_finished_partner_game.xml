@@ -41,15 +41,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_finished_game_item" />
+            <include layout="@layout/item_shimmer_finished_game" />
 
-            <include layout="@layout/shimmer_finished_game_item" />
+            <include layout="@layout/item_shimmer_finished_game" />
 
-            <include layout="@layout/shimmer_finished_game_item" />
+            <include layout="@layout/item_shimmer_finished_game" />
 
-            <include layout="@layout/shimmer_finished_game_item" />
+            <include layout="@layout/item_shimmer_finished_game" />
 
-            <include layout="@layout/shimmer_finished_game_item" />
+            <include layout="@layout/item_shimmer_finished_game" />
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>

@@ -104,8 +104,8 @@ class MainActivity : AppCompatActivity() {
             if (item.itemId == R.id.menu_new_game) {
                 item.setTitle(getString(R.string.home))
             }
-            if (item.itemId == R.id.menu_history) {
-                item.setTitle(getString(R.string.history))
+            if (item.itemId == R.id.menu_past_games) {
+                item.setTitle(getString(R.string.past_games))
             }
             if (item.itemId == R.id.menu_settings) {
                 item.setTitle(getString(R.string.settings))
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                     navHostFragment.navController.navigate(MainActivityDirections.actionMainActivityToChooseGameFragment())
                 }
 
-                R.id.menu_history -> {
+                R.id.menu_past_games -> {
                     navHostFragment.navController.navigate(
                         MainActivityDirections.actionMainActivityToFinishedGameViewFragment(
                             GAME_TYPE_SINGLE

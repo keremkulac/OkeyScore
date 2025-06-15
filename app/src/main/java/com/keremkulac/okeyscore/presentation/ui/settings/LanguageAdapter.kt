@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
+import com.keremkulac.okeyscore.util.LanguageDiffCallback
 import com.keremkulac.okeyscore.util.TR_CODE
 import java.util.Locale
 
@@ -50,7 +52,7 @@ class LanguageAdapter(
 
             language.isSelected = true
             onLanguageSelected(language)
-            notifyDataSetChanged()
+            notifyItemChanged(position)
         }
     }
 
@@ -58,24 +60,34 @@ class LanguageAdapter(
 
     fun filter(query: String) {
         val localeTR = Locale(TR_CODE)
-        filteredLanguages = if (query.isEmpty()) {
+
+        val newFilteredList = if (query.isEmpty()) {
             languages.toMutableList()
         } else {
             languages.filter {
                 it.name.lowercase(localeTR).contains(query.lowercase(localeTR))
             }.toMutableList()
         }
-        notifyDataSetChanged()
+
+        val diffCallback = LanguageDiffCallback(filteredLanguages, newFilteredList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+        filteredLanguages = newFilteredList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun updateSelection(selectedLanguageCode: String) {
-        languages.forEach {
-            it.isSelected = it.code == selectedLanguageCode
+        val newList = languages.map {
+            it.copy(isSelected = it.code == selectedLanguageCode)
         }
-        filteredLanguages.forEach {
-            it.isSelected = it.code == selectedLanguageCode
-        }
-        notifyDataSetChanged()
+
+        val diffCallback = LanguageDiffCallback(filteredLanguages, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+        filteredLanguages = newList.toMutableList()
+        languages = newList
+        diffResult.dispatchUpdatesTo(this)
     }
+
 }
 

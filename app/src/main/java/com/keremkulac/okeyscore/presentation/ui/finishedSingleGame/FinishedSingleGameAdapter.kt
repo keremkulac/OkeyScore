@@ -17,7 +17,7 @@ class FinishedSingleGameAdapter : RecyclerView.Adapter<FinishedSingleGameAdapter
     var clickListener: ((FinishedSingleGame) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedGameViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.finished_game_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_finished_game, parent, false)
         return FinishedGameViewHolder(view)
     }
 

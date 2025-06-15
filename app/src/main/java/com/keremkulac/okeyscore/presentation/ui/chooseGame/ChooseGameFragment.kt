@@ -37,7 +37,7 @@ class ChooseGameFragment :
             selectGame(getString(R.string.partner_game))
         }
 
-        binding.btnStart.setOnClickListener {
+        binding.start.setOnClickListener {
             if (viewModel.checkSelectedGame(selectedGame,getString(R.string.warning_check_selected_game))){
                 startSelectedFragment()
             }

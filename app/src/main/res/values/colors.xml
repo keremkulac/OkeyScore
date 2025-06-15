@@ -24,8 +24,8 @@
     <color name="onboarding_indicator_color">#4CAF50</color>
     <color name="logo_text_color">#23221F</color>
     <color name="circular_icon_background_color">#4CAF50</color>
-    <color name="bottom_navigation_text_color">#010101</color>
-    <color name="bottom_navigation_icon_color">#010101</color>
+    <color name="bottom_navigation_text_color">#3F3F3F</color>
+    <color name="bottom_navigation_icon_color">#3F3F3F</color>
     <color name="bottom_navigation_background_color">#F8F9FA</color>
     <color name="settings_card_background_color">#F8F9FA</color>
     <color name="settings_card_divider_color">#666666</color>
@@ -34,7 +34,8 @@
     <color name="partner_game_cardview_background_color">#F0E8FF</color>
     <color name="single_game_cardview_indicator_color">#B2DFDB</color>
     <color name="partner_game_cardview_indicator_color">#E1BEE7</color>
-    <color name="setting_cardview_background_color">#616161</color>
     <color name="shimmer_color">#C2C2C2</color>
+    <color name="start_button_color">#8A8AA3</color>
+    <color name="choose_game_selection_indicator_color">#4CAF50</color>
 
 </resources>
