@@ -21,10 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:visibility="visible"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/cardview_background_color"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -120,7 +120,7 @@
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
         android:visibility="gone"
         app:cardBackgroundColor="@color/cardview_background_color"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -340,7 +340,7 @@
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
                 app:cardBackgroundColor="@color/cardview_background_color"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
+                app:cardElevation="1dp"
                 app:layout_constraintEnd_toStartOf="@+id/penalty"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
@@ -353,25 +353,24 @@
 
                     <ImageView
                         android:id="@+id/newRoundIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/ic_add"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="@string/new_round"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/newRoundIcon"
-                        app:layout_constraintStart_toStartOf="@id/newRoundIcon"
-                        app:layout_constraintTop_toBottomOf="@+id/newRoundIcon" />
+                        app:layout_constraintBottom_toBottomOf="@+id/newRoundIcon"
+                        app:layout_constraintStart_toEndOf="@+id/newRoundIcon"
+                        app:layout_constraintTop_toTopOf="@+id/newRoundIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -386,7 +385,7 @@
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
                 app:cardBackgroundColor="@color/cardview_background_color"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
+                app:cardElevation="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/newRound"
                 app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
@@ -399,26 +398,25 @@
 
                     <ImageView
                         android:id="@+id/penaltyIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_penalty"
                         android:padding="3dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/ic_penalty"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="@string/penalty"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/penaltyIcon"
-                        app:layout_constraintStart_toStartOf="@id/penaltyIcon"
-                        app:layout_constraintTop_toBottomOf="@+id/penaltyIcon" />
+                        app:layout_constraintBottom_toBottomOf="@+id/penaltyIcon"
+                        app:layout_constraintStart_toEndOf="@+id/penaltyIcon"
+                        app:layout_constraintTop_toTopOf="@+id/penaltyIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -434,7 +432,7 @@
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
                 app:cardBackgroundColor="@color/cardview_background_color"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
+                app:cardElevation="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -448,25 +446,29 @@
 
                     <ImageView
                         android:id="@+id/saveScoresIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_save"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/ic_check"
+                        app:layout_constraintEnd_toStartOf="@+id/saveScoresText"
+                        app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/icon_color" />
 
                     <TextView
+                        android:id="@+id/saveScoresText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="@string/save"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/saveScoresIcon"
-                        app:layout_constraintStart_toStartOf="@id/saveScoresIcon"
-                        app:layout_constraintTop_toBottomOf="@+id/saveScoresIcon" />
+                        app:layout_constraintBottom_toBottomOf="@+id/saveScoresIcon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/saveScoresIcon"
+                        app:layout_constraintTop_toTopOf="@+id/saveScoresIcon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
