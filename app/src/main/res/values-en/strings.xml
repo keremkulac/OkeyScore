@@ -21,8 +21,7 @@
         <item>My partner games</item>
     </string-array>
     <string name="home">Home</string>
-    <string name="history">History</string>
-    <string name="skip">Skip</string>
+    <string name="past_games">Past games</string>
     <string name="dark_mode">Dark mode</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
@@ -65,7 +64,6 @@
     <string name="penalty_text">Penalty: </string>
     <string name="penalty_text_value">Penalty: %d</string>
     <string name="confirm">Confirm</string>
-    <string name="cancel">Cancel</string>
     <string name="determine_punishment">Select the player to punish</string>
     <string name="select_player_punish">Determine the Punishment</string>
     <string name="forward">Forward</string>
@@ -89,4 +87,15 @@
     <string name="splash_logo_text">Loading%s</string>
     <string name="choose_game_enter_text">Let\'s start</string>
     <string name="language_dialog_search_text">Search</string>
+    <string name="onboarding_title_1">Choose Game Type</string>
+    <string name="onboarding_description_1">Select one of the single or partner game types.</string>
+    <string name="onboarding_title_2">Enter Scores</string>
+    <string name="onboarding_description_2">Enter round scores and view live results.</string>
+    <string name="onboarding_title_3">Save Scores</string>
+    <string name="onboarding_description_3">Save all round scores.</string>
+    <string name="onboarding_title_4">View Saved Games</string>
+    <string name="onboarding_description_4">View the saved games. In the detail screen, see round scores and the winner.</string>
+    <string name="onboarding_next_button_text">Forward</string>
+    <string name="onboarding_next_finish_button_text">Start</string>
+    <string name="onboarding_previous_button_text">Previous</string>
 </resources>

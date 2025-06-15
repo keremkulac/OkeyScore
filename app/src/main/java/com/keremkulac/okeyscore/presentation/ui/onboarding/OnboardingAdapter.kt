@@ -1,42 +1,40 @@
 package com.keremkulac.okeyscore.presentation.ui.onboarding
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.recyclerview.widget.RecyclerView
 import com.keremkulac.okeyscore.R
-import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
+data class OnboardingItem(
+    val imageResId: Int,
+    val title: String,
+    val description: String
+)
 
-class OnboardingAdapter(private val context: Context, private val images: List<Int>, private val viewPager: ViewPager) :
-    PagerAdapter() {
+class OnboardingAdapter(private val items: List<OnboardingItem>) :
+    RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 
-    var clickListener: (() -> Unit)? = null
-
-    override fun getCount(): Int = images.size
-
-    override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
-
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val layoutInflater = LayoutInflater.from(context)
-        val view = layoutInflater.inflate(R.layout.onboarding_item, container, false)
-        val imageView = view.findViewById<ImageView>(R.id.imageView)
-        val indicator = view.findViewById<SpringDotsIndicator>(R.id.indicator)
-        val skip = view.findViewById<TextView>(R.id.skip)
-        skip.setOnClickListener {
-            clickListener!!.invoke()
-        }
-        indicator.attachTo(viewPager)
-        imageView.setImageResource(images[position])
-        container.addView(view)
-        return view
+    class OnboardingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image = itemView.findViewById<ImageView>(R.id.imageView)
+        val title = itemView.findViewById<TextView>(R.id.titleText)
+        val description = itemView.findViewById<TextView>(R.id.descriptionText)
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
-        container.removeView(obj as View)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_onboarding, parent, false)
+        return OnboardingViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = items.size
+
+    override fun onBindViewHolder(holder: OnboardingViewHolder, position: Int) {
+        val item = items[position]
+        holder.image.setImageResource(item.imageResId)
+        holder.title.text = item.title
+        holder.description.text = item.description
     }
 }

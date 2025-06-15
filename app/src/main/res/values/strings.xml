@@ -23,8 +23,7 @@
         <item>Eşli oyunlarım</item>
     </string-array>
     <string name="home" tools:ignore="MissingTranslation">Ana sayfa</string>
-    <string name="history" tools:ignore="MissingTranslation">Geçmiş</string>
-    <string name="skip" tools:ignore="MissingTranslation">Atla</string>
+    <string name="past_games" tools:ignore="MissingTranslation">Geçmiş oyunlar</string>
     <string name="dark_mode" tools:ignore="MissingTranslation">Koyu mod</string>
     <string name="settings" tools:ignore="MissingTranslation">Ayarlar</string>
     <string name="language" tools:ignore="MissingTranslation">Dil</string>
@@ -67,7 +66,6 @@
     <string name="penalty_text" tools:ignore="MissingTranslation">Ceza: </string>
     <string name="penalty_text_value" tools:ignore="MissingTranslation">Ceza: %d</string>
     <string name="confirm" tools:ignore="MissingTranslation">Onayla</string>
-    <string name="cancel" tools:ignore="MissingTranslation">İptal</string>
     <string name="determine_punishment" tools:ignore="MissingTranslation">Cezayı belirleyin</string>
     <string name="select_player_punish" tools:ignore="MissingTranslation">Ceza eklenecek oyuncuyu seçiniz</string>
     <string name="forward" tools:ignore="MissingTranslation">İleri</string>
@@ -88,6 +86,19 @@
     <string name="player_scores_title" tools:ignore="MissingTranslation">Oyuncu Skorları</string>
     <string name="team_scores_title" tools:ignore="MissingTranslation">Takım Skorları</string>
     <string name="splash_logo_text" tools:ignore="MissingTranslation">Yükleniyor%s</string>
-    <string name="choose_game_enter_text" tools:ignore="MissingTranslation" >Devam et</string>
+    <string name="choose_game_enter_text" tools:ignore="MissingTranslation">Başla</string>
     <string name="language_dialog_search_text" tools:ignore="MissingTranslation">Ara</string>
+
+    <string name="onboarding_title_1" tools:ignore="MissingTranslation">Oyun türünü seç</string>
+    <string name="onboarding_description_1" tools:ignore="MissingTranslation">Tekli veya eşli oyun türlerinden birini seçin.</string>
+    <string name="onboarding_title_2" tools:ignore="MissingTranslation">Skorlarını gir</string>
+    <string name="onboarding_description_2" tools:ignore="MissingTranslation">Tur skorlarını girin ve canlı sonuçları görüntüleyin.</string>
+    <string name="onboarding_title_3" tools:ignore="MissingTranslation">Skorları kaydet</string>
+    <string name="onboarding_description_3" tools:ignore="MissingTranslation">Tüm tur skorlarını kaydedin.</string>
+    <string name="onboarding_title_4" tools:ignore="MissingTranslation">Kaydedilen oyunları görüntüle</string>
+    <string name="onboarding_description_4" tools:ignore="MissingTranslation">Kaydedilen oyunları görüntüleyin. Detay ekranında tur skorlarını ve kazanını görüntüleyin</string>
+    <string name="onboarding_next_button_text" tools:ignore="MissingTranslation">İlerle</string>
+    <string name="onboarding_next_finish_button_text" tools:ignore="MissingTranslation">Başla</string>
+    <string name="onboarding_previous_button_text" tools:ignore="MissingTranslation">Geri</string>
+
 </resources>
