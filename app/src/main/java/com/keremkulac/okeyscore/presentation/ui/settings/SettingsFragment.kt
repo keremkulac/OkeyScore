@@ -49,20 +49,20 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
         }
     }
 
-    private fun checkThemeSwitch() {
-        binding.darkModeSwitch.setOnClickListener {
-            viewModel.setNightModeSharedPreferencesValue(binding.darkModeSwitch.isChecked)
+    private fun checkThemeSwitch() = with(binding) {
+        darkModeSwitch.setOnClickListener {
+            viewModel.setNightModeSharedPreferencesValue(darkModeSwitch.isChecked)
             recreate(requireActivity() as MainActivity)
         }
     }
 
-    private fun selectLanguage() {
-        binding.languageTextView.setOnClickListener {
+    private fun selectLanguage() = with(binding) {
+        languageTextView.setOnClickListener {
             val dialog =
                 LanguageSelectionDialog(requireContext(), currentLanguageCode) { selectedLanguage ->
                     currentLanguageCode = selectedLanguage.code
                     currentLanguageName = selectedLanguage.name
-                    binding.languageTextView.text = getTranslatedCurrentLanguage()
+                    languageTextView.text = getTranslatedCurrentLanguage()
                     viewModel.setLanguageCodeSharedPreferencesValue(selectedLanguage.code)
                     viewModel.setLanguageNameSharedPreferencesValue(getTranslatedCurrentLanguage())
                     updateResources(requireActivity(), Locale(selectedLanguage.code))
@@ -79,14 +79,14 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
         }
     }
 
-    private fun getCurrentLanguage(){
-        viewModel.selectedLanguageCode.observe(viewLifecycleOwner){currentLanguageCode->
+    private fun getCurrentLanguage() {
+        viewModel.selectedLanguageCode.observe(viewLifecycleOwner) { currentLanguageCode ->
             this.currentLanguageCode = currentLanguageCode!!
         }
     }
 
-    private fun getTranslatedCurrentLanguage() : String{
-        if (currentLanguageCode == TR_CODE){
+    private fun getTranslatedCurrentLanguage(): String {
+        if (currentLanguageCode == TR_CODE) {
             return translateTR(currentLanguageName)
         }
         return translateEN(currentLanguageName)

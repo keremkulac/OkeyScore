@@ -42,51 +42,50 @@ class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBindin
         search()
     }
 
-    private fun setShimmer() {
-        binding.shimmerLayout.startShimmer()
+    private fun setShimmer() = with(binding.shimmerLayout) {
+        startShimmer()
         lifecycleScope.launch {
             delay(2000)
-            binding.shimmerLayout.stopShimmer()
-            binding.shimmerLayout.visibility = View.GONE
+            stopShimmer()
+            visibility = View.GONE
         }
     }
 
-    private fun setRecyclerView() {
-        binding.finishedGameRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.finishedGameRecyclerView.setHasFixedSize(false)
+    private fun setRecyclerView() = with(binding.finishedGameRecyclerView) {
+        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        setHasFixedSize(false)
     }
 
-    private fun observeAllFinishedGame() {
+    private fun observeAllFinishedGame() = with(binding) {
         viewModel.allFinishedSingleGames.observe(viewLifecycleOwner) { finishedSingleList ->
             if (finishedSingleList.isNotEmpty()) {
                 setShimmer()
-                binding.createSingleGame.visibility = View.GONE
-                binding.recordNotFoundImage.visibility = View.GONE
+                createSingleGame.visibility = View.GONE
+                recordNotFoundImage.visibility = View.GONE
                 finishedSingleGameAdapter.finishedSingleGameLists = ArrayList(finishedSingleList)
-                binding.finishedGameRecyclerView.adapter = finishedSingleGameAdapter
+                finishedGameRecyclerView.adapter = finishedSingleGameAdapter
 
             } else {
-                binding.createSingleGame.visibility = View.VISIBLE
-                binding.recordNotFoundImage.visibility = View.VISIBLE
-                binding.shimmerLayout.visibility = View.GONE
+                createSingleGame.visibility = View.VISIBLE
+                recordNotFoundImage.visibility = View.VISIBLE
+                shimmerLayout.visibility = View.GONE
             }
         }
     }
 
-    private fun observeFilteredList() {
+    private fun observeFilteredList() = with(binding) {
         viewModel.filteredList.observe(viewLifecycleOwner) { filteredList ->
             if (filteredList.isNotEmpty()) {
-                binding.createSingleGame.visibility = View.GONE
-                binding.recordNotFoundImage.visibility = View.GONE
+                createSingleGame.visibility = View.GONE
+                recordNotFoundImage.visibility = View.GONE
             } else {
-                binding.createSingleGame.visibility = View.VISIBLE
-                binding.recordNotFoundImage.visibility = View.VISIBLE
+                createSingleGame.visibility = View.VISIBLE
+                recordNotFoundImage.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun deleteItemDatabase() {
+    private fun deleteItemDatabase() = with(binding) {
         val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.absoluteAdapterPosition
@@ -98,7 +97,7 @@ class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBindin
                     )
                 findNavController().navigate(action)
                 Snackbar.make(
-                    binding.root,
+                    root,
                     requireContext().getString(R.string.deleted),
                     Snackbar.LENGTH_LONG
                 )
@@ -113,12 +112,12 @@ class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBindin
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)
-        itemTouchHelper.attachToRecyclerView(binding.finishedGameRecyclerView)
+        itemTouchHelper.attachToRecyclerView(finishedGameRecyclerView)
     }
 
 
-    private fun search() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+    private fun search() = with(binding.searchView) {
+        setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -133,11 +132,11 @@ class FinishedSingleGameFragment : BaseFragment<FragmentFinishedSingleGameBindin
             }
         })
 
-        binding.searchView.setOnCloseListener {
+        setOnCloseListener {
             observeAllFinishedGame()
             false
         }
-        binding.searchView.clearAnimation()
+        clearAnimation()
     }
 
     private fun clickFinishedGame() {

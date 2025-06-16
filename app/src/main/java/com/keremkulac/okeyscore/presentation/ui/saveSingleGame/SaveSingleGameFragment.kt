@@ -31,7 +31,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
-    FragmentSaveSingleGameBinding::inflate){
+    FragmentSaveSingleGameBinding::inflate
+) {
     private val viewModel: SaveSingleGameViewModel by viewModels()
     private var lineCount = 1
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
@@ -141,39 +142,38 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
         }
     }
 
-    private fun setupTotalScorePlayerNames() {
+    private fun setupTotalScorePlayerNames() = with(binding) {
         val playerNameList = listOf(
-            binding.totalScorePlayer1Name,
-            binding.totalScorePlayer2Name,
-            binding.totalScorePlayer3Name,
-            binding.totalScorePlayer4Name,
+            totalScorePlayer1Name,
+            totalScorePlayer2Name,
+            totalScorePlayer3Name,
+            totalScorePlayer4Name,
         )
         playerNameList.forEachIndexed { index, textView ->
             textView.text = playerNames[index]
         }
     }
 
-    private fun confirmNames() {
-        binding.apply {
-            confirmNames.setOnClickListener {
-                createPlayerNames()
-                if (viewModel.checkPlayerNames(
-                        playerNames,
-                        getString(R.string.validation_message_fill_all_player_names)
-                    ) && viewModel.sameNamesCheck(
-                        playerNames,
-                        getString(R.string.validation_message_check_same_player_names)
-                    )
-                ) {
-                    createPenaltyHashMap()
-                    playerNameEntryCardView.visibility = View.GONE
-                    playerScoresTitle.visibility = View.VISIBLE
-                    playerTotalScoreCardView.visibility = View.VISIBLE
-                    scrollView.visibility = View.VISIBLE
-                    createNewLine(layoutInflater)
-                    setupTotalScorePlayerNames()
-                }
+    private fun confirmNames() = with(binding) {
+        confirmNames.setOnClickListener {
+            createPlayerNames()
+            if (viewModel.checkPlayerNames(
+                    playerNames,
+                    getString(R.string.validation_message_fill_all_player_names)
+                ) && viewModel.sameNamesCheck(
+                    playerNames,
+                    getString(R.string.validation_message_check_same_player_names)
+                )
+            ) {
+                createPenaltyHashMap()
+                playerNameEntryCardView.visibility = View.GONE
+                playerScoresTitle.visibility = View.VISIBLE
+                playerTotalScoreCardView.visibility = View.VISIBLE
+                scrollView.visibility = View.VISIBLE
+                createNewLine(layoutInflater)
+                setupTotalScorePlayerNames()
             }
+
         }
     }
 
@@ -205,7 +205,7 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
         }
     }
 
-    private fun calculateTotalScoreForPlayer(playerIndex: Int): Int {
+    private fun calculateTotalScoreForPlayer(playerIndex: Int): Int = with(binding) {
         val scoreIdList = listOf(
             R.id.player1Score,
             R.id.player2Score,
@@ -221,8 +221,8 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
         var totalScore = 0
         val scoreEditTextId = scoreIdList.getOrNull(playerIndex) ?: return 0
         val penaltyTextViewId = penaltyIdList.getOrNull(playerIndex) ?: return 0
-        for (i in 0 until binding.scoreLayout.childCount) {
-            val card = binding.scoreLayout.getChildAt(i)
+        for (i in 0 until scoreLayout.childCount) {
+            val card = scoreLayout.getChildAt(i)
             val editText = card.findViewById<EditText>(scoreEditTextId)
             val penaltyTextView = card.findViewById<TextView>(penaltyTextViewId)
             val score = editText.text.toString().toIntOrNull() ?: 0
@@ -248,7 +248,7 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
             val rootNull = null
             val inflater = LayoutInflater.from(requireContext())
             val partnerAddPenaltyView =
-                inflater.inflate(R.layout.single_players_add_penalty, rootNull)
+                inflater.inflate(R.layout.players_add_penalty, rootNull)
             val penaltyView = inflater.inflate(R.layout.add_penalty, rootNull)
             val partnerPlayersRadioGroup =
                 partnerAddPenaltyView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
@@ -305,21 +305,21 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
         }
     }
 
-    private fun createPlayerNames() {
+    private fun createPlayerNames() = with(binding) {
         playerNames = mutableListOf(
-            binding.player1NameEntry.text?.trim().toString(),
-            binding.player2NameEntry.text?.trim().toString(),
-            binding.player3NameEntry.text?.trim().toString(),
-            binding.player4NameEntry.text?.trim().toString(),
+            player1NameEntry.text?.trim().toString(),
+            player2NameEntry.text?.trim().toString(),
+            player3NameEntry.text?.trim().toString(),
+            player4NameEntry.text?.trim().toString(),
         )
     }
 
-    private fun createPlayerScores() {
+    private fun createPlayerScores() = with(binding) {
         playerScoresTextView = mutableListOf(
-            binding.player1TotalScore,
-            binding.player2TotalScore,
-            binding.player3TotalScore,
-            binding.player4TotalScore
+            player1TotalScore,
+            player2TotalScore,
+            player3TotalScore,
+            player4TotalScore
         )
     }
 

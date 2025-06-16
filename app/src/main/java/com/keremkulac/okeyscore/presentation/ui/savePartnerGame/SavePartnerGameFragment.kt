@@ -31,7 +31,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
-    FragmentSavePartnerGameBinding::inflate) {
+    FragmentSavePartnerGameBinding::inflate
+) {
     private val viewModel: SavePartnerGameViewModel by viewModels()
     private var lineCount = 1
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
@@ -73,7 +74,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
     }
 
     private fun inflateScoreLayout(inflater: LayoutInflater): View {
-        val includedLayout = inflater.inflate(R.layout.score_layout,null )
+        val includedLayout = inflater.inflate(R.layout.score_layout, null)
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -144,59 +145,57 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         }
     }
 
-    private fun setupTeamNames() {
-        binding.team1Name.text = teamNames[0]
-        binding.team2Name.text = teamNames[1]
+    private fun setupTeamNames() = with(binding) {
+        team1Name.text = teamNames[0]
+        team2Name.text = teamNames[1]
     }
 
-    private fun setupTotalScorePlayerNames() {
+    private fun setupTotalScorePlayerNames() = with(binding) {
         val playerNameList = listOf(
-            binding.totalScorePlayer1Name,
-            binding.totalScorePlayer2Name,
-            binding.totalScorePlayer3Name,
-            binding.totalScorePlayer4Name,
+            totalScorePlayer1Name,
+            totalScorePlayer2Name,
+            totalScorePlayer3Name,
+            totalScorePlayer4Name,
         )
         playerNameList.forEachIndexed { index, textView ->
             textView.text = playerNames[index]
         }
     }
 
-    private fun confirmTeam2Names() {
-        binding.apply {
-            confirmTeam2Names.setOnClickListener {
-                if (viewModel.checkTeamAndPlayerNames(
-                        binding.team2NameEntry.text.toString(),
-                        binding.team2Player1NameEntry.text.toString(),
-                        binding.team2Player2NameEntry.text.toString(),
-                        getString(R.string.warning_check_team_names),
-                        getString(R.string.warning_check_team_player_1_name),
-                        getString(R.string.warning_check_team_player_2_name),
-                        getString(R.string.warning_same_players_names)
-                    ) && viewModel.sameNamesCheck(
-                        playerNames,
-                        getString(R.string.validation_message_check_same_player_names)
-                    )
-                ) {
-                    createTeamNames()
-                    createPlayerNames()
-                    createPenaltyHashMap()
-                    team2EntryCardView.visibility = View.GONE
-                    teamScoreCardView.visibility = View.VISIBLE
-                    scoreEntryTitle.visibility = View.VISIBLE
-                    scrollView.visibility = View.VISIBLE
-                    createNewLine(layoutInflater)
-                    setupTotalScorePlayerNames()
-                }
+    private fun confirmTeam2Names() = with(binding) {
+        confirmTeam2Names.setOnClickListener {
+            if (viewModel.checkTeamAndPlayerNames(
+                    team2NameEntry.text.toString(),
+                    team2Player1NameEntry.text.toString(),
+                    team2Player2NameEntry.text.toString(),
+                    getString(R.string.warning_check_team_names),
+                    getString(R.string.warning_check_team_player_1_name),
+                    getString(R.string.warning_check_team_player_2_name),
+                    getString(R.string.warning_same_players_names)
+                ) && viewModel.sameNamesCheck(
+                    playerNames,
+                    getString(R.string.validation_message_check_same_player_names)
+                )
+            ) {
+                createTeamNames()
+                createPlayerNames()
+                createPenaltyHashMap()
+                team2EntryCardView.visibility = View.GONE
+                teamScoreCardView.visibility = View.VISIBLE
+                scoreEntryTitle.visibility = View.VISIBLE
+                scrollView.visibility = View.VISIBLE
+                createNewLine(layoutInflater)
+                setupTotalScorePlayerNames()
             }
         }
     }
 
-    private fun confirmTeam1Names() {
-        binding.confirmTeam1Names.setOnClickListener {
+    private fun confirmTeam1Names() = with(binding) {
+        confirmTeam1Names.setOnClickListener {
             if (viewModel.checkTeamAndPlayerNames(
-                    binding.team1NameEntry.text.toString(),
-                    binding.team1Player1NameEntry.text.toString(),
-                    binding.team1Player2NameEntry.text.toString(),
+                    team1NameEntry.text.toString(),
+                    team1Player1NameEntry.text.toString(),
+                    team1Player2NameEntry.text.toString(),
                     getString(R.string.warning_check_team_names),
                     getString(R.string.warning_check_team_player_1_name),
                     getString(R.string.warning_check_team_player_2_name),
@@ -204,8 +203,8 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
                 )
             ) {
                 confirmTeam2Names()
-                binding.team2EntryCardView.visibility = View.VISIBLE
-                binding.team1EntryCardView.visibility = View.GONE
+                team2EntryCardView.visibility = View.VISIBLE
+                team1EntryCardView.visibility = View.GONE
             }
         }
     }
@@ -240,7 +239,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         createTeamTotalScores()
     }
 
-    private fun calculateTotalScoreForPlayer(playerIndex: Int): Int {
+    private fun calculateTotalScoreForPlayer(playerIndex: Int): Int = with(binding) {
         val scoreIdList = listOf(
             R.id.player1Score,
             R.id.player2Score,
@@ -256,8 +255,8 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         var totalScore = 0
         val scoreEditTextId = scoreIdList.getOrNull(playerIndex) ?: return 0
         val penaltyTextViewId = penaltyIdList.getOrNull(playerIndex) ?: return 0
-        for (i in 0 until binding.scoreLayout.childCount) {
-            val card = binding.scoreLayout.getChildAt(i)
+        for (i in 0 until scoreLayout.childCount) {
+            val card = scoreLayout.getChildAt(i)
             val editText = card.findViewById<EditText>(scoreEditTextId)
             val penaltyTextView = card.findViewById<TextView>(penaltyTextViewId)
             val score = editText.text.toString().toIntOrNull() ?: 0
@@ -269,17 +268,17 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         return totalScore
     }
 
-    private fun clickTeam1Layout() {
+    private fun clickTeam1Layout() = with(binding) {
         val expandableLayoutManager = ExpandableLayoutManager()
-        binding.team1MainLayout.setOnClickListener {
-            expandableLayoutManager.toggleLayout(binding.team1Layout, binding.team1MainIcon)
+        team1MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(team1Layout, team1MainIcon)
         }
     }
 
-    private fun clickTeam2Layout() {
+    private fun clickTeam2Layout() = with(binding) {
         val expandableLayoutManager = ExpandableLayoutManager()
-        binding.team2MainLayout.setOnClickListener {
-            expandableLayoutManager.toggleLayout(binding.team2Layout, binding.team2MainIcon)
+        team2MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(team2Layout, team2MainIcon)
         }
     }
 
@@ -296,7 +295,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
             val rootNull = null
             val inflater = LayoutInflater.from(requireContext())
             val partnerAddPenaltyView =
-                inflater.inflate(R.layout.single_players_add_penalty, rootNull)
+                inflater.inflate(R.layout.players_add_penalty, rootNull)
             val penaltyView = inflater.inflate(R.layout.add_penalty, rootNull)
             val partnerPlayersRadioGroup =
                 partnerAddPenaltyView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
@@ -353,39 +352,39 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         }
     }
 
-    private fun createPlayerNames() {
+    private fun createPlayerNames() = with(binding) {
         playerNames = mutableListOf(
-            binding.team1Player1NameEntry.text?.trim().toString(),
-            binding.team1Player2NameEntry.text?.trim().toString(),
-            binding.team2Player1NameEntry.text?.trim().toString(),
-            binding.team2Player2NameEntry.text?.trim().toString(),
+            team1Player1NameEntry.text?.trim().toString(),
+            team1Player2NameEntry.text?.trim().toString(),
+            team2Player1NameEntry.text?.trim().toString(),
+            team2Player2NameEntry.text?.trim().toString(),
         )
     }
 
-    private fun createTeamNames() {
+    private fun createTeamNames() = with(binding) {
         teamNames = mutableListOf(
-            binding.team1NameEntry.text?.trim().toString(),
-            binding.team2NameEntry.text?.trim().toString(),
+            team1NameEntry.text?.trim().toString(),
+            team2NameEntry.text?.trim().toString(),
         )
         setupTeamNames()
     }
 
-    private fun createPlayerScores() {
+    private fun createPlayerScores() = with(binding) {
         playerScoresTextView = mutableListOf(
-            binding.player1TotalScore,
-            binding.player2TotalScore,
-            binding.player3TotalScore,
-            binding.player4TotalScore
+            player1TotalScore,
+            player2TotalScore,
+            player3TotalScore,
+            player4TotalScore
         )
     }
 
-    private fun createTeamTotalScores() {
-        val team1Score = binding.player1TotalScore.text.toString()
-            .toInt() + binding.player2TotalScore.text.toString().toInt()
-        val team2Score = binding.player3TotalScore.text.toString()
-            .toInt() + binding.player4TotalScore.text.toString().toInt()
-        binding.team1TotalScore.text = getString(R.string.team_total_score_text).format(team1Score)
-        binding.team2TotalScore.text = getString(R.string.team_total_score_text).format(team2Score)
+    private fun createTeamTotalScores() = with(binding) {
+        val team1Score = player1TotalScore.text.toString()
+            .toInt() + player2TotalScore.text.toString().toInt()
+        val team2Score = player3TotalScore.text.toString()
+            .toInt() + player4TotalScore.text.toString().toInt()
+        team1TotalScore.text = getString(R.string.team_total_score_text).format(team1Score)
+        team2TotalScore.text = getString(R.string.team_total_score_text).format(team2Score)
     }
 
     private fun createPenaltyHashMap() {
@@ -416,7 +415,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         singlePlayerView.findViewById<RadioButton>(R.id.player4).text = playerNames[3]
     }
 
-    private fun saveFinishedGame() {
+    private fun saveFinishedGame() = with(binding){
         binding.saveScores.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
@@ -449,11 +448,11 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
                     }
                     val finishedPartnerGame = FinishedPartnerGame(
                         id = 0,
-                        team1Name = binding.team1Name.text.toString(),
-                        team2Name = binding.team2Name.text.toString(),
-                        team1TotalScore = binding.team1TotalScore.text.toString()
+                        team1Name = team1Name.text.toString(),
+                        team2Name = team2Name.text.toString(),
+                        team1TotalScore = team1TotalScore.text.toString()
                             .split(" ")[1].toInt(),
-                        team2TotalScore = binding.team2TotalScore.text.toString()
+                        team2TotalScore = team2TotalScore.text.toString()
                             .split(" ")[1].toInt(),
                         team1Player1 = players.getOrNull(0),
                         team1Player2 = players.getOrNull(1),

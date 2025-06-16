@@ -53,11 +53,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(
         }
     }
 
-    private fun animateLoadingText() {
-        binding.loadingText.alpha = 0f
+    private fun animateLoadingText()= with(binding) {
+        loadingText.alpha = 0f
         lifecycleScope.launch {
             delay(1200)
-            binding.loadingText.alpha = 1f
+            loadingText.alpha = 1f
             startPulsingText()
             animateLoadingDots()
         }

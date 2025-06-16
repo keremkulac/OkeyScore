@@ -20,7 +20,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FinishedPartnerGameDetailFragment
-    : BaseFragment<FragmentFinishedPartnerGameDetailBinding>(FragmentFinishedPartnerGameDetailBinding::inflate) {
+    :
+    BaseFragment<FragmentFinishedPartnerGameDetailBinding>(FragmentFinishedPartnerGameDetailBinding::inflate) {
 
     private val viewModel: FinishedPartnerGameDetailViewModel by viewModels()
 
@@ -47,70 +48,68 @@ class FinishedPartnerGameDetailFragment
         }
     }
 
-    private fun getAndSetFinishedGames() {
-        viewModel.getFinishedGame(requireArguments().getInt(FINISHED_GAME_ID))
-        viewModel.finishedPartnerGameGame.observe(viewLifecycleOwner) {
+    private fun getAndSetFinishedGames() = with(viewModel) {
+        getFinishedGame(requireArguments().getInt(FINISHED_GAME_ID))
+        finishedPartnerGameGame.observe(viewLifecycleOwner) {
             it?.let {
                 setRecyclerView(it)
-                finishedPartnerGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
+                finishedPartnerGameDetailAdapter.numberOfGames = findNumberOfGames(it)
             }
         }
     }
 
-    private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame) {
-        binding.apply {
-            team1Name.text = (finishedPartnerGame.team1Name)
-            team2Name.text = (finishedPartnerGame.team2Name)
-            team1TotalScore.text =
-                getString(R.string.team_total_score_text).format(finishedPartnerGame.team1TotalScore)
-            team2TotalScore.text =
-                getString(R.string.team_total_score_text).format(finishedPartnerGame.team2TotalScore)
-            finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
-            roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
-            roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            finishedPartnerGameDetailAdapter.clickListener = { scoreContainer, icon ->
-                expandableLayoutManager.toggleLayout(scoreContainer, icon)
-            }
-            totalScorePlayer1Name.text = finishedPartnerGame.team1Player1?.name ?: ""
-            totalScorePlayer2Name.text = finishedPartnerGame.team1Player2?.name ?: ""
-            totalScorePlayer3Name.text = finishedPartnerGame.team2Player1?.name ?: ""
-            totalScorePlayer4Name.text = finishedPartnerGame.team2Player2?.name ?: ""
-            player1TotalScore.text = finishedPartnerGame.team1Player1?.totalScore ?: "0"
-            player2TotalScore.text = finishedPartnerGame.team1Player2?.totalScore ?: "0"
-            player3TotalScore.text = finishedPartnerGame.team2Player1?.totalScore ?: "0"
-            player4TotalScore.text = finishedPartnerGame.team2Player2?.totalScore ?: "0"
-            setScoreDifferences(finishedPartnerGame)
-            gameDate.text = finishedPartnerGame.gameInfo.date
-            val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
-            val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
-            val matcher = pattern.matcher(finishedPartnerGame.gameInfo.gameInfo)
-            if (matcher.find()) {
-                gameDetail.text =
-                    requireContext().getString(R.string.winning_team_info_text2)
-                        .format(matcher.group(1), matcher.group(2))
-            } else {
-                gameDetail.text =
-                    requireContext().getString(R.string.winning_team_info_text2)
-                        .format(infoItems[0], infoItems[1])
-            }
+    private fun setRecyclerView(finishedPartnerGame: FinishedPartnerGame) = with(binding) {
+        team1Name.text = (finishedPartnerGame.team1Name)
+        team2Name.text = (finishedPartnerGame.team2Name)
+        team1TotalScore.text =
+            getString(R.string.team_total_score_text).format(finishedPartnerGame.team1TotalScore)
+        team2TotalScore.text =
+            getString(R.string.team_total_score_text).format(finishedPartnerGame.team2TotalScore)
+        finishedPartnerGameDetailAdapter.finishedPartnerGame = finishedPartnerGame
+        roundRecyclerView.adapter = finishedPartnerGameDetailAdapter
+        roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        finishedPartnerGameDetailAdapter.clickListener = { scoreContainer, icon ->
+            expandableLayoutManager.toggleLayout(scoreContainer, icon)
+        }
+        totalScorePlayer1Name.text = finishedPartnerGame.team1Player1?.name ?: ""
+        totalScorePlayer2Name.text = finishedPartnerGame.team1Player2?.name ?: ""
+        totalScorePlayer3Name.text = finishedPartnerGame.team2Player1?.name ?: ""
+        totalScorePlayer4Name.text = finishedPartnerGame.team2Player2?.name ?: ""
+        player1TotalScore.text = finishedPartnerGame.team1Player1?.totalScore ?: "0"
+        player2TotalScore.text = finishedPartnerGame.team1Player2?.totalScore ?: "0"
+        player3TotalScore.text = finishedPartnerGame.team2Player1?.totalScore ?: "0"
+        player4TotalScore.text = finishedPartnerGame.team2Player2?.totalScore ?: "0"
+        setScoreDifferences(finishedPartnerGame)
+        gameDate.text = finishedPartnerGame.gameInfo.date
+        val infoItems = finishedPartnerGame.gameInfo.gameInfo.split(" ")
+        val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
+        val matcher = pattern.matcher(finishedPartnerGame.gameInfo.gameInfo)
+        if (matcher.find()) {
+            gameDetail.text =
+                requireContext().getString(R.string.winning_team_info_text2)
+                    .format(matcher.group(1), matcher.group(2))
+        } else {
+            gameDetail.text =
+                requireContext().getString(R.string.winning_team_info_text2)
+                    .format(infoItems[0], infoItems[1])
         }
     }
 
-    private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame) {
+    private fun setScoreDifferences(finishedPartnerGame: FinishedPartnerGame) = with(binding) {
         var isClicked = true
-        binding.scoreDifferencesTextView.text =
+        scoreDifferencesTextView.text =
             viewModel.scoreDifferences(finishedPartnerGame, requireContext())
-        binding.showScoreDifferencesTextView.setOnClickListener {
+        showScoreDifferencesTextView.setOnClickListener {
             if (isClicked) {
-                binding.scoreDifferencesTextView.visibility = View.VISIBLE
-                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
+                scoreDifferencesTextView.visibility = View.VISIBLE
+                showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
                     null, null,
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_close_detail), null
                 )
                 isClicked = false
             } else {
-                binding.scoreDifferencesTextView.visibility = View.GONE
-                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
+                scoreDifferencesTextView.visibility = View.GONE
+                showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
                     null, null,
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_show_detail), null
                 )
@@ -119,17 +118,17 @@ class FinishedPartnerGameDetailFragment
         }
     }
 
-    private fun clickTeam1Layout() {
+    private fun clickTeam1Layout() = with(binding) {
         val expandableLayoutManager = ExpandableLayoutManager()
-        binding.team1MainLayout.setOnClickListener {
-            expandableLayoutManager.toggleLayout(binding.team1Layout, binding.team1MainIcon)
+        team1MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(team1Layout, team1MainIcon)
         }
     }
 
-    private fun clickTeam2Layout() {
+    private fun clickTeam2Layout() = with(binding) {
         val expandableLayoutManager = ExpandableLayoutManager()
-        binding.team2MainLayout.setOnClickListener {
-            expandableLayoutManager.toggleLayout(binding.team2Layout, binding.team2MainIcon)
+        team2MainLayout.setOnClickListener {
+            expandableLayoutManager.toggleLayout(team2Layout, team2MainIcon)
         }
     }
 

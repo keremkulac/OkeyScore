@@ -43,64 +43,63 @@ class FinishedSingleGameDetailFragment :
         }
     }
 
-    private fun setRecyclerView(finishedSingleGame: FinishedSingleGame) {
-        binding.apply {
-            finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
-            roundRecyclerView.adapter = finishedSingleGameDetailAdapter
-            roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            finishedSingleGameDetailAdapter.clickListener = { scoreContainer, icon ->
-                expandableLayoutManager.toggleLayout(scoreContainer, icon)
-            }
-            totalScorePlayer1Name.text = finishedSingleGame.player1?.name ?: ""
-            totalScorePlayer2Name.text = finishedSingleGame.player2?.name ?: ""
-            totalScorePlayer3Name.text = finishedSingleGame.player3?.name ?: ""
-            totalScorePlayer4Name.text = finishedSingleGame.player4?.name ?: ""
-            player1TotalScore.text = finishedSingleGame.player1?.totalScore ?: "0"
-            player2TotalScore.text = finishedSingleGame.player2?.totalScore ?: "0"
-            player3TotalScore.text = finishedSingleGame.player3?.totalScore ?: "0"
-            player4TotalScore.text = finishedSingleGame.player4?.totalScore ?: "0"
-            setScoreDifferences(finishedSingleGame)
-            gameDate.text = finishedSingleGame.gameInfo.date
-            val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
-            val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
-            val matcher = pattern.matcher(finishedSingleGame.gameInfo.gameInfo)
-            if (matcher.find()) {
-                gameDetail.text =
-                    requireContext().getString(R.string.winning_team_info_text2)
-                        .format(matcher.group(1), matcher.group(2))
-            } else {
-                gameDetail.text =
-                    requireContext().getString(R.string.winning_team_info_text2)
-                        .format(infoItems[0], infoItems[1])
-            }
+    private fun setRecyclerView(finishedSingleGame: FinishedSingleGame) = with(binding) {
+        finishedSingleGameDetailAdapter.finishedSingleGame = finishedSingleGame
+        roundRecyclerView.adapter = finishedSingleGameDetailAdapter
+        roundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        finishedSingleGameDetailAdapter.clickListener = { scoreContainer, icon ->
+            expandableLayoutManager.toggleLayout(scoreContainer, icon)
         }
+        totalScorePlayer1Name.text = finishedSingleGame.player1?.name ?: ""
+        totalScorePlayer2Name.text = finishedSingleGame.player2?.name ?: ""
+        totalScorePlayer3Name.text = finishedSingleGame.player3?.name ?: ""
+        totalScorePlayer4Name.text = finishedSingleGame.player4?.name ?: ""
+        player1TotalScore.text = finishedSingleGame.player1?.totalScore ?: "0"
+        player2TotalScore.text = finishedSingleGame.player2?.totalScore ?: "0"
+        player3TotalScore.text = finishedSingleGame.player3?.totalScore ?: "0"
+        player4TotalScore.text = finishedSingleGame.player4?.totalScore ?: "0"
+        setScoreDifferences(finishedSingleGame)
+        gameDate.text = finishedSingleGame.gameInfo.date
+        val infoItems = finishedSingleGame.gameInfo.gameInfo.split(" ")
+        val pattern = Pattern.compile("Kazanan takım: (.+?)\\. Skor: (\\d+)")
+        val matcher = pattern.matcher(finishedSingleGame.gameInfo.gameInfo)
+        if (matcher.find()) {
+            gameDetail.text =
+                requireContext().getString(R.string.winning_team_info_text2)
+                    .format(matcher.group(1), matcher.group(2))
+        } else {
+            gameDetail.text =
+                requireContext().getString(R.string.winning_team_info_text2)
+                    .format(infoItems[0], infoItems[1])
+        }
+
     }
 
-    private fun getAndSetFinishedGame() {
-        viewModel.getFinishedSingleGame(requireArguments().getInt(FINISHED_GAME_ID))
-        viewModel.finishedSingleGame.observe(viewLifecycleOwner) {
+    private fun getAndSetFinishedGame() = with(viewModel) {
+        getFinishedSingleGame(requireArguments().getInt(FINISHED_GAME_ID))
+        finishedSingleGame.observe(viewLifecycleOwner) {
             it?.let {
                 setRecyclerView(it)
-                finishedSingleGameDetailAdapter.numberOfGames = viewModel.findNumberOfGames(it)
+                finishedSingleGameDetailAdapter.numberOfGames = findNumberOfGames(it)
             }
         }
     }
 
-    private fun setScoreDifferences(finishedSingleGame: FinishedSingleGame) {
+    private fun setScoreDifferences(finishedSingleGame: FinishedSingleGame) = with(binding) {
         var isClicked = true
-        binding.scoreDifferencesTextView.text =
+        scoreDifferencesTextView.text =
             viewModel.scoreDifferences(finishedSingleGame, requireContext())
-        binding.showScoreDifferencesTextView.setOnClickListener {
+        showScoreDifferencesTextView.setOnClickListener {
             if (isClicked) {
-                binding.scoreDifferencesTextView.visibility = View.VISIBLE
-                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
+                scoreDifferencesTextView.visibility = View.VISIBLE
+                showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
                     null, null,
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_close_detail), null
                 )
                 isClicked = false
             } else {
-                binding.scoreDifferencesTextView.visibility = View.GONE
-                binding.showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
+                scoreDifferencesTextView.visibility = View.GONE
+                showScoreDifferencesTextView.setCompoundDrawablesWithIntrinsicBounds(
                     null, null,
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_show_detail), null
                 )

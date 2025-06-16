@@ -45,7 +45,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewSingleGame"
                     android:layout_width="0dp"
-                    android:layout_height="250dp"
+                    android:layout_height="275dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:clickable="true"
@@ -111,7 +111,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewPartnerGame"
                     android:layout_width="0dp"
-                    android:layout_height="250dp"
+                    android:layout_height="275dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:clickable="true"
@@ -194,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/choice_text"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/start" />
 
@@ -203,7 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/start"
             app:layout_constraintStart_toStartOf="parent"
@@ -212,12 +212,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/start"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
             android:layout_marginEnd="16dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="#23221F"
+            app:cardBackgroundColor="@color/primary_color"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -231,28 +231,30 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/choiceButtonText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/choose_game_enter_text"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textColor="@color/button_text_color"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/choiceButtonIcon"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/choiceButtonIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
                     android:contentDescription="@string/todo"
                     android:src="@drawable/ic_arrow_right"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#FFFFFF" />
+                    app:layout_constraintStart_toEndOf="@+id/choiceButtonText"
+                    app:tint="@color/button_text_color" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
