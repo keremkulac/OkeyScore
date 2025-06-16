@@ -35,7 +35,7 @@
     <color name="single_game_cardview_indicator_color">#B2DFDB</color>
     <color name="partner_game_cardview_indicator_color">#E1BEE7</color>
     <color name="shimmer_color">#C2C2C2</color>
-    <color name="start_button_color">#8A8AA3</color>
+    <color name="start_button_color">#58536DFE</color>
     <color name="choose_game_selection_indicator_color">#4CAF50</color>
 
 </resources>

@@ -98,4 +98,6 @@
     <string name="onboarding_next_button_text">Forward</string>
     <string name="onboarding_next_finish_button_text">Start</string>
     <string name="onboarding_previous_button_text">Previous</string>
+    <string name="choice_text">Choice</string>
+
 </resources>

@@ -100,5 +100,6 @@
     <string name="onboarding_next_button_text" tools:ignore="MissingTranslation">İlerle</string>
     <string name="onboarding_next_finish_button_text" tools:ignore="MissingTranslation">Başla</string>
     <string name="onboarding_previous_button_text" tools:ignore="MissingTranslation">Geri</string>
+    <string name="choice_text" tools:ignore="MissingTranslation">Seçim</string>
 
 </resources>

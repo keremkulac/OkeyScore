@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.keremkulac.okeyscore.MainActivity
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentChooseGameBinding
 import com.keremkulac.okeyscore.util.BaseFragment
@@ -16,56 +17,63 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ChooseGameFragment :
     BaseFragment<FragmentChooseGameBinding>(FragmentChooseGameBinding::inflate) {
+
     private val viewModel: ChooseGameViewModel by viewModels()
     private var selectedGame: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setBottomNavigationVisible()
-        setupClickListeners()
-        onBackPressCancel()
+        super.onViewCreated(view, savedInstanceState)
+        showBottomNav()
+        setupListeners()
         observeValidationMessage(viewModel.validationMessage)
+        onBackPressCancel()
     }
 
-
-    private fun setupClickListeners() {
-        binding.cardViewSingleGame.setOnClickListener {
-            selectGame(getString(R.string.single_game))
+    private fun setupListeners() = with(binding) {
+        cardViewSingleGame.setOnClickListener {
+            handleGameSelection(GameType.SINGLE)
         }
-
-        binding.cardViewPartnerGame.setOnClickListener {
-            selectGame(getString(R.string.partner_game))
+        cardViewPartnerGame.setOnClickListener {
+            handleGameSelection(GameType.PARTNER)
         }
-
-        binding.start.setOnClickListener {
-            if (viewModel.checkSelectedGame(selectedGame,getString(R.string.warning_check_selected_game))){
-                startSelectedFragment()
+        cancelCardViewSingleGame.setOnClickListener {
+            clearGameSelection()
+        }
+        cancelCardViewPartnerGame.setOnClickListener {
+            clearGameSelection()
+        }
+        start.setOnClickListener {
+            if (viewModel.checkSelectedGame(selectedGame, getString(R.string.warning_check_selected_game))) {
+                navigateToSelectedGame()
+                clearGameSelection()
             }
         }
     }
 
-    private fun selectGame(selectedGame: String) {
-        this.selectedGame = selectedGame
-        updateSelection(selectedGame)
-        when (selectedGame) {
-            getString(R.string.single_game) -> animateCardSelection(binding.cardViewSingleGame)
-            getString(R.string.partner_game) -> animateCardSelection(binding.cardViewPartnerGame)
+    private fun handleGameSelection(gameType: GameType) {
+        selectedGame = getString(gameType.labelRes)
+        updateIndicators(gameType)
+        animateCardSelection(if (gameType == GameType.SINGLE) binding.cardViewSingleGame else binding.cardViewPartnerGame)
+        with(binding) {
+            choiceText.text = getString(gameType.labelRes)
+            cancelCardViewSingleGame.visibility =
+                if (gameType == GameType.SINGLE) View.VISIBLE else View.INVISIBLE
+            cancelCardViewPartnerGame.visibility =
+                if (gameType == GameType.PARTNER) View.VISIBLE else View.INVISIBLE
+            choiceLayout.visibility = View.VISIBLE
         }
+        (requireActivity() as MainActivity).hideBottomNav()
     }
 
-    private fun updateSelection(selectedInstrument: String) {
-        binding.singleGameIndicator.background =
+    private fun updateIndicators(gameType: GameType) = with(binding) {
+        singleGameIndicator.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator_inactive)
-        binding.partnerGameIndicator.background =
+        partnerGameIndicator.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator_inactive)
 
-        when (selectedInstrument) {
-            getString(R.string.single_game) -> binding.singleGameIndicator.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator)
-
-            getString(R.string.partner_game) -> binding.partnerGameIndicator.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator)
-        }
+        val indicator = if (gameType == GameType.SINGLE) singleGameIndicator else partnerGameIndicator
+        indicator.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator)
     }
 
     private fun animateCardSelection(cardView: CardView) {
@@ -83,27 +91,40 @@ class ChooseGameFragment :
             .start()
     }
 
-    private fun startSelectedFragment() {
+    private fun navigateToSelectedGame() {
         when (selectedGame) {
-            getString(R.string.single_game) -> findNavController().navigate(
-                ChooseGameFragmentDirections.actionChooseGameFragmentToSaveSingleGameFragment()
-            )
-
-            getString(R.string.partner_game) -> findNavController().navigate(
-                ChooseGameFragmentDirections.actionChooseGameFragmentToSavePartnerGameFragment()
-            )
+            getString(R.string.single_game) -> {
+                findNavController().navigate(ChooseGameFragmentDirections.actionChooseGameFragmentToSaveSingleGameFragment())
+            }
+            getString(R.string.partner_game) -> {
+                findNavController().navigate(ChooseGameFragmentDirections.actionChooseGameFragmentToSavePartnerGameFragment())
+            }
         }
     }
 
-    private fun onBackPressCancel() {
-        val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
-        onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-        }
+    private fun clearGameSelection() = with(binding) {
+        selectedGame = ""
+        singleGameIndicator.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator_inactive)
+        partnerGameIndicator.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.selection_indicator_inactive)
+        cancelCardViewSingleGame.visibility = View.INVISIBLE
+        cancelCardViewPartnerGame.visibility = View.INVISIBLE
+        choiceLayout.visibility = View.GONE
+        (requireActivity() as MainActivity).showBottomNav()
     }
 
-    private fun setBottomNavigationVisible() {
+    private fun showBottomNav() {
         val bottomNavigation = requireActivity().findViewById<View>(R.id.bottomNavigation)
         bottomNavigation.visibility = View.VISIBLE
     }
 
+    private fun onBackPressCancel() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+    }
+
+    private enum class GameType(val labelRes: Int) {
+        SINGLE(R.string.single_game),
+        PARTNER(R.string.partner_game)
+    }
 }
