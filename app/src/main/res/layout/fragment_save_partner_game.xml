@@ -20,10 +20,10 @@
         android:id="@+id/team1EntryCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/margin_large"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
         app:cardBackgroundColor="@color/cardview_background_color"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/card_radius_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="@dimen/padding_small">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/team1NameEntryHint"
@@ -99,11 +99,11 @@
         android:id="@+id/team2EntryCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/margin_large"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
         android:visibility="gone"
         app:cardBackgroundColor="@color/cardview_background_color"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/card_radius_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team1EntryCardView"
@@ -178,9 +178,9 @@
         android:id="@+id/teamScoresTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/team_scores_title"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size_xlarge"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -191,14 +191,14 @@
         android:id="@+id/teamScoreCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
         android:outlineSpotShadowColor="@color/cardview_shadow_color"
         android:visibility="gone"
         app:cardBackgroundColor="@color/cardview_background_color"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="2dp"
+        app:cardCornerRadius="@dimen/card_radius_large"
+        app:cardElevation="@dimen/card_elevation_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/teamScoresTitle"
@@ -208,7 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/padding_large">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/team1MainLayout"
@@ -220,11 +220,11 @@
                     android:id="@+id/team1Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="@dimen/padding_small"
                     android:gravity="center_vertical"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="16sp"
+                    android:paddingTop="@dimen/padding_small"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold"
                     app:drawableLeftCompat="@drawable/ic_team_1"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -248,9 +248,9 @@
                 android:id="@+id/team1Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_large"
                 android:orientation="vertical"
-                android:paddingBottom="12dp"
+                android:paddingBottom="@dimen/padding_medium"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -276,20 +276,13 @@
 
                         <TextView
                             android:id="@+id/totalScorePlayer1Name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
+                            style="@style/TotalScoreCardViewNameStyle"
                             tools:text="Player 1" />
 
                         <TextView
                             android:id="@+id/player1TotalScore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/default_total_score_value"
-                            android:textColor="#4CAF50"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            style="@style/TotalScoreCardViewTotalScoreStyle" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -308,20 +301,13 @@
 
                         <TextView
                             android:id="@+id/totalScorePlayer2Name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
+                            style="@style/TotalScoreCardViewNameStyle"
                             tools:text="Player 2" />
 
                         <TextView
                             android:id="@+id/player2TotalScore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/default_total_score_value"
-                            android:textColor="#4CAF50"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            style="@style/TotalScoreCardViewTotalScoreStyle" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -330,9 +316,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="8dp"
+                    android:paddingTop="@dimen/padding_small"
                     android:textColor="#4CAF50"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold"
                     tools:text="Toplam: 875" />
             </LinearLayout>
@@ -340,8 +326,8 @@
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_large" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/team2MainLayout"
@@ -353,11 +339,11 @@
                     android:id="@+id/team2Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="@dimen/padding_small"
                     android:gravity="center_vertical"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="16sp"
+                    android:paddingTop="@dimen/padding_small"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold"
                     app:drawableLeftCompat="@drawable/ic_team_1"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -382,7 +368,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="16dp"
+                android:paddingTop="@dimen/padding_large"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -408,20 +394,13 @@
 
                         <TextView
                             android:id="@+id/totalScorePlayer3Name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
+                            style="@style/TotalScoreCardViewNameStyle"
                             tools:text="Player 3" />
 
                         <TextView
                             android:id="@+id/player3TotalScore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/default_total_score_value"
-                            android:textColor="#4CAF50"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            style="@style/TotalScoreCardViewTotalScoreStyle" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -440,20 +419,13 @@
 
                         <TextView
                             android:id="@+id/totalScorePlayer4Name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
+                            style="@style/TotalScoreCardViewNameStyle"
                             tools:text="Player 4" />
 
                         <TextView
                             android:id="@+id/player4TotalScore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/default_total_score_value"
-                            android:textColor="#4CAF50"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            style="@style/TotalScoreCardViewTotalScoreStyle" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -462,9 +434,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="8dp"
+                    android:paddingTop="@dimen/padding_small"
                     android:textColor="#4CAF50"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold"
                     tools:text="Toplam: 832" />
             </LinearLayout>
@@ -477,7 +449,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -487,15 +459,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:padding="@dimen/padding_small">
 
             <TextView
                 android:id="@+id/scoreEntryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_large"
                 android:text="@string/score_entry_title"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_size_xlarge"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -514,13 +486,13 @@
                 android:id="@+id/newRound"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_large"
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
                 app:cardBackgroundColor="@color/cardview_background_color"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="@dimen/card_radius_large"
+                app:cardElevation="@dimen/card_elevation_medium"
                 app:layout_constraintEnd_toStartOf="@+id/penalty"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
@@ -529,7 +501,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
+                    android:padding="@dimen/padding_small">
 
                     <ImageView
                         android:id="@+id/newRoundIcon"
@@ -544,9 +516,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_large"
                         android:text="@string/new_round"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/newRoundIcon"
                         app:layout_constraintStart_toEndOf="@+id/newRoundIcon"
@@ -559,13 +531,13 @@
                 android:id="@+id/penalty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
                 app:cardBackgroundColor="@color/cardview_background_color"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="@dimen/card_radius_large"
+                app:cardElevation="@dimen/card_elevation_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/newRound"
                 app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
@@ -590,9 +562,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_large"
                         android:text="@string/penalty"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/penaltyIcon"
                         app:layout_constraintStart_toEndOf="@+id/penaltyIcon"
@@ -605,14 +577,14 @@
                 android:id="@+id/saveScores"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
                 app:cardBackgroundColor="@color/cardview_background_color"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="@dimen/card_radius_large"
+                app:cardElevation="@dimen/card_elevation_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -622,7 +594,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
+                    android:padding="@dimen/padding_small">
 
                     <ImageView
                         android:id="@+id/saveScoresIcon"
@@ -641,9 +613,9 @@
                         android:id="@+id/saveScoresText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_large"
                         android:text="@string/save"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/saveScoresIcon"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -10,7 +10,7 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/margin_large"
         android:background="@drawable/searchview_border"
         android:layoutDirection="rtl"
         app:closeIcon="@drawable/ic_close"
@@ -66,15 +66,15 @@
             android:id="@+id/finishedGameRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:paddingBottom="16dp" />
+            android:layout_margin="@dimen/margin_small"
+            android:paddingBottom="@dimen/padding_large" />
     </ScrollView>
 
     <Button
         android:id="@+id/createSingleGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin_small"
         android:background="@drawable/custom_button"
         android:paddingHorizontal="32dp"
         android:text="@string/create_single_game_button_text"
@@ -88,7 +88,7 @@
         android:id="@+id/recordNotFoundImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin_small"
         android:contentDescription="@string/todo"
         android:src="@drawable/illustration_no_data"
         android:visibility="gone"

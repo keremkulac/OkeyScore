@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/margin_small"
     android:outlineSpotShadowColor="@color/cardview_shadow_color"
     app:cardBackgroundColor="@color/cardview_background_color"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="@dimen/card_radius_xlarge"
+    app:cardElevation="@dimen/card_elevation_large"
     tools:targetApi="p">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/padding_small">
 
         <TextView
             android:id="@+id/gameInfo"
             style="@style/InfoTextViewStyle"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/margin_small"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"

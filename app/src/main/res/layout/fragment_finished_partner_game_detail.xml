@@ -33,7 +33,7 @@
                     android:id="@+id/goToFinishedGameViewFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:contentDescription="@string/tag"
                     android:src="@drawable/ic_back"
                     app:tint="@color/white" />
@@ -42,11 +42,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/margin_large"
                     android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
                     android:text="@string/game_detail"
                     android:textColor="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -55,12 +55,12 @@
             android:id="@+id/teamScoreCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:layout_marginEnd="@dimen/margin_xxlarge"
             android:outlineSpotShadowColor="@color/cardview_shadow_color"
             app:cardBackgroundColor="@color/cardview_background_color"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/card_radius_xlarge"
+            app:cardElevation="@dimen/card_elevation_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBar"
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/padding_large">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/team1MainLayout"
@@ -82,11 +82,11 @@
                         android:id="@+id/team1Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="8dp"
+                        android:drawablePadding="@dimen/padding_small"
                         android:gravity="center_vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:textSize="16sp"
+                        android:paddingTop="@dimen/padding_small"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
                         app:drawableLeftCompat="@drawable/ic_team_1"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,9 +110,9 @@
                     android:id="@+id/team1Layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:orientation="vertical"
-                    android:paddingBottom="12dp"
+                    android:paddingBottom="@dimen/padding_medium"
                     android:visibility="gone">
 
                     <LinearLayout
@@ -140,7 +140,7 @@
                                 android:id="@+id/totalScorePlayer1Name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_size_medium"
                                 android:textStyle="bold"
                                 tools:text="Player 1" />
 
@@ -149,7 +149,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#4CAF50"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/text_size_large"
                                 android:textStyle="bold"
                                 tools:text="490" />
                         </LinearLayout>
@@ -172,7 +172,7 @@
                                 android:id="@+id/totalScorePlayer2Name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_size_medium"
                                 android:textStyle="bold"
                                 tools:text="Player 2" />
 
@@ -181,7 +181,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#4CAF50"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/text_size_large"
                                 android:textStyle="bold"
                                 tools:text="385" />
                         </LinearLayout>
@@ -192,9 +192,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:paddingTop="8dp"
+                        android:paddingTop="@dimen/padding_small"
                         android:textColor="#4CAF50"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/text_size_large"
                         android:textStyle="bold"
                         tools:text="Toplam: 875" />
                 </LinearLayout>
@@ -202,8 +202,8 @@
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginBottom="@dimen/margin_large" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/team2MainLayout"
@@ -215,11 +215,11 @@
                         android:id="@+id/team2Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="8dp"
+                        android:drawablePadding="@dimen/padding_small"
                         android:gravity="center_vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:textSize="16sp"
+                        android:paddingTop="@dimen/padding_small"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
                         app:drawableLeftCompat="@drawable/ic_team_1"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -244,7 +244,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="16dp"
+                    android:paddingTop="@dimen/padding_large"
                     android:visibility="gone">
 
                     <LinearLayout
@@ -272,7 +272,7 @@
                                 android:id="@+id/totalScorePlayer3Name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_size_medium"
                                 android:textStyle="bold"
                                 tools:text="Player 3" />
 
@@ -281,7 +281,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#4CAF50"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/text_size_large"
                                 android:textStyle="bold"
                                 tools:text="420" />
                         </LinearLayout>
@@ -304,7 +304,7 @@
                                 android:id="@+id/totalScorePlayer4Name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/text_size_medium"
                                 android:textStyle="bold"
                                 tools:text="Player 4" />
 
@@ -313,7 +313,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#4CAF50"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/text_size_large"
                                 android:textStyle="bold"
                                 tools:text="412" />
                         </LinearLayout>
@@ -326,7 +326,7 @@
                         android:layout_gravity="center_horizontal"
                         android:paddingTop="8dp"
                         android:textColor="#4CAF50"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/text_size_large"
                         android:textStyle="bold"
                         tools:text="Toplam: 832" />
                 </LinearLayout>
@@ -339,9 +339,9 @@
             android:id="@+id/scoreLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_small"
             android:orientation="vertical"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -361,14 +361,14 @@
             android:id="@+id/infoCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_small"
             android:outlineSpotShadowColor="@color/cardview_shadow_color"
             app:cardBackgroundColor="@color/cardview_background_color"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/card_radius_small"
+            app:cardElevation="@dimen/card_elevation_large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -395,27 +395,27 @@
                     android:id="@+id/showScoreDifferencesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/margin_large"
                     android:text="@string/show_differences"
                     android:textColor="@color/score_differences_text_color"
-                    android:textSize="11sp"
+                    android:textSize="@dimen/text_size_small"
                     app:drawableRightCompat="@drawable/ic_show_detail"
+                    app:layout_constraintBottom_toBottomOf="@+id/gameDetail"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/gameDetail" />
 
                 <TextView
                     android:id="@+id/scoreDifferencesTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_large"
                     android:gravity="center_vertical"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="3"
                     android:paddingStart="32dp"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="normal"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -426,7 +426,7 @@
                 <TextView
                     android:id="@+id/gameDate"
                     style="@style/DateTextViewStyle"
-                    android:layout_margin="16dp"
+                    android:layout_margin="@dimen/margin_large"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scoreDifferencesTextView" />

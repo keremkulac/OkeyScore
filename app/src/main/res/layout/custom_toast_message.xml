@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="56dp"
     android:layout_gravity="bottom"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="20dp"
+    app:cardElevation="@dimen/card_elevation_large"
+    app:cardCornerRadius="@dimen/card_radius_large"
     android:outlineSpotShadowColor="@color/cardview_shadow_color"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -15,8 +15,8 @@
     tools:targetApi="p">
 
         <RelativeLayout
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/margin_large"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_successful"
                 tools:ignore="ImageContrastCheck" />
@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/toastMessageIcon"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_large"
                 android:hint="@string/successful" />
         </RelativeLayout>
 </androidx.cardview.widget.CardView>

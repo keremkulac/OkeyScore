@@ -4,27 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/margin_large"
     android:outlineSpotShadowColor="@color/cardview_shadow_color"
     app:cardBackgroundColor="@color/cardview_background_color"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="@dimen/card_radius_xlarge"
+    app:cardElevation="@dimen/card_elevation_large"
     tools:targetApi="p">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/padding_small">
 
         <TextView
             android:id="@+id/gameInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_small"
             android:background="@color/shimmer_color"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/padding_small"
             android:padding="3dp"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
@@ -50,10 +50,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_small"
             android:background="@color/shimmer_color"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/padding_small"
             android:padding="3dp"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"

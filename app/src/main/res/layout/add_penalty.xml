@@ -25,11 +25,12 @@
         <EditText
             android:id="@+id/penalty"
             android:layout_width="120dp"
-            android:background="@null"
             android:layout_height="wrap_content"
             android:autofillHints=""
+            android:background="@null"
             android:hint="@string/enter_penalty"
             android:inputType="number"
+            android:maxLength="4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/penaltyValueTitle" />
 
@@ -37,11 +38,11 @@
             android:id="@+id/confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/confirm"
-            app:cornerRadius="8dp"
-            android:textStyle="bold"
-            android:textAllCaps="false"
             android:layout_marginEnd="8dp"
+            android:text="@string/confirm"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/penalty" />
 

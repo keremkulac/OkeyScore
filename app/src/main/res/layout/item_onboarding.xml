@@ -19,16 +19,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Başlık"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size_xlarge"
         android:textStyle="bold"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="@dimen/margin_xxlarge" />
 
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Açıklama metni"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         android:gravity="center"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="@dimen/margin_small" />
 </LinearLayout>

@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="16dp">
+            android:padding="@dimen/padding_large">
 
             <ImageView
                 android:id="@+id/mainIcon"
@@ -46,20 +46,20 @@
                     android:id="@+id/cardViewSingleGame"
                     android:layout_width="0dp"
                     android:layout_height="275dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="@dimen/margin_small"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/single_game_cardview_background_color"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="0dp">
+                    app:cardCornerRadius="@dimen/card_radius_xlarge"
+                    app:cardElevation="@dimen/card_elevation_small">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/singleGameIndicator"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="@dimen/padding_large">
 
                         <ImageView
                             android:id="@+id/cancelCardViewSingleGame"
@@ -71,13 +71,13 @@
                             android:visibility="invisible"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#D8D8DB" />
+                            app:tint="#B0BEC5" />
 
                         <FrameLayout
                             android:id="@+id/frameLayout"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="@dimen/margin_xxlarge"
                             android:background="@drawable/circle_background_mint"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -97,10 +97,10 @@
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/margin_large"
                             android:text="@string/single_game"
                             android:textColor="#666666"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/text_size_large"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="@+id/frameLayout"
                             app:layout_constraintStart_toStartOf="@+id/frameLayout"
@@ -112,12 +112,12 @@
                     android:id="@+id/cardViewPartnerGame"
                     android:layout_width="0dp"
                     android:layout_height="275dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/partner_game_cardview_background_color"
-                    app:cardCornerRadius="24dp"
+                    app:cardCornerRadius="@dimen/card_radius_xlarge"
                     app:cardElevation="0dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,7 +126,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="@dimen/padding_medium">
 
                         <ImageView
                             android:id="@+id/cancelCardViewPartnerGame"
@@ -138,13 +138,13 @@
                             android:visibility="invisible"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#D8D8DB" />
+                            app:tint="#B0BEC5" />
 
                         <FrameLayout
                             android:id="@+id/frameLayout2"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="@dimen/margin_xxlarge"
                             android:background="@drawable/circle_background_purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -163,10 +163,10 @@
                             android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/margin_large"
                             android:text="@string/partner_game"
                             android:textColor="#666666"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/text_size_large"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
                             app:layout_constraintStart_toStartOf="@+id/frameLayout2"
@@ -192,9 +192,9 @@
             android:id="@+id/choiceTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_large"
             android:text="@string/choice_text"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/start" />
 
@@ -202,8 +202,8 @@
             android:id="@+id/choiceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:textSize="16sp"
+            android:layout_marginStart="@dimen/margin_large"
+            android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/start"
             app:layout_constraintStart_toStartOf="parent"
@@ -214,12 +214,12 @@
             android:id="@+id/start"
             android:layout_width="120dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/margin_large"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/primary_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
+            app:cardCornerRadius="@dimen/card_radius_large"
+            app:cardElevation="@dimen/card_elevation_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -236,24 +236,24 @@
                     android:layout_height="wrap_content"
                     android:text="@string/choose_game_enter_text"
                     android:textColor="@color/button_text_color"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/choiceButtonIcon"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/choiceButtonIcon"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/choiceButtonIcon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="@dimen/margin_large"
+                    android:layout_height="@dimen/margin_large"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@string/todo"
                     android:src="@drawable/ic_arrow_right"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/choiceButtonText"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/button_text_color" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
