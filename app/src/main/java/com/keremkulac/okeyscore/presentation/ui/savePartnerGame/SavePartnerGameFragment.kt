@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -294,33 +295,33 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         binding.penalty.setOnClickListener {
             val rootNull = null
             val inflater = LayoutInflater.from(requireContext())
-            val partnerAddPenaltyView =
-                inflater.inflate(R.layout.players_add_penalty, rootNull)
+            val playersPenaltyAddView = inflater.inflate(R.layout.players_add_penalty, rootNull)
             val penaltyView = inflater.inflate(R.layout.add_penalty, rootNull)
-            val partnerPlayersRadioGroup =
-                partnerAddPenaltyView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
+            val playersRadioGroup =
+                playersPenaltyAddView.findViewById<RadioGroup>(R.id.singlePlayersRadioGroup)
+            val forward = playersPenaltyAddView.findViewById<Button>(R.id.forward)
+            val confirm = penaltyView.findViewById<Button>(R.id.confirm)
             val givenPenaltyEditText = penaltyView.findViewById<EditText>(R.id.penalty)
-            setPlayerToBePenalized(partnerAddPenaltyView)
+            setPlayerToBePenalized(playersPenaltyAddView)
             val firstDialog = createAlertDialog(
                 requireContext(),
-                partnerAddPenaltyView,
-                R.string.select_player_punish,
-                requireContext().getString(R.string.forward)
-            ) {
+                playersPenaltyAddView
+            )
+            forward.setOnClickListener {
                 val selectedText =
-                    partnerPlayersRadioGroup.findViewById<RadioButton>(partnerPlayersRadioGroup.checkedRadioButtonId)?.text?.toString()
+                    playersRadioGroup.findViewById<RadioButton>(playersRadioGroup.checkedRadioButtonId)?.text?.toString()
                 if (selectedText.isNullOrEmpty()) {
                     requireContext().toast(
                         requireContext().getString(R.string.warning_select_player_penalised),
                         R.drawable.ic_warning
                     )
                 } else {
+                    firstDialog.dismiss()
                     val secondDialog = createAlertDialog(
                         requireContext(),
-                        penaltyView,
-                        R.string.determine_punishment,
-                        requireContext().getString(R.string.confirm)
-                    ) {
+                        penaltyView
+                    )
+                    confirm.setOnClickListener {
                         val totalScoreTextView = createTotalScoresTextView()[selectedText]
                         val penalty = givenPenaltyEditText.text.toString().toInt()
                         if (totalScoreTextView!!.text.toString() == "") {
@@ -332,6 +333,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
                             totalScoreTextView.visibility = View.VISIBLE
                         }
                         updatePenaltyTextView(selectedText, penalty)
+                        secondDialog.dismiss()
                     }
                     secondDialog.show()
                 }
@@ -415,7 +417,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
         singlePlayerView.findViewById<RadioButton>(R.id.player4).text = playerNames[3]
     }
 
-    private fun saveFinishedGame() = with(binding){
+    private fun saveFinishedGame() = with(binding) {
         binding.saveScores.setOnClickListener {
             if (viewModel.checkAllRoundScoreFilled(
                     allPlayerScoreEditTextList[allPlayerScoreEditTextList.size - 1],
