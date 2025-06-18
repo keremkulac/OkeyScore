@@ -52,7 +52,6 @@
     <string name="winning_team_info">%s %s</string>
     <string name="winning_player_info_text">Winning player: %s. Score: %s</string>
     <string name="winning_team_info_text2">Winning team: %s\nScore: %s</string>
-    <string name="winning_player_info_text2">Winning player: %s\nScore: %s</string>
     <string name="winning_player_info">%s %s</string>
     <string name="error_not_work_this_device">The app does not work on this device.</string>
     <string name="enter_penalty">Enter penalty</string>

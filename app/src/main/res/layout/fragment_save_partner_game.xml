@@ -180,7 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
         android:text="@string/team_scores_title"
-        android:textSize="@dimen/text_size_xlarge"
+        android:textSize="@dimen/text_size_xxlarge"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -467,7 +467,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_large"
                 android:text="@string/score_entry_title"
-                android:textSize="@dimen/text_size_xlarge"
+                android:textSize="@dimen/text_size_xxlarge"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -490,7 +490,7 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_large"
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
-                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardBackgroundColor="#80CBC4"
                 app:cardCornerRadius="@dimen/card_radius_large"
                 app:cardElevation="@dimen/card_elevation_medium"
                 app:layout_constraintEnd_toStartOf="@+id/penalty"
@@ -510,6 +510,7 @@
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/ic_add"
+                        app:tint="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -520,6 +521,7 @@
                         android:text="@string/new_round"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
+                        android:textColor="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="@+id/newRoundIcon"
                         app:layout_constraintStart_toEndOf="@+id/newRoundIcon"
                         app:layout_constraintTop_toTopOf="@+id/newRoundIcon" />
@@ -535,7 +537,7 @@
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_small"
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
-                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardBackgroundColor="#EF9A9A"
                 app:cardCornerRadius="@dimen/card_radius_large"
                 app:cardElevation="@dimen/card_elevation_medium"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -546,7 +548,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
+                    android:padding="@dimen/padding_small">
 
                     <ImageView
                         android:id="@+id/penaltyIcon"
@@ -555,6 +557,7 @@
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
                         android:padding="3dp"
+                        app:tint="#FFFFFF"
                         android:src="@drawable/ic_penalty"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -566,6 +569,7 @@
                         android:text="@string/penalty"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
+                        android:textColor="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="@+id/penaltyIcon"
                         app:layout_constraintStart_toEndOf="@+id/penaltyIcon"
                         app:layout_constraintTop_toTopOf="@+id/penaltyIcon" />
@@ -582,7 +586,7 @@
                 android:layout_marginEnd="@dimen/margin_small"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:outlineSpotShadowColor="@color/cardview_shadow_color"
-                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardBackgroundColor="#4FC3F7"
                 app:cardCornerRadius="@dimen/card_radius_large"
                 app:cardElevation="@dimen/card_elevation_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -607,7 +611,7 @@
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/icon_color" />
+                        app:tint="#ffffff" />
 
                     <TextView
                         android:id="@+id/saveScoresText"
@@ -617,6 +621,7 @@
                         android:text="@string/save"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
+                        android:textColor="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="@+id/saveScoresIcon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/saveScoresIcon"

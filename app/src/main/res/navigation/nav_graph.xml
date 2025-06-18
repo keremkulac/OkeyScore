@@ -9,7 +9,7 @@
         android:id="@+id/savePartnerGameFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.savePartnerGame.SavePartnerGameFragment"
         android:label="fragment_save_partner_game"
-        tools:layout="@layout/fragment_save_partner_game" >
+        tools:layout="@layout/fragment_save_partner_game">
         <action
             android:id="@+id/action_savePartnerGameFragment_to_chooseGameFragment"
             app:destination="@id/chooseGameFragment" />
@@ -18,30 +18,27 @@
         android:id="@+id/finishedPartnerGameFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.finishedPartnerGame.FinishedPartnerGameFragment"
         android:label="fragment_finished_partner_game"
-        tools:layout="@layout/fragment_finished_partner_game" >
-    </fragment>
+        tools:layout="@layout/fragment_finished_partner_game"/>
     <fragment
         android:id="@+id/finishedSingleGameFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.finishedSingleGame.FinishedSingleGameFragment"
         android:label="fragment_finished_single_game"
-        tools:layout="@layout/fragment_finished_single_game" >
-    </fragment>
+        tools:layout="@layout/fragment_finished_single_game"/>
     <fragment
         android:id="@+id/finishedGameViewFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.finishedGameView.FinishedGameViewFragment"
         android:label="fragment_finished_game_view"
-        tools:layout="@layout/fragment_finished_game_view" >
+        tools:layout="@layout/fragment_finished_game_view">
+
+        <argument
+            android:name="gameType"
+            app:argType="string" />
         <action
             android:id="@+id/action_finishedGameViewFragment_to_saveSingleGameFragment"
             app:destination="@id/saveSingleGameFragment" />
         <action
             android:id="@+id/action_finishedGameViewFragment_to_savePartnerGameFragment"
             app:destination="@id/savePartnerGameFragment" />
-
-
-        <argument
-            android:name="gameType"
-            app:argType="string" />
         <action
             android:id="@+id/action_finishedGameViewFragment_to_finishedSingleGameDetailFragment"
             app:destination="@id/finishedSingleGameDetailFragment" />
@@ -65,11 +62,11 @@
         android:id="@+id/finishedPartnerGameDetailFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment"
         android:label="fragment_finished_partner_game_detail"
-        tools:layout="@layout/fragment_finished_partner_game_detail" >
+        tools:layout="@layout/fragment_finished_partner_game_detail">
         <argument
             android:name="finishedGameID"
-            app:argType="integer"
-            android:defaultValue="0"/>
+            android:defaultValue="0"
+            app:argType="integer" />
         <action
             android:id="@+id/action_finishedPartnerGameDetailFragment_to_finishedGameViewFragment"
             app:destination="@id/finishedGameViewFragment" />
@@ -90,7 +87,7 @@
         android:id="@+id/chooseGameFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.chooseGame.ChooseGameFragment"
         android:label="fragment_choose_game"
-        tools:layout="@layout/fragment_choose_game" >
+        tools:layout="@layout/fragment_choose_game">
         <action
             android:id="@+id/action_chooseGameFragment_to_saveSingleGameFragment"
             app:destination="@id/saveSingleGameFragment" />
@@ -106,8 +103,7 @@
         android:id="@+id/mainActivity"
         android:name="com.keremkulac.okeyscore.MainActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main">
-    </activity>
+        tools:layout="@layout/activity_main"></activity>
     <action
         android:id="@+id/action_mainActivity_to_finishedGameViewFragment"
         app:destination="@id/finishedGameViewFragment" />
@@ -121,7 +117,7 @@
         android:id="@+id/onboardingFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.onboarding.OnboardingFragment"
         android:label="fragment_onboarding"
-        tools:layout="@layout/fragment_onboarding" >
+        tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_chooseGameFragment"
             app:destination="@id/chooseGameFragment" />
@@ -136,7 +132,7 @@
         android:id="@+id/settingsFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_chooseGameFragment"
             app:destination="@id/chooseGameFragment" />
@@ -148,7 +144,7 @@
         android:id="@+id/splashFragment"
         android:name="com.keremkulac.okeyscore.presentation.ui.splash.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_onboardingFragment"
             app:destination="@id/onboardingFragment" />

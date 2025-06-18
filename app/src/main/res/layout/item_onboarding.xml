@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Başlık"
-        android:textSize="@dimen/text_size_xlarge"
+        android:textSize="@dimen/text_size_xxlarge"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/margin_xxlarge" />
 

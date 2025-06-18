@@ -18,9 +18,9 @@ class OnboardingAdapter(private val items: List<OnboardingItem>) :
     RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 
     class OnboardingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image = itemView.findViewById<ImageView>(R.id.imageView)
-        val title = itemView.findViewById<TextView>(R.id.titleText)
-        val description = itemView.findViewById<TextView>(R.id.descriptionText)
+        val image = itemView.findViewById<ImageView>(R.id.imageView)!!
+        val title = itemView.findViewById<TextView>(R.id.titleText)!!
+        val description = itemView.findViewById<TextView>(R.id.descriptionText)!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
