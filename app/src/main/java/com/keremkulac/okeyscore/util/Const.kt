@@ -16,4 +16,4 @@ const val TURKISH_TR = "Türkçe"
 const val TURKISH_EN = "Turkish"
 const val ENGLISH_TR = "İngilizce"
 const val ENGLISH_EN = "English"
-
+const val UPDATE_REQUEST_CODE = "1234"

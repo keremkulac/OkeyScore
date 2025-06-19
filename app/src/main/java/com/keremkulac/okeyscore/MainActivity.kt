@@ -15,6 +15,7 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.keremkulac.okeyscore.util.GAME_TYPE_SINGLE
 import com.keremkulac.okeyscore.util.SharedPrefHelper
+import com.keremkulac.okeyscore.util.UPDATE_REQUEST_CODE
 import com.keremkulac.okeyscore.util.updateResources
 import com.keremkulac.okeyscore.util.updateTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,11 +32,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var appUpdateManager: AppUpdateManager
     private lateinit var navController: NavController
-    private val requestCode = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkUpdate()
+        checkForUpdate()
         themeListener()
         supportFragmentManager.fragmentFactory = defaultFragmentFactory
         setContentView(R.layout.activity_main)
@@ -148,33 +148,33 @@ class MainActivity : AppCompatActivity() {
         updateResources(this, Locale(selectedLanguage))
     }
 
-    private fun checkUpdate() {
+    private fun checkForUpdate() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
-        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (
+                appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
+                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
             ) {
                 appUpdateManager.startUpdateFlowForResult(
                     appUpdateInfo,
                     AppUpdateType.IMMEDIATE,
                     this,
-                    requestCode
+                    UPDATE_REQUEST_CODE.toInt()
                 )
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == this.requestCode) {
+        if (requestCode == UPDATE_REQUEST_CODE.toInt()) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(
-                    this,
-                    this.resources.getString(R.string.update_failed),
-                    Toast.LENGTH_SHORT
-                ).show()
+                finish()
             }
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     fun showBottomNav() {
