@@ -78,6 +78,30 @@ class SavePartnerGameViewModel
         }
     }
 
+    fun checkPenaltyPlayer(
+        penalizedPlayer: String?,
+        errorMessagePenalizedPlayer: String,
+    ): Boolean {
+        return inputValidation.checkPenaltyPlayer(
+            penalizedPlayer,
+            errorMessagePenalizedPlayer,
+        ) { message ->
+            _validationMessage.value = message
+        }
+    }
+
+    fun checkPenaltyValue(
+        penaltyValue: String?,
+        errorMessagePenaltyValue: String
+    ): Boolean {
+        return inputValidation.checkPenaltyValue(
+            penaltyValue,
+            errorMessagePenaltyValue
+        ) { message ->
+            _validationMessage.value = message
+        }
+    }
+
     fun createInfo(players: List<Player>, teamNames: List<String>, context: Context): Info {
 
         val team1Score = players[0].totalScore.toInt() + players[1].totalScore.toInt()

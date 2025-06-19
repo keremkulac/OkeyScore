@@ -60,18 +60,22 @@ class InputValidation @Inject constructor() {
                 validationMessage(errorTeamName)
                 return false
             }
+
             player1Name.trim().isEmpty() -> {
                 validationMessage(errorPlayer1Name)
                 return false
             }
+
             player2Name.trim().isEmpty() -> {
                 validationMessage(errorPlayer2Name)
                 return false
             }
+
             player1Name.trim().equals(player2Name.trim(), ignoreCase = true) -> {
                 validationMessage(errorSameNames)
                 return false
             }
+
             else -> return true
         }
     }
@@ -87,4 +91,34 @@ class InputValidation @Inject constructor() {
         }
         return true
     }
+
+    fun checkPenaltyPlayer(
+        penalizedPlayer: String?,
+        errorMessagePenalizedPlayer: String,
+        validationMessage: (String) -> Unit
+    ): Boolean {
+        when {
+            penalizedPlayer.isNullOrEmpty() -> {
+                validationMessage(errorMessagePenalizedPlayer)
+                return false
+            }
+
+        }
+        return true
+    }
+
+    fun checkPenaltyValue(
+        penaltyValue: String?,
+        errorMessagePenaltyValue: String,
+        validationMessage: (String) -> Unit
+    ): Boolean {
+        when {
+            penaltyValue.isNullOrEmpty() -> {
+                validationMessage(errorMessagePenaltyValue)
+                return false
+            }
+        }
+        return true
+    }
+
 }

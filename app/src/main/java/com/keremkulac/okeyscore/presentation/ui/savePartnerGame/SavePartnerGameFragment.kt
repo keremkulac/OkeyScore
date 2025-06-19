@@ -27,7 +27,6 @@ import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
 import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.dpToPx
 import com.keremkulac.okeyscore.util.observeValidationMessage
-import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -303,37 +302,34 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
             val confirm = penaltyView.findViewById<Button>(R.id.confirm)
             val givenPenaltyEditText = penaltyView.findViewById<EditText>(R.id.penalty)
             setPlayerToBePenalized(playersPenaltyAddView)
-            val firstDialog = createAlertDialog(
-                requireContext(),
-                playersPenaltyAddView
-            )
+            val firstDialog = createAlertDialog(requireContext(), playersPenaltyAddView)
             forward.setOnClickListener {
                 val selectedText =
                     playersRadioGroup.findViewById<RadioButton>(playersRadioGroup.checkedRadioButtonId)?.text?.toString()
-                if (selectedText.isNullOrEmpty()) {
-                    requireContext().toast(
-                        requireContext().getString(R.string.warning_select_player_penalised),
-                        R.drawable.ic_warning
+                if (viewModel.checkPenaltyPlayer(
+                        selectedText,
+                        getString(R.string.warning_select_player_penalised)
                     )
-                } else {
+                ) {
                     firstDialog.dismiss()
                     val secondDialog = createAlertDialog(
                         requireContext(),
                         penaltyView
                     )
                     confirm.setOnClickListener {
-                        val totalScoreTextView = createTotalScoresTextView()[selectedText]
-                        val penalty = givenPenaltyEditText.text.toString().toInt()
-                        if (totalScoreTextView!!.text.toString() == "") {
-                            totalScoreTextView.text = penalty.toString()
-                            totalScoreTextView.visibility = View.VISIBLE
-                        } else {
-                            val totalScore = totalScoreTextView.text.toString().toInt() + penalty
+                        val totalScoreTextView = createTotalScoresTextView()[selectedText]!!
+                        val penalty = givenPenaltyEditText.text.toString()
+                        if (viewModel.checkPenaltyValue(
+                                penalty,
+                                getString(R.string.warning_select_player_value_penalised)
+                            )
+                        ) {
+                            val totalScore =
+                                totalScoreTextView.text.toString().toInt() + penalty.toInt()
                             totalScoreTextView.text = totalScore.toString()
-                            totalScoreTextView.visibility = View.VISIBLE
+                            updatePenaltyTextView(selectedText!!, penalty.toInt())
+                            secondDialog.dismiss()
                         }
-                        updatePenaltyTextView(selectedText, penalty)
-                        secondDialog.dismiss()
                     }
                     secondDialog.show()
                 }

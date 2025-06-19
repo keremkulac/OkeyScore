@@ -65,6 +65,30 @@ class SaveSingleGameViewModel @Inject constructor(
         }
     }
 
+    fun checkPenaltyPlayer(
+        penalizedPlayer: String?,
+        errorMessagePenalizedPlayer: String,
+    ): Boolean {
+        return inputValidation.checkPenaltyPlayer(
+            penalizedPlayer,
+            errorMessagePenalizedPlayer,
+        ) { message ->
+            _validationMessage.value = message
+        }
+    }
+
+    fun checkPenaltyValue(
+        penaltyValue: String?,
+        errorMessagePenaltyValue: String
+    ): Boolean {
+        return inputValidation.checkPenaltyValue(
+            penaltyValue,
+            errorMessagePenaltyValue
+        ) { message ->
+            _validationMessage.value = message
+        }
+    }
+
     fun createInfo(player: List<Player>, context: Context): Info {
 
         val minScorePlayer = player.minBy { it.totalScore.toInt() }

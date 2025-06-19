@@ -38,8 +38,9 @@
     <string name="exit_confirmation_message">Do you want to exit without saving? Your changes will be lost</string>
     <string name="exit_confirmation_yes">Exit without saving</string>
     <string name="exit_confirmation_no">Cancel</string>
-    <string name="warning_check_all_rounds">Please %d. fill in all fields in the round.</string>
-    <string name="warning_select_player_penalised">Please select the player to be penalised.</string>
+    <string name="warning_check_all_rounds">Please %d. fill in all fields in the round</string>
+    <string name="warning_select_player_penalised">Please select the player to be penalised</string>
+    <string name="warning_select_player_value_penalised">Please determine the penalty</string>
     <string name="warning_check_team_names">Team name cannot be empty!</string>
     <string name="warning_check_team_player_1_name">1. Player name cannot be empty!</string>
     <string name="warning_check_team_player_2_name">2. Player name cannot be empty!</string>
@@ -73,7 +74,7 @@
     <string name="validation_message_check_same_player_names">Please check the names, they cannot be the same name</string>
     <string name="round_count">Round %d</string>
     <string name="default_total_score_value">0</string>
-    <string name="score_entry_title">Score Entry</string>
+    <string name="score_entry_title">Score entry</string>
 
     <string name="create_partner_game_button_text">Create a partner game</string>
     <string name="create_single_game_button_text">Create a single game</string>
@@ -81,8 +82,8 @@
     <string name="team_2_names_save_button_text">2nd team registration</string>
     <string name="round_1_text">Round 1</string>
     <string name="team_total_score_text">Total: %d</string>
-    <string name="player_scores_title">Player Scores</string>
-    <string name="team_scores_title">Team Scores</string>
+    <string name="player_scores_title">Player scores</string>
+    <string name="team_scores_title">Team scores</string>
     <string name="splash_logo_text">Loading%s</string>
     <string name="choose_game_enter_text">Let\'s start</string>
     <string name="language_dialog_search_text">Search</string>
