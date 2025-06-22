@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         selectLanguage()
         bottomNavigation()
         checkOnboarding()
-        getStatusBarColorForDestination()
+        setBottomNavigationVisibility()
     }
 
     private fun themeListener() {
@@ -66,29 +66,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getStatusBarColorForDestination() {
+    private fun setBottomNavigationVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.finishedSingleGameDetailFragment -> {
-                    window.statusBarColor = getColor(R.color.fragment_status_bar_color)
-                    bottomNavigationView.visibility = View.GONE
+                    hideBottomNav()
                 }
 
                 R.id.finishedPartnerGameDetailFragment -> {
-                    window.statusBarColor = getColor(R.color.fragment_status_bar_color)
-                    bottomNavigationView.visibility = View.GONE
+                    hideBottomNav()
                 }
 
                 R.id.splashFragment -> {
-                    bottomNavigationView.visibility = View.GONE
+                    hideBottomNav()
                 }
 
-                R.id.savePartnerGameFragment -> bottomNavigationView.visibility = View.GONE
-                R.id.saveSingleGameFragment -> bottomNavigationView.visibility = View.GONE
-                R.id.onboardingFragment -> bottomNavigationView.visibility = View.GONE
+                R.id.savePartnerGameFragment -> hideBottomNav()
+                R.id.saveSingleGameFragment -> hideBottomNav()
+                R.id.onboardingFragment -> hideBottomNav()
                 else -> {
-                    window.statusBarColor = getColor(R.color.status_bar_color)
-                    bottomNavigationView.visibility = View.VISIBLE
+                    showBottomNav()
                 }
             }
         }

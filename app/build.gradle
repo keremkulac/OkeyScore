@@ -14,8 +14,8 @@ android {
         applicationId 'com.keremkulac.okeyscore'
         minSdk 26
         targetSdk 34
-        versionCode 16
-        versionName "1.14"
+        versionCode 17
+        versionName "1.20"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "tr"
         javaCompileOptions {
@@ -76,10 +76,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.1'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.9.1'
 
-    implementation 'androidx.room:room-common:2.7.1'
-    implementation 'androidx.room:room-runtime:2.7.1'
-    kapt 'androidx.room:room-compiler:2.7.1'
-    implementation 'androidx.room:room-ktx:2.7.1'
+    implementation 'androidx.room:room-common:2.7.2'
+    implementation 'androidx.room:room-runtime:2.7.2'
+    kapt 'androidx.room:room-compiler:2.7.2'
+    implementation 'androidx.room:room-ktx:2.7.2'
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
     implementation 'at.blogc:expandabletextview:1.0.5'
     implementation 'com.tbuonomo:dotsindicator:5.0'

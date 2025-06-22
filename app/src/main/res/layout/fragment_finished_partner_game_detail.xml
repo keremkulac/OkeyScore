@@ -10,15 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:background="@drawable/header"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
@@ -35,8 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
                     android:contentDescription="@string/tag"
-                    android:src="@drawable/ic_back"
-                    app:tint="@color/white" />
+                    android:src="@drawable/ic_back" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -45,7 +35,6 @@
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
                     android:text="@string/game_detail"
-                    android:textColor="#FFFFFF"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -55,9 +44,7 @@
             android:id="@+id/teamScoreCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_xxlarge"
-            android:layout_marginTop="@dimen/margin_xlarge"
-            android:layout_marginEnd="@dimen/margin_xxlarge"
+            android:layout_margin="@dimen/margin_large"
             android:outlineSpotShadowColor="@color/cardview_shadow_color"
             app:cardBackgroundColor="@color/cardview_background_color"
             app:cardCornerRadius="@dimen/card_radius_large"
@@ -116,9 +103,15 @@
                     android:paddingBottom="@dimen/padding_medium"
                     android:visibility="gone">
 
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/dividerTeam1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_large"
                         android:baselineAligned="false"
                         android:gravity="center"
                         android:orientation="horizontal">
@@ -248,9 +241,15 @@
                     android:paddingTop="@dimen/padding_large"
                     android:visibility="gone">
 
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/dividerTeam2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_large"
                         android:baselineAligned="false"
                         android:gravity="center"
                         android:orientation="horizontal">
