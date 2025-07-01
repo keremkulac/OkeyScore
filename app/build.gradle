@@ -8,6 +8,7 @@ plugins {
 def properties = new Properties()
 properties.load(rootProject.file("local.properties").newDataInputStream())
 def admobAppId = properties.getProperty("ADMOB_APP_ID") ?: ""
+def interstitialId = properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE") ?: ""
 
 android {
     namespace 'com.keremkulac.okeyscore'
@@ -27,7 +28,8 @@ android {
             }
         }
         manifestPlaceholders = [admobAppId: admobAppId]
-        buildConfigField "String", "ADMOB_APP_ID", "\"${properties.getProperty("ADMOB_APP_ID")}\""
+        buildConfigField("String", "INTERSTITIAL_AD_UNIT_ID_RELEASE", "\"${properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE")}\"")
+
     }
 
     buildTypes {
@@ -95,7 +97,4 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.google.android.gms:play-services-ads:24.4.0'
 
-}
-afterEvaluate {
-    println("TAG ")
 }
