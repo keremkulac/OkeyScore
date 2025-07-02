@@ -23,10 +23,12 @@ import com.keremkulac.okeyscore.model.Player
 import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.CustomDialog
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
+import com.keremkulac.okeyscore.util.InterstitialAdManager
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
 import com.keremkulac.okeyscore.util.createAlertDialog
 import com.keremkulac.okeyscore.util.dpToPx
 import com.keremkulac.okeyscore.util.observeValidationMessage
+import com.keremkulac.okeyscore.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +39,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
     private var lineCount = 1
     private lateinit var expandableLayoutManager: ExpandableLayoutManager
     private lateinit var expandableLayoutManager2: ExpandableLayoutManager
+    private lateinit var adManager: InterstitialAdManager
     private val penaltyHashMap = HashMap<String, List<TextView>>()
     private var playerNames = mutableListOf<String>()
     private var teamNames = mutableListOf<String>()
@@ -49,6 +52,8 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adManager = InterstitialAdManager
+        adManager.loadAd(requireActivity())
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
         createPlayerScores()
@@ -458,11 +463,26 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
                         team2Player2 = players.getOrNull(3),
                         gameInfo = viewModel.createInfo(players, teamNames, requireContext())
                     )
-                    viewModel.savePartnerGame(finishedPartnerGame)
-                    findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
+                    if (adManager.isAdLoaded()) {
+                        adManager.showAd(requireActivity(), onDismissed = {
+                            completeSaveAndNavigate(finishedPartnerGame)
+                            adManager.clear()
+                        })
+                    } else {
+                        completeSaveAndNavigate(finishedPartnerGame)
+                    }
                 }
             }
         }
+    }
+
+    private fun completeSaveAndNavigate(finishedPartnerGame: FinishedPartnerGame) {
+        viewModel.savePartnerGame(finishedPartnerGame)
+        requireContext().toast(
+            getString(R.string.warning_successful_game_save),
+            R.drawable.ic_successful
+        )
+        findNavController().navigate(SavePartnerGameFragmentDirections.actionSavePartnerGameFragmentToChooseGameFragment())
     }
 
     private fun handleOnBackPressed() {
