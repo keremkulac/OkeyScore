@@ -8,7 +8,6 @@ plugins {
 def properties = new Properties()
 properties.load(rootProject.file("local.properties").newDataInputStream())
 def admobAppId = properties.getProperty("ADMOB_APP_ID") ?: ""
-def interstitialId = properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE") ?: ""
 
 android {
     namespace 'com.keremkulac.okeyscore'
@@ -29,7 +28,7 @@ android {
         }
         manifestPlaceholders = [admobAppId: admobAppId]
         buildConfigField("String", "INTERSTITIAL_AD_UNIT_ID_RELEASE", "\"${properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE")}\"")
-
+        buildConfigField("String", "BANNER_AD_UNIT_ID_RELEASE", "\"${properties.getProperty("BANNER_AD_UNIT_ID_RELEASE")}\"")
     }
 
     buildTypes {
