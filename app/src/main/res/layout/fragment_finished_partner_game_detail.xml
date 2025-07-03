@@ -1,439 +1,462 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.ui.finishedPartnerGameDetail.FinishedPartnerGameDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/goToFinishedGameViewFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:contentDescription="@string/tag"
+                android:src="@drawable/ic_back" />
 
-                <ImageView
-                    android:id="@+id/goToFinishedGameViewFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:contentDescription="@string/tag"
-                    android:src="@drawable/ic_back" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
+                android:text="@string/game_detail"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_large"
-                    android:layout_toEndOf="@+id/goToFinishedGameViewFragment"
-                    android:text="@string/game_detail"
-                    android:textSize="@dimen/text_size_medium"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-        </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_large"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/teamScoreCardView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_large"
-            android:outlineSpotShadowColor="@color/cardview_shadow_color"
-            app:cardBackgroundColor="@color/cardview_background_color"
-            app:cardCornerRadius="@dimen/card_radius_large"
-            app:cardElevation="@dimen/card_elevation_large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar"
-            tools:targetApi="28">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/teamScoreCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_large">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/team1MainLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/team1Name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/padding_small"
-                        android:gravity="center_vertical"
-                        android:paddingTop="@dimen/padding_small"
-                        android:paddingBottom="@dimen/padding_small"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="bold"
-                        app:drawableLeftCompat="@drawable/ic_team_1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Team 1" />
-
-                    <ImageView
-                        android:id="@+id/team1MainIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_expand"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/team1Layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_large"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/padding_medium"
-                    android:visibility="gone">
-
-                    <com.google.android.material.divider.MaterialDivider
-                        android:id="@+id/dividerTeam1"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:baselineAligned="false"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/player1Layout"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_player" />
-
-                            <TextView
-                                android:id="@+id/totalScorePlayer1Name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size_medium"
-                                android:textStyle="bold"
-                                tools:text="Player 1" />
-
-                            <TextView
-                                android:id="@+id/player1TotalScore"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#4CAF50"
-                                android:textSize="@dimen/text_size_large"
-                                android:textStyle="bold"
-                                tools:text="490" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/player2Layout"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_player" />
-
-                            <TextView
-                                android:id="@+id/totalScorePlayer2Name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size_medium"
-                                android:textStyle="bold"
-                                tools:text="Player 2" />
-
-                            <TextView
-                                android:id="@+id/player2TotalScore"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#4CAF50"
-                                android:textSize="@dimen/text_size_large"
-                                android:textStyle="bold"
-                                tools:text="385" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/team1TotalScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:paddingTop="@dimen/padding_small"
-                        android:textColor="#4CAF50"
-                        android:textSize="@dimen/text_size_large"
-                        android:textStyle="bold"
-                        tools:text="Toplam: 875" />
-                </LinearLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/margin_large"
-                    android:layout_marginBottom="@dimen/margin_large" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/team2MainLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/team2Name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/padding_small"
-                        android:gravity="center_vertical"
-                        android:paddingTop="@dimen/padding_small"
-                        android:paddingBottom="@dimen/padding_small"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="bold"
-                        app:drawableLeftCompat="@drawable/ic_team_1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Team 2" />
-
-                    <ImageView
-                        android:id="@+id/team2MainIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/ic_expand"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/team2Layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/padding_large"
-                    android:visibility="gone">
-
-                    <com.google.android.material.divider.MaterialDivider
-                        android:id="@+id/dividerTeam2"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:baselineAligned="false"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/player3Layout"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_player" />
-
-                            <TextView
-                                android:id="@+id/totalScorePlayer3Name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size_medium"
-                                android:textStyle="bold"
-                                tools:text="Player 3" />
-
-                            <TextView
-                                android:id="@+id/player3TotalScore"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#4CAF50"
-                                android:textSize="@dimen/text_size_large"
-                                android:textStyle="bold"
-                                tools:text="420" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/player4Layout"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:contentDescription="@string/todo"
-                                android:src="@drawable/ic_player" />
-
-                            <TextView
-                                android:id="@+id/totalScorePlayer4Name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/text_size_medium"
-                                android:textStyle="bold"
-                                tools:text="Player 4" />
-
-                            <TextView
-                                android:id="@+id/player4TotalScore"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#4CAF50"
-                                android:textSize="@dimen/text_size_large"
-                                android:textStyle="bold"
-                                tools:text="412" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/team2TotalScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:paddingTop="8dp"
-                        android:textColor="#4CAF50"
-                        android:textSize="@dimen/text_size_large"
-                        android:textStyle="bold"
-                        tools:text="Toplam: 832" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <LinearLayout
-            android:id="@+id/scoreLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/teamScoreCardView">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/roundRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_large"
+                android:outlineSpotShadowColor="@color/cardview_shadow_color"
+                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardCornerRadius="@dimen/card_radius_large"
+                app:cardElevation="@dimen/card_elevation_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="28">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/infoCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:outlineSpotShadowColor="@color/cardview_shadow_color"
-            app:cardBackgroundColor="@color/cardview_background_color"
-            app:cardCornerRadius="@dimen/card_radius_large"
-            app:cardElevation="@dimen/card_elevation_large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
-            tools:targetApi="28">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/detailLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <TextView
-                    android:id="@+id/gameDetail"
-                    style="@style/InfoTextViewStyle"
-                    android:layout_width="0dp"
-                    app:layout_constraintEnd_toStartOf="@+id/showScoreDifferencesTextView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/showScoreDifferencesTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_large"
-                    android:text="@string/show_differences"
-                    android:textColor="@color/score_differences_text_color"
-                    android:textSize="@dimen/text_size_small"
-                    app:drawableRightCompat="@drawable/ic_show_detail"
-                    app:layout_constraintBottom_toBottomOf="@+id/gameDetail"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/gameDetail" />
-
-                <TextView
-                    android:id="@+id/scoreDifferencesTextView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:layout_marginEnd="@dimen/margin_large"
-                    android:gravity="center_vertical"
-                    android:lineSpacingExtra="4dp"
-                    android:maxLines="3"
-                    android:paddingStart="32dp"
-                    android:textSize="@dimen/text_size_small"
-                    android:textStyle="normal"
-                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_large">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/team1MainLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/team1Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/padding_small"
+                            android:gravity="center_vertical"
+                            android:paddingTop="@dimen/padding_small"
+                            android:paddingBottom="@dimen/padding_small"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textStyle="bold"
+                            app:drawableLeftCompat="@drawable/ic_team_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Team 1" />
+
+                        <ImageView
+                            android:id="@+id/team1MainIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_expand"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/team1Layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/padding_medium"
+                        android:visibility="gone">
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:id="@+id/dividerTeam1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:baselineAligned="false"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/player1Layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:contentDescription="@string/todo"
+                                    android:src="@drawable/ic_player" />
+
+                                <TextView
+                                    android:id="@+id/totalScorePlayer1Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:textStyle="bold"
+                                    tools:text="Player 1" />
+
+                                <TextView
+                                    android:id="@+id/player1TotalScore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#4CAF50"
+                                    android:textSize="@dimen/text_size_large"
+                                    android:textStyle="bold"
+                                    tools:text="490" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/player2Layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:contentDescription="@string/todo"
+                                    android:src="@drawable/ic_player" />
+
+                                <TextView
+                                    android:id="@+id/totalScorePlayer2Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:textStyle="bold"
+                                    tools:text="Player 2" />
+
+                                <TextView
+                                    android:id="@+id/player2TotalScore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#4CAF50"
+                                    android:textSize="@dimen/text_size_large"
+                                    android:textStyle="bold"
+                                    tools:text="385" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/team1TotalScore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:paddingTop="@dimen/padding_small"
+                            android:textColor="#4CAF50"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold"
+                            tools:text="Toplam: 875" />
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:layout_marginBottom="@dimen/margin_large" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/team2MainLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/team2Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/padding_small"
+                            android:gravity="center_vertical"
+                            android:paddingTop="@dimen/padding_small"
+                            android:paddingBottom="@dimen/padding_small"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textStyle="bold"
+                            app:drawableLeftCompat="@drawable/ic_team_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Team 2" />
+
+                        <ImageView
+                            android:id="@+id/team2MainIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_expand"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/team2Layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/padding_large"
+                        android:visibility="gone">
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:id="@+id/dividerTeam2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:baselineAligned="false"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/player3Layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:contentDescription="@string/todo"
+                                    android:src="@drawable/ic_player" />
+
+                                <TextView
+                                    android:id="@+id/totalScorePlayer3Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:textStyle="bold"
+                                    tools:text="Player 3" />
+
+                                <TextView
+                                    android:id="@+id/player3TotalScore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#4CAF50"
+                                    android:textSize="@dimen/text_size_large"
+                                    android:textStyle="bold"
+                                    tools:text="420" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/player4Layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:contentDescription="@string/todo"
+                                    android:src="@drawable/ic_player" />
+
+                                <TextView
+                                    android:id="@+id/totalScorePlayer4Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:textStyle="bold"
+                                    tools:text="Player 4" />
+
+                                <TextView
+                                    android:id="@+id/player4TotalScore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#4CAF50"
+                                    android:textSize="@dimen/text_size_large"
+                                    android:textStyle="bold"
+                                    tools:text="412" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/team2TotalScore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:paddingTop="8dp"
+                            android:textColor="#4CAF50"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold"
+                            tools:text="Toplam: 832" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/scoreLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/teamScoreCardView">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/roundRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/gameDetail"
-                    tools:ignore="RtlSymmetry" />
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
 
-                <TextView
-                    android:id="@+id/gameDate"
-                    style="@style/DateTextViewStyle"
-                    android:layout_margin="@dimen/margin_large"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/infoCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:outlineSpotShadowColor="@color/cardview_shadow_color"
+                app:cardBackgroundColor="@color/cardview_background_color"
+                app:cardCornerRadius="@dimen/card_radius_large"
+                app:cardElevation="@dimen/card_elevation_large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scoreLayout"
+                tools:targetApi="28">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/scoreDifferencesTextView" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/gameDetail"
+                        style="@style/InfoTextViewStyle"
+                        android:layout_width="0dp"
+                        app:layout_constraintEnd_toStartOf="@+id/showScoreDifferencesTextView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/showScoreDifferencesTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_large"
+                        android:text="@string/show_differences"
+                        android:textColor="@color/score_differences_text_color"
+                        android:textSize="@dimen/text_size_small"
+                        app:drawableRightCompat="@drawable/ic_show_detail"
+                        app:layout_constraintBottom_toBottomOf="@+id/gameDetail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/gameDetail" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                    <TextView
+                        android:id="@+id/scoreDifferencesTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_large"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="4dp"
+                        android:maxLines="3"
+                        android:paddingStart="32dp"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="normal"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gameDetail"
+                        tools:ignore="RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/gameDate"
+                        style="@style/DateTextViewStyle"
+                        android:layout_margin="@dimen/margin_large"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/scoreDifferencesTextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_unit_id"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

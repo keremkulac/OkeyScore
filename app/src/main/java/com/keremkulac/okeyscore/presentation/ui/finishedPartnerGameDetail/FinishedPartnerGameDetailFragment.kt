@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedPartnerGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedPartnerGame
+import com.keremkulac.okeyscore.util.BannerAdManager
 import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import com.keremkulac.okeyscore.util.FINISHED_GAME_ID
@@ -31,6 +32,7 @@ class FinishedPartnerGameDetailFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAdView()
         expandableLayoutManager = ExpandableLayoutManager()
         goToFinishedGameViewFragment()
         getAndSetFinishedGames()
@@ -46,6 +48,10 @@ class FinishedPartnerGameDetailFragment
                 )
             findNavController().navigate(action)
         }
+    }
+
+    private fun setAdView() {
+        BannerAdManager.loadBannerAd(binding.adView)
     }
 
     private fun getAndSetFinishedGames() = with(viewModel) {
