@@ -7,19 +7,18 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.keremkulac.okeyscore.BuildConfig
 
 object InterstitialAdManager {
 
     private var interstitialAd: InterstitialAd? = null
     private const val TAG = "InterstitialAdManager"
 
-    fun loadAd(activity: Activity, onLoaded: (() -> Unit)? = null, onFailed: (() -> Unit)? = null) {
+    fun loadAd(activity: Activity,interstitialAdId : String, onLoaded: (() -> Unit)? = null, onFailed: (() -> Unit)? = null) {
         val adRequest = AdRequest.Builder().build()
 
         InterstitialAd.load(
             activity,
-            BuildConfig.INTERSTITIAL_AD_UNIT_ID_RELEASE,
+            interstitialAdId,
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {

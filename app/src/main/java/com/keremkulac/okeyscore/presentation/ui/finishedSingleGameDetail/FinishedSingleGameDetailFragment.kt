@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentFinishedSingleGameDetailBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
+import com.keremkulac.okeyscore.util.BannerAdManager
 import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import com.keremkulac.okeyscore.util.FINISHED_GAME_ID
@@ -28,6 +29,7 @@ class FinishedSingleGameDetailFragment :
     lateinit var finishedSingleGameDetailAdapter: FinishedSingleGameDetailAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAdView()
         expandableLayoutManager = ExpandableLayoutManager()
         getAndSetFinishedGame()
         goToFinishedGameViewFragment()
@@ -41,6 +43,10 @@ class FinishedSingleGameDetailFragment :
                 )
             findNavController().navigate(action)
         }
+    }
+
+    private fun setAdView() {
+        BannerAdManager.loadBannerAd(binding.adView)
     }
 
     private fun setRecyclerView(finishedSingleGame: FinishedSingleGame) = with(binding) {

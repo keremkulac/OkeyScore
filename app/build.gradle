@@ -33,9 +33,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "ad_unit_id", "\"${properties.getProperty("BANNER_AD_UNIT_ID_RELEASE")}\""
             resValue "string", "interstitial_ad_id", "\"${properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE")}\""
         }
         debug {
+            resValue "string", "ad_unit_id", "ca-app-pub-3940256099942544/6300978111"
             resValue "string", "interstitial_ad_id", "ca-app-pub-3940256099942544/1033173712"
         }
     }
