@@ -48,6 +48,7 @@
     <string name="warning_check_team_player_1_name" tools:ignore="MissingTranslation">1. Oyuncu adı boş olamaz!</string>
     <string name="warning_check_team_player_2_name" tools:ignore="MissingTranslation">2. Oyuncu adı boş olamaz!</string>
     <string name="warning_check_selected_game" tools:ignore="MissingTranslation">Lütfen oyun türü seçiniz!</string>
+    <string name="warning_successful_game_save" tools:ignore="MissingTranslation">Oyun başarıyla kaydedildi</string>
     <string name="score_difference" tools:ignore="MissingTranslation">%s ile %s skor farkı: %d</string>
     <string name="deleted" tools:ignore="MissingTranslation">Silindi</string>
     <string name="take_it_back" tools:ignore="MissingTranslation">Geri al</string>

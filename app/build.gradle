@@ -27,14 +27,16 @@ android {
             }
         }
         manifestPlaceholders = [admobAppId: admobAppId]
-        buildConfigField("String", "INTERSTITIAL_AD_UNIT_ID_RELEASE", "\"${properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE")}\"")
-        buildConfigField("String", "BANNER_AD_UNIT_ID_RELEASE", "\"${properties.getProperty("BANNER_AD_UNIT_ID_RELEASE")}\"")
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "interstitial_ad_id", "\"${properties.getProperty("INTERSTITIAL_AD_UNIT_ID_RELEASE")}\""
+        }
+        debug {
+            resValue "string", "interstitial_ad_id", "ca-app-pub-3940256099942544/1033173712"
         }
     }
     compileOptions {

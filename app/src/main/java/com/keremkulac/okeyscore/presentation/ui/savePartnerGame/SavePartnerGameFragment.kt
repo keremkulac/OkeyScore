@@ -53,7 +53,7 @@ class SavePartnerGameFragment : BaseFragment<FragmentSavePartnerGameBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adManager = InterstitialAdManager
-        adManager.loadAd(requireActivity())
+        adManager.loadAd(requireActivity(),getString(R.string.interstitial_ad_id))
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
         createPlayerScores()

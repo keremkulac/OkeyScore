@@ -54,7 +54,7 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
         expandableLayoutManager = ExpandableLayoutManager()
         expandableLayoutManager2 = ExpandableLayoutManager()
         adManager = InterstitialAdManager
-        adManager.loadAd(requireActivity())
+        adManager.loadAd(requireActivity(), getString(R.string.interstitial_ad_id))
         createPlayerScores()
         penalty()
         confirmNames()

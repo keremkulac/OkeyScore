@@ -46,6 +46,7 @@
     <string name="warning_check_team_player_2_name">2. Player name cannot be empty!</string>
     <string name="warning_same_players_names">Players names cannot be the same!</string>
     <string name="warning_check_selected_game">Please select a game type!</string>
+    <string name="warning_successful_game_save" >Game successfully saved</string>
     <string name="score_difference">%s and %s score difference: %d</string>
     <string name="deleted">Deleted</string>
     <string name="take_it_back">Take it back</string>
