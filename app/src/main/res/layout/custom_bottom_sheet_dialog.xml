@@ -8,12 +8,12 @@
     android:paddingStart="@dimen/padding_xlarge"
     android:paddingEnd="@dimen/padding_xlarge"
     android:paddingTop="@dimen/padding_large"
-    android:paddingBottom="@dimen/padding_large">
+    android:paddingBottom="@dimen/padding_xlarge">
 
     <View
         android:id="@+id/view"
-        android:layout_width="30dp"
-        android:layout_height="2dp"
+        android:layout_width="25dp"
+        android:layout_height="2.5dp"
         android:background="@color/icon_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -21,7 +21,7 @@ import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Player
 import com.keremkulac.okeyscore.util.BaseFragment
-import com.keremkulac.okeyscore.util.CustomDialog
+import com.keremkulac.okeyscore.util.CustomBottomSheetDialog
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
 import com.keremkulac.okeyscore.util.InterstitialAdManager
 import com.keremkulac.okeyscore.util.SINGLE_PLAYER_SIZE
@@ -361,7 +361,7 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
                     getString(R.string.warning_check_all_rounds).format(lineCount - 1)
                 )
             ) {
-                CustomDialog.showConfirmationDialog(
+                CustomBottomSheetDialog.showConfirmationDialog(
                     requireContext(),
                     requireContext().getString(R.string.confirmation_title),
                     requireContext().getString(R.string.confirmation_message),
@@ -429,7 +429,7 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
     }
 
     private fun backChooseGameFragment() {
-        CustomDialog.showConfirmationDialog(
+        CustomBottomSheetDialog.showConfirmationDialog(
             requireContext(),
             requireContext().getString(R.string.exit_confirmation_title),
             requireContext().getString(R.string.exit_confirmation_message),
@@ -446,4 +446,5 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
             backChooseGameFragment()
         }
     }
+
 }
