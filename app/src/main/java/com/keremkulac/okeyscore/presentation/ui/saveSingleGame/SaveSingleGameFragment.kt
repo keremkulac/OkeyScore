@@ -20,6 +20,7 @@ import com.keremkulac.okeyscore.R
 import com.keremkulac.okeyscore.databinding.FragmentSaveSingleGameBinding
 import com.keremkulac.okeyscore.model.FinishedSingleGame
 import com.keremkulac.okeyscore.model.Player
+import com.keremkulac.okeyscore.util.BannerAdManager
 import com.keremkulac.okeyscore.util.BaseFragment
 import com.keremkulac.okeyscore.util.CustomBottomSheetDialog
 import com.keremkulac.okeyscore.util.ExpandableLayoutManager
@@ -57,11 +58,16 @@ class SaveSingleGameFragment : BaseFragment<FragmentSaveSingleGameBinding>(
         adManager.loadAd(requireActivity(), getString(R.string.interstitial_ad_id))
         createPlayerScores()
         penalty()
+        setAdView()
         confirmNames()
         saveFinishedGame()
         observeValidationMessage(viewModel.validationMessage)
         handleOnBackPressed()
         toolbarBackButtonClick()
+    }
+
+    private fun setAdView() {
+        BannerAdManager.loadBannerAd(binding.adView)
     }
 
     private fun createNewLine(inflater: LayoutInflater) {
