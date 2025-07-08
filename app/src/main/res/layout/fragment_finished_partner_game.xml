@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.ui.finishedPartnerGame.FinishedPartnerGameFragment">
 
     <androidx.appcompat.widget.SearchView
@@ -15,8 +16,8 @@
         android:layoutDirection="rtl"
         app:closeIcon="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:queryHint="@string/search_team_hint"
         app:searchHintIcon="@drawable/ic_search"
         app:searchIcon="@drawable/ic_search"

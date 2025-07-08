@@ -7,7 +7,6 @@ plugins {
 }
 def properties = new Properties()
 properties.load(rootProject.file("local.properties").newDataInputStream())
-def admobAppId = properties.getProperty("ADMOB_APP_ID") ?: ""
 
 android {
     namespace 'com.keremkulac.okeyscore'
@@ -16,9 +15,9 @@ android {
     defaultConfig {
         applicationId 'com.keremkulac.okeyscore'
         minSdk 26
-        targetSdk 34
-        versionCode 18
-        versionName "2.0"
+        targetSdk 35
+        versionCode 21
+        versionName "2.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "tr"
         javaCompileOptions {
@@ -26,7 +25,7 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
-        manifestPlaceholders = [admobAppId: admobAppId]
+        manifestPlaceholders = [admobAppId: properties.getProperty("ADMOB_APP_ID")]
     }
 
     buildTypes {

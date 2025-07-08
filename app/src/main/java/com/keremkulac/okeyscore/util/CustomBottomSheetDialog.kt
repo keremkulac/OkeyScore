@@ -21,7 +21,7 @@ object CustomBottomSheetDialog {
         val dialog = BottomSheetDialog(context, R.style.CustomBottomSheetDialog)
         val view = LayoutInflater.from(context).inflate(R.layout.custom_bottom_sheet_dialog, null)
         dialog.setOnShowListener {
-            dialog.hideSystemBars(dialog)
+            dialog.hideSystemBars()
         }
         val titleTextView: TextView = view.findViewById(R.id.dialogTitle)
         val messageTextView: TextView = view.findViewById(R.id.dialogMessage)

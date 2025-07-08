@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.ui.saveSingleGame.SaveSingleGameFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -326,18 +327,18 @@
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
                         android:src="@drawable/ic_add"
-                        app:tint="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_large"
                         android:text="@string/new_round"
+                        android:textColor="#FFFFFF"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="@+id/newRoundIcon"
                         app:layout_constraintStart_toEndOf="@+id/newRoundIcon"
                         app:layout_constraintTop_toTopOf="@+id/newRoundIcon" />
@@ -373,19 +374,19 @@
                         android:background="@drawable/header_icon_style"
                         android:contentDescription="@string/todo"
                         android:padding="3dp"
-                        app:tint="#FFFFFF"
                         android:src="@drawable/ic_penalty"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_large"
                         android:text="@string/penalty"
+                        android:textColor="#FFFFFF"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="@+id/penaltyIcon"
                         app:layout_constraintStart_toEndOf="@+id/penaltyIcon"
                         app:layout_constraintTop_toTopOf="@+id/penaltyIcon" />
@@ -435,9 +436,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_large"
                         android:text="@string/save"
+                        android:textColor="#FFFFFF"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="@+id/saveScoresIcon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/saveScoresIcon"

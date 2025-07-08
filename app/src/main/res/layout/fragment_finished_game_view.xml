@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.ui.finishedGameView.FinishedGameViewFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_small">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
@@ -31,8 +32,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tabIndicatorColor="@color/tab_indicator_color"
             app:tabSelectedTextColor="@color/tablayout_text_color"
-            app:tabTextColor="@color/tablayout_text_color"
-            app:tabTextAppearance="@style/TablayoutTextAppearance"/>
+            app:tabTextAppearance="@style/TablayoutTextAppearance"
+            app:tabTextColor="@color/tablayout_text_color" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

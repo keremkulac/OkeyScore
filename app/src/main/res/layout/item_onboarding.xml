@@ -21,6 +21,7 @@
         tools:text="Başlık"
         android:textSize="@dimen/text_size_xxlarge"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_marginTop="@dimen/margin_xxlarge" />
 
     <TextView
